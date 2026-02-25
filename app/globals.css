@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0B1120;
+  --color-neon: #39FF14;
+}
+
+html,
+body {
+  background-color: #FFFFFF;
+  color: var(--color-navy);
+  scroll-behavior: smooth;
+}
