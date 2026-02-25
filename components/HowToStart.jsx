@@ -66,31 +66,35 @@ export default function HowToStart() {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="py-24 bg-white" id="how-to-start">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="step-header text-center max-w-3xl mx-auto mb-20 opacity-0">
-                    <h2 className="text-4xl md:text-5xl font-black text-navy mb-6 tracking-tight">
-                        Start Trading in <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500">Minutes</span>
+        <section ref={containerRef} className="py-32 bg-white relative overflow-hidden" id="how-to-start">
+            {/* Decorative gradient sphere */}
+            <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-gradient-to-r from-gray-100 to-transparent rounded-full blur-3xl pointer-events-none -translate-y-1/2 -translate-x-1/2"></div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="step-header text-center max-w-3xl mx-auto mb-24 opacity-0">
+                    <h2 className="text-5xl md:text-6xl font-black text-navy mb-6 tracking-tight drop-shadow-sm">
+                        Start Trading in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-500 pb-2">Minutes</span>
                     </h2>
-                    <p className="text-lg text-slate-500 font-medium">
+                    <p className="text-xl text-slate-500 font-medium">
                         Your journey to financial freedom begins with three simple steps.
                     </p>
                 </div>
 
-                <div className="steps-grid grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <div className="steps-grid grid grid-cols-1 md:grid-cols-3 gap-12 relative">
                     {/* Connector Line (visible only on desktop) */}
-                    <div className="hidden md:block absolute top-[44px] left-[15%] right-[15%] h-0.5 bg-gray-100 z-0 border-[1px] border-dashed border-gray-300"></div>
+                    <div className="hidden md:block absolute top-[48px] left-[15%] right-[15%] h-0.5 bg-gray-200 z-0 border-[1px] border-dashed border-gray-300"></div>
 
                     {steps.map((step, index) => (
                         <div key={index} className="step-card opacity-0 relative z-10 flex flex-col items-center text-center group">
-                            <div className="w-24 h-24 bg-navy rounded-full flex items-center justify-center mb-8 shadow-xl shadow-navy/10 relative group-hover:-translate-y-2 transition-transform duration-300">
+                            <div className="w-24 h-24 bg-navy rounded-[2rem] flex items-center justify-center mb-8 shadow-2xl shadow-navy/20 relative group-hover:-translate-y-3 transition-transform duration-500 ease-out rotate-3 group-hover:rotate-0">
+                                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-[2rem]"></div>
                                 {step.icon}
-                                <div className="absolute -top-2 -right-2 w-8 h-8 bg-neon text-navy font-black rounded-full flex items-center justify-center border-4 border-white text-sm">
+                                <div className="absolute -top-3 -right-3 w-10 h-10 bg-neon text-navy font-black rounded-xl flex items-center justify-center border-4 border-white text-sm shadow-md transition-transform duration-300 group-hover:scale-110">
                                     {step.num}
                                 </div>
                             </div>
-                            <h3 className="text-2xl font-black text-navy mb-4">{step.title}</h3>
-                            <p className="text-slate-500 font-medium leading-relaxed max-w-xs">
+                            <h3 className="text-2xl font-black text-navy mb-4 group-hover:text-neon transition-colors duration-300">{step.title}</h3>
+                            <p className="text-slate-600 font-medium leading-relaxed max-w-xs">
                                 {step.desc}
                             </p>
                         </div>

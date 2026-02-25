@@ -17,22 +17,10 @@ export default function Hero() {
         const tl = gsap.timeline();
 
         tl.fromTo(
-            ".hero-badge",
-            { y: 20, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
+            ".hero-title",
+            { y: 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", stagger: 0.2 }
         )
-            .fromTo(
-                ".hero-title",
-                { y: 30, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", stagger: 0.2 },
-                "-=0.4"
-            )
-            .fromTo(
-                ".hero-subtitle",
-                { y: 20, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" },
-                "-=0.4"
-            )
             .fromTo(
                 ".hero-cta",
                 { y: 20, opacity: 0 },
@@ -92,18 +80,11 @@ export default function Hero() {
                 />
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                <div className="hero-badge inline-block px-4 py-1.5 mb-6 rounded-full bg-slate-50 border border-slate-100 text-sm font-bold text-navy shadow-sm">
-                    ⚡ The Next Generation of Finance
-                </div>
-                <h1 className="text-5xl md:text-7xl font-black text-navy tracking-tight mb-8 leading-tight max-w-5xl mx-auto">
-                    <span className="hero-title block">The Apex of</span>
-                    <span className="hero-title block text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-400">Crypto Trading</span>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center pt-16">
+                <h1 className="text-6xl md:text-8xl font-black text-navy tracking-tight mb-12 leading-tight max-w-5xl mx-auto drop-shadow-xl">
+                    <span className="hero-title block mb-2">The Apex of</span>
+                    <span className="hero-title block text-navy">Crypto Trading</span>
                 </h1>
-
-                <p className="hero-subtitle text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 font-medium leading-relaxed">
-                    Next-generation speed, uncompromised security. Trade Spot, Margin, and Futures with zero friction and lightning-fast execution on Hashprime.
-                </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
                     <Link href="/register" className="hero-cta w-full sm:w-auto bg-neon text-navy px-8 py-4 rounded-full text-base font-bold shadow-lg shadow-neon/20 hover:shadow-neon/40 hover:-translate-y-1 hover:scale-105 transition-all duration-300">
@@ -120,17 +101,20 @@ export default function Hero() {
             </div>
 
 
+            {/* Bottom blend gradient */}
+            <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none"></div>
+
             {/* Background decorative elements */}
-            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-80">
+            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-40">
                 <LightPillar
                     topColor="#39FF14"
-                    bottomColor="#00BFFF"
-                    intensity={1.2}
-                    rotationSpeed={0.2}
-                    glowAmount={0.003}
-                    pillarWidth={2.5}
-                    pillarHeight={0.3}
-                    noiseIntensity={0.2}
+                    bottomColor="#10B981"
+                    intensity={0.8}
+                    rotationSpeed={0.15}
+                    glowAmount={0.005}
+                    pillarWidth={2}
+                    pillarHeight={0.25}
+                    noiseIntensity={0.1}
                     pillarRotation={90}
                     interactive={true}
                     mixBlendMode="normal"

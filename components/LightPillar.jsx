@@ -26,6 +26,18 @@ const LightPillar = ({
     const mouseRef = useRef(new THREE.Vector2(0, 0));
     const timeRef = useRef(0);
     const [webGLSupported, setWebGLSupported] = useState(true);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+    // Detect touch device and disable interactive mode accordingly
+    useEffect(() => {
+        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        setIsTouchDevice(isTouch);
+    }, []);
+
+    // Effective interactive value: never interactive on touch devices
+    const effectiveInteractive = interactive && !isTouchDevice;
+    // Reduce opacity on mobile
+    const effectiveIntensity = isTouchDevice ? Math.min(intensity * 0.5, 0.4) : intensity;
 
     // Check WebGL support
     useEffect(() => {
@@ -202,8 +214,8 @@ const LightPillar = ({
                 uMouse: { value: mouseRef.current },
                 uTopColor: { value: parseColor(topColor) },
                 uBottomColor: { value: parseColor(bottomColor) },
-                uIntensity: { value: intensity },
-                uInteractive: { value: interactive },
+                uIntensity: { value: effectiveIntensity },
+                uInteractive: { value: effectiveInteractive },
                 uGlowAmount: { value: glowAmount },
                 uPillarWidth: { value: pillarWidth },
                 uPillarHeight: { value: pillarHeight },
@@ -242,7 +254,7 @@ const LightPillar = ({
             mouseRef.current.set(x, y);
         };
 
-        if (interactive) {
+        if (effectiveInteractive) {
             container.addEventListener('mousemove', handleMouseMove, { passive: true });
         }
 
@@ -288,7 +300,7 @@ const LightPillar = ({
 
         return () => {
             window.removeEventListener('resize', handleResize);
-            if (interactive) {
+            if (effectiveInteractive) {
                 container.removeEventListener('mousemove', handleMouseMove);
             }
             if (rafRef.current) {
