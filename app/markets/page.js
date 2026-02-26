@@ -51,18 +51,18 @@ export default function MarketsPage() {
     return (
         <div ref={containerRef} className="min-h-screen bg-slate-50 text-slate-800 pt-32 pb-24 px-4 sm:px-6 flex flex-col items-center">
             {/* Background branding */}
-            <div className="fixed top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-blue-100/50 via-transparent to-transparent rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2 z-0"></div>
+            <div className="fixed top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-neon/10 via-transparent to-transparent rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2 z-0"></div>
 
             <div className="max-w-6xl mx-auto w-full relative z-10">
 
                 {/* Header */}
                 <div className="text-center mb-16">
                     <div className="reveal-text inline-flex items-center space-x-2 bg-white border border-slate-200 py-2 px-4 rounded-full mb-8 shadow-sm">
-                        <Activity className="w-4 h-4 text-blue-500 animate-pulse" />
+                        <Activity className="w-4 h-4 text-neon animate-pulse" />
                         <span className="text-sm font-bold text-slate-600 uppercase tracking-widest">Live Global Markets</span>
                     </div>
                     <h1 className="reveal-text text-5xl md:text-7xl font-black mb-6 tracking-tighter text-navy leading-none">
-                        Top Cryptocurrency <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">Prices</span>
+                        Top Cryptocurrency <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon to-[#32e512]">Prices</span>
                     </h1>
                     <p className="reveal-text text-lg md:text-xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
                         Track the top market movers in real-time. Deep liquidity and institutional-grade data accuracy.
@@ -84,7 +84,7 @@ export default function MarketsPage() {
                     {/* Loading State */}
                     {isLoading && (
                         <div className="py-32 flex flex-col items-center justify-center space-y-4">
-                            <div className="w-12 h-12 border-4 border-slate-100 border-t-blue-500 rounded-full animate-spin"></div>
+                            <div className="w-12 h-12 border-4 border-slate-100 border-t-neon rounded-full animate-spin"></div>
                             <p className="text-slate-400 font-bold uppercase tracking-widest text-sm animate-pulse">Establishing Secure Connection...</p>
                         </div>
                     )}
@@ -153,7 +153,7 @@ export default function MarketsPage() {
                                                 {coin.png32 && <Image src={coin.png32} alt={coin.name || coin.code} fill className="object-cover p-1" />}
                                             </div>
                                             <div>
-                                                <div className="font-bold text-navy text-lg group-hover:text-blue-600 transition-colors">{coin.name || coin.code}</div>
+                                                <div className="font-bold text-navy text-lg group-hover:text-neon transition-colors">{coin.name || coin.code}</div>
                                             </div>
                                             <div className="text-xs font-bold text-slate-500 px-2 py-1 bg-slate-100 rounded-md">{coin.code}</div>
                                         </div>
