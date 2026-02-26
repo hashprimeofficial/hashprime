@@ -29,7 +29,7 @@ export default function FeaturesPage() {
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500">Everything</span> Built In.
                 </h1>
                 <p className="reveal-text text-xl md:text-2xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
-                    Designed from the ground up to give you the ultimate trading advantage.
+                    Designed from the ground up to give you the ultimate investment advantage.
                 </p>
             </div>
 

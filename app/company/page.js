@@ -32,7 +32,7 @@ export default function CompanyPage() {
                     Building the <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500">Future of Finance</span>
                 </h1>
                 <p className="reveal-text text-xl md:text-2xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed mb-16">
-                    Our mission is to create a fair, competitive, and highly secure digital asset market for traders of all sizes.
+                    Our mission is to create a fair, competitive, and highly secure digital asset market for investors of all sizes.
                 </p>
             </div>
         </div>

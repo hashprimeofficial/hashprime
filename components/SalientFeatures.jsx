@@ -13,7 +13,7 @@ const features = [
     {
         id: "diversified-crypto-portfolio",
         title: "Diversified Crypto Portfolio",
-        description: "Whether you are a beginner or a pro-level trader, Hashprime is a user-friendly and easy-to-navigate app for a smooth and hassle-free crypto trading journey.",
+        description: "Whether you are a beginner or a pro-level investor, Hashprime is a user-friendly and easy-to-navigate app for a smooth and hassle-free crypto investment journey.",
         icon: Briefcase,
     },
     {
@@ -23,9 +23,9 @@ const features = [
         icon: ShieldCheck,
     },
     {
-        id: "competitive-trading-fees",
-        title: "Competitive Trading Fees",
-        description: "Hashprime offers competitive and transparent fee structures to attract traders from all backgrounds, fostering an inclusive trading community, allowing traders to maximize their profits.",
+        id: "competitive-investment-options",
+        title: "Competitive Investment Options",
+        description: "Hashprime offers competitive and transparent investment structures to attract investors from all backgrounds, fostering an inclusive financial community, allowing users to maximize their returns.",
         icon: PieChart,
     },
     {

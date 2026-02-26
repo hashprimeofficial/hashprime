@@ -17,11 +17,11 @@ const features = [
         desc: "Sleep soundly knowing your assets are protected by industry-leading encryption, advanced 2FA, and robust cold-storage solutions.",
     },
     {
-        id: "trading",
+        id: "investing",
         col: "md:col-span-2",
         icon: Zap,
-        title: "Zero-Friction Trading",
-        desc: "Maximize your profits with our hyper-competitive fee structure. Trade more, pay less and keep what you earn.",
+        title: "Zero-Friction Investing",
+        desc: "Maximize your returns with our hyper-competitive fee structure. Invest more, pay less and keep what you earn.",
     },
     {
         id: "support",
@@ -75,7 +75,7 @@ export default function BentoFeatures() {
                         </span>
                     </h2>
                     <p className="text-lg text-slate-500 font-medium leading-relaxed">
-                        Experience a feature-rich, ultra-secure platform designed to give you the ultimate trading advantage.
+                        Experience a feature-rich, ultra-secure platform designed to give you the ultimate investment advantage.
                     </p>
                 </div>
 

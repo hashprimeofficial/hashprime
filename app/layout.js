@@ -1,14 +1,13 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-
+import NavbarWrapper from '@/components/NavbarWrapper'; // Create this component
+import FooterWrapper from '@/components/FooterWrapper';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Hashprime | The Apex of Crypto Trading',
-  description: 'Experience next-generation speed, uncompromised security, and deep liquidity. Trade Bitcoin, Ethereum, Solana and 100+ cryptocurrencies on Hashprime.',
-  keywords: ['crypto trading', 'bitcoin exchange', 'buy ethereum', 'solana trading', 'cryptocurrency platform', 'secure crypto wallet', 'Hashprime', 'crypto investment'],
+  title: 'Hashprime | The Apex of Crypto Investments',
+  description: 'Experience next-generation speed, uncompromised security, and deep liquidity. Invest in Bitcoin, Ethereum, Solana and 100+ cryptocurrencies on Hashprime.',
+  keywords: ['crypto investments', 'bitcoin exchange', 'buy ethereum', 'solana investments', 'cryptocurrency platform', 'secure crypto wallet', 'Hashprime', 'crypto investment'],
   authors: [{ name: 'Hashprime' }],
   creator: 'Hashprime',
   publisher: 'Hashprime',
@@ -19,7 +18,7 @@ export const metadata = {
   },
   openGraph: {
     title: 'Hashprime | Premium Cryptocurrency Exchange',
-    description: 'The elite platform for professional crypto traders. Secure, fast, and feature-rich.',
+    description: 'The elite platform for professional crypto investors. Secure, fast, and feature-rich.',
     url: 'https://hashprime.com',
     siteName: 'Hashprime',
     images: [
@@ -35,8 +34,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hashprime | The Apex of Crypto Trading',
-    description: 'Elite cryptocurrency trading platform with advanced charts, deep liquidity, and institutional-grade security.',
+    title: 'Hashprime | The Apex of Crypto Investments',
+    description: 'Elite cryptocurrency investment platform with advanced analytics, deep liquidity, and institutional-grade security.',
     images: ['/logo.png'], // Fallback
   },
   robots: {
@@ -56,11 +55,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.className} bg-white text-navy antialiased min-h-screen flex flex-col`}>
-        <Navbar />
+        <NavbarWrapper />
         <main className="flex-grow">
           {children}
         </main>
-        <Footer />
+        <FooterWrapper />
       </body>
     </html>
   );

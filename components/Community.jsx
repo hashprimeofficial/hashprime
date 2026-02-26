@@ -41,7 +41,7 @@ export default function Community() {
                     Join the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#39FF14] to-emerald-500">Hashprime</span> Community
                 </h2>
                 <p className="comm-element text-lg text-slate-500 font-medium max-w-2xl mx-auto mb-6">
-                    Connect with millions of traders worldwide. Stay updated, share strategies, and grow together.
+                    Connect with millions of investors worldwide. Stay updated, share strategies, and grow together.
                 </p>
 
                 {/* Total members badge removed */}

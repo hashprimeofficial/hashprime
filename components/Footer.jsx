@@ -29,7 +29,7 @@ export default function Footer() {
                         </Link>
 
                         <p className="text-slate-500 text-sm leading-relaxed max-w-sm mb-8 font-medium">
-                            The apex of crypto trading. Built for speed, uncompromised security, and the ultimate user experience. Join the next generation of finance.
+                            The apex of crypto investments. Built for speed, uncompromised security, and the ultimate user experience. Join the next generation of finance.
                         </p>
                         <div className="flex flex-col space-y-4 max-w-sm">
                             <span className="text-sm font-bold text-navy uppercase tracking-wider">Subscribe to our Newsletter</span>
@@ -66,7 +66,7 @@ export default function Footer() {
                         <ul className="space-y-4">
                             <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">24/7 Help Center</Link></li>
                             <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">API Documentation</Link></li>
-                            <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Trading Rules</Link></li>
+                            <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Investment Rules</Link></li>
                             <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Submit Ticket</Link></li>
                         </ul>
                     </div>

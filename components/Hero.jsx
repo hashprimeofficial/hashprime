@@ -83,12 +83,12 @@ export default function Hero() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center pt-16">
                 <h1 className="text-6xl md:text-8xl font-black text-navy tracking-tight mb-12 leading-tight max-w-5xl mx-auto drop-shadow-xl">
                     <span className="hero-title block mb-2">The Apex of</span>
-                    <span className="hero-title block text-navy">Crypto Trading</span>
+                    <span className="hero-title block text-navy">Crypto Investing</span>
                 </h1>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
                     <Link href="/register" className="hero-cta w-full sm:w-auto bg-neon text-navy px-8 py-4 rounded-full text-base font-bold shadow-lg shadow-neon/20 hover:shadow-neon/40 hover:-translate-y-1 hover:scale-105 transition-all duration-300">
-                        Start Trading Now
+                        Start Investing Now
                     </Link>
                     <Link href="/markets" className="hero-cta w-full sm:w-auto bg-white text-navy border-2 border-slate-200 px-8 py-4 rounded-full text-base font-bold hover:border-navy hover:bg-navy hover:text-white transition-all duration-300">
                         Explore Markets
