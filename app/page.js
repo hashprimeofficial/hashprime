@@ -21,16 +21,29 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="relative bg-white overflow-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Hero />
-      <HowToStart />
-      <BentoFeatures />
-      <SalientFeatures />
-      <Community />
-    </>
+
+      <div className="relative z-20"><Hero /></div>
+
+      {/* Transition Orb 1 (Between Hero and HowToStart) */}
+      <div className="absolute top-[800px] left-0 w-[800px] h-[800px] bg-gradient-to-r from-[#39FF14]/10 to-transparent rounded-full blur-[120px] pointer-events-none -translate-x-1/2 z-0"></div>
+
+      <div className="relative z-20"><HowToStart /></div>
+
+      {/* Transition Orb 2 (Between HowToStart and BentoFeatures) */}
+      <div className="absolute top-[2000px] right-0 w-[1000px] h-[1000px] bg-gradient-to-l from-emerald-400/10 to-transparent rounded-full blur-[150px] pointer-events-none translate-x-1/3 z-0"></div>
+
+      <div className="relative z-20"><BentoFeatures /></div>
+
+      {/* Transition Orb 3 (Between SalientFeatures and Community) */}
+      <div className="absolute bottom-[800px] left-1/2 w-[1200px] h-[600px] bg-[#39FF14]/5 rounded-[100%] blur-[120px] pointer-events-none -translate-x-1/2 z-0"></div>
+
+      <div className="relative z-20"><SalientFeatures /></div>
+      <div className="relative z-20"><Community /></div>
+    </div>
   );
 }

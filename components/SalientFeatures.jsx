@@ -40,43 +40,29 @@ export default function SalientFeatures() {
     const sectionRef = useRef(null);
 
     useGSAP(() => {
-        // Text Reveal
         gsap.fromTo(".sf-text-reveal",
             { y: 30, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 75%",
-                }
-            }
+            { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power2.out", scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } }
         );
 
-        // Card Stagger - relying on autoAlpha for better browser render behavior
         gsap.fromTo(".sf-card",
             { y: 50, autoAlpha: 0 },
-            {
-                y: 0,
-                autoAlpha: 1,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: ".sf-grid",
-                    start: "top 80%",
-                }
-            }
+            { y: 0, autoAlpha: 1, duration: 0.8, stagger: 0.1, ease: "power2.out", scrollTrigger: { trigger: ".sf-grid", start: "top 80%" } }
         );
-
     }, { scope: sectionRef });
 
+    const handleMouseMove = (e) => {
+        for (const card of document.getElementsByClassName("glow-card")) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty("--mouse-x", `${x}px`);
+            card.style.setProperty("--mouse-y", `${y}px`);
+        }
+    };
+
     return (
-        <section ref={sectionRef} className="relative bg-white py-32 overflow-hidden" id="features">
-            {/* Background Branding Elements */}
+        <section ref={sectionRef} onMouseMove={handleMouseMove} className="relative bg-white py-32 overflow-hidden" id="features">
             <div className="absolute top-0 right-0 w-full h-full pointer-events-none opacity-[0.03] overflow-hidden flex items-center justify-center">
                 <Image src="/logoonly.png" alt="Brand Watermark" width={1000} height={1000} className="w-[120%] max-w-none opacity-50 grayscale" />
             </div>
@@ -84,8 +70,6 @@ export default function SalientFeatures() {
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#39FF14] opacity-[0.03] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-6">
-
-                {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8 border-b border-slate-100 pb-12">
                     <div className="max-w-2xl">
                         <div className="sf-text-reveal inline-flex items-center space-x-2 bg-slate-50 border border-slate-200 py-2 px-4 rounded-full mb-6">
@@ -103,16 +87,18 @@ export default function SalientFeatures() {
                     </div>
                 </div>
 
-                {/* Features Grid - New Approach */}
                 <div className="sf-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {features.map((feature, index) => {
                         const Icon = feature.icon;
                         return (
                             <div
                                 key={feature.id}
-                                className="sf-card group relative bg-white border border-slate-200 rounded-3xl p-8 hover:bg-navy transition-colors duration-500 flex flex-col h-full shadow-sm hover:shadow-2xl hover:shadow-navy/20"
+                                className="sf-card glow-card group relative bg-white border border-slate-200 rounded-3xl p-8 hover:bg-navy transition-colors duration-500 flex flex-col h-full shadow-sm hover:shadow-2xl hover:shadow-navy/20 overflow-hidden"
                             >
-                                <div className="mb-12">
+                                {/* Cursor Glow Effect */}
+                                <div className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100" style={{ background: 'radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(57,255,20,0.15), transparent 40%)' }} />
+
+                                <div className="mb-12 relative z-10">
                                     <div className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-[#39FF14]/10 group-hover:border-[#39FF14]/20 transition-colors duration-500">
                                         <Icon className="w-8 h-8 text-navy group-hover:text-[#39FF14] transition-colors duration-500" />
                                     </div>
@@ -130,7 +116,6 @@ export default function SalientFeatures() {
                                     </p>
                                 </div>
 
-                                {/* Bottom Accent Line */}
                                 <div className="absolute bottom-0 left-8 right-8 h-1 bg-gradient-to-r from-[#39FF14] to-emerald-400 rounded-t-md opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-500"></div>
                             </div>
                         );
