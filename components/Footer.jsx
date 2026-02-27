@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, ArrowUp } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowUp, CheckCircle2 } from 'lucide-react';
 
 function BackToTop() {
     return (
@@ -17,57 +18,75 @@ function BackToTop() {
 }
 
 export default function Footer() {
+    const [email, setEmail] = useState('');
+    const [subscribed, setSubscribed] = useState(false);
+
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        if (email) {
+            setSubscribed(true);
+            setEmail('');
+            setTimeout(() => setSubscribed(false), 4000);
+        }
+    };
+
     return (
         <footer className="bg-white border-t border-gray-100 w-full pt-20 pb-10 mt-auto">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
                     <div className="lg:col-span-2">
-                        {/* Logo: icon + wordmark */}
                         <Link href="/" className="flex items-center space-x-3 mb-6">
                             <Image src="/logoonly.png" alt="Hashprime icon" width={40} height={40} className="object-contain" />
                             <Image src="/textonly.png" alt="Hashprime" width={130} height={32} className="object-contain" />
                         </Link>
 
                         <p className="text-slate-500 text-sm leading-relaxed max-w-sm mb-8 font-medium">
-                            The apex of crypto investments. Built for speed, uncompromised security, and the ultimate user experience. Join the next generation of finance.
+                            LET'S SAVE MONEY FOR THE FUTURE. Built for speed, uncompromised security, and the ultimate user experience. Join the next generation of finance.
                         </p>
                         <div className="flex flex-col space-y-4 max-w-sm">
-                            <span className="text-sm font-bold text-navy uppercase tracking-wider">Subscribe to our Newsletter</span>
-                            <div className="flex items-center shadow-sm rounded-lg">
-                                <div className="relative flex-grow">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <Mail className="h-5 w-5 text-slate-400" />
+                            <span className="text-sm font-bold text-navy uppercase tracking-wider">Subscribe to Updates</span>
+                            <form onSubmit={handleSubscribe}>
+                                {subscribed ? (
+                                    <div className="flex items-center gap-2 text-green-600 font-bold text-sm py-3 px-4 bg-green-50 border border-green-200 rounded-lg">
+                                        <CheckCircle2 className="w-5 h-5" />
+                                        You're subscribed! Thanks.
                                     </div>
-                                    <input
-                                        type="email"
-                                        className="block w-full pl-10 pr-4 py-3.5 border border-r-0 border-gray-200 rounded-l-lg bg-gray-50 focus:outline-none focus:ring-1 focus:ring-[#39FF14] text-sm font-medium"
-                                        placeholder="Enter your email"
-                                    />
-                                </div>
-                                <button className="bg-[#39FF14] text-navy font-bold py-3.5 px-8 rounded-r-lg hover:opacity-90 transition-opacity text-sm whitespace-nowrap">
-                                    Join Now
-                                </button>
-                            </div>
+                                ) : (
+                                    <div className="flex items-center shadow-sm rounded-lg">
+                                        <input
+                                            type="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            className="block w-full pl-4 pr-4 py-3.5 border border-r-0 border-gray-200 rounded-l-lg bg-gray-50 focus:outline-none focus:ring-1 focus:ring-[#39FF14] text-sm font-medium"
+                                            placeholder="Enter your email"
+                                            required
+                                        />
+                                        <button type="submit" className="bg-[#39FF14] text-navy font-bold py-3.5 px-8 rounded-r-lg hover:opacity-90 transition-opacity text-sm whitespace-nowrap">
+                                            Join Now
+                                        </button>
+                                    </div>
+                                )}
+                            </form>
                         </div>
                     </div>
 
                     <div>
                         <h3 className="text-navy font-bold mb-6 text-sm uppercase tracking-wider">Platform</h3>
                         <ul className="space-y-4">
-                            <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Spot Trading</Link></li>
-                            <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Margin Trading</Link></li>
                             <li><Link href="/markets" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Live Markets</Link></li>
-                            <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Fees</Link></li>
+                            <li><Link href="/dashboard/invest" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Investment Plans</Link></li>
+                            <li><Link href="/dashboard/referrals" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Referral Program</Link></li>
+                            <li><Link href="/security" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Security</Link></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="text-navy font-bold mb-6 text-sm uppercase tracking-wider">Support</h3>
+                        <h3 className="text-navy font-bold mb-6 text-sm uppercase tracking-wider">Account</h3>
                         <ul className="space-y-4">
-                            <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">24/7 Help Center</Link></li>
-                            <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">API Documentation</Link></li>
-                            <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Investment Rules</Link></li>
-                            <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Submit Ticket</Link></li>
+                            <li><Link href="/register" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Sign Up</Link></li>
+                            <li><Link href="/login" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Sign In</Link></li>
+                            <li><Link href="/dashboard" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Dashboard</Link></li>
+                            <li><Link href="/dashboard/profile" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">My Profile</Link></li>
                         </ul>
                     </div>
 
@@ -75,9 +94,9 @@ export default function Footer() {
                         <h3 className="text-navy font-bold mb-6 text-sm uppercase tracking-wider">Company</h3>
                         <ul className="space-y-4">
                             <li><Link href="/company" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">About Us</Link></li>
-                            <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Careers</Link></li>
-                            <li><Link href="#" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Press</Link></li>
-                            <li><Link href="/security" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Security</Link></li>
+                            <li><Link href="/security" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Trust &amp; Security</Link></li>
+                            <li><Link href="/features" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Features</Link></li>
+                            <li><Link href="/markets" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Markets</Link></li>
                         </ul>
                     </div>
                 </div>
@@ -87,8 +106,8 @@ export default function Footer() {
                         &copy; {new Date().getFullYear()} Hashprime. All rights reserved.
                     </p>
                     <div className="flex items-center space-x-6">
-                        <Link href="#" className="text-slate-400 hover:text-navy text-sm font-medium transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="text-slate-400 hover:text-navy text-sm font-medium transition-colors">Terms of Service</Link>
+                        <span className="text-slate-300 text-sm font-medium">Privacy Policy</span>
+                        <span className="text-slate-300 text-sm font-medium">Terms of Service</span>
                         <BackToTop />
                     </div>
                 </div>

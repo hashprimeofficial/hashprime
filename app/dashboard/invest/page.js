@@ -15,9 +15,30 @@ const SCHEMES = [
     { id: '5y', name: '5-Year Vision', rate: '500%', desc: 'Massive wealth generation', min: 1000000, max: 1500000, isRange: true },
 ];
 
+function InvestSkeleton() {
+    return (
+        <div className="max-w-4xl mx-auto space-y-8 animate-pulse">
+            <div>
+                <div className="h-9 bg-slate-100 rounded-lg w-52 mb-2" />
+                <div className="h-5 bg-slate-100 rounded-lg w-72" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[...Array(4)].map((_, i) => <div key={i} className="h-28 bg-slate-100 rounded-2xl" />)}
+            </div>
+            <div className="bg-white border border-slate-200 rounded-3xl p-8">
+                <div className="h-8 bg-slate-100 rounded-lg w-64 mb-6" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-2 gap-3">{[...Array(4)].map((_, i) => <div key={i} className="h-12 bg-slate-100 rounded-lg" />)}</div>
+                    <div className="bg-slate-100 rounded-2xl h-40" />
+                </div>
+            </div>
+        </div>
+    );
+}
+
 export default function InvestPage() {
     const router = useRouter();
-    const { data, mutate } = useSWR('/api/dashboard/stats', fetcher);
+    const { data, mutate, isLoading } = useSWR('/api/dashboard/stats', fetcher);
 
     const [selectedScheme, setSelectedScheme] = useState(SCHEMES[0]);
     const [amount, setAmount] = useState(SCHEMES[0].amounts ? SCHEMES[0].amounts[0] : SCHEMES[0].min);
@@ -38,7 +59,7 @@ export default function InvestPage() {
 
     const calculateReturn = () => {
         const rate = parseFloat(selectedScheme.rate) / 100;
-        return ((amount * rate) / 85).toFixed(2); // Assuming 85 INR = 1 USDT
+        return ((amount * rate) / parseFloat(process.env.NEXT_PUBLIC_USDT_RATE || '85')).toFixed(2);
     };
 
     const handleInvest = async () => {
@@ -70,6 +91,8 @@ export default function InvestPage() {
             setLoading(false);
         }
     };
+
+    if (isLoading) return <InvestSkeleton />;
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">

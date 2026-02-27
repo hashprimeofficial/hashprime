@@ -101,7 +101,7 @@ export default function LiveMarketTicker() {
 
                             {/* 7-day Sparkline */}
                             <div className="h-14 w-full mt-auto">
-                                <ResponsiveContainer width="100%" height="100%">
+                                <ResponsiveContainer width="100%" height="100%" minHeight={1}>
                                     <LineChart data={sparklineData}>
                                         <Line
                                             type="monotone"

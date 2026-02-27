@@ -92,7 +92,7 @@ export default function Insights() {
 
                 <div className="insights-grid grid grid-cols-1 md:grid-cols-3 gap-8">
                     {articles.map((article) => (
-                        <div key={article.id} className="insight-card opacity-0 bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col h-full">
+                        <div key={article.id} className="insight-card opacity-0 bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
                             <div className="relative h-56 w-full overflow-hidden">
                                 <img
                                     src={article.image}

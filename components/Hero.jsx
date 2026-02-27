@@ -82,8 +82,8 @@ export default function Hero() {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center pt-16">
                 <h1 className="text-6xl md:text-8xl font-black text-navy tracking-tight mb-12 leading-tight max-w-5xl mx-auto drop-shadow-xl">
-                    <span className="hero-title block mb-2">The Apex of</span>
-                    <span className="hero-title block text-navy">Crypto Investing</span>
+                    <span className="hero-title block mb-2">Let's Save Money</span>
+                    <span className="hero-title block text-navy">For The Future</span>
                 </h1>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
@@ -94,6 +94,8 @@ export default function Hero() {
                         Explore Markets
                     </Link>
                 </div>
+
+
 
                 <div className="hero-ticker relative z-20">
                     <LiveMarketTicker />

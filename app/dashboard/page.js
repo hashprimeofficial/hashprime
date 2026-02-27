@@ -18,12 +18,14 @@ export default function DashboardOverview() {
     const { user, investments, transactions } = data;
 
     const totalInvested = investments.reduce((acc, inv) => acc + inv.amount, 0);
-    const totalExpectedReturn = investments.reduce((acc, inv) => acc + inv.usdtReward, 0);
+    const totalExpectedReturn = investments
+        .filter(inv => inv.status === 'active' || inv.status === 'completed')
+        .reduce((acc, inv) => acc + inv.usdtReward, 0);
 
     const copyRefLink = () => {
         let origin = '';
         if (typeof window !== 'undefined') origin = window.location.origin;
-        navigator.clipboard.writeText(`${origin}/register?ref=${user.email}`);
+        navigator.clipboard.writeText(`${origin}/register?ref=${user._id}`);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     }
@@ -74,6 +76,7 @@ export default function DashboardOverview() {
                                         <th className="px-6 py-4 font-bold">Scheme</th>
                                         <th className="px-6 py-4 font-bold">Amount</th>
                                         <th className="px-6 py-4 font-bold">Yield</th>
+                                        <th className="px-6 py-4 font-bold">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-slate-100">
@@ -84,6 +87,11 @@ export default function DashboardOverview() {
                                             </td>
                                             <td className="px-6 py-4 font-bold text-navy">₹{inv.amount.toLocaleString()}</td>
                                             <td className="px-6 py-4 text-green-600 font-bold">+{inv.usdtReward.toFixed(2)} USDT</td>
+                                            <td className="px-6 py-4">
+                                                {inv.status === 'pending' && <span className="bg-amber-50 text-amber-700 border border-amber-200 px-2.5 py-1 rounded-full text-xs font-bold">⏳ Pending</span>}
+                                                {inv.status === 'active' && <span className="bg-green-50 text-green-700 border border-green-200 px-2.5 py-1 rounded-full text-xs font-bold">✅ Active</span>}
+                                                {inv.status === 'completed' && <span className="bg-slate-100 text-slate-600 border border-slate-200 px-2.5 py-1 rounded-full text-xs font-bold">🏁 Completed</span>}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -100,7 +108,7 @@ export default function DashboardOverview() {
                         <p className="text-sm text-slate-300 mb-6 font-medium">Earn 5% of any capital invested by your referrals instantly in USDT.</p>
 
                         <div className="flex bg-white/10 border border-white/20 rounded-lg overflow-hidden backdrop-blur-sm shadow-inner">
-                            <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user.email}` : ''} className="flex-1 bg-transparent px-4 py-3 text-sm text-white font-medium outline-none" />
+                            <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user._id}` : ''} className="flex-1 bg-transparent px-4 py-3 text-sm text-white font-medium outline-none" />
                             <button onClick={copyRefLink} className="bg-neon hover:bg-[#32e512] px-4 py-3 text-navy font-bold transition-colors flex items-center gap-2">
                                 {copied ? <CheckCircle2 className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                                 <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy'}</span>

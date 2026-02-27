@@ -6,11 +6,27 @@ import { useState } from 'react';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
+function ReferralsSkeleton() {
+    return (
+        <div className="max-w-4xl mx-auto space-y-8 animate-pulse">
+            <div>
+                <div className="h-9 bg-slate-100 rounded-lg w-52 mb-2" />
+                <div className="h-5 bg-slate-100 rounded-lg w-80" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-slate-200 rounded-3xl h-44" />
+                <div className="bg-slate-100 border border-slate-200 rounded-3xl h-44" />
+            </div>
+            <div className="bg-white border border-slate-200 rounded-3xl h-48" />
+        </div>
+    );
+}
+
 export default function ReferralsPage() {
     const { data, error, isLoading } = useSWR('/api/dashboard/stats', fetcher);
     const [copied, setCopied] = useState(false);
 
-    if (isLoading) return <div className="text-neutral-400">Loading referrals...</div>;
+    if (isLoading) return <ReferralsSkeleton />;
     if (error) return <div className="text-red-500">Failed to load data</div>;
 
     const { user, transactions } = data;
@@ -20,7 +36,7 @@ export default function ReferralsPage() {
     const copyRefLink = () => {
         let origin = '';
         if (typeof window !== 'undefined') origin = window.location.origin;
-        navigator.clipboard.writeText(`${origin}/register?ref=${user.email}`);
+        navigator.clipboard.writeText(`${origin}/register?ref=${user._id}`);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     }
@@ -40,10 +56,25 @@ export default function ReferralsPage() {
                     <p className="text-slate-300 mb-6 text-sm font-medium">Share this unique link with friends and partners. When they register and invest, you get paid instantly.</p>
 
                     <div className="flex bg-white/10 border border-white/20 rounded-xl overflow-hidden shadow-inner backdrop-blur-sm">
-                        <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user.email}` : ''} className="flex-1 bg-transparent px-4 py-4 text-sm text-white font-medium outline-none" />
+                        <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user._id}` : ''} className="flex-1 bg-transparent px-4 py-4 text-sm text-white font-medium outline-none" />
                         <button onClick={copyRefLink} className="bg-neon hover:bg-[#32e512] px-6 py-4 text-navy font-bold transition-colors flex items-center gap-2">
                             {copied ? <CheckCircle2 className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
                         </button>
+                    </div>
+                    <div className="flex items-center gap-2 mt-3">
+                        <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Share via:</span>
+                        <a
+                            href={typeof window !== 'undefined' ? `https://wa.me/?text=Join+HashPrime+and+start+earning+USDT!+${encodeURIComponent(window.location.origin + '/register?ref=' + user._id)}` : '#'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-green-500/20 hover:bg-green-500/30 text-green-400 text-xs font-bold px-3 py-1.5 rounded-lg transition-colors border border-green-500/30"
+                        >WhatsApp</a>
+                        <a
+                            href={typeof window !== 'undefined' ? `https://t.me/share/url?url=${encodeURIComponent(window.location.origin + '/register?ref=' + user._id)}&text=Join+HashPrime+and+earn+USDT!` : '#'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 text-xs font-bold px-3 py-1.5 rounded-lg transition-colors border border-blue-500/30"
+                        >Telegram</a>
                     </div>
                 </div>
 

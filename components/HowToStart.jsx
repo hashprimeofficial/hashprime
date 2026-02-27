@@ -26,8 +26,8 @@ export default function HowToStart() {
         },
         {
             num: "03",
-            title: "Fund Your Account",
-            desc: "Dive into the markets. Invest, grow, and manage hundreds of assets instantly with our institutional-grade engine.",
+            title: "Start Investing",
+            desc: "Choose a scheme, select your amount, and confirm your investment. Watch your wealth grow in USDT.",
             icon: <ArrowLeftRight className="w-8 h-8 text-white" />
         }
     ];

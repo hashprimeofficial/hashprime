@@ -6,25 +6,32 @@ import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LayoutDashboard } from 'lucide-react';
+import useSWR from 'swr';
 
 gsap.registerPlugin(useGSAP);
+
+const fetcher = (url) => fetch(url).then((r) => r.json());
 
 export default function Navbar() {
     const ctaRef = useRef(null);
     const containerRef = useRef(null);
-    const offcanvasRef = useRef(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const pathname = usePathname();
+
+    // Lightweight auth check for showing Dashboard button
+    const { data: authData } = useSWR('/api/auth/me', fetcher, {
+        shouldRetryOnError: false,
+        revalidateOnFocus: false,
+    });
+    const isLoggedIn = !!authData?.user;
 
     const navLinks = [
         { href: '/markets', label: 'Markets' },
         { href: '/features', label: 'Features' },
-        { href: '/security', label: 'Security' },
-        { href: '/company', label: 'Company' },
+
     ];
 
-    // Stagger-reveal offcanvas links when menu opens
     useEffect(() => {
         if (isMobileMenuOpen) {
             gsap.fromTo('.offcanvas-link',
@@ -35,14 +42,12 @@ export default function Navbar() {
     }, [isMobileMenuOpen]);
 
     useGSAP(() => {
-        // Reveal animation
         gsap.fromTo(
             containerRef.current,
             { y: -20, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
         );
 
-        // Magnetic effect
         const xTo = gsap.quickTo(ctaRef.current, "x", { duration: 0.4, ease: "power3" });
         const yTo = gsap.quickTo(ctaRef.current, "y", { duration: 0.4, ease: "power3" });
 
@@ -55,10 +60,7 @@ export default function Navbar() {
             yTo(y * 0.2);
         };
 
-        const mouseLeave = () => {
-            xTo(0);
-            yTo(0);
-        };
+        const mouseLeave = () => { xTo(0); yTo(0); };
 
         ctaRef.current.addEventListener("mousemove", mouseMove);
         ctaRef.current.addEventListener("mouseleave", mouseLeave);
@@ -84,26 +86,32 @@ export default function Navbar() {
                         {navLinks.map(({ href, label }) => (
                             <Link key={href} href={href} className={`relative text-sm font-bold transition-all group ${pathname === href ? 'text-navy' : 'text-slate-500 hover:text-navy'}`}>
                                 {label}
-                                {/* Active indicator */}
-                                <span className={`absolute -bottom-1.5 left-0 right-0 h-[2px] bg-[#39FF14] rounded-full transition-all duration-300 ${pathname === href ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'}`}></span>
+                                <span className={`absolute -bottom-1.5 left-0 right-0 h-[2px] bg-[#39FF14] rounded-full transition-all duration-300 ${pathname === href ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'}`} />
                             </Link>
                         ))}
                     </nav>
-                    <div className="flex items-center space-x-6">
-                        <Link href="/login" className="hidden md:block text-sm font-bold text-slate-500 hover:text-navy transition-colors">
-                            Log In
-                        </Link>
-                        <div ref={ctaRef} className="hidden md:inline-block p-2 -m-2">
-                            <Link href="/register" className="bg-navy text-white px-5 py-2 rounded-full text-sm font-bold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
-                                Get Started
-                            </Link>
-                        </div>
+                    <div className="flex items-center space-x-4">
+                        {isLoggedIn ? (
+                            <div ref={ctaRef} className="hidden md:inline-block p-2 -m-2">
+                                <Link href="/dashboard" className="flex items-center gap-1.5 bg-navy text-white px-5 py-2 rounded-full text-sm font-bold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+                                    <LayoutDashboard className="w-4 h-4" />
+                                    Dashboard
+                                </Link>
+                            </div>
+                        ) : (
+                            <>
+                                <Link href="/login" className="hidden md:block text-sm font-bold text-slate-500 hover:text-navy transition-colors">
+                                    Log In
+                                </Link>
+                                <div ref={ctaRef} className="hidden md:inline-block p-2 -m-2">
+                                    <Link href="/register" className="bg-navy text-white px-5 py-2 rounded-full text-sm font-bold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+                                        Get Started
+                                    </Link>
+                                </div>
+                            </>
+                        )}
 
-                        {/* Mobile Menu Toggle */}
-                        <button
-                            className="md:hidden p-2 text-navy"
-                            onClick={() => setIsMobileMenuOpen(true)}
-                        >
+                        <button className="md:hidden p-2 text-navy" onClick={() => setIsMobileMenuOpen(true)}>
                             <Menu className="w-6 h-6" />
                         </button>
                     </div>
@@ -116,10 +124,7 @@ export default function Navbar() {
                     <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
                         <Image src="/textonly.png" alt="Hashprime" width={140} height={35} />
                     </Link>
-                    <button
-                        className="p-2 text-slate-500 hover:text-navy transition-colors bg-slate-50 rounded-full"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                    >
+                    <button className="p-2 text-slate-500 hover:text-navy transition-colors bg-slate-50 rounded-full" onClick={() => setIsMobileMenuOpen(false)}>
                         <X className="w-6 h-6" />
                     </button>
                 </div>
@@ -136,12 +141,16 @@ export default function Navbar() {
                 </div>
 
                 <div className="p-8 mt-auto border-t border-slate-100 flex flex-col space-y-4">
-                    <Link href="/login" className="w-full text-center py-4 rounded-xl text-lg font-bold text-navy bg-slate-50 mb-2" onClick={() => setIsMobileMenuOpen(false)}>
-                        Log In
-                    </Link>
-                    <Link href="/register" className="w-full text-center py-4 rounded-xl text-lg font-bold text-white bg-navy shadow-lg" onClick={() => setIsMobileMenuOpen(false)}>
-                        Get Started
-                    </Link>
+                    {isLoggedIn ? (
+                        <Link href="/dashboard" className="w-full text-center py-4 rounded-xl text-lg font-bold text-white bg-navy shadow-lg" onClick={() => setIsMobileMenuOpen(false)}>
+                            My Dashboard
+                        </Link>
+                    ) : (
+                        <>
+                            <Link href="/login" className="w-full text-center py-4 rounded-xl text-lg font-bold text-navy bg-slate-50 mb-2" onClick={() => setIsMobileMenuOpen(false)}>Log In</Link>
+                            <Link href="/register" className="w-full text-center py-4 rounded-xl text-lg font-bold text-white bg-navy shadow-lg" onClick={() => setIsMobileMenuOpen(false)}>Get Started</Link>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 
-const secretKey = process.env.JWT_SECRET || 'thisismysupersecretkeyforhashprimeapp';
-const key = new TextEncoder().encode(secretKey);
+const secretKey = process.env.JWT_SECRET;
+if (!secretKey && process.env.NODE_ENV === 'production') {
+    console.error('CRITICAL: JWT_SECRET environment variable is missing. Security risk!');
+}
+const key = new TextEncoder().encode(secretKey || 'thisismysupersecretkeyforhashprimeapp');
 
 export async function middleware(req) {
     const token = req.cookies.get('auth_token')?.value;

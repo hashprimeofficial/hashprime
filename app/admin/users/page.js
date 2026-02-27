@@ -43,9 +43,15 @@ export default function AdminUsersPage() {
         const form = new FormData(e.target);
         const updates = {
             name: form.get('name'),
+            email: form.get('email'),
             usdtBalance: parseFloat(form.get('usdtBalance')),
             role: form.get('role')
         };
+
+        const password = form.get('password');
+        if (password) {
+            updates.password = password;
+        }
 
         try {
             const res = await fetch(`/api/admin/users/${editingUser._id}`, {
@@ -58,7 +64,8 @@ export default function AdminUsersPage() {
                 setEditingUser(null);
                 mutate();
             } else {
-                alert('Failed to update user');
+                const data = await res.json();
+                alert(data.error || 'Failed to update user');
             }
         } catch (err) {
             alert('An error occurred');
@@ -138,21 +145,32 @@ export default function AdminUsersPage() {
             {/* Edit User Modal */}
             {editingUser && (
                 <div className="fixed inset-0 bg-navy/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden border border-slate-200">
+                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden border border-slate-200 max-h-[90vh] flex flex-col">
                         <div className="flex justify-between items-center p-6 border-b border-slate-100">
                             <h3 className="text-xl font-black text-navy">Edit User</h3>
                             <button onClick={() => setEditingUser(null)} className="text-slate-400 hover:text-navy transition-colors">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
-                        <form onSubmit={handleSaveEdit} className="p-6 space-y-4">
+                        <form onSubmit={handleSaveEdit} className="p-6 space-y-4 overflow-y-auto">
                             <div>
                                 <label className="block text-sm font-bold text-navy mb-1.5">Full Name</label>
                                 <input name="name" type="text" defaultValue={editingUser.name} required className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-navy font-medium focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all" />
                             </div>
                             <div>
+                                <label className="block text-sm font-bold text-navy mb-1.5">Email Address</label>
+                                <input name="email" type="email" defaultValue={editingUser.email} required className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-navy font-medium focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all" />
+                            </div>
+                            <div>
                                 <label className="block text-sm font-bold text-navy mb-1.5">USDT Balance</label>
                                 <input name="usdtBalance" type="number" step="0.01" defaultValue={editingUser.usdtBalance} required className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-navy font-medium focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-bold text-navy mb-1.5 flex items-center justify-between">
+                                    <span>New Password</span>
+                                    <span className="text-[10px] text-slate-400 font-normal bg-slate-100 px-1.5 py-0.5 rounded">Optional</span>
+                                </label>
+                                <input name="password" type="text" placeholder="Leave blank to keep current password" title="Updates user password. Leave empty to ignore." className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-navy font-medium focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all" />
                             </div>
                             <div>
                                 <label className="block text-sm font-bold text-navy mb-1.5">Account Role</label>

@@ -5,7 +5,8 @@ import FooterWrapper from '@/components/FooterWrapper';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Hashprime | The Apex of Crypto Investments',
+  metadataBase: new URL('https://hashprime.com'),
+  title: 'Hashprime | LET\'S SAVE MONEY FOR THE FUTURE',
   description: 'Experience next-generation speed, uncompromised security, and deep liquidity. Invest in Bitcoin, Ethereum, Solana and 100+ cryptocurrencies on Hashprime.',
   keywords: ['crypto investments', 'bitcoin exchange', 'buy ethereum', 'solana investments', 'cryptocurrency platform', 'secure crypto wallet', 'Hashprime', 'crypto investment'],
   authors: [{ name: 'Hashprime' }],
@@ -34,7 +35,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hashprime | The Apex of Crypto Investments',
+    title: 'Hashprime | LET\'S SAVE MONEY FOR THE FUTURE',
     description: 'Elite cryptocurrency investment platform with advanced analytics, deep liquidity, and institutional-grade security.',
     images: ['/logo.png'], // Fallback
   },

@@ -5,7 +5,7 @@ import Investment from '@/models/Investment';
 import Transaction from '@/models/Transaction';
 import { verifyToken } from '@/lib/auth';
 
-const INR_TO_USDT = 85;
+const INR_TO_USDT = parseFloat(process.env.INR_TO_USDT_RATE || '85');
 
 const SCHEMES = {
     '3m': { minAmounts: [50000, 100000, 300000, 500000], returnRate: 0.18, durationMonths: 3 },
@@ -68,29 +68,12 @@ export async function POST(req) {
             type: 'investment',
             amount: amount,
             currency: 'INR',
-            description: `Invested in ${schemeType} scheme`,
+            description: `Invested in ${schemeType} scheme (Pending)`,
         });
 
-        // Referral Logic (5% of INR amount converted to USDT)
-        if (user.referredBy) {
-            const referrer = await User.findOne({ email: user.referredBy });
-            if (referrer) {
-                const referralBonusUsdt = (amount * 0.05) / INR_TO_USDT;
+        // Note: Referral Logic has been deferred to admin approval to prevent business logic exploitation.
 
-                referrer.usdtBalance += referralBonusUsdt;
-                await referrer.save();
-
-                await Transaction.create({
-                    userId: referrer._id,
-                    type: 'referral_bonus',
-                    amount: referralBonusUsdt,
-                    currency: 'USDT',
-                    description: `Referral bonus from ${user.email} investment`,
-                });
-            }
-        }
-
-        return NextResponse.json({ message: 'Investment successful', investment }, { status: 201 });
+        return NextResponse.json({ message: 'Investment submitted successfully and is pending approval', investment }, { status: 201 });
     } catch (error) {
         console.error('Investment Error:', error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

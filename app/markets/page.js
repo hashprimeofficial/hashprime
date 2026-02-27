@@ -120,7 +120,7 @@ export default function MarketsPage() {
                                 };
 
                                 return (
-                                    <div key={coin.code} className="market-row opacity-0 group flex flex-col md:grid md:grid-cols-12 gap-4 md:items-center px-4 md:px-8 py-5 hover:bg-slate-50/50 cursor-pointer transition-colors duration-300">
+                                    <div key={coin.code} className="market-row opacity-0 group flex flex-col md:grid md:grid-cols-12 gap-4 md:items-center px-4 md:px-8 py-5 hover:bg-slate-50/50 transition-colors duration-300">
 
                                         {/* Mobile: Top Row */}
                                         <div className="flex justify-between items-center md:hidden mb-2">
@@ -162,8 +162,8 @@ export default function MarketsPage() {
                                             <span className="font-black text-navy text-lg group-hover:scale-105 transition-transform origin-right">{formatPrice(coin.rate)}</span>
                                         </div>
 
-                                        <div className="hidden md:flex col-span-2 items-center justify-end">
-                                            <div className={`flex items-center space-x-1 font-bold ${isPositive ? 'text-emerald-500' : 'text-rose-500'} bg-${isPositive ? 'emerald' : 'rose'}-50 px-3 py-1.5 rounded-lg`}>
+                                        <div className={`hidden md:flex col-span-2 items-center justify-end`}>
+                                            <div className={`flex items-center space-x-1 font-bold ${isPositive ? 'text-emerald-500 bg-emerald-50' : 'text-rose-500 bg-rose-50'} px-3 py-1.5 rounded-lg`}>
                                                 {isPositive ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
                                                 <span>{Math.abs(changePct).toFixed(2)}%</span>
                                             </div>
