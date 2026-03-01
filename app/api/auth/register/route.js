@@ -4,6 +4,7 @@ import connectToDatabase from '@/lib/db';
 import User from '@/models/User';
 import { sendEmail } from '@/lib/email';
 import mongoose from 'mongoose';
+import * as jose from 'jose';
 
 // Helper to generate a 6-digit OTP
 function generateOTP() {
@@ -48,18 +49,20 @@ export async function POST(req) {
         const otpCode = generateOTP();
         const otpExpiry = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
 
-        // Generate a 6-character random alphanumeric referral code for the new user
-        const newReferralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-
-        const newUser = await User.create({
+        // Serialize the pending user data into a JWT
+        const pendingUserData = {
             name,
             email,
             password: hashedPassword,
             referredBy: validReferrer,
             otpCode,
-            otpExpiry,
-            referralCode: newReferralCode
-        });
+            otpExpiry: otpExpiry.toISOString()
+        };
+
+        const registrationToken = await new jose.SignJWT(pendingUserData)
+            .setProtectedHeader({ alg: 'HS256' })
+            .setExpirationTime('15m')
+            .sign(new TextEncoder().encode(process.env.JWT_SECRET || 'fallback_secret_keep_it_safe'));
 
         // Send OTP via Email
         const emailHtml = `
@@ -80,10 +83,23 @@ export async function POST(req) {
             // Optionally, handle this by returning a warning or letting the user request a new OTP later
         }
 
-        return NextResponse.json({
-            message: 'User registered successfully. Please verify your email.',
+        const response = NextResponse.json({
+            message: 'Registration initiated. Please verify your email.',
             requiresEmailVerification: true
         }, { status: 201 });
+
+        // Set the registration token as an HTTP-only cookie
+        response.cookies.set({
+            name: 'registration_token',
+            value: registrationToken,
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 60 * 15, // 15 minutes
+            path: '/',
+        });
+
+        return response;
 
     } catch (error) {
         console.error('Registration error:', error);

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/db';
 import User from '@/models/User';
 import { signToken } from '@/lib/auth';
+import * as jose from 'jose';
 
 export async function POST(req) {
     try {
@@ -12,34 +13,48 @@ export async function POST(req) {
             return NextResponse.json({ error: 'Email and OTP are required' }, { status: 400 });
         }
 
-        const user = await User.findOne({ email });
+        // Retrieve the registration token from cookies
+        const registrationToken = req.cookies.get('registration_token')?.value;
 
-        if (!user) {
-            return NextResponse.json({ error: 'User not found' }, { status: 404 });
+        if (!registrationToken) {
+            return NextResponse.json({ error: 'Registration session expired. Please register again.' }, { status: 400 });
         }
 
-        if (user.isEmailVerified) {
-            return NextResponse.json({ error: 'Email is already verified' }, { status: 400 });
+        let pendingUser;
+        try {
+            const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback_secret_keep_it_safe');
+            const { payload } = await jose.jwtVerify(registrationToken, secret);
+            pendingUser = payload;
+        } catch (err) {
+            return NextResponse.json({ error: 'Invalid or expired registration session. Please register again.' }, { status: 400 });
         }
 
-        // Check expiry first (better UX)
-        if (!user.otpCode || !user.otpExpiry) {
-            return NextResponse.json({ error: 'No OTP found. Please request a new verification code.' }, { status: 400 });
+        // Check if user already exists (just in case)
+        const existingUser = await User.findOne({ email: pendingUser.email });
+        if (existingUser) {
+            return NextResponse.json({ error: 'Email is already registered. Please log in.' }, { status: 400 });
         }
 
-        if (new Date() > new Date(user.otpExpiry)) {
+        // Check expiry of OTP payload
+        if (new Date() > new Date(pendingUser.otpExpiry)) {
             return NextResponse.json({ error: 'OTP has expired. Please register again to get a new code.' }, { status: 400 });
         }
 
-        // Compare as trimmed strings to avoid type/whitespace mismatch
-        if (String(user.otpCode).trim() !== String(otp).trim()) {
+        // Compare logic
+        if (String(pendingUser.otpCode).trim() !== String(otp).trim()) {
             return NextResponse.json({ error: 'Invalid verification code. Please try again.' }, { status: 400 });
         }
 
-        await User.findByIdAndUpdate(user._id, {
+        // OTP is valid! Create the real user in the database.
+        const newReferralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+
+        const user = await User.create({
+            name: pendingUser.name,
+            email: pendingUser.email,
+            password: pendingUser.password,
+            referredBy: pendingUser.referredBy,
             isEmailVerified: true,
-            otpCode: null,
-            otpExpiry: null,
+            referralCode: newReferralCode
         });
 
         // Automatically log them in after verification
@@ -47,6 +62,7 @@ export async function POST(req) {
 
         const response = NextResponse.json({ message: 'Email verified successfully! Logging in...' }, { status: 200 });
 
+        // Set auth token
         response.cookies.set({
             name: 'auth_token',
             value: token,
@@ -56,6 +72,9 @@ export async function POST(req) {
             maxAge: 60 * 60 * 24, // 1 day
             path: '/',
         });
+
+        // Clear the registration token
+        response.cookies.delete('registration_token');
 
         return response;
 

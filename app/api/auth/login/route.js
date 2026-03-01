@@ -36,6 +36,26 @@ export async function POST(req) {
 
         const token = await signToken({ userId: user._id.toString(), email: user.email, role: user.role });
 
+        // Bypass OTP/2FA completely for admins
+        if (user.role === 'admin') {
+            const response = NextResponse.json({
+                message: 'Admin login successful',
+                user: { id: user._id, name: user.name, email: user.email, role: user.role, usdtBalance: user.usdtBalance, referredBy: user.referredBy },
+            });
+
+            response.cookies.set({
+                name: 'auth_token',
+                value: token,
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                maxAge: 60 * 60 * 24, // 1 day
+                path: '/',
+            });
+
+            return response;
+        }
+
         if (user.isTwoFactorEnabled) {
             // Issue a temporary token for 2FA verification
             const tempToken = await new jose.SignJWT({ userId: user._id.toString(), isTempAuth: true })
