@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import connectToDatabase from '@/lib/db';
 import User from '@/models/User';
 import { signToken } from '@/lib/auth';
+import * as jose from 'jose';
 
 export async function POST(req) {
     try {
@@ -34,6 +35,81 @@ export async function POST(req) {
         }
 
         const token = await signToken({ userId: user._id.toString(), email: user.email, role: user.role });
+
+        if (user.isTwoFactorEnabled) {
+            // Issue a temporary token for 2FA verification
+            const tempToken = await new jose.SignJWT({ userId: user._id.toString(), isTempAuth: true })
+                .setProtectedHeader({ alg: 'HS256' })
+                .setExpirationTime('10m')
+                .sign(new TextEncoder().encode(process.env.JWT_SECRET || 'fallback_secret_keep_it_safe'));
+
+            const response = NextResponse.json({
+                message: '2FA required',
+                requires2FA: true,
+                method: 'authenticator'
+            });
+
+            response.cookies.set({
+                name: 'temp_auth_token',
+                value: tempToken,
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                maxAge: 60 * 10, // 10 minutes
+                path: '/',
+            });
+
+            return response;
+        } else if (user.isEmailVerified) {
+            // Send Email OTP for fallback login
+            const { sendEmail } = await import('@/lib/email'); // Dynamic import
+
+            const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+            await User.findByIdAndUpdate(user._id, {
+                otpCode,
+                otpExpiry: new Date(Date.now() + 10 * 60 * 1000),
+            });
+
+            const emailHtml = `
+                <h2>HashPrime Login Verification</h2>
+                <p>You are attempting to log in. Please use the following code to verify your identity.</p>
+                <p>Your verification code is: <strong style="font-size: 24px;">${otpCode}</strong></p>
+                <p>This code will expire in 10 minutes.</p>
+            `;
+
+            try {
+                await sendEmail({
+                    to: user.email,
+                    subject: 'HashPrime Login OTP',
+                    html: emailHtml
+                });
+            } catch (error) {
+                console.error('Failed to send login OTP email:', error);
+            }
+
+            const tempToken = await new jose.SignJWT({ userId: user._id.toString(), isTempAuth: true })
+                .setProtectedHeader({ alg: 'HS256' })
+                .setExpirationTime('10m')
+                .sign(new TextEncoder().encode(process.env.JWT_SECRET || 'fallback_secret_keep_it_safe'));
+
+            const response = NextResponse.json({
+                message: 'Email OTP sent',
+                requires2FA: true,
+                method: 'email'
+            });
+
+            response.cookies.set({
+                name: 'temp_auth_token',
+                value: tempToken,
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                maxAge: 60 * 10, // 10 minutes
+                path: '/',
+            });
+
+            return response;
+        }
 
         const response = NextResponse.json({
             message: 'Login successful',

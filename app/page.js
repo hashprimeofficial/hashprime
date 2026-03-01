@@ -3,6 +3,7 @@ import HowToStart from '@/components/HowToStart';
 import BentoFeatures from '@/components/BentoFeatures';
 import SalientFeatures from '@/components/SalientFeatures';
 import Community from '@/components/Community';
+import OurProjects from '@/components/OurProjects';
 
 export const metadata = {
   alternates: {
@@ -34,12 +35,17 @@ export default function Home() {
 
       <div className="relative z-20"><HowToStart /></div>
 
-      {/* Transition Orb 2 (Between HowToStart and BentoFeatures) */}
+      {/* Transition Orb 2 (Between HowToStart and OurProjects) */}
       <div className="absolute top-[2000px] right-0 w-[1000px] h-[1000px] bg-gradient-to-l from-emerald-400/10 to-transparent rounded-full blur-[150px] pointer-events-none translate-x-1/3 z-0"></div>
+
+      <div className="relative z-20"><OurProjects /></div>
+
+      {/* Transition Orb 3 (Between OurProjects and BentoFeatures) */}
+      <div className="absolute top-[3400px] left-0 w-[800px] h-[800px] bg-gradient-to-r from-blue-100/30 to-transparent rounded-full blur-[120px] pointer-events-none -translate-x-1/2 z-0"></div>
 
       <div className="relative z-20"><BentoFeatures /></div>
 
-      {/* Transition Orb 3 (Between SalientFeatures and Community) */}
+      {/* Transition Orb 4 (Between SalientFeatures and Community) */}
       <div className="absolute bottom-[800px] left-1/2 w-[1200px] h-[600px] bg-[#39FF14]/5 rounded-[100%] blur-[120px] pointer-events-none -translate-x-1/2 z-0"></div>
 
       <div className="relative z-20"><SalientFeatures /></div>

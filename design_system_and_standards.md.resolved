@@ -1,0 +1,38 @@
+# Design System & Coding Standards
+
+This document outlines the visual identity and development rules to ensure the HashPrime application remains premium, stable, and maintainable.
+
+## 1. Visual Identity (Theming)
+HashPrime follows a **"Neon-Cyber Finance"** aesthetic, blending high-contrast colors with minimalist typography.
+
+### Color Palette
+- **Primary Navy**: `#0B1120` (Backgrounds, Sidebars, Main surfaces)
+- **Primary Neon Green**: `#39FF14` (Accents, Buttons, Balance indicators, Copy buttons)
+- **Text Primary**: `#0B1120` (On light backgrounds) or `#FFFFFF` (On dark surfaces)
+- **Text Secondary**: `#64748B` (Subtitles, helpful hints)
+- **Utility Green**: `#22C55E` (Success states)
+- **Utility Red**: `#EF4444` (Danger/Logout/Rejection)
+
+### Typography & UI Elements
+- **Emphasis**: Use `font-black` or `font-extrabold` for headings and balances to create a "bold financial" feel.
+- **Glassmorphism**: Use `backdrop-blur-xl` and semi-transparent white overlays (`bg-white/50`) for floating headers/topbars.
+- **Micro-Animations**: All interactive cards use `motion.div` from Framer Motion with subtle y-axis translations or opacity fades.
+
+## 2. Architectural Rules (The "Rules of HashPrime")
+
+### I. Data Integrity First
+- **Avoid `user.save()`**: Never use `instance.save()` in API routes. It triggers full document validation and can crash due to unrelated required fields (like `referralCode`).
+- **Use `findByIdAndUpdate`**: Always update data using atomic Mongoose operators like `$set` or `$inc` to bypass validation bottlenecks and ensure performance.
+
+### II. Component Organization
+- **Separation of Concerns**: Keep client-side logic (forms, animations) in the `app/` directory components and core business logic in API routes.
+- **Reusable Libraries**: Use `@/lib/auth` for JWT, `@/lib/db` for connections, and `@/lib/email` for messaging.
+
+### III. UI Performance
+- **SWR for Data Fetching**: Use the `useSWR` hook for all dashboard data to ensure fast page loads, automatic revalidation, and built-in loading states.
+- **Lucide Icons**: Use only Lucide React for icons to maintain a consistent visual weight.
+
+## 3. Best Practices for New Features
+1. **Theming**: Check against the Navy/Neon palette.
+2. **Connectivity**: Ensure the state updates on the frontend are reflected in the global balance if applicable.
+3. **Admin Monitoring**: Every user-facing financial action (Deposit/Invest) must create a corresponding `Transaction` record for the audit log.

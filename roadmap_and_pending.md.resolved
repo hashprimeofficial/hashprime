@@ -1,0 +1,28 @@
+# Roadmap & Pending Work
+
+This document provides a snapshot of the current project status and outlines the remaining tasks and future improvement opportunities.
+
+## 1. Current Status: `Operational & Polished`
+All core modules (Authentication, Deposits, KYC, Dashboard) are functional and follow the new premium theme. The application is stable and the critical database crashes have been resolved.
+
+## 2. Completed Phase (Phase 1 & 2)
+- [x] **Database Stability**: Atomic updates implemented; validation issues resolved.
+- [x] **Premium Theming**: Integrated Navy/Neon palette across all key pages.
+- [x] **Deposit System**: Interactive USDC/Bank deposit UI with automatic conversion.
+- [x] **Admin KYC**: Complete slide-over review workflow with email integration.
+- [x] **Balance Sync**: Unified Dashboard view for Capital (INR) and Profits (USDT).
+
+## 3. Pending Improvements (Immediate)
+- [ ] **Font Overhaul**: Final application-wide font selection (DM Sans / Space Grotesk) needs to be finalized in [app/layout.js](file:///d:/VG/hashprime/app/layout.js).
+- [ ] **Admin Dashboard Guards**: Implementation of more robust data-undefined guards in the main Admin stats view.
+- [ ] **Market Ticker Skeletons**: Adding better loading states/skeletons for the [LiveMarketTicker](file:///d:/VG/hashprime/components/LiveMarketTicker.jsx#13-128) component.
+
+## 4. Future Roadmap (Next Steps)
+- **Automated Payouts**: Integration of an automated withdrawal system for USDT balance.
+- **Enhanced Referrals**: Detailed referral tree visualization in the Referrals page.
+- **Advanced ROI Calculator**: Interactive investment ROI calculator on the homepage and dashboard.
+- **Push Notifications**: Browser-based notifications for deposit approvals and investment maturity.
+
+## 5. Ongoing Maintenance Rules
+- Ensure every new API route uses [connectToDatabase](file:///d:/VG/hashprime/lib/db.js#15-36) and verifies the auth token before proceeding.
+- Maintain the atomic update pattern to ensure 100% uptime without validation crashes.

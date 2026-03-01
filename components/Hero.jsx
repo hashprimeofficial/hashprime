@@ -3,127 +3,138 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import LiveMarketTicker from './LiveMarketTicker';
 import Link from 'next/link';
-import Image from 'next/image';
 import LightPillar from './LightPillar';
+import { ArrowUpRight } from 'lucide-react';
 
 gsap.registerPlugin(useGSAP);
+
+// Currency symbols — size = desktop px, mobileSize = mobile px, hideMobile = hide on small screens
+const symbols = [
+    { char: '$', cls: 'cs-1', top: '12%', left: '2%', size: 88, mobileSize: 36, hideMobile: false },
+    { char: '₹', cls: 'cs-2', top: '15%', right: '2%', size: 74, mobileSize: 32, hideMobile: false },
+    { char: '€', cls: 'cs-3', top: '60%', left: '1%', size: 64, mobileSize: 28, hideMobile: true },
+    { char: '£', cls: 'cs-5', bottom: '16%', right: '2%', size: 68, mobileSize: 28, hideMobile: true },
+];
 
 export default function Hero() {
     const containerRef = useRef(null);
 
     useGSAP(() => {
-        const tl = gsap.timeline();
+        // Entrance — NO skewY to avoid visual rotation
+        const tl = gsap.timeline({ delay: 0.05 });
+        tl.fromTo('.hero-badge', { y: -18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' })
+            .fromTo('.hero-line-1', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power4.out' }, '-=0.1')
+            .fromTo('.hero-line-2', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power4.out' }, '-=0.6')
+            .fromTo('.hero-sub', { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out' }, '-=0.4')
+            .fromTo('.hero-cta', { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', stagger: 0.1 }, '-=0.3')
+            .fromTo('.hero-stat', { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: 'power2.out', stagger: 0.08 }, '-=0.25')
+            // Currency symbols appear after text
+            .fromTo('.cs-wrap', { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.5)', stagger: 0.1 }, '-=0.3');
 
-        tl.fromTo(
-            ".hero-title",
-            { y: 30, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", stagger: 0.2 }
-        )
-            .fromTo(
-                ".hero-cta",
-                { y: 20, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.6, ease: "power3.out", stagger: 0.1 },
-                "-=0.4"
-            )
-            .fromTo(
-                ".hero-ticker",
-                { y: 40, opacity: 0 },
-                { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
-                "-=0.2"
-            );
-
-        // Floating animation for coins
-        gsap.to(".floating-coin-1", {
-            y: "-=30",
-            x: "+=15",
-            rotation: 10,
-            duration: 4,
-            yoyo: true,
-            repeat: -1,
-            ease: "sine.inOut"
-        });
-
-        gsap.to(".floating-coin-2", {
-            y: "+=25",
-            x: "-=20",
-            rotation: -15,
-            duration: 5,
-            yoyo: true,
-            repeat: -1,
-            ease: "sine.inOut"
+        // Perpetual float — starts after entrance completes
+        tl.call(() => {
+            gsap.to('.cs-1', { y: -36, x: 14, rotation: 10, duration: 4.5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+            gsap.to('.cs-2', { y: 28, x: -18, rotation: -12, duration: 5.2, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.4 });
+            gsap.to('.cs-3', { y: -22, x: 10, rotation: 8, duration: 6.0, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.6 });
+            gsap.to('.cs-4', { y: 18, x: -10, rotation: -14, duration: 3.9, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.2 });
+            gsap.to('.cs-5', { y: -24, x: 8, rotation: 11, duration: 4.8, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.8 });
         });
 
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="relative pt-24 pb-32 overflow-hidden bg-white">
-            {/* Floating Crypto Images */}
-            <div className="absolute top-20 left-[10%] opacity-40 md:opacity-100 floating-coin-1 z-0 pointer-events-none w-24 h-24 md:w-40 md:h-40">
-                <Image
-                    src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=026"
-                    alt="Bitcoin"
-                    width={160}
-                    height={160}
-                    className="object-contain drop-shadow-xl opacity-80"
-                />
-            </div>
-
-            <div className="absolute top-40 right-[10%] opacity-40 md:opacity-100 floating-coin-2 z-0 pointer-events-none w-20 h-20 md:w-32 md:h-32">
-                <Image
-                    src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=026"
-                    alt="Ethereum"
-                    width={128}
-                    height={128}
-                    className="object-contain drop-shadow-xl opacity-80"
-                />
-            </div>
-
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center pt-16">
-                <h1 className="text-6xl md:text-8xl font-black text-navy tracking-tight mb-12 leading-tight max-w-5xl mx-auto drop-shadow-xl">
-                    <span className="hero-title block mb-2">Let's Save Money</span>
-                    <span className="hero-title block text-navy">For The Future</span>
-                </h1>
-
-                <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-16">
-                    <Link href="/register" className="hero-cta w-full sm:w-auto bg-neon text-navy px-8 py-4 rounded-full text-base font-bold shadow-lg shadow-neon/20 hover:shadow-neon/40 hover:-translate-y-1 hover:scale-105 transition-all duration-300">
-                        Start Investing Now
-                    </Link>
-                    <Link href="/markets" className="hero-cta w-full sm:w-auto bg-white text-navy border-2 border-slate-200 px-8 py-4 rounded-full text-base font-bold hover:border-navy hover:bg-navy hover:text-white transition-all duration-300">
-                        Explore Markets
-                    </Link>
-                </div>
-
-
-
-                <div className="hero-ticker relative z-20">
-                    <LiveMarketTicker />
-                </div>
-            </div>
-
-
-            {/* Bottom blend gradient */}
-            <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none"></div>
-
-            {/* Background decorative elements */}
-            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-40">
+        <section
+            ref={containerRef}
+            className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white pt-20 pb-16"
+        >
+            {/* Background */}
+            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-35">
                 <LightPillar
-                    topColor="#39FF14"
-                    bottomColor="#10B981"
-                    intensity={0.8}
-                    rotationSpeed={0.15}
-                    glowAmount={0.005}
-                    pillarWidth={2}
-                    pillarHeight={0.25}
-                    noiseIntensity={0.1}
-                    pillarRotation={90}
-                    interactive={true}
-                    mixBlendMode="normal"
-                    quality="high"
+                    topColor="#39FF14" bottomColor="#10B981"
+                    intensity={0.8} rotationSpeed={0.15} glowAmount={0.005}
+                    pillarWidth={2} pillarHeight={0.25} noiseIntensity={0.1}
+                    pillarRotation={90} interactive={true} mixBlendMode="normal" quality="high"
                 />
             </div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon opacity-[0.03] rounded-full blur-3xl pointer-events-none z-0"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#39FF14] opacity-[0.025] rounded-full blur-3xl pointer-events-none z-0" />
+
+            {/* ── Floating Currency Symbols ─────── */}
+            {symbols.map(({ char, cls, size, mobileSize, hideMobile, top, left, right, bottom }) => (
+                <div
+                    key={cls}
+                    className={`cs-wrap ${cls} absolute z-0 pointer-events-none ${hideMobile ? 'hidden md:flex' : 'flex'}`}
+                    style={{ top, left, right, bottom }}
+                >
+                    {/* Desktop size */}
+                    <div className="hidden md:flex items-center justify-center"
+                        style={{ width: size + 24, height: size + 24 }}
+                    >
+                        <span
+                            className="font-black text-[#0B1120] opacity-20 select-none leading-none"
+                            style={{ fontSize: size * 0.65, lineHeight: 1 }}
+                        >
+                            {char}
+                        </span>
+                    </div>
+                    {/* Mobile size — smaller, more transparent */}
+                    <div className="flex md:hidden items-center justify-center"
+                        style={{ width: mobileSize + 12, height: mobileSize + 12 }}
+                    >
+                        <span
+                            className="font-black text-[#0B1120] opacity-10 select-none leading-none"
+                            style={{ fontSize: mobileSize * 0.65, lineHeight: 1 }}
+                        >
+                            {char}
+                        </span>
+                    </div>
+                </div>
+            ))}
+
+            {/* ── Main Content ─────────────────── */}
+            <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10 w-full">
+                <div className="flex  flex-col items-center text-center">
+
+
+                    {/* Headline — both lines BLACK with shimmer on line 1 */}
+                    <div className="text-shine mt-10">
+
+                        <div className="overflow-hidden mb-1">
+                            <h1 className="hero-line-1  font-black leading-none tracking-tight text-[clamp(2.8rem,7vw,6.5rem)]">
+                                Let's Save Money
+                            </h1>
+                        </div>
+                        <div className="overflow-hidden  mb-10">
+                            <h1 className="hero-line-2  font-black leading-none tracking-tight text-[clamp(2.8rem,7vw,6.5rem)] text-[#0B1120]">
+                                For The Future
+                            </h1>
+                        </div>
+                    </div>
+
+                    {/* Sub */}
+                    <p className="hero-sub text-slate-400 text-base md:text-lg font-medium max-w-md mx-auto mb-12 leading-relaxed">
+                        Multiply your wealth with structured plans across stocks, commodities, and global markets.
+                    </p>
+
+                    {/* CTAs */}
+                    <div className="flex flex-col sm:flex-row items-center gap-3 mb-20">
+                        <Link href="/register"
+                            className="hero-cta group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0B1120] text-white px-9 py-4 rounded-full text-sm font-bold shadow-lg hover:bg-black hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300">
+                            Start Investing
+                            <ArrowUpRight size={15} className="text-[#39FF14] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                        </Link>
+                        <Link href="/markets"
+                            className="hero-cta w-full sm:w-auto inline-flex items-center justify-center border-2 border-slate-200 text-[#0B1120] px-9 py-4 rounded-full text-sm font-bold hover:border-[#39FF14] hover:bg-[#39FF14] hover:text-[#0B1120] transition-all duration-300">
+                            Explore Markets
+                        </Link>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
         </section>
     );
 }

@@ -3,6 +3,7 @@ import connectToDatabase from '@/lib/db';
 import User from '@/models/User';
 import Investment from '@/models/Investment';
 import Transaction from '@/models/Transaction';
+import BankAccount from '@/models/BankAccount';
 import { verifyToken } from '@/lib/auth';
 
 export async function GET(req) {
@@ -20,8 +21,9 @@ export async function GET(req) {
 
         const investments = await Investment.find({ userId: user._id }).sort({ createdAt: -1 });
         const transactions = await Transaction.find({ userId: user._id }).sort({ createdAt: -1 }).limit(10);
+        const bankAccounts = await BankAccount.find({ user: user._id });
 
-        return NextResponse.json({ user, investments, transactions }, { status: 200 });
+        return NextResponse.json({ user, investments, transactions, bankAccounts }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }

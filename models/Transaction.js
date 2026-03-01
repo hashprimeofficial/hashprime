@@ -9,7 +9,7 @@ const TransactionSchema = new mongoose.Schema(
         },
         type: {
             type: String,
-            enum: ['investment', 'referral_bonus', 'withdrawal'],
+            enum: ['investment', 'referral_bonus', 'withdrawal', 'deposit'],
             required: true,
         },
         amount: {
@@ -28,4 +28,10 @@ const TransactionSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-export default mongoose.models.Transaction || mongoose.model('Transaction', TransactionSchema);
+// Force clear the model from cache to apply schema changes in development
+if (mongoose.models.Transaction) {
+    delete mongoose.models.Transaction;
+}
+
+const Transaction = mongoose.model('Transaction', TransactionSchema);
+export default Transaction;

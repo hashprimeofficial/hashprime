@@ -9,6 +9,9 @@ const NAV_ITEMS = [
     { name: 'Overview', href: '/admin', icon: LayoutDashboard },
     { name: 'Users', href: '/admin/users', icon: Users },
     { name: 'Investments', href: '/admin/investments', icon: Wallet },
+    { name: 'Deposits', href: '/admin/deposits', icon: Wallet },
+    { name: 'KYC Approvals', href: '/admin/kyc', icon: Users },
+    { name: 'Support Tickets', href: '/admin/tickets', icon: LayoutDashboard },
 ];
 
 export default function AdminLayout({ children }) {

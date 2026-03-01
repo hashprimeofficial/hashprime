@@ -1,12 +1,25 @@
 import './globals.css';
-import { Inter } from 'next/font/google';
-import NavbarWrapper from '@/components/NavbarWrapper'; // Create this component
+import { DM_Sans, Space_Grotesk } from 'next/font/google';
+import NavbarWrapper from '@/components/NavbarWrapper';
 import FooterWrapper from '@/components/FooterWrapper';
-const inter = Inter({ subsets: ['latin'] });
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-dm-sans',
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+});
 
 export const metadata = {
   metadataBase: new URL('https://hashprime.com'),
-  title: 'Hashprime | LET\'S SAVE MONEY FOR THE FUTURE',
+  title: 'Hashprime | Let\'s Save Money For The Future',
   description: 'Experience next-generation speed, uncompromised security, and deep liquidity. Invest in Bitcoin, Ethereum, Solana and 100+ cryptocurrencies on Hashprime.',
   keywords: ['crypto investments', 'bitcoin exchange', 'buy ethereum', 'solana investments', 'cryptocurrency platform', 'secure crypto wallet', 'Hashprime', 'crypto investment'],
   authors: [{ name: 'Hashprime' }],
@@ -55,7 +68,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-white text-navy antialiased min-h-screen flex flex-col`}>
+      <body className={`${dmSans.variable} ${spaceGrotesk.variable} font-sans bg-white text-navy antialiased min-h-screen flex flex-col`}>
         <NavbarWrapper />
         <main className="flex-grow">
           {children}

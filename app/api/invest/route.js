@@ -4,8 +4,8 @@ import User from '@/models/User';
 import Investment from '@/models/Investment';
 import Transaction from '@/models/Transaction';
 import { verifyToken } from '@/lib/auth';
-
-const INR_TO_USDT = parseFloat(process.env.INR_TO_USDT_RATE || '85');
+import { getExchangeRate } from '@/lib/exchangeRate';
+import speakeasy from 'speakeasy';
 
 const SCHEMES = {
     '3m': { minAmounts: [50000, 100000, 300000, 500000], returnRate: 0.18, durationMonths: 3 },
@@ -24,10 +24,49 @@ export async function POST(req) {
 
         await connectToDatabase();
 
-        const { amount, schemeType } = await req.json();
+        // Fetch user first to check KYC
+        const user = await User.findById(payload.userId);
+        if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 });
+
+        if (user.kycStatus !== 'approved') {
+            return NextResponse.json({ error: 'KYC not approved. Please complete KYC verification first.' }, { status: 403 });
+        }
+
+        const { amount, schemeType, otpToken } = await req.json();
 
         if (!amount || !schemeType || !SCHEMES[schemeType]) {
             return NextResponse.json({ error: 'Invalid investment data' }, { status: 400 });
+        }
+
+        if (!otpToken) {
+            return NextResponse.json({ error: 'Verification code is required.' }, { status: 400 });
+        }
+
+        // --- Verification Logic ---
+        if (user.isTwoFactorEnabled && user.twoFactorSecret) {
+            // Verify Google Authenticator
+            const isTokenValid = speakeasy.totp.verify({
+                secret: user.twoFactorSecret,
+                encoding: 'base32',
+                token: otpToken.trim(),
+                window: 1 // Allow 30 seconds clock skew
+            });
+
+            if (!isTokenValid) {
+                return NextResponse.json({ error: 'Invalid or expired 2FA code.' }, { status: 400 });
+            }
+        } else {
+            // Verify Email OTP Flag
+            // Currently, if 2FA is not enabled, we expect the frontend to handle an email OTP similar to login.
+            // (Assuming email OTP was sent and saved in user.otpCode prior to this request, or verified locally)
+            // For this implementation, if they don't have 2FA, we will verify the OTP token against `user.otpCode`.
+            if (user.otpCode !== otpToken.trim() || !user.otpExpiry || new Date() > user.otpExpiry) {
+                return NextResponse.json({ error: 'Invalid or expired Email OTP code.' }, { status: 400 });
+            }
+            // Clear the OTP after successful use
+            user.otpCode = null;
+            user.otpExpiry = null;
+            await user.save();
         }
 
         const scheme = SCHEMES[schemeType];
@@ -43,37 +82,35 @@ export async function POST(req) {
             }
         }
 
+        // Check wallet balance (ensure they have funds NOW, but DO NOT deduct yet)
+        if ((user.walletBalance || 0) < amount) {
+            return NextResponse.json({ error: 'Insufficient wallet balance to cover this investment request.' }, { status: 400 });
+        }
+
         // Calculate Maturity date & USDT rewards
         const maturesAt = new Date();
         maturesAt.setMonth(maturesAt.getMonth() + scheme.durationMonths);
 
-        const usdtReward = (amount * scheme.returnRate) / INR_TO_USDT;
+        const liveRate = await getExchangeRate();
+        const usdtReward = Math.round(((amount * scheme.returnRate) / liveRate) * 100) / 100;
 
-        // Fetch user
-        const user = await User.findById(payload.userId);
-        if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 });
+        // **CRITICAL CHANGE: Do NOT deduct walletBalance here.**
+        // **CRITICAL CHANGE: Do NOT create a Transaction ledger yet.**
 
-        // Create Investment
+        // Create Pending Investment
         const investment = await Investment.create({
             userId: user._id,
             amount,
             schemeType,
             usdtReward,
             maturesAt,
+            status: 'pending' // User investments start as pending, requiring admin approval/activation
         });
 
-        // Create Transaction for Investment
-        await Transaction.create({
-            userId: user._id,
-            type: 'investment',
-            amount: amount,
-            currency: 'INR',
-            description: `Invested in ${schemeType} scheme (Pending)`,
-        });
-
-        // Note: Referral Logic has been deferred to admin approval to prevent business logic exploitation.
-
-        return NextResponse.json({ message: 'Investment submitted successfully and is pending approval', investment }, { status: 201 });
+        return NextResponse.json({
+            message: 'Investment request submitted successfully! Pending Admin Approval.',
+            investment
+        }, { status: 201 });
     } catch (error) {
         console.error('Investment Error:', error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

@@ -13,12 +13,12 @@ const CryptoMarquee = () => (
         <div className="animate-marquee flex min-w-full">
             {[...Array(2)].map((_, i) => (
                 <div key={i} className="flex min-w-full justify-around items-center px-4 shrink-0">
-                    <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=026" className="w-8 h-8 opacity-40 grayscale" alt="BTC" />
-                    <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=026" className="w-8 h-8 opacity-40 grayscale" alt="ETH" />
-                    <img src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=026" className="w-8 h-8 opacity-40 grayscale" alt="USDT" />
-                    <img src="https://cryptologos.cc/logos/solana-sol-logo.png?v=026" className="w-8 h-8 opacity-40 grayscale" alt="SOL" />
-                    <img src="https://cryptologos.cc/logos/xrp-xrp-logo.png?v=026" className="w-8 h-8 opacity-40 grayscale" alt="XRP" />
-                    <img src="https://cryptologos.cc/logos/cardano-ada-logo.png?v=026" className="w-8 h-8 opacity-40 grayscale" alt="ADA" />
+                    <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/btc.svg" className="w-8 h-8 opacity-40 grayscale" alt="BTC" />
+                    <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/eth.svg" className="w-8 h-8 opacity-40 grayscale" alt="ETH" />
+                    <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/usdt.svg" className="w-8 h-8 opacity-40 grayscale" alt="USDT" />
+                    <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/sol.svg" className="w-8 h-8 opacity-40 grayscale" alt="SOL" />
+                    <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/xrp.svg" className="w-8 h-8 opacity-40 grayscale" alt="XRP" />
+                    <img src="https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/svg/color/ada.svg" className="w-8 h-8 opacity-40 grayscale" alt="ADA" />
                 </div>
             ))}
         </div>

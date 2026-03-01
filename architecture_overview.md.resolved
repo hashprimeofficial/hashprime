@@ -1,0 +1,50 @@
+# System Architecture Overview
+
+HashPrime is built using **Next.js 14**, **Mongoose (MongoDB)**, and **Tailwind CSS**, following a modern full-stack architecture.
+
+## 1. Technical Stack
+- **Frontend**: Next.js App Router (Client Components for high interactivity).
+- **Backend**: Next.js API Routes (Serverless architecture).
+- **Database**: MongoDB via Mongoose ODM.
+- **Styling**: Tailwind CSS + Framer Motion (Animations) + GSAP.
+- **Storage**: Cloudinary (KYC Docs & Deposit Proofs).
+- **Email**: Nodemailer (Transactional emails via SMTP).
+
+## 2. Component Connectivity & Data Flow
+
+```mermaid
+graph TD
+    User((User)) --> Dashboard[Dashboard UI]
+    Dashboard --> AuthAPI[API Auth/Me]
+    Dashboard --> DepositAPI[API Deposits]
+    Dashboard --> InvestAPI[API Invest]
+    
+    Admin((Admin)) --> KYCManage[KYC Admin Panel]
+    Admin --> DepConfirm[Deposit Approval API]
+    
+    APILayer[Next.js API Routes] --- Models[Mongoose Models: User, Deposit, Investment, Transaction]
+    Models --- DB[(MongoDB)]
+    
+    DepConfirm -- Approved --> Conversion[Currency Conversion Logic]
+    Conversion --> DB
+    
+    API_KYC -- Notification --> EmailServer[SMTP Server]
+    EmailServer --> User
+```
+
+### Key Interactions:
+1. **Dashboard Stats**: The `/api/dashboard/stats` route aggregates data from [User](file:///d:/VG/hashprime/app/dashboard/layout.js#28-52), `Investment`, and `Transaction` models to provide a unified view.
+2. **Deposit Workflow**:
+    - User uploads screenshot via `/api/deposits` (Cloudinary).
+    - Deposit is stored with `status: 'pending'`.
+    - Admin reviews in `/admin/deposits` and approves.
+    - Approval triggers **Atomic Balance Update** (`User.findByIdAndUpdate`) and converts USDC to INR if necessary.
+3. **KYC Workflow**:
+    - User submits details in `/dashboard/profile`.
+    - Admin views via the slide-over panel in `/admin/kyc`.
+    - On Status Update, the system triggers a background email via `SMTP` using the provided admin message.
+
+## 3. Security Model
+- **Token-Based Auth**: Uses HTTP-only cookies and JWT via `@/lib/auth`.
+- **Atomic Operations**: Primary wallet updates are made using `$inc` operators in MongoDB to prevent race conditions during concurrent transactions.
+- **Input Sanitization**: API routes enforce validation to prevent invalid amounts or states from persisting.
