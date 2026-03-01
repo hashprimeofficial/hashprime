@@ -43,7 +43,7 @@ export default function Home() {
       {/* Transition Orb 3 (Between OurProjects and BentoFeatures) */}
       <div className="absolute top-[3400px] left-0 w-[800px] h-[800px] bg-gradient-to-r from-blue-100/30 to-transparent rounded-full blur-[120px] pointer-events-none -translate-x-1/2 z-0"></div>
 
-      <div className="relative z-20"><BentoFeatures /></div>
+
 
       {/* Transition Orb 4 (Between SalientFeatures and Community) */}
       <div className="absolute bottom-[800px] left-1/2 w-[1200px] h-[600px] bg-[#39FF14]/5 rounded-[100%] blur-[120px] pointer-events-none -translate-x-1/2 z-0"></div>
