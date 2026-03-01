@@ -97,15 +97,14 @@ export default function Hero() {
 
 
                     {/* Headline — both lines BLACK with shimmer on line 1 */}
-                    <div className="text-shine mt-10">
-
+                    <div className="mt-10">
                         <div className="overflow-hidden mb-1">
-                            <h1 className="hero-line-1  font-black leading-none tracking-tight text-[clamp(2.8rem,7vw,6.5rem)]">
+                            <h1 className="hero-line-1 text-shine font-black leading-none tracking-tight text-[clamp(2.8rem,7vw,6.5rem)] text-[#0B1120]">
                                 Let's Save Money
                             </h1>
                         </div>
-                        <div className="overflow-hidden  mb-10">
-                            <h1 className="hero-line-2  font-black leading-none tracking-tight text-[clamp(2.8rem,7vw,6.5rem)] text-[#0B1120]">
+                        <div className="overflow-hidden mb-10">
+                            <h1 className="hero-line-2 font-black leading-none tracking-tight text-[clamp(2.8rem,7vw,6.5rem)] text-[#0B1120]">
                                 For The Future
                             </h1>
                         </div>
