@@ -40,7 +40,7 @@ export default function OurProjects() {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="relative bg-white py-24 md:py-32 overflow-hidden">
+        <section ref={sectionRef} className="relative bg-white py-8 md:py-12 overflow-hidden">
 
             {/* Soft Ambient Background */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
@@ -48,7 +48,7 @@ export default function OurProjects() {
                 <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]" />
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="relative z-10 max-w-7xl mx-auto px-3 lg:px-4">
 
                 {/* ── Header ───────────────────────── */}
                 <div className="op-header-content flex flex-col items-center text-center mb-20">

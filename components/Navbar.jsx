@@ -29,7 +29,7 @@ export default function Navbar() {
     const navLinks = [
         { href: '/markets', label: 'Markets' },
         { href: '/features', label: 'Features' },
-        { href: '/services', label: 'Services' },
+        { href: '/schemes', label: 'Schemes' },
     ];
 
     useEffect(() => {

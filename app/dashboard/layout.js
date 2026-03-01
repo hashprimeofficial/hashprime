@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import {
     LayoutDashboard, Wallet, Users, LogOut, Loader2,
-    UserCircle, Menu, X, ShieldCheck, Landmark, Headphones, TrendingUp
+    Settings2, Menu, X, Headphones, TrendingUp
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import useSWR from 'swr';
@@ -16,11 +16,9 @@ const NAV_ITEMS = [
     { name: 'Invest', href: '/dashboard/invest', icon: TrendingUp },
     { name: 'Deposits', href: '/dashboard/deposit', icon: Wallet },
     { name: 'Referrals', href: '/dashboard/referrals', icon: Users },
-    { name: 'Bank Accounts', href: '/dashboard/bank', icon: Landmark },
     { name: 'Support', href: '/dashboard/tickets', icon: Headphones },
-    { name: 'Profile', href: '/dashboard/profile', icon: UserCircle },
     { name: 'Nominee', href: '/dashboard/nominee', icon: Users },
-    { name: 'Security', href: '/dashboard/security', icon: ShieldCheck },
+    { name: 'Settings', href: '/dashboard/profile', icon: Settings2 },
 ];
 
 const fetcher = (url) => fetch(url).then((r) => r.json());
@@ -114,16 +112,10 @@ export default function DashboardLayout({ children }) {
                             <header className="w-full bg-white/60 backdrop-blur-xl backdrop-saturate-150 border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)] rounded-full px-5 flex items-center justify-between h-14">
                                 {/* Logo */}
                                 <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
-                                    <div className="w-6 h-6 rounded-md bg-navy flex items-center justify-center">
-                                        <span className="text-neon font-black text-xs">H</span>
-                                    </div>
-                                    <span className="font-black text-navy text-base tracking-tight">HashPrime</span>
+                                    <span className="font-bold text-[#39FF14] drop-shadow-[0_0_8px_rgba(57,255,20,0.3)] text-base tracking-tight">HashPrime</span>
                                 </Link>
 
-                                {/* Current page label */}
-                                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                                    {NAV_ITEMS.find(i => i.href === pathname)?.name || 'Dashboard'}
-                                </span>
+
 
                                 {/* Menu toggle */}
                                 <button
@@ -174,8 +166,8 @@ export default function DashboardLayout({ children }) {
                                 href={href}
                                 onClick={() => setMobileOpen(false)}
                                 className={`offcanvas-link flex items-center gap-4 text-2xl font-black border-b pb-5 pt-3 transition-colors duration-200 ${isActive
-                                        ? 'text-neon border-neon/20'
-                                        : 'text-navy border-slate-100 hover:text-neon'
+                                    ? 'text-neon border-neon/20'
+                                    : 'text-navy border-slate-100 hover:text-neon'
                                     }`}
                             >
                                 <Icon className={`w-6 h-6 shrink-0 ${isActive ? 'text-neon' : 'text-slate-400'}`} />
