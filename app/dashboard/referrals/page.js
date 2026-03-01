@@ -1,7 +1,7 @@
 'use client';
 
 import useSWR from 'swr';
-import { Copy, CheckCircle2, Users, Gift, ArrowUpRight } from 'lucide-react';
+import { Copy, CheckCircle2, Users, Gift, ArrowUpRight, UserCircle2 } from 'lucide-react';
 import { useState } from 'react';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -23,23 +23,28 @@ function ReferralsSkeleton() {
 }
 
 export default function ReferralsPage() {
-    const { data, error, isLoading } = useSWR('/api/dashboard/stats', fetcher);
+    const { data: authData } = useSWR('/api/auth/me', fetcher);
+    const { data, error, isLoading } = useSWR('/api/referrals', fetcher);
     const [copied, setCopied] = useState(false);
 
     if (isLoading) return <ReferralsSkeleton />;
-    if (error) return <div className="text-red-500">Failed to load data</div>;
+    if (error || !data) return <div className="text-red-500">Failed to load referral data</div>;
 
-    const { user, transactions } = data;
-    const referralTxs = transactions.filter(t => t.type === 'referral_bonus');
-    const totalEarned = referralTxs.reduce((acc, t) => acc + t.amount, 0);
+    const { referredUsers = [], referralTxs = [], totalEarned = 0 } = data;
+
+    const userId = authData?.user?._id || '';
 
     const copyRefLink = () => {
         let origin = '';
         if (typeof window !== 'undefined') origin = window.location.origin;
-        navigator.clipboard.writeText(`${origin}/register?ref=${user._id}`);
+        navigator.clipboard.writeText(`${origin}/register?ref=${data.referralCode || userId}`);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
-    }
+    };
+
+    const refLink = typeof window !== 'undefined'
+        ? `${window.location.origin}/register?ref=${data.referralCode || userId}`
+        : '';
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
@@ -49,6 +54,7 @@ export default function ReferralsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Referral Link Card */}
                 <div className="bg-navy border border-slate-800 p-8 rounded-3xl backdrop-blur-md relative overflow-hidden shadow-xl">
                     <div className="absolute top-[-20%] right-[-10%] w-48 h-48 bg-neon/20 blur-[60px] rounded-full"></div>
                     <Users className="w-8 h-8 text-white mb-4" />
@@ -56,7 +62,7 @@ export default function ReferralsPage() {
                     <p className="text-slate-300 mb-6 text-sm font-medium">Share this unique link with friends and partners. When they register and invest, you get paid instantly.</p>
 
                     <div className="flex bg-white/10 border border-white/20 rounded-xl overflow-hidden shadow-inner backdrop-blur-sm">
-                        <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user._id}` : ''} className="flex-1 bg-transparent px-4 py-4 text-sm text-white font-medium outline-none" />
+                        <input readOnly value={refLink} className="flex-1 bg-transparent px-4 py-4 text-sm text-white font-medium outline-none" />
                         <button onClick={copyRefLink} className="bg-neon hover:bg-[#32e512] px-6 py-4 text-navy font-bold transition-colors flex items-center gap-2">
                             {copied ? <CheckCircle2 className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
                         </button>
@@ -64,13 +70,13 @@ export default function ReferralsPage() {
                     <div className="flex items-center gap-2 mt-3">
                         <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Share via:</span>
                         <a
-                            href={typeof window !== 'undefined' ? `https://wa.me/?text=Join+HashPrime+and+start+earning+USDT!+${encodeURIComponent(window.location.origin + '/register?ref=' + user._id)}` : '#'}
+                            href={refLink ? `https://wa.me/?text=Join+HashPrime+and+start+earning+USDT!+${encodeURIComponent(refLink)}` : '#'}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-green-500/20 hover:bg-green-500/30 text-green-400 text-xs font-bold px-3 py-1.5 rounded-lg transition-colors border border-green-500/30"
                         >WhatsApp</a>
                         <a
-                            href={typeof window !== 'undefined' ? `https://t.me/share/url?url=${encodeURIComponent(window.location.origin + '/register?ref=' + user._id)}&text=Join+HashPrime+and+earn+USDT!` : '#'}
+                            href={refLink ? `https://t.me/share/url?url=${encodeURIComponent(refLink)}&text=Join+HashPrime+and+earn+USDT!` : '#'}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 text-xs font-bold px-3 py-1.5 rounded-lg transition-colors border border-blue-500/30"
@@ -78,17 +84,53 @@ export default function ReferralsPage() {
                     </div>
                 </div>
 
+                {/* Stats Card */}
                 <div className="bg-slate-50 border border-slate-200 p-8 rounded-3xl shadow-sm relative overflow-hidden flex flex-col justify-center items-center text-center">
                     <div className="absolute bottom-[-20%] left-[-10%] w-48 h-48 bg-neon/10 blur-[60px] rounded-full"></div>
                     <Gift className="w-10 h-10 text-neon mb-4" />
                     <p className="text-slate-500 text-lg font-bold mb-1">Total Referral Earnings</p>
                     <h2 className="text-5xl font-black text-navy relative z-10">{totalEarned.toFixed(2)} <span className="text-2xl text-slate-400 font-bold">USDT</span></h2>
+                    <p className="text-slate-400 text-sm mt-3 font-medium">{referredUsers.length} user{referredUsers.length !== 1 ? 's' : ''} referred</p>
                 </div>
             </div>
 
-            <div className="mt-8 bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+            {/* Referred Users List */}
+            <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
+                <div className="p-6 border-b border-slate-200 flex items-center gap-3">
+                    <UserCircle2 className="w-5 h-5 text-navy" />
+                    <h3 className="text-xl font-black text-navy">Referred Users</h3>
+                    <span className="ml-auto bg-neon/10 text-navy text-xs font-black px-3 py-1 rounded-full border border-neon/20">{referredUsers.length} total</span>
+                </div>
+                {referredUsers.length === 0 ? (
+                    <div className="p-10 text-center font-bold text-slate-400 bg-slate-50/50">
+                        No referred users yet.<br />Share your link to get started!
+                    </div>
+                ) : (
+                    <ul className="divide-y divide-slate-100">
+                        {referredUsers.map((u) => (
+                            <li key={u._id} className="p-5 flex items-center justify-between hover:bg-slate-50 transition-colors">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-10 h-10 rounded-full bg-navy/10 flex items-center justify-center text-navy font-black text-sm">
+                                        {u.name?.charAt(0).toUpperCase() || '?'}
+                                    </div>
+                                    <div>
+                                        <p className="text-navy font-bold">{u.name}</p>
+                                        <p className="text-slate-400 text-sm">{u.email}</p>
+                                    </div>
+                                </div>
+                                <div className="text-right text-xs text-slate-400 font-medium">
+                                    Joined {new Date(u.createdAt).toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' })}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+
+            {/* Referral Bonus History */}
+            <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm">
                 <div className="p-6 border-b border-slate-200">
-                    <h3 className="text-xl font-black text-navy">Referral History</h3>
+                    <h3 className="text-xl font-black text-navy">Referral Bonus History</h3>
                 </div>
 
                 {referralTxs.length === 0 ? (
@@ -109,8 +151,7 @@ export default function ReferralsPage() {
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <div className="font-black text-green-600 text-xl hidden sm:block">+{tx.amount.toFixed(2)} USDT</div>
-                                    <div className="font-black text-green-600 block sm:hidden">+{tx.amount.toFixed(2)} USDT</div>
+                                    <div className="font-black text-green-600 text-xl">+{tx.amount.toFixed(2)} USDT</div>
                                 </div>
                             </li>
                         ))}

@@ -4,6 +4,8 @@ import Investment from '@/models/Investment';
 import { verifyToken } from '@/lib/auth';
 import User from '@/models/User';
 import Transaction from '@/models/Transaction';
+import { getExchangeRate } from '@/lib/exchangeRate';
+
 export async function PATCH(req, { params }) {
     try {
         const token = req.cookies.get('auth_token')?.value;
@@ -57,6 +59,27 @@ export async function PATCH(req, { params }) {
                 currency: 'INR',
                 description: `Invested in ${currentInvestment.schemeType} scheme (Admin Approved)`,
             });
+
+            // 5% Referral Bonus Logic for Referrer
+            if (user.referredBy) {
+                const referrer = await User.findOne({ referralCode: user.referredBy });
+                if (referrer) {
+                    const liveRate = await getExchangeRate();
+                    const bonusUsdt = Math.round(((amountNeeded * 0.05) / liveRate) * 100) / 100;
+
+                    await User.findByIdAndUpdate(referrer._id, {
+                        $inc: { usdtBalance: bonusUsdt }
+                    });
+
+                    await Transaction.create({
+                        userId: referrer._id,
+                        type: 'referral_bonus',
+                        amount: bonusUsdt,
+                        currency: 'USDT',
+                        description: `5% Referral bonus from ${user.name}'s investment approval`
+                    });
+                }
+            }
         }
 
         const updatedInvestment = await Investment.findByIdAndUpdate(id, safeUpdate, { new: true }).populate('userId', 'name email');

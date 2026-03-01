@@ -99,8 +99,9 @@ export async function POST(req) {
                 // 5% of investment amount as bonus, traditionally awarded in USDT
                 const bonusUsdt = Math.round(((Number(amount) * 0.05) / liveRate) * 100) / 100;
 
-                referrer.usdtBalance = Math.round(((referrer.usdtBalance || 0) + bonusUsdt) * 100) / 100;
-                await referrer.save();
+                await User.findByIdAndUpdate(referrer._id, {
+                    $inc: { usdtBalance: bonusUsdt }
+                });
 
                 await Transaction.create({
                     userId: referrer._id,

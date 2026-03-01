@@ -238,7 +238,7 @@ export default function LoginPage() {
 
                         {/* Resend button for email OTP modes */}
                         {(usingEmailFallback || authMethod === 'email') && (
-                            <button type="button" onClick={usingEmailFallback ? handleSendEmailOtp : undefined}
+                            <button type="button" onClick={handleSendEmailOtp}
                                 disabled={sendingEmailOtp}
                                 className="w-full text-xs font-bold text-slate-400 hover:text-slate-600 transition-colors py-1">
                                 {sendingEmailOtp ? 'Sending…' : 'Resend code'}

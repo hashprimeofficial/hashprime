@@ -26,21 +26,38 @@ export async function POST(req) {
         await connectToDatabase();
         const user = await User.findById(payload.userId);
 
-        if (!user || !user.isTwoFactorEnabled) {
-            return NextResponse.json({ error: 'Invalid user or 2FA not enabled' }, { status: 400 });
+        if (!user) {
+            return NextResponse.json({ error: 'User not found' }, { status: 404 });
         }
 
-        const totp = new OTPAuth.TOTP({
-            issuer: 'HashPrime',
-            algorithm: 'SHA1',
-            digits: 6,
-            period: 30,
-            secret: OTPAuth.Secret.fromBase32(user.twoFactorSecret),
-        });
+        // --- Case 1: Google Authenticator (TOTP) ---
+        if (user.isTwoFactorEnabled && user.twoFactorSecret) {
+            const totp = new OTPAuth.TOTP({
+                issuer: 'HashPrime',
+                algorithm: 'SHA1',
+                digits: 6,
+                period: 30,
+                secret: OTPAuth.Secret.fromBase32(user.twoFactorSecret),
+            });
 
-        const delta = totp.validate({ token: code, window: 1 });
-        if (delta === null) {
-            return NextResponse.json({ error: 'Invalid authentication code' }, { status: 400 });
+            const delta = totp.validate({ token: code, window: 1 });
+            if (delta === null) {
+                return NextResponse.json({ error: 'Invalid authentication code' }, { status: 400 });
+            }
+        }
+        // --- Case 2: Email OTP Fallback ---
+        else if (user.otpCode) {
+            if (!user.otpExpiry || new Date() > new Date(user.otpExpiry)) {
+                return NextResponse.json({ error: 'OTP has expired. Please log in again.' }, { status: 400 });
+            }
+            if (user.otpCode !== code.trim()) {
+                return NextResponse.json({ error: 'Invalid verification code' }, { status: 400 });
+            }
+            // Clear the used OTP
+            await User.findByIdAndUpdate(user._id, { otpCode: null, otpExpiry: null });
+        }
+        else {
+            return NextResponse.json({ error: 'Verification session invalid. Please log in again.' }, { status: 400 });
         }
 
         // Issue the real auth token — always use .toString() on ObjectId

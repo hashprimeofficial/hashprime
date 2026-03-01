@@ -354,7 +354,14 @@ export default function DepositPage() {
                                                 <div className="mt-1.5 overflow-hidden">
                                                     {dep.status === 'approved' && <span className="inline-flex items-center gap-1 text-[10px] font-black text-green-700 bg-green-50 px-2 py-0.5 rounded uppercase tracking-tighter border border-green-100"><CheckCircle2 className="w-3 h-3" /> Approved</span>}
                                                     {dep.status === 'pending' && <span className="inline-flex items-center gap-1 text-[10px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded uppercase tracking-tighter border border-amber-100">Pending</span>}
-                                                    {dep.status === 'rejected' && <span className="inline-flex items-center gap-1 text-[10px] font-black text-red-700 bg-red-50 px-2 py-0.5 rounded uppercase tracking-tighter border border-red-100"><AlertCircle className="w-3 h-3" /> Rejected</span>}
+                                                    {dep.status === 'rejected' && (
+                                                        <span className="inline-flex items-center gap-1 text-[10px] font-black text-red-700 bg-red-50 px-2 py-0.5 rounded uppercase tracking-tighter border border-red-100">
+                                                            <AlertCircle className="w-3 h-3" /> Rejected
+                                                        </span>
+                                                    )}
+                                                    {dep.status === 'rejected' && dep.adminNote && (
+                                                        <p className="text-red-600 text-sm mt-1">Reason: {dep.adminNote}</p>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
