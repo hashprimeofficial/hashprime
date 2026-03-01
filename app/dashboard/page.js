@@ -25,7 +25,7 @@ export default function DashboardOverview() {
 
     const completionItems = [
         { title: 'Identity Verification (KYC)', check: isKycComplete, icon: ShieldCheck, link: '/dashboard/profile' },
-        { title: '2FA Authenticator', check: is2FaComplete, icon: Fingerprint, link: '/dashboard/settings/security' },
+        { title: '2FA Authenticator', check: is2FaComplete, icon: Fingerprint, link: '/dashboard/security' },
         { title: 'Link Bank Account', check: isBankComplete, icon: Landmark, link: '/dashboard/bank' }
     ];
 
