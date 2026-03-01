@@ -39,6 +39,18 @@ h6 {
   }
 }
 
+@layer utilities {
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+}
+
 .text-shine {
   background: linear-gradient(120deg, #000 0%, #000 35%, #888 50%, #000 65%, #000 100%);
   background-size: 250% auto;

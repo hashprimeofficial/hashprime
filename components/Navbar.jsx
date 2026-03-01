@@ -27,9 +27,9 @@ export default function Navbar() {
     const isLoggedIn = !!authData?.user;
 
     const navLinks = [
+        { href: '/services', label: 'Services' },
         { href: '/markets', label: 'Markets' },
         { href: '/features', label: 'Features' },
-
     ];
 
     useEffect(() => {
@@ -73,18 +73,23 @@ export default function Navbar() {
         };
     }, { scope: containerRef });
 
+    const isDarkPage = pathname === '/services';
+
     return (
         <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 w-full pointer-events-none">
-            <header ref={containerRef} className="pointer-events-auto w-full max-w-4xl bg-white/50 backdrop-blur-xl backdrop-saturate-150 border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-full px-6 transition-all duration-300">
+            <header ref={containerRef} className={`pointer-events-auto w-full max-w-4xl backdrop-blur-xl border rounded-full px-6 transition-all duration-300 ${isDarkPage ? 'bg-[#0B1120]/40 border-white/10 shadow-none' : 'bg-white/50 border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]'}`}>
                 <div className="flex justify-between items-center h-16">
                     <div className="flex items-center">
-                        <Link href="/" className="flex items-center">
-                            <Image src="/textonly.png" alt="Hashprime" width={140} height={35} className="drop-shadow-sm" />
+                        <Link href="/" className="flex items-center group">
+                            <span className="text-2xl font-black tracking-tighter text-[#39FF14] relative overflow-hidden flex items-center drop-shadow-[0_0_8px_rgba(57,255,20,0.3)]">
+                                Hashprime
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:animate-shimmer" />
+                            </span>
                         </Link>
                     </div>
                     <nav className="hidden md:flex space-x-8">
                         {navLinks.map(({ href, label }) => (
-                            <Link key={href} href={href} className={`relative text-sm font-bold transition-all group ${pathname === href ? 'text-navy' : 'text-slate-500 hover:text-navy'}`}>
+                            <Link key={href} href={href} className={`relative text-sm font-bold transition-all group ${pathname === href ? 'text-[#39FF14]' : (isDarkPage ? 'text-white/70 hover:text-[#39FF14]' : 'text-slate-500 hover:text-navy')}`}>
                                 {label}
                                 <span className={`absolute -bottom-1.5 left-0 right-0 h-[2px] bg-[#39FF14] rounded-full transition-all duration-300 ${pathname === href ? 'opacity-100' : 'opacity-0 group-hover:opacity-40'}`} />
                             </Link>
@@ -93,25 +98,25 @@ export default function Navbar() {
                     <div className="flex items-center space-x-4">
                         {isLoggedIn ? (
                             <div ref={ctaRef} className="hidden md:inline-block p-2 -m-2">
-                                <Link href="/dashboard" className="flex items-center gap-1.5 bg-navy text-white px-5 py-2 rounded-full text-sm font-bold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+                                <Link href="/dashboard" className={`flex items-center gap-1.5 px-5 py-2 rounded-full text-sm font-bold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all ${isDarkPage ? 'bg-[#39FF14] text-[#0B1120]' : 'bg-navy text-white'}`}>
                                     <LayoutDashboard className="w-4 h-4" />
                                     Dashboard
                                 </Link>
                             </div>
                         ) : (
                             <>
-                                <Link href="/login" className="hidden md:block text-sm font-bold text-slate-500 hover:text-navy transition-colors">
+                                <Link href="/login" className={`hidden md:block text-sm font-bold transition-colors ${isDarkPage ? 'text-white/70 hover:text-[#39FF14]' : 'text-slate-500 hover:text-navy'}`}>
                                     Log In
                                 </Link>
                                 <div ref={ctaRef} className="hidden md:inline-block p-2 -m-2">
-                                    <Link href="/register" className="bg-navy text-white px-5 py-2 rounded-full text-sm font-bold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+                                    <Link href="/register" className={`px-5 py-2 rounded-full text-sm font-bold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all ${isDarkPage ? 'bg-[#39FF14] text-[#0B1120]' : 'bg-navy text-white'}`}>
                                         Get Started
                                     </Link>
                                 </div>
                             </>
                         )}
 
-                        <button className="md:hidden p-2 text-navy" onClick={() => setIsMobileMenuOpen(true)}>
+                        <button className={`md:hidden p-2 ${isDarkPage ? 'text-white' : 'text-navy'}`} onClick={() => setIsMobileMenuOpen(true)}>
                             <Menu className="w-6 h-6" />
                         </button>
                     </div>

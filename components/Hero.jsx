@@ -49,7 +49,7 @@ export default function Hero() {
             className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white pt-20 pb-16"
         >
             {/* Background */}
-            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-35">
+            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-65">
                 <LightPillar
                     topColor="#39FF14" bottomColor="#10B981"
                     intensity={0.8} rotationSpeed={0.15} glowAmount={0.005}
@@ -111,7 +111,7 @@ export default function Hero() {
                     </div>
 
                     {/* Sub */}
-                    <p className="hero-sub text-slate-400 text-base md:text-lg font-medium max-w-md mx-auto mb-12 leading-relaxed">
+                    <p className="hero-sub text-[#0B1120] text-base md:text-lg font-medium max-w-md mx-auto mb-12 leading-relaxed">
                         Multiply your wealth with structured plans across stocks, commodities, and global markets.
                     </p>
 
