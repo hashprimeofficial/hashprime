@@ -28,9 +28,12 @@ function RegisterForm() {
     const [requiresOTP, setRequiresOTP] = useState(false);
     const [email, setEmail] = useState('');
     const [otpCode, setOtpCode] = useState('');
+    const [referralCode, setReferralCode] = useState(refCode);
 
     const [resolvedReferrer, setResolvedReferrer] = useState(refCode);
     const [isResolving, setIsResolving] = useState(false);
+    const [referralValid, setReferralValid] = useState(!!refCode);
+    const [referralError, setReferralError] = useState('');
 
     useEffect(() => {
         if (refCode) {
@@ -40,12 +43,39 @@ function RegisterForm() {
                 .then(data => {
                     if (data.email) {
                         setResolvedReferrer(data.email);
+                        setReferralCode(data.email);
+                        setReferralValid(true);
                     }
                 })
                 .catch(err => console.error('Failed to resolve referrer:', err))
                 .finally(() => setIsResolving(false));
         }
     }, [refCode]);
+
+    const validateReferral = async (code) => {
+        if (!code.trim()) {
+            setReferralValid(false);
+            setReferralError('Referral code is required.');
+            return false;
+        }
+        try {
+            const res = await fetch(`/api/auth/referrer/${encodeURIComponent(code.trim())}`);
+            const data = await res.json();
+            if (res.ok && data.email) {
+                setReferralValid(true);
+                setReferralError('');
+                return true;
+            } else {
+                setReferralValid(false);
+                setReferralError('Invalid referral code. Please enter a valid referral code.');
+                return false;
+            }
+        } catch {
+            setReferralValid(false);
+            setReferralError('Could not validate referral code.');
+            return false;
+        }
+    };
 
     const focus = (e) => (e.target.style.boxShadow = '0 0 0 3px rgba(57,255,20,0.2)');
     const blur = (e) => (e.target.style.boxShadow = '');
@@ -59,11 +89,18 @@ function RegisterForm() {
         const data = Object.fromEntries(formData.entries());
         setEmail(data.email);
 
+        // Validate referral code before submitting
+        const isRefValid = await validateReferral(referralCode);
+        if (!isRefValid) {
+            setLoading(false);
+            return;
+        }
+
         try {
             const res = await fetch('/api/auth/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
+                body: JSON.stringify({ ...data, referredBy: referralCode.trim() }),
             });
 
             const result = await res.json();
@@ -211,18 +248,35 @@ function RegisterForm() {
                     </div>
                 </Field>
 
-                <Field label="Referral Code / Email">
+                <Field label="Referral Code *">
                     <div className="relative">
                         <input type="text" name="referredBy"
-                            defaultValue={resolvedReferrer}
-                            key={resolvedReferrer} // force re-render when resolved
-                            className={`${inputClass} pr-24 ${isResolving ? 'animate-pulse bg-slate-50' : ''}`}
-                            placeholder="Optional"
-                            onFocus={focus} onBlur={blur} />
-                        <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold bg-lime-50 text-lime-700 border border-lime-200 px-2 py-0.5 rounded-md">
-                            {isResolving ? 'Loading...' : 'Optional'}
+                            value={referralCode}
+                            key={resolvedReferrer}
+                            onChange={(e) => {
+                                setReferralCode(e.target.value);
+                                setReferralValid(false);
+                                setReferralError('');
+                            }}
+                            className={`${inputClass} pr-28 ${isResolving ? 'animate-pulse bg-slate-50' :
+                                referralError ? 'border-red-300 bg-red-50' :
+                                    referralValid ? 'border-green-300 bg-green-50' : ''
+                                }`}
+                            placeholder="Enter referral code"
+                            required
+                            onFocus={focus}
+                            onBlur={(e) => { blur(e); if (referralCode.trim()) validateReferral(referralCode); }} />
+                        <span className={`absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold px-2 py-0.5 rounded-md ${isResolving ? 'bg-blue-50 text-blue-600 border border-blue-200' :
+                            referralError ? 'bg-red-50 text-red-600 border border-red-200' :
+                                referralValid ? 'bg-green-50 text-green-700 border border-green-200' :
+                                    'bg-amber-50 text-amber-700 border border-amber-200'
+                            }`}>
+                            {isResolving ? 'Validating...' : referralError ? 'Invalid' : referralValid ? '✓ Valid' : 'Required'}
                         </span>
                     </div>
+                    {referralError && (
+                        <p className="text-xs text-red-500 font-medium mt-1">⚠ {referralError}</p>
+                    )}
                 </Field>
 
                 <motion.button

@@ -6,6 +6,7 @@ import Transaction from '@/models/Transaction';
 import { verifyToken } from '@/lib/auth';
 import Deposit from '@/models/Deposit';
 import Withdrawal from '@/models/Withdrawal';
+import { getExchangeRate } from '@/lib/exchangeRate';
 
 export async function GET(req) {
     try {
@@ -34,11 +35,16 @@ export async function GET(req) {
         const paidWithdrawals = await Withdrawal.find({ status: 'approved' });
         const totalWithdrawalsPaid = paidWithdrawals.reduce((acc, w) => acc + w.amount, 0);
 
-        // Total Fiat Deposited (Approved)
+        // Total Fiat Deposited (Approved) — INR direct + USDT converted to INR
         const approvedDeposits = await Deposit.find({ status: 'approved' });
+        const usdtRate = await getExchangeRate(); // INR per USDT, e.g. 85
         const totalDepositsINR = approvedDeposits.reduce((acc, d) => {
-            // Include both INR and USDC converted deposits
-            return acc + (d.amount || 0); // Assuming amount is stored as INR equivalent in the deposit model for simplicity in this metric
+            if (d.paymentMethod === 'usdt') {
+                // USDT deposit: convert amount (USD) to INR
+                return acc + (d.amount || 0) * usdtRate;
+            }
+            // INR deposit (bank transfer): use directly
+            return acc + (d.amount || 0);
         }, 0);
 
         // Recent 5 investments with user details
@@ -85,6 +91,7 @@ export async function GET(req) {
             totalUsdtLiability,
             totalWithdrawalsPaid,
             totalDepositsINR,
+            usdtRate,
             recentInvestments,
             topInvestors,
             topReferrals

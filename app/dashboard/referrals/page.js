@@ -25,7 +25,10 @@ function ReferralsSkeleton() {
 export default function ReferralsPage() {
     const { data: authData } = useSWR('/api/auth/me', fetcher);
     const { data, error, isLoading } = useSWR('/api/referrals', fetcher);
+    const { data: rateData } = useSWR('/api/exchange-rate', fetcher);
     const [copied, setCopied] = useState(false);
+
+    const usdtToInr = rateData?.rate || 85;
 
     if (isLoading) return <ReferralsSkeleton />;
     if (error || !data) return <div className="text-red-500">Failed to load referral data</div>;
@@ -89,7 +92,8 @@ export default function ReferralsPage() {
                     <div className="absolute bottom-[-20%] left-[-10%] w-48 h-48 bg-neon/10 blur-[60px] rounded-full"></div>
                     <Gift className="w-10 h-10 text-neon mb-4" />
                     <p className="text-slate-500 text-lg font-bold mb-1">Total Referral Earnings</p>
-                    <h2 className="text-5xl font-black text-navy relative z-10">{totalEarned.toFixed(2)} <span className="text-2xl text-slate-400 font-bold">USDT</span></h2>
+                    <h2 className="text-5xl font-black text-navy relative z-10">₹{(totalEarned * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })}</h2>
+                    <p className="text-slate-400 text-sm mt-1 font-medium">≈ {totalEarned.toFixed(2)} USDT @ ₹{usdtToInr.toFixed(2)}/USDT</p>
                     <p className="text-slate-400 text-sm mt-3 font-medium">{referredUsers.length} user{referredUsers.length !== 1 ? 's' : ''} referred</p>
                 </div>
             </div>
@@ -151,7 +155,8 @@ export default function ReferralsPage() {
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <div className="font-black text-green-600 text-xl">+{tx.amount.toFixed(2)} USDT</div>
+                                    <div className="font-black text-green-600 text-xl">+₹{(tx.amount * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
+                                    <div className="text-xs text-slate-400 font-medium">{tx.amount.toFixed(2)} USDT</div>
                                 </div>
                             </li>
                         ))}

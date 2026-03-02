@@ -1,13 +1,14 @@
 'use client';
 
 import useSWR from 'swr';
-import { Users, Wallet, ArrowDownCircle, ArrowUpCircle, ScrollText, AlertTriangle } from 'lucide-react';
+import { Users, Wallet, ArrowDownCircle, ArrowUpCircle, ScrollText, AlertTriangle, PiggyBank, Coins, IndianRupee, Clock, CheckCircle2, XCircle } from 'lucide-react';
 import Link from 'next/link';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function AdminOverview() {
     const { data, error, isLoading } = useSWR('/api/admin/stats', fetcher);
+    const { data: depositsResp } = useSWR('/api/admin/deposits', fetcher);
 
     if (isLoading) return <div className="text-neutral-400 animate-pulse">Loading admin data...</div>;
     if (error) return <div className="text-red-500">Failed to load admin data</div>;
@@ -18,10 +19,16 @@ export default function AdminOverview() {
         totalUsdtLiability = 0,
         totalWithdrawalsPaid = 0,
         totalDepositsINR = 0,
+        usdtRate = 85,
         recentInvestments = [],
         topInvestors = [],
         topReferrals = []
     } = data || {};
+
+    const recentDeposits = (depositsResp?.deposits || []).slice(0, 5);
+    const liabilityInr = totalUsdtLiability * usdtRate;
+    const withdrawalsInr = totalWithdrawalsPaid * usdtRate;
+
 
     return (
         <div className="space-y-8">
@@ -82,10 +89,10 @@ export default function AdminOverview() {
                         </div>
                     </div>
                     <div className="text-3xl font-black text-white mb-1 flex items-baseline gap-1.5">
-                        <span className="text-lg text-slate-400 font-bold">$</span>
-                        {(totalUsdtLiability || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        <span className="text-lg text-slate-400 font-bold">₹</span>
+                        {liabilityInr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
                     </div>
-                    <p className="text-xs text-slate-400 mt-2 font-medium mb-1">Total USDT owed in user wallets</p>
+                    <p className="text-xs text-slate-400 mt-2 font-medium mb-1">{totalUsdtLiability.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USDT · @ ₹{usdtRate.toFixed(2)}/USDT</p>
                 </div>
 
                 <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm relative overflow-hidden group">
@@ -97,10 +104,10 @@ export default function AdminOverview() {
                         </div>
                     </div>
                     <div className="text-3xl font-black text-navy mb-1 flex items-baseline gap-1.5">
-                        <span className="text-lg text-slate-400 font-bold">$</span>
-                        {(totalWithdrawalsPaid || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        <span className="text-lg text-slate-400 font-bold">₹</span>
+                        {withdrawalsInr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
                     </div>
-                    <p className="text-xs text-slate-500 mt-2 font-medium">Capital successfully exited</p>
+                    <p className="text-xs text-slate-500 mt-2 font-medium">{totalWithdrawalsPaid.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USDT paid out</p>
                 </div>
             </div>
 
@@ -174,7 +181,57 @@ export default function AdminOverview() {
                 </div>
             </div>
 
-            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mt-10 shadow-sm relative">
+            {/* Recent Deposits */}
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mt-8 shadow-sm">
+                <div className="p-6 border-b border-slate-200 flex justify-between items-center">
+                    <h2 className="text-xl font-black text-navy flex items-center gap-2"><PiggyBank className="w-5 h-5 text-green-500" /> Recent Deposits</h2>
+                    <Link href="/admin/deposits" className="text-sm font-bold text-navy hover:text-black underline decoration-neon decoration-2 transition-colors">View All</Link>
+                </div>
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left whitespace-nowrap">
+                        <thead className="bg-slate-50 text-slate-500 text-sm border-b border-slate-200">
+                            <tr>
+                                <th className="px-6 py-4 font-bold">User</th>
+                                <th className="px-6 py-4 font-bold">Amount</th>
+                                <th className="px-6 py-4 font-bold">Method</th>
+                                <th className="px-6 py-4 font-bold">Status</th>
+                                <th className="px-6 py-4 font-bold">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-100">
+                            {recentDeposits.map((dep) => (
+                                <tr key={dep._id} className="hover:bg-slate-50 transition-colors">
+                                    <td className="px-6 py-4">
+                                        <div className="font-bold text-navy">{dep.userId?.name || 'Unknown'}</div>
+                                        <div className="text-xs font-medium text-slate-500">{dep.userId?.email || 'N/A'}</div>
+                                    </td>
+                                    <td className="px-6 py-4 font-black text-navy">
+                                        {dep.paymentMethod === 'usdt' ? '$' : '₹'}{dep.amount.toLocaleString(dep.paymentMethod === 'usdt' ? 'en-US' : 'en-IN')}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <div className="flex items-center gap-2">
+                                            {dep.paymentMethod === 'usdt' ? <Coins className="w-4 h-4 text-blue-500" /> : <IndianRupee className="w-4 h-4 text-slate-400" />}
+                                            <span className="text-xs font-bold uppercase text-slate-600">{dep.paymentMethod === 'usdt' ? 'USDC' : 'Bank'}</span>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        {dep.status === 'pending' && <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-full"><Clock className="w-3 h-3" /> Pending</span>}
+                                        {dep.status === 'approved' && <span className="inline-flex items-center gap-1 text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-full"><CheckCircle2 className="w-3 h-3" /> Approved</span>}
+                                        {dep.status === 'rejected' && <span className="inline-flex items-center gap-1 text-xs font-bold text-red-700 bg-red-100 px-2.5 py-1 rounded-full"><XCircle className="w-3 h-3" /> Rejected</span>}
+                                    </td>
+                                    <td className="px-6 py-4 text-sm font-medium text-slate-500">{new Date(dep.createdAt).toLocaleDateString()}</td>
+                                </tr>
+                            ))}
+                            {recentDeposits.length === 0 && (
+                                <tr><td colSpan="5" className="px-6 py-8 text-center text-slate-500 font-medium bg-slate-50">No deposits found.</td></tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {/* Recent Investments */}
+            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mt-8 shadow-sm relative">
                 <div className="p-6 border-b border-slate-200 flex justify-between items-center">
                     <h2 className="text-xl font-black text-navy">Recent Investments</h2>
                     <Link href="/admin/investments" className="text-sm font-bold text-navy hover:text-black underline decoration-neon decoration-2 transition-colors">View All</Link>

@@ -1,15 +1,17 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 import { motion } from 'framer-motion';
-import { DollarSign, Clock, ArrowUpRight, Copy, CheckCircle2, Wallet, IndianRupee, Coins, ShieldCheck, Fingerprint, Landmark, AlertCircle } from 'lucide-react';
+import { DollarSign, Clock, ArrowUpRight, Copy, CheckCircle2, Wallet, IndianRupee, Coins, ShieldCheck, Fingerprint, Landmark, AlertCircle, PiggyBank } from 'lucide-react';
 import Link from 'next/link';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function DashboardOverview() {
     const { data, error, isLoading } = useSWR('/api/dashboard/stats', fetcher);
+    const { data: depositsData } = useSWR('/api/deposits', fetcher);
+    const { data: rateData } = useSWR('/api/exchange-rate', fetcher);
     const [copied, setCopied] = useState(false);
 
     if (isLoading) return <div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-4 py-1"><div className="h-4 bg-white/10 rounded w-3/4"></div><div className="space-y-2"><div className="h-4 bg-white/10 rounded"></div><div className="h-4 bg-white/10 rounded w-5/6"></div></div></div></div>;
@@ -17,6 +19,9 @@ export default function DashboardOverview() {
     if (data.error) return <div className="text-red-500">{data.error}</div>;
 
     const { user, investments = [], transactions = [], bankAccounts = [] } = data;
+
+    // Live exchange rate (INR per USDT), fallback to 85
+    const usdtToInr = rateData?.rate || 85;
 
     const isKycComplete = user.kycStatus === 'approved';
     const is2FaComplete = user.isTwoFactorEnabled;
@@ -30,17 +35,31 @@ export default function DashboardOverview() {
     ];
 
     const totalInvested = investments.reduce((acc, inv) => acc + inv.amount, 0);
-    const totalExpectedReturn = investments
+    const totalExpectedReturnUsdt = investments
         .filter(inv => inv.status === 'active' || inv.status === 'completed')
         .reduce((acc, inv) => acc + inv.usdtReward, 0);
+    const totalExpectedReturnInr = totalExpectedReturnUsdt * usdtToInr;
+
+    // USDT balance in INR
+    const usdtBalanceInr = (user.usdtBalance || 0) * usdtToInr;
 
     const copyRefLink = () => {
         let origin = '';
         if (typeof window !== 'undefined') origin = window.location.origin;
-        navigator.clipboard.writeText(`${origin}/register?ref=${user._id}`);
+        navigator.clipboard.writeText(`${origin}/register?ref=${user.referralCode || user._id}`);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     }
+
+    const recentDeposits = depositsData?.deposits?.slice(0, 5) || [];
+
+    const formatTxAmount = (tx) => {
+        if (tx.currency === 'USDT' || tx.currency === 'USDC') {
+            const inr = tx.amount * usdtToInr;
+            return `₹${inr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}`;
+        }
+        return `₹${tx.amount.toLocaleString('en-IN')}`;
+    };
 
     return (
         <div className="space-y-8">
@@ -79,30 +98,36 @@ export default function DashboardOverview() {
                 </div>
             )}
 
+            {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0 }} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm">
                     <div className="flex items-center gap-3 mb-4 text-navy"><Wallet className="w-5 h-5 text-neon" /> <h3 className="font-bold">Total Capital</h3></div>
-                    <div className="text-4xl font-black text-navy mb-1 leading-tight">₹{(user.walletBalance || 0).toLocaleString()}</div>
+                    <div className="text-4xl font-black text-navy mb-1 leading-tight">₹{(user.walletBalance || 0).toLocaleString('en-IN')}</div>
                     <div className="flex items-center gap-2 mt-4 pt-4 border-t border-slate-200">
                         <div className="bg-green-50 text-green-700 px-2 py-1 rounded text-[10px] font-black uppercase tracking-wider border border-green-200">Trading Profits</div>
-                        <div className="text-lg font-black text-navy">{(user.usdtBalance || 0).toFixed(2)} <span className="text-xs text-slate-400 font-bold">USDT</span></div>
+                        <div className="text-lg font-black text-navy">
+                            ₹{usdtBalanceInr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
+                            <span className="text-xs text-slate-400 font-bold ml-1">({(user.usdtBalance || 0).toFixed(2)} USDT)</span>
+                        </div>
                     </div>
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.1 }} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm">
                     <div className="flex items-center gap-3 mb-4 text-navy"><Clock className="w-5 h-5 text-blue-500" /> <h3 className="font-bold">Total Invested</h3></div>
-                    <div className="text-4xl font-black text-navy mb-1">₹{totalInvested.toLocaleString()}</div>
+                    <div className="text-4xl font-black text-navy mb-1">₹{totalInvested.toLocaleString('en-IN')}</div>
                     <p className="text-sm text-slate-500 mt-4 font-medium">Across {investments.length} active scheme(s)</p>
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.2 }} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm">
                     <div className="flex items-center gap-3 mb-4 text-navy"><ArrowUpRight className="w-5 h-5 text-green-500" /> <h3 className="font-bold">Expected Return</h3></div>
-                    <div className="text-4xl font-black text-navy mb-1">{totalExpectedReturn.toFixed(2)} <span className="text-lg text-slate-400 font-bold">USDT</span></div>
-                    <p className="text-sm text-slate-500 mt-4 font-medium">Total protocol maturity yield</p>
+                    <div className="text-4xl font-black text-navy mb-1">₹{totalExpectedReturnInr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
+                    <p className="text-xs text-slate-400 mt-1 font-medium">≈ {totalExpectedReturnUsdt.toFixed(2)} USDT @ ₹{usdtToInr.toFixed(2)}/USDT</p>
+                    <p className="text-sm text-slate-500 mt-3 font-medium">Total protocol maturity yield</p>
                 </motion.div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                {/* Recent Investments */}
                 <div>
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-xl font-black text-navy">Recent Investments</h2>
@@ -127,8 +152,11 @@ export default function DashboardOverview() {
                                             <td className="px-6 py-5">
                                                 <span className="bg-slate-100 text-slate-500 px-2 py-1 rounded text-[10px] font-black uppercase tracking-wider">{inv.schemeType} Plan</span>
                                             </td>
-                                            <td className="px-6 py-5 font-black text-navy text-lg">₹{inv.amount.toLocaleString()}</td>
-                                            <td className="px-6 py-5 text-green-600 font-extrabold">+{inv.usdtReward.toFixed(2)} <span className="text-[10px] text-slate-400">USDT</span></td>
+                                            <td className="px-6 py-5 font-black text-navy text-lg">₹{inv.amount.toLocaleString('en-IN')}</td>
+                                            <td className="px-6 py-5 text-green-600 font-extrabold">
+                                                +₹{(inv.usdtReward * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
+                                                <span className="text-[10px] text-slate-400 ml-1">({inv.usdtReward.toFixed(2)} USDT)</span>
+                                            </td>
                                             <td className="px-6 py-5">
                                                 {inv.status === 'pending' && (
                                                     <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 border border-amber-200 px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter">
@@ -154,24 +182,68 @@ export default function DashboardOverview() {
                     </div>
                 </div>
 
-                <div>
-                    <h2 className="text-xl font-black text-navy mb-6">Invite & Earn 5% Instant USDT</h2>
-                    <div className="bg-navy border border-slate-800 p-6 rounded-2xl shadow-lg relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-neon/20 blur-[50px] rounded-full"></div>
-                        <h3 className="text-lg font-bold text-white mb-2">Your Referral Link</h3>
-                        <p className="text-sm text-slate-300 mb-6 font-medium">Earn 5% of any capital invested by your referrals instantly in USDT.</p>
-
-                        <div className="flex bg-white/10 border border-white/20 rounded-lg overflow-hidden backdrop-blur-sm shadow-inner">
-                            <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user._id}` : ''} className="flex-1 bg-transparent px-4 py-3 text-sm text-white font-medium outline-none" />
-                            <button onClick={copyRefLink} className="bg-neon hover:bg-[#32e512] px-4 py-3 text-navy font-bold transition-colors flex items-center gap-2">
-                                {copied ? <CheckCircle2 className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                                <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy'}</span>
-                            </button>
+                {/* Right column: Referral + Transactions + Deposits */}
+                <div className="space-y-6">
+                    {/* Referral Link Card */}
+                    <div>
+                        <h2 className="text-xl font-black text-navy mb-4">Invite &amp; Earn 5% Instant</h2>
+                        <div className="bg-navy border border-slate-800 p-6 rounded-2xl shadow-lg relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-neon/20 blur-[50px] rounded-full"></div>
+                            <h3 className="text-lg font-bold text-white mb-2">Your Referral Link</h3>
+                            <p className="text-sm text-slate-300 mb-4 font-medium">Earn 5% of capital invested by your referrals, paid in INR.</p>
+                            <div className="flex bg-white/10 border border-white/20 rounded-lg overflow-hidden backdrop-blur-sm shadow-inner">
+                                <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user.referralCode || user._id}` : ''} className="flex-1 bg-transparent px-4 py-3 text-sm text-white font-medium outline-none" />
+                                <button onClick={copyRefLink} className="bg-neon hover:bg-[#32e512] px-4 py-3 text-navy font-bold transition-colors flex items-center gap-2">
+                                    {copied ? <CheckCircle2 className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                                    <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy'}</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="mt-6">
-                        <h2 className="text-xl font-black text-navy mb-6">Recent Transactions</h2>
+                    {/* Recent Deposits */}
+                    <div>
+                        <div className="flex justify-between items-center mb-4">
+                            <h2 className="text-xl font-black text-navy">Recent Deposits</h2>
+                            <Link href="/dashboard/deposit" className="text-sm font-bold text-navy underline decoration-neon decoration-2 hover:text-black transition-colors">+ New Deposit</Link>
+                        </div>
+                        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden p-2">
+                            {recentDeposits.length === 0 ? (
+                                <div className="p-6 text-center text-sm font-medium text-slate-500 bg-slate-50/50 rounded-xl m-2">No deposits yet.</div>
+                            ) : (
+                                <ul className="divide-y divide-slate-100">
+                                    {recentDeposits.map(dep => {
+                                        const isUsdt = dep.paymentMethod === 'usdt';
+                                        const displayAmount = isUsdt
+                                            ? `₹${(dep.amount * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })} (≈$${dep.amount})`
+                                            : `₹${dep.amount.toLocaleString('en-IN')}`;
+                                        return (
+                                            <li key={dep._id} className="p-4 flex justify-between items-center hover:bg-slate-50 rounded-xl transition-colors">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-inner">
+                                                        {isUsdt ? <Coins className="w-4 h-4 text-blue-500" /> : <IndianRupee className="w-4 h-4 text-slate-400" />}
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-navy font-bold text-sm">{displayAmount}</p>
+                                                        <p className="text-slate-500 text-[10px] mt-0.5 font-medium">{new Date(dep.createdAt).toLocaleDateString()} · {isUsdt ? 'USDC BEP20' : 'Bank Transfer'}</p>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    {dep.status === 'approved' && <span className="text-[10px] font-black text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-100">Approved</span>}
+                                                    {dep.status === 'pending' && <span className="text-[10px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-100">Pending</span>}
+                                                    {dep.status === 'rejected' && <span className="text-[10px] font-black text-red-700 bg-red-50 px-2 py-0.5 rounded border border-red-100">Rejected</span>}
+                                                </div>
+                                            </li>
+                                        );
+                                    })}
+                                </ul>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Recent Transactions */}
+                    <div>
+                        <h2 className="text-xl font-black text-navy mb-4">Recent Transactions</h2>
                         <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden p-2">
                             {transactions.length === 0 ? (
                                 <div className="p-6 text-center text-sm font-medium text-slate-500 bg-slate-50/50 rounded-xl m-2">No transactions recorded.</div>
@@ -196,7 +268,10 @@ export default function DashboardOverview() {
                                                 </div>
                                             </div>
                                             <div className={`font-black ${(tx.type === 'referral_bonus' || tx.type === 'deposit') ? 'text-green-600' : 'text-navy'}`}>
-                                                {(tx.type === 'referral_bonus' || tx.type === 'deposit') ? '+' : ''}{tx.amount.toLocaleString(tx.currency === 'INR' ? 'en-IN' : 'en-US')} {tx.currency}
+                                                {(tx.type === 'referral_bonus' || tx.type === 'deposit') ? '+' : ''}{formatTxAmount(tx)}
+                                                {(tx.currency === 'USDT' || tx.currency === 'USDC') && (
+                                                    <div className="text-[10px] text-slate-400 font-normal text-right">{tx.amount.toFixed(2)} USDT</div>
+                                                )}
                                             </div>
                                         </li>
                                     ))}

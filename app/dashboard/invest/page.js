@@ -4,7 +4,6 @@ import { useState } from 'react';
 import useSWR from 'swr';
 import { motion } from 'framer-motion';
 import { Loader2, ArrowRight, ShieldCheck, TrendingUp, Wallet, AlertCircle } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -17,7 +16,6 @@ const SCHEMES = [
 ];
 
 export default function InvestPage() {
-    const router = useRouter();
     const { data: statsData, mutate, isLoading } = useSWR('/api/dashboard/stats', fetcher);
     const { data: profileData } = useSWR('/api/profile', fetcher);
     const { data: rateData } = useSWR('/api/exchange-rate', fetcher);
@@ -43,10 +41,17 @@ export default function InvestPage() {
         setOtpToken('');
     };
 
-    const calculateReturn = () => {
+    const liveRate = rateData?.rate || 85;
+
+    const calculateReturnUsdt = () => {
         const rate = parseFloat(selectedScheme.rate) / 100;
-        const liveRate = rateData?.rate || 85;
         return ((Number(amount) * rate) / liveRate).toFixed(2);
+    };
+
+    const calculateReturnInr = () => {
+        const rate = parseFloat(selectedScheme.rate) / 100;
+        const usdt = (Number(amount) * rate) / liveRate;
+        return (usdt * liveRate).toLocaleString('en-IN', { maximumFractionDigits: 0 });
     };
 
     const initiateInvestment = async () => {
@@ -98,7 +103,6 @@ export default function InvestPage() {
             setSuccess(true);
             setShowOtpPrompt(false);
             mutate();
-            setTimeout(() => router.push('/dashboard'), 2500);
         } catch (err) {
             setError(err.message);
         } finally {
@@ -139,9 +143,12 @@ export default function InvestPage() {
 
             {/* Success / Error Alerts */}
             {success && (
-                <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="bg-lime-50 border border-lime-200 text-lime-800 p-4 rounded-xl flex items-center gap-3 font-bold shadow-sm">
-                    <ShieldCheck className="w-5 h-5 text-lime-600" />
-                    Investment requested successfully! Awaiting admin approval. Redirecting to dashboard...
+                <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="bg-lime-50 border border-lime-200 text-lime-800 p-4 rounded-xl flex flex-col sm:flex-row items-start sm:items-center gap-3 font-bold shadow-sm">
+                    <ShieldCheck className="w-5 h-5 text-lime-600 shrink-0" />
+                    <span className="flex-1">Investment requested successfully! Awaiting admin approval.</span>
+                    <Link href="/dashboard" className="inline-flex items-center gap-1.5 bg-lime-600 hover:bg-lime-700 text-white text-sm font-black px-4 py-2 rounded-lg transition-colors whitespace-nowrap">
+                        Go to Dashboard →
+                    </Link>
                 </motion.div>
             )}
             {error && (
@@ -245,10 +252,13 @@ export default function InvestPage() {
                                 Expected Return ({selectedScheme.id.replace('m', ' Months').replace('y', ' Years')})
                             </p>
                             <div className="text-4xl font-black text-lime-600 mb-1">
-                                {calculateReturn()} <span className="text-lg text-slate-400 font-bold">USDT</span>
+                                {calculateReturnUsdt()} <span className="text-lg text-slate-400 font-bold">USDT</span>
                             </div>
+                            <p className="text-sm font-bold text-navy/70 mb-1">
+                                ≈ ₹{calculateReturnInr()} <span className="text-xs text-slate-400 font-medium">(at ₹{liveRate.toFixed(2)}/USDT)</span>
+                            </p>
                             <p className="text-xs text-slate-400 font-medium italic mb-4">
-                                *1 USDT = ₹{rateData?.rate ? rateData.rate.toFixed(2) : '85.00'} (Live Rate)
+                                Live exchange rate applied
                             </p>
 
                             {/* Balance Check Pill */}
