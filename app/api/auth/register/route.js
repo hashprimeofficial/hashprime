@@ -20,29 +20,27 @@ export async function POST(req) {
             return NextResponse.json({ error: 'Please provide all required fields' }, { status: 400 });
         }
 
-        if (!referredBy || !referredBy.trim()) {
-            return NextResponse.json({ error: 'A referral code is required to register.' }, { status: 400 });
-        }
-
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return NextResponse.json({ error: 'Email already exists' }, { status: 400 });
         }
 
         let validReferrer = '';
-        let referrer = null;
-        if (referredBy.includes('@')) {
-            referrer = await User.findOne({ email: referredBy });
-        } else if (mongoose.isValidObjectId(referredBy)) {
-            referrer = await User.findById(referredBy);
-        } else {
-            referrer = await User.findOne({ referralCode: referredBy });
-        }
+        if (referredBy) {
+            let referrer = null;
+            if (referredBy.includes('@')) {
+                referrer = await User.findOne({ email: referredBy });
+            } else if (mongoose.isValidObjectId(referredBy)) {
+                referrer = await User.findById(referredBy);
+            } else {
+                referrer = await User.findOne({ referralCode: referredBy });
+            }
 
-        if (referrer) {
-            validReferrer = referrer.referralCode || referrer._id.toString();
-        } else {
-            return NextResponse.json({ error: 'Invalid referral code. Please use a valid code from an existing user.' }, { status: 400 });
+            if (referrer) {
+                validReferrer = referrer.referralCode || referrer._id.toString();
+            } else {
+                return NextResponse.json({ error: 'Invalid referral code or email provided.' }, { status: 400 });
+            }
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
