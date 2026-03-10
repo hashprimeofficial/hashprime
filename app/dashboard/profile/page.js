@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSearchParams, useRouter } from 'next/navigation';
 import {
     User, ShieldCheck, Landmark, Lock, CheckCircle2, AlertCircle, Clock,
     Loader2, Building2, Plus, KeyRound, Unlock, Smartphone, Copy,
@@ -472,14 +473,21 @@ function MobileDetail({ sectionId, onBack, tabProps }) {
 // DESKTOP — Tabbed hub
 // ════════════════════════════════════════════════════════
 function DesktopHub({ authUser, user, tabProps }) {
-    const [active, setActive] = useState('profile');
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const activeFromUrl = searchParams.get('tab') || 'profile';
+    const [active, setActive] = useState(activeFromUrl);
+
+    useEffect(() => {
+        setActive(activeFromUrl);
+    }, [activeFromUrl]);
 
     return (
         <div className="max-w-3xl">
             <AccountCard authUser={authUser} user={user} />
 
-            {/* Tab strip */}
-            <div className="flex gap-1 p-1 bg-slate-100 rounded-2xl mb-6">
+            {/* Tab strip - hidden on desktop since sidebar has it */}
+            <div className="hidden bg-slate-100 rounded-2xl mb-6">
                 {SETTINGS_ITEMS.map(({ id, label, icon: Icon }) => {
                     const on = active === id;
                     return (

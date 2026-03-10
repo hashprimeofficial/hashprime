@@ -251,15 +251,9 @@ export default function InvestPage() {
                             <p className="text-slate-500 font-bold text-sm mb-1">
                                 Expected Return ({selectedScheme.id.replace('m', ' Months').replace('y', ' Years')})
                             </p>
-                            <div className="text-4xl font-black text-lime-600 mb-1">
-                                {calculateReturnUsdt()} <span className="text-lg text-slate-400 font-bold">USDT</span>
+                            <div className="text-4xl font-black text-lime-600 mb-4">
+                                {selectedScheme.rate}
                             </div>
-                            <p className="text-sm font-bold text-navy/70 mb-1">
-                                ≈ ₹{calculateReturnInr()} <span className="text-xs text-slate-400 font-medium">(at ₹{liveRate.toFixed(2)}/USDT)</span>
-                            </p>
-                            <p className="text-xs text-slate-400 font-medium italic mb-4">
-                                Live exchange rate applied
-                            </p>
 
                             {/* Balance Check Pill */}
                             <div className={`p-3 rounded-xl text-xs font-bold flex items-center gap-2 ${hasSufficientBalance

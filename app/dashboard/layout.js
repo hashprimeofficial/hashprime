@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
     LayoutDashboard, Wallet, Users, LogOut, Loader2,
     Settings2, Menu, X, Headphones, TrendingUp
@@ -48,6 +48,33 @@ function UserAvatarBlock() {
     );
 }
 
+function SettingsSubmenu() {
+    const searchParams = useSearchParams();
+    const currentTab = searchParams.get('tab') || 'profile';
+
+    return (
+        <div className="ml-11 mt-1 space-y-1">
+            {[
+                { id: 'profile', name: 'Personal Information' },
+                { id: 'kyc', name: 'KYC Verification' },
+                { id: 'bank', name: 'Bank Accounts' },
+                { id: 'security', name: 'Security' },
+            ].map(sub => {
+                const subIsActive = currentTab === sub.id;
+                return (
+                    <Link
+                        key={sub.id}
+                        href={`/dashboard/profile?tab=${sub.id}`}
+                        className={`block px-3 py-2 text-sm rounded-lg transition-colors ${subIsActive ? 'text-navy font-bold bg-slate-200/50' : 'text-slate-500 hover:text-navy hover:bg-slate-200/50'}`}
+                    >
+                        {sub.name}
+                    </Link>
+                );
+            })}
+        </div>
+    );
+}
+
 export default function DashboardLayout({ children }) {
     const pathname = usePathname();
     const router = useRouter();
@@ -72,6 +99,32 @@ export default function DashboardLayout({ children }) {
                         {NAV_ITEMS.map((item) => {
                             const isActive = pathname === item.href;
                             const Icon = item.icon;
+
+                            if (item.name === 'Settings') {
+                                return (
+                                    <div key={item.href}>
+                                        <Link
+                                            href={item.href}
+                                            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all relative z-10 ${isActive ? 'bg-neon/10 text-navy font-bold' : 'text-slate-500 font-medium hover:text-navy hover:bg-slate-200/50'}`}
+                                        >
+                                            <Icon className="w-5 h-5 shrink-0" />
+                                            <span>{item.name}</span>
+                                            {isActive && (
+                                                <motion.div
+                                                    layoutId="sidebar-active"
+                                                    className="absolute left-0 w-1 h-8 bg-neon rounded-r-full"
+                                                />
+                                            )}
+                                        </Link>
+                                        {isActive && (
+                                            <Suspense fallback={<div className="ml-11 mt-1 text-slate-500 text-sm">Loading...</div>}>
+                                                <SettingsSubmenu />
+                                            </Suspense>
+                                        )}
+                                    </div>
+                                );
+                            }
+
                             return (
                                 <Link
                                     key={item.href}
