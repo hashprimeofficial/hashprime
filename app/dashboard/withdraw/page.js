@@ -77,29 +77,29 @@ export default function WithdrawPage() {
         alert('Address copied to clipboard');
     };
 
-    if (isUserLoading || isWithdrawLoading) return <div className="text-slate-400 animate-pulse font-medium">Loading withdrawal system...</div>;
+    if (isUserLoading || isWithdrawLoading) return <div className="text-slate-300 animate-pulse font-medium">Loading withdrawal system...</div>;
 
     return (
         <div className="space-y-8">
             {/* Header Content */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-200 pb-6">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-6">
                 <div>
-                    <h1 className="text-3xl font-black text-navy mb-2 tracking-tight">Withdraw Funds</h1>
+                    <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Withdraw Funds</h1>
                     <p className="text-slate-500 font-medium">Withdraw your trading profits to your external USDT (BEP20) wallet.</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left Col: Request Form */}
-                <div className="bg-white border border-slate-200 p-6 md:p-8 rounded-2xl shadow-sm h-fit">
-                    <h2 className="text-xl font-black text-navy mb-6 flex items-center gap-2">
+                <div className="bg-[#121212] border border-white/10 p-6 md:p-8 rounded-2xl shadow-sm h-fit">
+                    <h2 className="text-xl font-black text-white mb-6 flex items-center gap-2">
                         <ArrowUpRight className="w-5 h-5 text-neon" />
                         New Withdrawal Request
                     </h2>
 
-                    <div className="bg-slate-50 border border-slate-200 p-5 rounded-xl mb-6">
+                    <div className="bg-[#121212]/5 border border-white/10 p-5 rounded-xl mb-6">
                         <div className="text-sm font-medium text-slate-500 mb-1">Available to Withdraw</div>
-                        <div className="text-3xl font-black text-navy">{availableBalance.toFixed(2)} <span className="text-lg text-slate-400">USDT</span></div>
+                        <div className="text-3xl font-black text-white">{availableBalance.toFixed(2)} <span className="text-lg text-slate-300">USDT</span></div>
                     </div>
 
                     {message.text && (
@@ -111,12 +111,12 @@ export default function WithdrawPage() {
 
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <div className="space-y-1.5">
-                            <label className="text-sm font-bold text-navy flex justify-between items-center">
+                            <label className="text-sm font-bold text-white flex justify-between items-center">
                                 Amount (USDT)
-                                <button type="button" onClick={handleMaxClick} className="text-xs text-neon hover:text-green-500 font-bold uppercase tracking-wider transition-colors">Max Amount</button>
+                                <button type="button" onClick={handleMaxClick} className="text-xs text-neon hover:text-amber-500 font-bold uppercase tracking-wider transition-colors">Max Amount</button>
                             </label>
                             <div className="relative">
-                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
+                                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 font-bold">$</span>
                                 <input
                                     type="number"
                                     min="10"
@@ -125,15 +125,15 @@ export default function WithdrawPage() {
                                     value={amount}
                                     onChange={(e) => setAmount(e.target.value)}
                                     required
-                                    className="w-full pl-9 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all font-bold text-navy"
+                                    className="w-full pl-9 pr-4 py-3 bg-[#121212]/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all font-bold text-white"
                                 />
                             </div>
                         </div>
 
                         <div className="space-y-1.5">
-                            <label className="text-sm font-bold text-navy flex justify-between items-center">
+                            <label className="text-sm font-bold text-white flex justify-between items-center">
                                 USDT Receiving Address
-                                <span className="text-[10px] uppercase font-black tracking-wider text-slate-400 bg-slate-100 px-2 py-0.5 rounded">BEP20 Network Only</span>
+                                <span className="text-[10px] uppercase font-black tracking-wider text-slate-300 bg-slate-100 px-2 py-0.5 rounded">BEP20 Network Only</span>
                             </label>
                             <input
                                 type="text"
@@ -141,7 +141,7 @@ export default function WithdrawPage() {
                                 value={walletAddress}
                                 onChange={(e) => setWalletAddress(e.target.value)}
                                 required
-                                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all font-medium text-navy font-mono text-sm"
+                                className="w-full px-4 py-3 bg-[#121212]/5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all font-medium text-white font-mono text-sm"
                             />
                             <p className="text-xs font-medium text-slate-500 mt-2 flex items-start gap-1.5">
                                 <AlertCircle className="w-4 h-4 text-amber-500 shrink-0" />
@@ -152,7 +152,7 @@ export default function WithdrawPage() {
                         <button
                             type="submit"
                             disabled={isSubmitting || availableBalance <= 0}
-                            className="w-full bg-navy hover:bg-black text-white font-black py-4 rounded-xl shadow-lg shadow-navy/20 transition-all flex justify-center items-center mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full bg-[#d4af35] hover:bg-[#121212]/10 text-white font-black py-4 rounded-xl shadow-lg shadow-navy/20 transition-all flex justify-center items-center mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {isSubmitting ? <Loader2 className="w-6 h-6 animate-spin" /> : 'Submit Request'}
                         </button>
@@ -161,21 +161,21 @@ export default function WithdrawPage() {
 
                 {/* Right Col: History */}
                 <div>
-                    <h2 className="text-xl font-black text-navy mb-6 flex items-center gap-2">
-                        <History className="w-5 h-5 text-slate-400" />
+                    <h2 className="text-xl font-black text-white mb-6 flex items-center gap-2">
+                        <History className="w-5 h-5 text-slate-300" />
                         Withdrawal History
                     </h2>
 
-                    <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+                    <div className="bg-[#121212] border border-white/10 rounded-2xl overflow-hidden shadow-sm">
                         {withdrawals.length === 0 ? (
-                            <div className="p-8 text-center text-slate-500 font-medium bg-slate-50 flex flex-col items-center justify-center min-h-[300px]">
+                            <div className="p-8 text-center text-slate-500 font-medium bg-[#121212]/5 flex flex-col items-center justify-center min-h-[300px]">
                                 <ArrowUpRight className="w-10 h-10 text-slate-300 mb-3" />
                                 No withdrawals requested yet.
                             </div>
                         ) : (
                             <div className="overflow-x-auto max-h-[600px] overflow-y-auto">
                                 <table className="w-full text-left whitespace-nowrap">
-                                    <thead className="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider font-bold border-b border-slate-200 sticky top-0 z-10">
+                                    <thead className="bg-[#121212]/5 text-slate-500 text-xs uppercase tracking-wider font-bold border-b border-white/10 sticky top-0 z-10">
                                         <tr>
                                             <th className="px-6 py-4">Amount</th>
                                             <th className="px-6 py-4">Status</th>
@@ -185,9 +185,9 @@ export default function WithdrawPage() {
                                     </thead>
                                     <tbody className="divide-y divide-slate-100">
                                         {withdrawals.map((withdraw) => (
-                                            <tr key={withdraw._id} className="hover:bg-slate-50 transition-colors group">
-                                                <td className="px-6 py-4 font-black text-navy">
-                                                    {withdraw.amount.toFixed(2)} <span className="text-xs font-medium text-slate-400">USDT</span>
+                                            <tr key={withdraw._id} className="hover:bg-[#121212]/5 transition-colors group">
+                                                <td className="px-6 py-4 font-black text-white">
+                                                    {withdraw.amount.toFixed(2)} <span className="text-xs font-medium text-slate-300">USDT</span>
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <span className={`px-2.5 py-1 rounded text-[10px] uppercase tracking-wider font-black shadow-sm ${withdraw.status === 'approved' ? 'bg-green-100 text-green-700' :
@@ -204,7 +204,7 @@ export default function WithdrawPage() {
                                                         </span>
                                                         <button
                                                             onClick={() => copyToClipboard(withdraw.walletAddress)}
-                                                            className="text-slate-300 hover:text-navy transition-colors opacity-0 group-hover:opacity-100"
+                                                            className="text-slate-300 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
                                                         >
                                                             <Copy className="w-3.5 h-3.5" />
                                                         </button>

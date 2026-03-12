@@ -54,12 +54,12 @@ export default function OurServices() {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="relative bg-[#0B1120] py-24 md:py-40 overflow-hidden text-white">
+        <section ref={sectionRef} className="relative bg-[#d4af35] py-24 md:py-40 overflow-hidden text-white">
 
             {/* High Impact Background Elements */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
                 <LightPillar
-                    topColor="#39FF14"
+                    topColor="#d4af35"
                     bottomColor="#0B1120"
                     intensity={0.6}
                     pillarWidth={4.0}
@@ -69,10 +69,10 @@ export default function OurServices() {
 
             {/* Grid Pattern */}
             <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none"
-                style={{ backgroundImage: 'radial-gradient(#39FF14 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+                style={{ backgroundImage: 'radial-gradient(#d4af35 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
             {/* Glowing Orbs */}
-            <div className="os-pill-bg absolute top-[10%] -left-20 w-[600px] h-[600px] bg-[#39FF14] opacity-[0.07] rounded-full blur-[150px] pointer-events-none" />
+            <div className="os-pill-bg absolute top-[10%] -left-20 w-[600px] h-[600px] bg-[#d4af35] opacity-[0.07] rounded-full blur-[150px] pointer-events-none" />
             <div className="os-pill-bg absolute bottom-[10%] -right-20 w-[500px] h-[500px] bg-emerald-500 opacity-[0.05] rounded-full blur-[150px] pointer-events-none" />
 
             <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
@@ -80,15 +80,15 @@ export default function OurServices() {
                 {/* ── Header ───────────────────────── */}
                 <div className="os-header-content flex flex-col items-center text-center mb-24">
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="h-[1px] w-12 bg-[#39FF14]" />
-                        <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#39FF14]/80">The Ecosystem</span>
-                        <div className="h-[1px] w-12 bg-[#39FF14]" />
+                        <div className="h-[1px] w-12 bg-[#d4af35]" />
+                        <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#d4af35]/80">The Ecosystem</span>
+                        <div className="h-[1px] w-12 bg-[#d4af35]" />
                     </div>
                     <h2 className="text-5xl sm:text-6xl md:text-8xl font-black leading-[0.85] tracking-tighter mb-8">
                         PREMIUM<br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#39FF14] to-emerald-400">SERVICES</span>
+                        <span className="text-[#d4af35]">SERVICES</span>
                     </h2>
-                    <p className="text-slate-400 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
+                    <p className="text-slate-300 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
                         Redefining the boundaries of digital finance with institutional-grade infrastructure and elegant simplicity.
                     </p>
                 </div>
@@ -99,42 +99,42 @@ export default function OurServices() {
                         <div
                             key={num}
                             className="os-row group relative flex flex-col md:flex-row md:items-center gap-6 p-8 md:p-10 
-                                       bg-white/[0.02] border border-white/[0.05] backdrop-blur-md rounded-[2rem]
-                                       hover:bg-white/[0.05] hover:border-[#39FF14]/30 hover:shadow-[0_0_40px_rgba(57,255,20,0.05)]
+                                       bg-[#121212]/[0.02] border border-white/[0.05] backdrop-blur-md rounded-[2rem]
+                                       hover:bg-[#121212]/[0.05] hover:border-[#d4af35]/30 hover:shadow-[0_0_40px_rgba(57,255,20,0.05)]
                                        transition-all duration-500 cursor-pointer overflow-hidden"
                         >
                             {/* Animated Background Gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#39FF14]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                            <div className="absolute inset-0 bg-[#d4af35]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                             {/* Icon bubble */}
-                            <div className="relative z-10 flex-shrink-0 w-20 h-20 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center
-                                            group-hover:scale-110 group-hover:bg-[#39FF14] group-hover:border-[#39FF14] group-hover:shadow-[0_0_30px_#39FF1466] transition-all duration-500">
-                                <Icon size={32} strokeWidth={1.5} className="text-[#39FF14] group-hover:text-[#0B1120] transition-colors duration-500" />
+                            <div className="relative z-10 flex-shrink-0 w-20 h-20 rounded-2xl bg-[#121212]/[0.03] border border-white/[0.08] flex items-center justify-center
+                                            group-hover:scale-110 group-hover:bg-[#d4af35] group-hover:border-[#d4af35] group-hover:shadow-[0_0_30px_#d4af3566] transition-all duration-500">
+                                <Icon size={32} strokeWidth={1.5} className="text-[#d4af35] group-hover:text-white transition-colors duration-500" />
                             </div>
 
                             {/* Content */}
                             <div className="relative z-10 flex-1 min-w-0">
                                 <div className="flex items-center gap-4 mb-2">
-                                    <span className="text-[12px] font-black text-[#39FF14]/40 tracking-widest">{num}</span>
+                                    <span className="text-[12px] font-black text-[#d4af35]/40 tracking-widest">{num}</span>
                                     <h3 className="text-2xl md:text-3xl font-black tracking-tight group-hover:text-white transition-colors duration-300">
                                         {title}
                                     </h3>
-                                    <span className="hidden sm:inline-block text-[10px] font-black uppercase tracking-[0.2em] text-[#39FF14]/60 bg-[#39FF14]/5 border border-[#39FF14]/20 px-3 py-1 rounded-full">
+                                    <span className="hidden sm:inline-block text-[10px] font-black uppercase tracking-[0.2em] text-[#d4af35]/60 bg-[#d4af35]/5 border border-[#d4af35]/20 px-3 py-1 rounded-full">
                                         {tag}
                                     </span>
                                 </div>
-                                <p className="text-slate-400 text-lg leading-relaxed max-w-2xl group-hover:text-slate-300 transition-colors duration-300">
+                                <p className="text-slate-300 text-lg leading-relaxed max-w-2xl group-hover:text-slate-300 transition-colors duration-300">
                                     {desc}
                                 </p>
                             </div>
 
                             {/* Action */}
                             <div className="relative z-10 flex items-center gap-4">
-                                <span className="hidden md:block text-[10px] font-bold uppercase tracking-widest text-[#39FF14] opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500">
+                                <span className="hidden md:block text-[10px] font-bold uppercase tracking-widest text-[#d4af35] opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500">
                                     Explore More
                                 </span>
                                 <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white
-                                                group-hover:border-[#39FF14] group-hover:bg-[#39FF14] group-hover:text-[#0B1120] 
+                                                group-hover:border-[#d4af35] group-hover:bg-[#d4af35] group-hover:text-white 
                                                 transition-all duration-500">
                                     <ChevronRight size={24} className="group-hover:translate-x-0.5 transition-transform duration-500" />
                                 </div>
@@ -145,12 +145,12 @@ export default function OurServices() {
 
                 {/* ── Bottom CTA ────────────────────── */}
                 <div className="relative z-10 mt-24 text-center">
-                    <div className="inline-block p-[1px] rounded-full bg-gradient-to-r from-transparent via-[#39FF14]/50 to-transparent">
-                        <div className="bg-[#0B1120] rounded-full px-12 py-10 flex flex-col items-center">
+                    <div className="inline-block p-[1px] rounded-full bg-[#d4af35]/10">
+                        <div className="bg-[#121212] rounded-full border border-white/5 px-12 py-10 flex flex-col items-center">
                             <h4 className="text-3xl font-black mb-4">Ready to elevate your portfolio?</h4>
-                            <p className="text-slate-400 mb-8 max-w-md mx-auto">Join thousands of investors already leveraging our premium infrastructure.</p>
+                            <p className="text-slate-300 mb-8 max-w-md mx-auto">Join thousands of investors already leveraging our premium infrastructure.</p>
                             <a href="/register"
-                                className="group relative inline-flex items-center gap-4 bg-[#39FF14] text-[#0B1120] px-10 py-5 rounded-full font-black text-lg hover:scale-105 hover:shadow-[0_0_50px_#39FF1444] transition-all duration-500">
+                                className="group relative inline-flex items-center gap-4 bg-[#d4af35] text-white px-10 py-5 rounded-full font-black text-lg hover:scale-105 hover:shadow-[0_0_50px_#d4af3544] transition-all duration-500">
                                 Launch Your Account
                                 <span className="group-hover:translate-x-1 transition-transform duration-500 inline-block">→</span>
                             </a>
@@ -158,7 +158,7 @@ export default function OurServices() {
                     </div>
                 </div>
 
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }

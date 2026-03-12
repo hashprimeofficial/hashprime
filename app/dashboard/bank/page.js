@@ -10,13 +10,13 @@ export default function BankRedirectPage() {
                 <Landmark className="w-8 h-8 text-blue-400" />
             </div>
             <div>
-                <h1 className="text-2xl font-black text-navy mb-2">Bank Accounts Moved</h1>
-                <p className="text-slate-400 font-medium max-w-sm">
-                    Bank accounts are now managed inside the <strong className="text-navy">Settings</strong> hub.
+                <h1 className="text-2xl font-black text-white mb-2">Bank Accounts Moved</h1>
+                <p className="text-slate-300 font-medium max-w-sm">
+                    Bank accounts are now managed inside the <strong className="text-white">Settings</strong> hub.
                 </p>
             </div>
             <Link href="/dashboard/profile?tab=bank"
-                className="inline-flex items-center gap-2 bg-navy text-white font-bold px-6 py-3 rounded-xl hover:bg-black transition-all shadow-sm text-sm">
+                className="inline-flex items-center gap-2 bg-[#d4af35] text-white font-bold px-6 py-3 rounded-xl hover:bg-[#121212]/10 transition-all shadow-sm text-sm">
                 Go to Settings → Bank <ArrowRight className="w-4 h-4" />
             </Link>
         </div>

@@ -55,7 +55,7 @@ export default function AdminTicketsPage() {
         <div className="space-y-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-black text-navy tracking-tight flex items-center gap-3">
+                    <h1 className="text-3xl font-black text-white tracking-tight flex items-center gap-3">
                         <MessageSquare className="text-purple-500 w-8 h-8" />
                         Support Center
                     </h1>
@@ -67,7 +67,7 @@ export default function AdminTicketsPage() {
                         <button
                             key={f}
                             onClick={() => setFilter(f)}
-                            className={`px-4 py-1.5 text-sm font-bold rounded-md capitalize transition-colors ${filter === f ? 'bg-white text-navy shadow-sm' : 'text-slate-500 hover:text-navy'}`}
+                            className={`px-4 py-1.5 text-sm font-bold rounded-md capitalize transition-colors ${filter === f ? 'bg-[#121212] text-white shadow-sm' : 'text-slate-500 hover:text-white'}`}
                         >
                             {f}
                         </button>
@@ -77,33 +77,33 @@ export default function AdminTicketsPage() {
 
             <div className="grid grid-cols-1 gap-6">
                 {filteredTickets.length === 0 ? (
-                    <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center text-slate-500 shadow-sm">
+                    <div className="bg-[#121212] border border-white/10 rounded-2xl p-12 text-center text-slate-500 shadow-sm">
                         <CheckCircle2 className="w-16 h-16 mx-auto mb-4 text-slate-300" />
-                        <h3 className="text-lg font-bold text-navy mb-2">Inbox Zero!</h3>
+                        <h3 className="text-lg font-bold text-white mb-2">Inbox Zero!</h3>
                         <p className="font-medium">No tickets match the current filter.</p>
                     </div>
                 ) : (
                     <AnimatePresence>
                         {filteredTickets.map((ticket) => (
-                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} key={ticket._id} className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row gap-6">
+                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} key={ticket._id} className="bg-[#121212] border border-white/10 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row gap-6">
                                 {/* Ticket Details */}
-                                <div className="flex-1 space-y-4 border-r-0 md:border-r border-slate-100 md:pr-6">
+                                <div className="flex-1 space-y-4 border-r-0 md:border-r border-white/5 md:pr-6">
                                     <div className="flex justify-between items-start">
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
-                                                <h3 className="font-black text-navy text-lg">{ticket.subject}</h3>
+                                                <h3 className="font-black text-white text-lg">{ticket.subject}</h3>
                                                 {ticket.status === 'open' ? (
                                                     <span className="bg-amber-50 text-amber-700 px-2.5 py-0.5 rounded text-[10px] font-bold border border-amber-200 uppercase tracking-widest">Open</span>
                                                 ) : (
                                                     <span className="bg-green-50 text-green-700 px-2.5 py-0.5 rounded text-[10px] font-bold border border-green-200 uppercase tracking-widest">Resolved</span>
                                                 )}
                                             </div>
-                                            <p className="text-xs font-bold text-slate-400">
-                                                From: <span className="text-navy">{ticket.user?.name}</span> ({ticket.user?.email}) • {new Date(ticket.createdAt).toLocaleString()}
+                                            <p className="text-xs font-bold text-slate-300">
+                                                From: <span className="text-white">{ticket.user?.name}</span> ({ticket.user?.email}) • {new Date(ticket.createdAt).toLocaleString()}
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 font-medium whitespace-pre-wrap border border-slate-100">
+                                    <div className="bg-[#121212]/5 p-4 rounded-xl text-sm text-slate-700 font-medium whitespace-pre-wrap border border-white/5">
                                         {ticket.description}
                                     </div>
                                 </div>
@@ -111,10 +111,10 @@ export default function AdminTicketsPage() {
                                 {/* Admin Action */}
                                 <div className="w-full md:w-1/3 min-w-[300px] flex flex-col justify-between">
                                     {ticket.status === 'resolved' ? (
-                                        <div className="bg-blue-50/50 border border-blue-100 p-4 rounded-xl h-full flex flex-col">
+                                        <div className="bg-[#d4af35]/10 border border-blue-100 p-4 rounded-xl h-full flex flex-col">
                                             <div className="flex items-center gap-2 mb-3">
                                                 <CheckCircle2 className="w-4 h-4 text-blue-500" />
-                                                <span className="text-sm font-bold text-navy">Resolution Sent</span>
+                                                <span className="text-sm font-bold text-white">Resolution Sent</span>
                                             </div>
                                             <p className="text-sm text-slate-700 font-medium whitespace-pre-wrap flex-1">{ticket.adminReply}</p>
                                         </div>
@@ -124,12 +124,12 @@ export default function AdminTicketsPage() {
                                                 value={adminReplies[ticket._id] || ''}
                                                 onChange={(e) => handleReplyChange(ticket._id, e.target.value)}
                                                 placeholder="Write your resolution reply here..."
-                                                className="w-full flex-1 bg-white border border-slate-200 rounded-xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:border-neon focus:ring-neon transition-all resize-none shadow-inner"
+                                                className="w-full flex-1 bg-[#121212] border border-white/10 rounded-xl p-4 text-sm font-medium focus:outline-none focus:ring-2 focus:border-neon focus:ring-neon transition-all resize-none shadow-inner"
                                             />
                                             <button
                                                 onClick={() => handleResolve(ticket._id)}
                                                 disabled={resolvingId === ticket._id || !adminReplies[ticket._id]}
-                                                className="w-full bg-navy hover:bg-black text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+                                                className="w-full bg-[#d4af35] hover:bg-[#121212]/10 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
                                             >
                                                 {resolvingId === ticket._id ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                                                 Resolve & Notify

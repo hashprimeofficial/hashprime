@@ -61,28 +61,28 @@ export default function NomineePage() {
         }
     };
 
-    const inputClass = "w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-navy font-medium focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all";
+    const inputClass = "w-full bg-[#121212]/5 border border-white/10 rounded-lg px-4 py-3 text-white font-medium focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all";
 
     if (isLoading) return <div className="space-y-4 max-w-2xl"><div className="h-10 bg-slate-200 rounded w-1/3 animate-pulse"></div><div className="h-64 bg-slate-100 rounded-2xl animate-pulse"></div></div>;
 
     return (
         <div className="max-w-3xl space-y-8">
             <div>
-                <h1 className="text-3xl font-black text-navy mb-2 tracking-tight flex items-center gap-3">
+                <h1 className="text-3xl font-black text-white mb-2 tracking-tight flex items-center gap-3">
                     <Users className="text-neon w-8 h-8" />
                     Nominee Details
                 </h1>
                 <p className="text-slate-500 font-medium">Add or update your account nominee information securely.</p>
             </div>
 
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm">
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-[#121212] border border-white/10 rounded-2xl p-6 md:p-8 shadow-sm">
 
                 {data?.nominee && (
                     <div className="mb-6 bg-blue-50 border border-blue-200 p-4 rounded-xl flex items-start gap-3">
                         <ShieldCheck className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                         <div>
-                            <h4 className="font-bold text-navy text-sm mb-1">Nominee Protected</h4>
-                            <p className="text-xs text-slate-600 font-medium">Your account assets and investments will be transferred to your registered nominee in the event of unforeseen circumstances.</p>
+                            <h4 className="font-bold text-white text-sm mb-1">Nominee Protected</h4>
+                            <p className="text-xs text-slate-200 font-medium">Your account assets and investments will be transferred to your registered nominee in the event of unforeseen circumstances.</p>
                         </div>
                     </div>
                 )}
@@ -153,7 +153,7 @@ export default function NomineePage() {
                         <button
                             type="submit"
                             disabled={isSaving}
-                            className="bg-navy hover:bg-black text-white font-bold py-3 px-8 rounded-xl flex items-center gap-2 transition-all shadow-md disabled:opacity-50"
+                            className="bg-[#d4af35] hover:bg-[#121212]/10 text-white font-bold py-3 px-8 rounded-xl flex items-center gap-2 transition-all shadow-md disabled:opacity-50"
                         >
                             {isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
                             {data?.nominee ? 'Update Nominee' : 'Save Nominee'}

@@ -52,8 +52,8 @@ export default function LiveMarketTicker() {
         <div ref={containerRef} className="w-full max-w-5xl mx-auto mt-16 relative z-20">
             {/* Auto-refresh indicator */}
             {isValidating && !isLoading && (
-                <div className="flex items-center justify-center space-x-2 mb-3 text-xs text-slate-400 font-medium">
-                    <RefreshCw className="w-3 h-3 animate-spin text-[#39FF14]" />
+                <div className="flex items-center justify-center space-x-2 mb-3 text-xs text-slate-300 font-medium">
+                    <RefreshCw className="w-3 h-3 animate-spin text-[#d4af35]" />
                     <span>Updating prices...</span>
                 </div>
             )}
@@ -71,14 +71,14 @@ export default function LiveMarketTicker() {
                         : [...asset.sparkline].reverse();
 
                     return (
-                        <div key={asset.id} className="ticker-card opacity-0 bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/60 flex flex-col relative overflow-hidden group hover:shadow-[0_8px_30px_rgba(57,255,20,0.12)] transition-all duration-500 hover:-translate-y-2">
+                        <div key={asset.id} className="ticker-card opacity-0 bg-[#121212]/80 backdrop-blur-xl rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white/60 flex flex-col relative overflow-hidden group hover:shadow-[0_8px_30px_rgba(57,255,20,0.12)] transition-all duration-500 hover:-translate-y-2">
                             {/* Top row: icon + name + symbol */}
                             <div className="flex items-center justify-between mb-4">
                                 <div className="flex items-center space-x-3">
                                     <Image src={asset.icon} alt={asset.name} width={28} height={28} className="object-contain" />
                                     <div>
-                                        <span className="font-extrabold text-navy text-base leading-none block">{asset.symbol}</span>
-                                        <span className="text-slate-400 text-xs font-semibold">{asset.name}</span>
+                                        <span className="font-extrabold text-white text-base leading-none block">{asset.symbol}</span>
+                                        <span className="text-slate-300 text-xs font-semibold">{asset.name}</span>
                                     </div>
                                 </div>
                                 {/* Change badge */}
@@ -94,7 +94,7 @@ export default function LiveMarketTicker() {
                             {isLoading || !coinData ? (
                                 <Loader2 className="h-8 w-8 animate-spin text-slate-300 my-2" />
                             ) : (
-                                <div className="text-3xl font-black text-navy mb-4 tracking-tighter">
+                                <div className="text-3xl font-black text-white mb-4 tracking-tighter">
                                     ${price?.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                 </div>
                             )}

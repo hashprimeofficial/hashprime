@@ -50,7 +50,7 @@ export async function PUT(req) {
             const html = `
                 <div style="font-family:sans-serif;max-width:520px;margin:auto;padding:32px;border-radius:12px;border:1px solid #e2e8f0">
                     <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
-                        <div style="width:40px;height:40px;background:#39FF14;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:#0B1120">H</div>
+                        <div style="width:40px;height:40px;background:#d4af35;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:#0B1120">H</div>
                         <span style="font-weight:900;font-size:20px;color:#0B1120">HashPrime</span>
                     </div>
                     <h2 style="color:#0B1120;margin-bottom:8px">KYC Approved</h2>
@@ -70,7 +70,7 @@ export async function PUT(req) {
             const html = `
                 <div style="font-family:sans-serif;max-width:520px;margin:auto;padding:32px;border-radius:12px;border:1px solid #e2e8f0">
                     <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px">
-                        <div style="width:40px;height:40px;background:#39FF14;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:#0B1120">H</div>
+                        <div style="width:40px;height:40px;background:#d4af35;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:#0B1120">H</div>
                         <span style="font-weight:900;font-size:20px;color:#0B1120">HashPrime</span>
                     </div>
                     <h2 style="color:#0B1120;margin-bottom:8px">KYC Application Update</h2>

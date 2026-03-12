@@ -77,14 +77,14 @@ export default function Insights() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="insight-header flex flex-col md:flex-row md:items-end justify-between mb-16 opacity-0">
                     <div className="max-w-2xl">
-                        <h2 className="text-4xl md:text-5xl font-black text-navy mb-4 tracking-tight">
-                            Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon to-green-500">Insights</span>
+                        <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
+                            Latest <span className="text-[#d4af35]">Insights</span>
                         </h2>
                         <p className="text-lg text-slate-500 font-medium">
                             Stay ahead of the curve with expert market analysis and platform updates.
                         </p>
                     </div>
-                    <button className="hidden md:flex items-center space-x-2 text-navy font-bold hover:text-neon transition-colors group">
+                    <button className="hidden md:flex items-center space-x-2 text-white font-bold hover:text-neon transition-colors group">
                         <span>View all articles</span>
                         <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </button>
@@ -92,24 +92,24 @@ export default function Insights() {
 
                 <div className="insights-grid grid grid-cols-1 md:grid-cols-3 gap-8">
                     {articles.map((article) => (
-                        <div key={article.id} className="insight-card opacity-0 bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+                        <div key={article.id} className="insight-card opacity-0 bg-[#121212] rounded-3xl overflow-hidden border border-gray-100 shadow-sm group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
                             <div className="relative h-56 w-full overflow-hidden">
                                 <img
                                     src={article.image}
                                     alt={article.title}
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                                 />
-                                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-navy text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                <div className="absolute top-4 left-4 bg-[#121212]/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
                                     {article.category}
                                 </div>
                             </div>
 
                             <div className="p-8 flex flex-col flex-grow">
-                                <h3 className="text-xl font-black text-navy mb-4 group-hover:text-neon transition-colors line-clamp-2">
+                                <h3 className="text-xl font-black text-white mb-4 group-hover:text-neon transition-colors line-clamp-2">
                                     {article.title}
                                 </h3>
 
-                                <div className="mt-auto flex items-center justify-between text-slate-400 text-sm font-semibold">
+                                <div className="mt-auto flex items-center justify-between text-slate-300 text-sm font-semibold">
                                     <div className="flex items-center space-x-4">
                                         <span>{article.date}</span>
                                         <div className="flex items-center space-x-1">
@@ -123,7 +123,7 @@ export default function Insights() {
                     ))}
                 </div>
 
-                <button className="md:hidden mt-8 w-full flex justify-center items-center space-x-2 text-navy font-bold py-4 rounded-xl border-2 border-slate-100 hover:border-neon hover:text-neon transition-colors">
+                <button className="md:hidden mt-8 w-full flex justify-center items-center space-x-2 text-white font-bold py-4 rounded-xl border-2 border-white/5 hover:border-neon hover:text-neon transition-colors">
                     <span>View all articles</span>
                     <ArrowUpRight className="w-5 h-5" />
                 </button>

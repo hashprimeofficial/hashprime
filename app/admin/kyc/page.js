@@ -14,16 +14,16 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 // ── Field row ─────────────────────────────────────────────────────
 const Field = ({ label, value }) => (
     <div>
-        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-0.5">{label}</div>
-        <div className="text-sm font-bold text-[#0B1120]">{value || <span className="text-slate-300 font-medium italic">Not provided</span>}</div>
+        <div className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-0.5">{label}</div>
+        <div className="text-sm font-bold text-white">{value || <span className="text-slate-300 font-medium italic">Not provided</span>}</div>
     </div>
 );
 
 // ── Section header ────────────────────────────────────────────────
 const Section = ({ icon: Icon, title, children }) => (
     <div>
-        <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-100">
-            <Icon className="w-4 h-4" style={{ color: '#39FF14' }} />
+        <div className="flex items-center gap-2 mb-4 pb-2 border-b border-white/5">
+            <Icon className="w-4 h-4" style={{ color: '#d4af35' }} />
             <h3 className="text-xs font-black uppercase tracking-widest text-slate-500">{title}</h3>
         </div>
         <div className="grid grid-cols-2 gap-x-6 gap-y-4">{children}</div>
@@ -56,7 +56,7 @@ function KYCDetailPanel({ user, onClose, onAction, actioning }) {
             <motion.div
                 key="backdrop"
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+                className="fixed inset-0 bg-[#121212]/10/40 backdrop-blur-sm z-40"
                 onClick={onClose}
             />
             {/* Panel */}
@@ -64,20 +64,20 @@ function KYCDetailPanel({ user, onClose, onAction, actioning }) {
                 key="panel"
                 initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-                className="fixed right-0 top-0 h-full w-full max-w-lg bg-white z-50 shadow-2xl flex flex-col overflow-hidden"
+                className="fixed right-0 top-0 h-full w-full max-w-lg bg-[#121212] z-50 shadow-2xl flex flex-col overflow-hidden"
             >
                 {/* Header */}
-                <div className="flex items-center justify-between px-7 py-5 border-b border-slate-100 bg-[#0B1120]">
+                <div className="flex items-center justify-between px-7 py-5 border-b border-white/5 bg-[#d4af35]">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm" style={{ background: '#39FF14', color: '#0B1120' }}>
+                        <div className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm" style={{ background: '#d4af35', color: '#0B1120' }}>
                             {(user.firstName?.[0] || user.name?.[0] || '?').toUpperCase()}
                         </div>
                         <div>
                             <div className="font-black text-white text-base">{user.firstName} {user.lastName}</div>
-                            <div className="text-slate-400 text-xs font-medium">{user.email}</div>
+                            <div className="text-slate-300 text-xs font-medium">{user.email}</div>
                         </div>
                     </div>
-                    <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-white/10">
+                    <button onClick={onClose} className="text-slate-300 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-[#121212]/10">
                         <X className="w-5 h-5" />
                     </button>
                 </div>
@@ -108,21 +108,21 @@ function KYCDetailPanel({ user, onClose, onAction, actioning }) {
 
                     <Section icon={FileText} title="Identity Documents">
                         <div>
-                            <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">PAN Number</div>
-                            <div className="text-sm font-black text-[#0B1120] uppercase tracking-widest">{user.panNumber || <span className="text-slate-300 font-medium italic">Not provided</span>}</div>
+                            <div className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-1">PAN Number</div>
+                            <div className="text-sm font-black text-white uppercase tracking-widest">{user.panNumber || <span className="text-slate-300 font-medium italic">Not provided</span>}</div>
                             {user.panDocumentUrl && (
                                 <a href={user.panDocumentUrl} target="_blank" rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 mt-2 text-xs font-bold px-2.5 py-1 rounded-lg border border-slate-200 text-slate-600 hover:border-[#39FF14] hover:text-[#0B1120] transition-all">
+                                    className="inline-flex items-center gap-1 mt-2 text-xs font-bold px-2.5 py-1 rounded-lg border border-white/10 text-slate-200 hover:border-[#d4af35] hover:text-white transition-all">
                                     <ExternalLink className="w-3 h-3" /> View PAN Doc
                                 </a>
                             )}
                         </div>
                         <div>
-                            <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Aadhaar Number</div>
-                            <div className="text-sm font-black text-[#0B1120] tracking-widest">{user.aadhaarNumber || <span className="text-slate-300 font-medium italic">Not provided</span>}</div>
+                            <div className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-1">Aadhaar Number</div>
+                            <div className="text-sm font-black text-white tracking-widest">{user.aadhaarNumber || <span className="text-slate-300 font-medium italic">Not provided</span>}</div>
                             {user.aadhaarDocumentUrl && (
                                 <a href={user.aadhaarDocumentUrl} target="_blank" rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 mt-2 text-xs font-bold px-2.5 py-1 rounded-lg border border-slate-200 text-slate-600 hover:border-[#39FF14] hover:text-[#0B1120] transition-all">
+                                    className="inline-flex items-center gap-1 mt-2 text-xs font-bold px-2.5 py-1 rounded-lg border border-white/10 text-slate-200 hover:border-[#d4af35] hover:text-white transition-all">
                                     <ExternalLink className="w-3 h-3" /> View Aadhaar Doc
                                 </a>
                             )}
@@ -143,11 +143,11 @@ function KYCDetailPanel({ user, onClose, onAction, actioning }) {
                                     onChange={e => setRejectMsg(e.target.value)}
                                     placeholder="e.g. PAN document is blurry. Please resubmit a clear photo of your PAN card."
                                     rows={4}
-                                    className="w-full bg-white border border-red-200 rounded-xl px-4 py-3 text-sm text-slate-800 font-medium focus:outline-none focus:border-red-400 resize-none"
+                                    className="w-full bg-[#121212] border border-red-200 rounded-xl px-4 py-3 text-sm text-slate-100 font-medium focus:outline-none focus:border-red-400 resize-none"
                                 />
                                 <div className="flex gap-2">
                                     <button onClick={() => { setShowRejectForm(false); setRejectMsg(''); }}
-                                        className="flex-1 bg-white border border-slate-200 text-slate-600 font-bold py-2.5 rounded-xl text-sm hover:bg-slate-50 transition-all">
+                                        className="flex-1 bg-[#121212] border border-white/10 text-slate-200 font-bold py-2.5 rounded-xl text-sm hover:bg-[#121212]/5 transition-all">
                                         Cancel
                                     </button>
                                     <button onClick={handleReject} disabled={!rejectMsg.trim() || rejecting}
@@ -162,14 +162,14 @@ function KYCDetailPanel({ user, onClose, onAction, actioning }) {
 
                 {/* Action footer */}
                 {!showRejectForm && (
-                    <div className="px-7 py-5 border-t border-slate-100 flex gap-3 bg-white">
+                    <div className="px-7 py-5 border-t border-white/5 flex gap-3 bg-[#121212]">
                         <button onClick={() => setShowRejectForm(true)}
                             className="flex-1 bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 font-black py-3 rounded-xl flex items-center justify-center gap-2 transition-all text-sm">
                             <XCircle className="w-4 h-4" /> Reject
                         </button>
                         <button onClick={handleApprove} disabled={approving}
                             className="flex-1 font-black py-3 rounded-xl flex items-center justify-center gap-2 transition-all text-sm disabled:opacity-50"
-                            style={{ background: '#39FF14', color: '#0B1120', boxShadow: '0 4px 16px rgba(57,255,20,0.25)' }}>
+                            style={{ background: '#d4af35', color: '#0B1120', boxShadow: '0 4px 16px rgba(57,255,20,0.25)' }}>
                             {approving ? <Loader2 className="w-4 h-4 animate-spin" /> : <><CheckCircle2 className="w-4 h-4" /> Approve KYC</>}
                         </button>
                     </div>
@@ -224,34 +224,34 @@ export default function AdminKYCPage() {
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
-                        <h1 className="text-3xl font-black text-[#0B1120] tracking-tight flex items-center gap-3">
-                            <ShieldCheck className="w-8 h-8" style={{ color: '#39FF14' }} />
+                        <h1 className="text-3xl font-black text-white tracking-tight flex items-center gap-3">
+                            <ShieldCheck className="w-8 h-8" style={{ color: '#d4af35' }} />
                             KYC Approvals
                         </h1>
                         <p className="text-slate-500 font-medium">Review and verify user KYC submissions.</p>
                     </div>
                     <div className="relative w-full md:w-64">
-                        <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-300" />
                         <input type="text" placeholder="Search by name or email…" value={searchTerm}
                             onChange={e => setSearchTerm(e.target.value)}
-                            className="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm font-medium focus:outline-none transition-all"
+                            className="w-full bg-[#121212] border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm font-medium focus:outline-none transition-all"
                             onFocus={e => e.target.style.boxShadow = '0 0 0 3px rgba(57,255,20,0.15)'}
                             onBlur={e => e.target.style.boxShadow = ''} />
                     </div>
                 </div>
 
                 {/* Table */}
-                <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                <div className="bg-[#121212] border border-white/10 rounded-2xl shadow-sm overflow-hidden">
                     {filteredUsers.length === 0 ? (
                         <div className="p-14 text-center">
                             <CheckCircle2 className="w-14 h-14 mx-auto mb-4 text-slate-200" />
-                            <h3 className="text-lg font-black text-[#0B1120] mb-1">All caught up!</h3>
-                            <p className="text-slate-400 font-medium text-sm">No pending KYC applications.</p>
+                            <h3 className="text-lg font-black text-white mb-1">All caught up!</h3>
+                            <p className="text-slate-300 font-medium text-sm">No pending KYC applications.</p>
                         </div>
                     ) : (
                         <div className="overflow-x-auto">
                             <table className="w-full text-left border-collapse">
-                                <thead className="bg-slate-50 border-b border-slate-100 text-slate-500 text-xs uppercase tracking-wider">
+                                <thead className="bg-[#121212]/5 border-b border-white/5 text-slate-500 text-xs uppercase tracking-wider">
                                     <tr>
                                         <th className="px-6 py-4 font-bold">Applicant</th>
                                         <th className="px-6 py-4 font-bold">ID Numbers</th>
@@ -262,7 +262,7 @@ export default function AdminKYCPage() {
                                 <tbody className="divide-y divide-slate-50">
                                     {filteredUsers.map(user => (
                                         <motion.tr initial={{ opacity: 0 }} animate={{ opacity: 1 }} key={user._id}
-                                            className="hover:bg-slate-50/70 transition-colors">
+                                            className="hover:bg-[#121212]/5/70 transition-colors">
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-9 h-9 rounded-xl flex items-center justify-center text-sm font-black flex-shrink-0"
@@ -270,22 +270,22 @@ export default function AdminKYCPage() {
                                                         {(user.firstName?.[0] || user.name?.[0] || '?').toUpperCase()}
                                                     </div>
                                                     <div>
-                                                        <div className="font-bold text-[#0B1120] text-sm">{user.firstName} {user.lastName}</div>
-                                                        <div className="text-xs text-slate-400 font-medium">{user.email}</div>
+                                                        <div className="font-bold text-white text-sm">{user.firstName} {user.lastName}</div>
+                                                        <div className="text-xs text-slate-300 font-medium">{user.email}</div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <div className="text-xs font-bold text-slate-500">PAN: <span className="text-[#0B1120] uppercase tracking-widest">{user.panNumber || '—'}</span></div>
-                                                <div className="text-xs font-bold text-slate-500 mt-1">Aadhaar: <span className="text-[#0B1120]">{user.aadhaarNumber || '—'}</span></div>
+                                                <div className="text-xs font-bold text-slate-500">PAN: <span className="text-white uppercase tracking-widest">{user.panNumber || '—'}</span></div>
+                                                <div className="text-xs font-bold text-slate-500 mt-1">Aadhaar: <span className="text-white">{user.aadhaarNumber || '—'}</span></div>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <div className="text-sm font-bold text-[#0B1120]">{user.occupation || '—'}</div>
-                                                <div className="text-xs text-slate-400 mt-0.5">{user.incomeRange}</div>
+                                                <div className="text-sm font-bold text-white">{user.occupation || '—'}</div>
+                                                <div className="text-xs text-slate-300 mt-0.5">{user.incomeRange}</div>
                                             </td>
                                             <td className="px-6 py-4 text-right">
                                                 <button onClick={() => setSelectedUser(user)}
-                                                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-black border border-[#39FF14]/30 text-[#0B1120] hover:bg-[#39FF14] transition-all"
+                                                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-black border border-[#d4af35]/30 text-white hover:bg-[#d4af35] transition-all"
                                                     style={{ background: 'rgba(57,255,20,0.08)' }}>
                                                     <Eye className="w-3.5 h-3.5" /> View Profile
                                                 </button>

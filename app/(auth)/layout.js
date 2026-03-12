@@ -15,17 +15,17 @@ export default function AuthLayout({ children }) {
                 {/* Brand */}
                 <div className="relative z-10">
                     <div className=" items-center hidden md:flex lg:flex gap-3 mb-16">
-                        <div className="w-9 h-9 rounded-xl flex items-center justify-center font-black text-sm" style={{ background: '#39FF14', color: '#0b1120' }}>H</div>
+                        <div className="w-9 h-9 rounded-xl flex items-center justify-center font-black text-sm" style={{ background: '#d4af35', color: '#0b1120' }}>H</div>
                         <span className="text-white text-xl font-black tracking-tight">HashPrime</span>
                     </div>
 
                     <div className="space-y-1 mb-10">
-                        <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#39FF14' }}>Investment Platform</div>
+                        <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#d4af35' }}>Investment Platform</div>
                         <h2 className="text-4xl xl:text-5xl font-black text-white leading-tight">
                             Grow your wealth<br />
-                            <span style={{ color: '#39FF14' }}>intelligently.</span>
+                            <span style={{ color: '#d4af35' }}>intelligently.</span>
                         </h2>
-                        <p className="text-slate-400 text-base font-medium mt-4 leading-relaxed max-w-xs">
+                        <p className="text-slate-300 text-base font-medium mt-4 leading-relaxed max-w-xs">
                             Earn passive USDT income through our structured investment plans.
                         </p>
                     </div>
@@ -48,7 +48,7 @@ export default function AuthLayout({ children }) {
 
                 {/* Footer text */}
                 <div className="relative z-10">
-                    <p className="text-slate-600 text-xs font-medium">© 2025 HashPrime. All rights reserved.</p>
+                    <p className="text-slate-200 text-xs font-medium">© 2025 HashPrime. All rights reserved.</p>
                 </div>
             </div>
 
@@ -57,7 +57,7 @@ export default function AuthLayout({ children }) {
                 <div className="w-full max-w-md">
                     {/* Mobile logo */}
                     <div className="lg:hidden flex items-center gap-2.5 mb-10">
-                        <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm" style={{ background: '#39FF14', color: '#0b1120' }}>H</div>
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm" style={{ background: '#d4af35', color: '#0b1120' }}>H</div>
                         <span className="text-xl font-black tracking-tight" style={{ color: '#0b1120' }}>HashPrime</span>
                     </div>
                     {children}

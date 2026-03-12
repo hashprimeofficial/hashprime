@@ -345,7 +345,7 @@ const LightPillar = ({
     if (!webGLSupported) {
         return (
             <div
-                className={`w-full h-full absolute top-0 left-0 flex items-center justify-center bg-black/10 text-gray-500 text-sm ${className}`}
+                className={`w-full h-full absolute top-0 left-0 flex items-center justify-center bg-[#121212]/10/10 text-gray-500 text-sm ${className}`}
                 style={{ mixBlendMode }}
             >
                 WebGL not supported

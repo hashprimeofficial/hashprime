@@ -34,53 +34,53 @@ export default function AdminOverview() {
         <div className="space-y-8">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-black text-navy mb-2 tracking-tight flex items-center gap-3">
+                    <h1 className="text-3xl font-black text-white mb-2 tracking-tight flex items-center gap-3">
                         <ScrollText className="w-8 h-8 text-neon" />
                         Master Dashboard
                     </h1>
                     <p className="text-slate-500 font-medium">Overview of HashPrime operations, liabilities, and capital flow.</p>
                 </div>
-                <div className="bg-white border border-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-3 shadow-sm">
+                <div className="bg-[#121212] border border-white/10 px-4 py-2.5 rounded-xl flex items-center gap-3 shadow-sm">
                     <Users className="w-4 h-4 text-purple-600" />
-                    <span className="text-sm font-bold text-navy">Investors: <span className="text-purple-600">{(totalUsers || 0).toLocaleString()}</span></span>
+                    <span className="text-sm font-bold text-white">Investors: <span className="text-purple-600">{(totalUsers || 0).toLocaleString()}</span></span>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 {/* INR Assets */}
-                <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/5 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-110"></div>
+                <div className="bg-[#121212] border border-white/10 p-6 rounded-2xl shadow-sm relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#d4af35]/10 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-110"></div>
                     <div className="flex justify-between items-start mb-4">
-                        <div className="flex items-center gap-2 text-navy">
-                            <ArrowDownCircle className="w-5 h-5 text-green-500" />
+                        <div className="flex items-center gap-2 text-white">
+                            <ArrowDownCircle className="w-5 h-5 text-amber-500" />
                             <h3 className="font-bold">Total Inflow (Deposits)</h3>
                         </div>
                     </div>
-                    <div className="text-3xl font-black text-navy mb-1 flex items-baseline gap-1">
-                        <span className="text-lg text-slate-400 font-bold">₹</span>
+                    <div className="text-3xl font-black text-white mb-1 flex items-baseline gap-1">
+                        <span className="text-lg text-slate-300 font-bold">₹</span>
                         {(totalDepositsINR || 0).toLocaleString()}
                     </div>
                     <p className="text-xs text-slate-500 mt-2 font-medium">All approved fiat capital infused</p>
                 </div>
 
-                <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-110"></div>
+                <div className="bg-[#121212] border border-white/10 p-6 rounded-2xl shadow-sm relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#d4af35]/10 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-110"></div>
                     <div className="flex justify-between items-start mb-4">
-                        <div className="flex items-center gap-2 text-navy">
+                        <div className="flex items-center gap-2 text-white">
                             <Wallet className="w-5 h-5 text-blue-500" />
                             <h3 className="font-bold">Active Capital Locked</h3>
                         </div>
                     </div>
-                    <div className="text-3xl font-black text-navy mb-1 flex items-baseline gap-1">
-                        <span className="text-lg text-slate-400 font-bold">₹</span>
+                    <div className="text-3xl font-black text-white mb-1 flex items-baseline gap-1">
+                        <span className="text-lg text-slate-300 font-bold">₹</span>
                         {(totalCapitalLocked || 0).toLocaleString()}
                     </div>
                     <p className="text-xs text-slate-500 mt-2 font-medium">Funds currently locked in schemes</p>
                 </div>
 
                 {/* USDT Liabilities */}
-                <div className="bg-navy border border-navy p-6 rounded-2xl shadow-sm relative overflow-hidden group">
+                <div className="bg-[#d4af35] border border-[#d4af35] p-6 rounded-2xl shadow-sm relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/10 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-110"></div>
                     <div className="flex justify-between items-start mb-4">
                         <div className="flex items-center gap-2 text-slate-200">
@@ -89,22 +89,22 @@ export default function AdminOverview() {
                         </div>
                     </div>
                     <div className="text-3xl font-black text-white mb-1 flex items-baseline gap-1.5">
-                        <span className="text-lg text-slate-400 font-bold">₹</span>
+                        <span className="text-lg text-slate-300 font-bold">₹</span>
                         {liabilityInr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
                     </div>
-                    <p className="text-xs text-slate-400 mt-2 font-medium mb-1">{totalUsdtLiability.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USDT · @ ₹{usdtRate.toFixed(2)}/USDT</p>
+                    <p className="text-xs text-slate-300 mt-2 font-medium mb-1">{totalUsdtLiability.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USDT · @ ₹{usdtRate.toFixed(2)}/USDT</p>
                 </div>
 
-                <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/5 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-110"></div>
+                <div className="bg-[#121212]/5 border border-white/10 p-6 rounded-2xl shadow-sm relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#d4af35]/10 rounded-full -mr-12 -mt-12 transition-transform group-hover:scale-110"></div>
                     <div className="flex justify-between items-start mb-4">
-                        <div className="flex items-center gap-2 text-navy">
+                        <div className="flex items-center gap-2 text-white">
                             <ArrowUpCircle className="w-5 h-5 text-amber-500" />
                             <h3 className="font-bold">Total Withdrawals Paid</h3>
                         </div>
                     </div>
-                    <div className="text-3xl font-black text-navy mb-1 flex items-baseline gap-1.5">
-                        <span className="text-lg text-slate-400 font-bold">₹</span>
+                    <div className="text-3xl font-black text-white mb-1 flex items-baseline gap-1.5">
+                        <span className="text-lg text-slate-300 font-bold">₹</span>
                         {withdrawalsInr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
                     </div>
                     <p className="text-xs text-slate-500 mt-2 font-medium">{totalWithdrawalsPaid.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} USDT paid out</p>
@@ -114,23 +114,23 @@ export default function AdminOverview() {
             {/* Top Leaderboards Row */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
                 {/* Top Investors */}
-                <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-                    <div className="p-5 border-b border-slate-200 bg-slate-50 flex items-center gap-2">
+                <div className="bg-[#121212] border border-white/10 rounded-2xl shadow-sm overflow-hidden">
+                    <div className="p-5 border-b border-white/10 bg-[#121212]/5 flex items-center gap-2">
                         <Wallet className="w-5 h-5 text-indigo-500" />
-                        <h2 className="text-lg font-black text-navy">Top Investors</h2>
+                        <h2 className="text-lg font-black text-white">Top Investors</h2>
                     </div>
                     <ul className="divide-y divide-slate-100 p-2">
                         {topInvestors.length === 0 ? (
                             <li className="p-6 text-center text-sm font-medium text-slate-500">No active investors found.</li>
                         ) : (
                             topInvestors.map((inv, idx) => (
-                                <li key={`investor-${idx}`} className="p-4 flex justify-between items-center hover:bg-slate-50 rounded-xl transition-colors">
+                                <li key={`investor-${idx}`} className="p-4 flex justify-between items-center hover:bg-[#121212]/5 rounded-xl transition-colors">
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 font-black flex items-center justify-center border border-indigo-200 shadow-sm shadow-indigo-100">
                                             #{idx + 1}
                                         </div>
                                         <div>
-                                            <p className="font-bold text-navy">{inv.user?.name || 'Unknown User'}</p>
+                                            <p className="font-bold text-white">{inv.user?.name || 'Unknown User'}</p>
                                             <p className="text-xs font-medium text-slate-500">{inv.user?.email || 'N/A'}</p>
                                         </div>
                                     </div>
@@ -144,17 +144,17 @@ export default function AdminOverview() {
                 </div>
 
                 {/* Top Referrals */}
-                <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-                    <div className="p-5 border-b border-slate-200 bg-slate-50 flex items-center gap-2">
+                <div className="bg-[#121212] border border-white/10 rounded-2xl shadow-sm overflow-hidden">
+                    <div className="p-5 border-b border-white/10 bg-[#121212]/5 flex items-center gap-2">
                         <Users className="w-5 h-5 text-fuchsia-500" />
-                        <h2 className="text-lg font-black text-navy">Top Referrers</h2>
+                        <h2 className="text-lg font-black text-white">Top Referrers</h2>
                     </div>
                     <ul className="divide-y divide-slate-100 p-2">
                         {topReferrals.length === 0 ? (
                             <li className="p-6 text-center text-sm font-medium text-slate-500">No referrers found.</li>
                         ) : (
                             topReferrals.map((ref, idx) => (
-                                <li key={`referrer-${idx}`} className="p-4 flex justify-between items-center hover:bg-slate-50 rounded-xl transition-colors">
+                                <li key={`referrer-${idx}`} className="p-4 flex justify-between items-center hover:bg-[#121212]/5 rounded-xl transition-colors">
                                     <div className="flex items-center gap-4">
                                         <div className="w-10 h-10 rounded-full bg-fuchsia-100 text-fuchsia-700 font-black flex items-center justify-center border border-fuchsia-200 shadow-sm shadow-fuchsia-100">
                                             #{idx + 1}
@@ -162,11 +162,11 @@ export default function AdminOverview() {
                                         <div>
                                             {ref.user ? (
                                                 <>
-                                                    <p className="font-bold text-navy">{ref.user.name}</p>
+                                                    <p className="font-bold text-white">{ref.user.name}</p>
                                                     <p className="text-xs font-medium text-slate-500">{ref.user.email}</p>
                                                 </>
                                             ) : (
-                                                <p className="font-bold text-navy">{ref.referrerCode}</p>
+                                                <p className="font-bold text-white">{ref.referrerCode}</p>
                                             )}
                                         </div>
                                     </div>
@@ -182,14 +182,14 @@ export default function AdminOverview() {
             </div>
 
             {/* Recent Deposits */}
-            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mt-8 shadow-sm">
-                <div className="p-6 border-b border-slate-200 flex justify-between items-center">
-                    <h2 className="text-xl font-black text-navy flex items-center gap-2"><PiggyBank className="w-5 h-5 text-green-500" /> Recent Deposits</h2>
-                    <Link href="/admin/deposits" className="text-sm font-bold text-navy hover:text-black underline decoration-neon decoration-2 transition-colors">View All</Link>
+            <div className="bg-[#121212] border border-white/10 rounded-2xl overflow-hidden mt-8 shadow-sm">
+                <div className="p-6 border-b border-white/10 flex justify-between items-center">
+                    <h2 className="text-xl font-black text-white flex items-center gap-2"><PiggyBank className="w-5 h-5 text-amber-500" /> Recent Deposits</h2>
+                    <Link href="/admin/deposits" className="text-sm font-bold text-white hover:text-white underline decoration-neon decoration-2 transition-colors">View All</Link>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full text-left whitespace-nowrap">
-                        <thead className="bg-slate-50 text-slate-500 text-sm border-b border-slate-200">
+                        <thead className="bg-[#121212]/5 text-slate-500 text-sm border-b border-white/10">
                             <tr>
                                 <th className="px-6 py-4 font-bold">User</th>
                                 <th className="px-6 py-4 font-bold">Amount</th>
@@ -200,18 +200,18 @@ export default function AdminOverview() {
                         </thead>
                         <tbody className="divide-y divide-slate-100">
                             {recentDeposits.map((dep) => (
-                                <tr key={dep._id} className="hover:bg-slate-50 transition-colors">
+                                <tr key={dep._id} className="hover:bg-[#121212]/5 transition-colors">
                                     <td className="px-6 py-4">
-                                        <div className="font-bold text-navy">{dep.userId?.name || 'Unknown'}</div>
+                                        <div className="font-bold text-white">{dep.userId?.name || 'Unknown'}</div>
                                         <div className="text-xs font-medium text-slate-500">{dep.userId?.email || 'N/A'}</div>
                                     </td>
-                                    <td className="px-6 py-4 font-black text-navy">
+                                    <td className="px-6 py-4 font-black text-white">
                                         {dep.paymentMethod === 'usdt' ? '$' : '₹'}{dep.amount.toLocaleString(dep.paymentMethod === 'usdt' ? 'en-US' : 'en-IN')}
                                     </td>
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-2">
-                                            {dep.paymentMethod === 'usdt' ? <Coins className="w-4 h-4 text-blue-500" /> : <IndianRupee className="w-4 h-4 text-slate-400" />}
-                                            <span className="text-xs font-bold uppercase text-slate-600">{dep.paymentMethod === 'usdt' ? 'USDC' : 'Bank'}</span>
+                                            {dep.paymentMethod === 'usdt' ? <Coins className="w-4 h-4 text-blue-500" /> : <IndianRupee className="w-4 h-4 text-slate-300" />}
+                                            <span className="text-xs font-bold uppercase text-slate-200">{dep.paymentMethod === 'usdt' ? 'USDC' : 'Bank'}</span>
                                         </div>
                                     </td>
                                     <td className="px-6 py-4">
@@ -223,7 +223,7 @@ export default function AdminOverview() {
                                 </tr>
                             ))}
                             {recentDeposits.length === 0 && (
-                                <tr><td colSpan="5" className="px-6 py-8 text-center text-slate-500 font-medium bg-slate-50">No deposits found.</td></tr>
+                                <tr><td colSpan="5" className="px-6 py-8 text-center text-slate-500 font-medium bg-[#121212]/5">No deposits found.</td></tr>
                             )}
                         </tbody>
                     </table>
@@ -231,14 +231,14 @@ export default function AdminOverview() {
             </div>
 
             {/* Recent Investments */}
-            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mt-8 shadow-sm relative">
-                <div className="p-6 border-b border-slate-200 flex justify-between items-center">
-                    <h2 className="text-xl font-black text-navy">Recent Investments</h2>
-                    <Link href="/admin/investments" className="text-sm font-bold text-navy hover:text-black underline decoration-neon decoration-2 transition-colors">View All</Link>
+            <div className="bg-[#121212] border border-white/10 rounded-2xl overflow-hidden mt-8 shadow-sm relative">
+                <div className="p-6 border-b border-white/10 flex justify-between items-center">
+                    <h2 className="text-xl font-black text-white">Recent Investments</h2>
+                    <Link href="/admin/investments" className="text-sm font-bold text-white hover:text-white underline decoration-neon decoration-2 transition-colors">View All</Link>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full text-left whitespace-nowrap">
-                        <thead className="bg-slate-50 text-slate-500 text-sm border-b border-slate-200">
+                        <thead className="bg-[#121212]/5 text-slate-500 text-sm border-b border-white/10">
                             <tr>
                                 <th className="px-6 py-4 font-bold">User</th>
                                 <th className="px-6 py-4 font-bold">Amount</th>
@@ -249,17 +249,17 @@ export default function AdminOverview() {
                         </thead>
                         <tbody className="divide-y divide-slate-100">
                             {recentInvestments.map((inv) => (
-                                <tr key={inv._id} className="hover:bg-slate-50 transition-colors">
+                                <tr key={inv._id} className="hover:bg-[#121212]/5 transition-colors">
                                     <td className="px-6 py-4">
-                                        <div className="font-bold text-navy">{inv.userId?.name || 'Unknown'}</div>
+                                        <div className="font-bold text-white">{inv.userId?.name || 'Unknown'}</div>
                                         <div className="text-xs font-medium text-slate-500">{inv.userId?.email || 'N/A'}</div>
                                     </td>
-                                    <td className="px-6 py-4 font-black text-navy">₹{inv.amount.toLocaleString()}</td>
+                                    <td className="px-6 py-4 font-black text-white">₹{inv.amount.toLocaleString()}</td>
                                     <td className="px-6 py-4">
-                                        <span className="bg-navy text-white px-2.5 py-1 rounded text-xs uppercase font-bold shadow-sm">{inv.schemeType} Plan</span>
+                                        <span className="bg-[#d4af35] text-white px-2.5 py-1 rounded text-xs uppercase font-bold shadow-sm">{inv.schemeType} Plan</span>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <span className={`px-2.5 py-1 rounded text-xs font-bold border shadow-sm ${inv.status === 'active' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-slate-100 text-slate-600 border-slate-200'}`}>
+                                        <span className={`px-2.5 py-1 rounded text-xs font-bold border shadow-sm ${inv.status === 'active' ? 'bg-green-50 text-green-700 border-green-200' : 'bg-slate-100 text-slate-200 border-white/10'}`}>
                                             {inv.status}
                                         </span>
                                     </td>
@@ -270,7 +270,7 @@ export default function AdminOverview() {
                             ))}
                             {recentInvestments.length === 0 && (
                                 <tr>
-                                    <td colSpan="5" className="px-6 py-8 text-center text-slate-500 font-medium bg-slate-50">No investments found.</td>
+                                    <td colSpan="5" className="px-6 py-8 text-center text-slate-500 font-medium bg-[#121212]/5">No investments found.</td>
                                 </tr>
                             )}
                         </tbody>

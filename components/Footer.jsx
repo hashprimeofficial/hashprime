@@ -9,7 +9,7 @@ function BackToTop() {
     return (
         <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="w-10 h-10 rounded-full bg-navy flex items-center justify-center text-white hover:bg-[#39FF14] hover:text-navy transition-all duration-300 shadow-md hover:-translate-y-1"
+            className="w-10 h-10 rounded-full bg-[#d4af35] flex items-center justify-center text-white hover:bg-[#d4af35] hover:text-white transition-all duration-300 shadow-md hover:-translate-y-1"
             aria-label="Back to top"
         >
             <ArrowUp className="w-5 h-5" />
@@ -31,7 +31,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="bg-white border-t border-gray-100 w-full pt-20 pb-10 mt-auto">
+        <footer className="bg-[#121212] border-t border-gray-100 w-full pt-20 pb-10 mt-auto">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
                     <div className="lg:col-span-2">
@@ -44,7 +44,7 @@ export default function Footer() {
                             LET'S SAVE MONEY FOR THE FUTURE. Built for speed, uncompromised security, and the ultimate user experience. Join the next generation of finance.
                         </p>
                         <div className="flex flex-col space-y-4 max-w-sm">
-                            <span className="text-sm font-bold text-navy uppercase tracking-wider">Subscribe to Updates</span>
+                            <span className="text-sm font-bold text-white uppercase tracking-wider">Subscribe to Updates</span>
                             <form onSubmit={handleSubscribe}>
                                 {subscribed ? (
                                     <div className="flex items-center gap-2 text-green-600 font-bold text-sm py-3 px-4 bg-green-50 border border-green-200 rounded-lg">
@@ -57,11 +57,11 @@ export default function Footer() {
                                             type="email"
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
-                                            className="block w-full pl-4 pr-4 py-3.5 border border-r-0 border-gray-200 rounded-l-lg bg-gray-50 focus:outline-none focus:ring-1 focus:ring-[#39FF14] text-sm font-medium"
+                                            className="block w-full pl-4 pr-4 py-3.5 border border-r-0 border-gray-200 rounded-l-lg bg-gray-50 focus:outline-none focus:ring-1 focus:ring-[#d4af35] text-sm font-medium"
                                             placeholder="Enter your email"
                                             required
                                         />
-                                        <button type="submit" className="bg-[#39FF14] text-navy font-bold py-3.5 px-8 rounded-r-lg hover:opacity-90 transition-opacity text-sm whitespace-nowrap">
+                                        <button type="submit" className="bg-[#d4af35] text-white font-bold py-3.5 px-8 rounded-r-lg hover:opacity-90 transition-opacity text-sm whitespace-nowrap">
                                             Join Now
                                         </button>
                                     </div>
@@ -71,38 +71,38 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-navy font-bold mb-6 text-sm uppercase tracking-wider">Platform</h3>
+                        <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Platform</h3>
                         <ul className="space-y-4">
-                            <li><Link href="/markets" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Live Markets</Link></li>
-                            <li><Link href="/dashboard/invest" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Investment Plans</Link></li>
-                            <li><Link href="/dashboard/referrals" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Referral Program</Link></li>
-                            <li><Link href="/security" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Security</Link></li>
+                            <li><Link href="/markets" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Live Markets</Link></li>
+                            <li><Link href="/dashboard/invest" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Investment Plans</Link></li>
+                            <li><Link href="/dashboard/referrals" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Referral Program</Link></li>
+                            <li><Link href="/security" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Security</Link></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="text-navy font-bold mb-6 text-sm uppercase tracking-wider">Account</h3>
+                        <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Account</h3>
                         <ul className="space-y-4">
-                            <li><Link href="/register" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Sign Up</Link></li>
-                            <li><Link href="/login" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Sign In</Link></li>
-                            <li><Link href="/dashboard" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Dashboard</Link></li>
-                            <li><Link href="/dashboard/profile" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">My Profile</Link></li>
+                            <li><Link href="/register" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Sign Up</Link></li>
+                            <li><Link href="/login" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Sign In</Link></li>
+                            <li><Link href="/dashboard" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Dashboard</Link></li>
+                            <li><Link href="/dashboard/profile" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">My Profile</Link></li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="text-navy font-bold mb-6 text-sm uppercase tracking-wider">Company</h3>
+                        <h3 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Company</h3>
                         <ul className="space-y-4">
-                            <li><Link href="/company" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">About Us</Link></li>
-                            <li><Link href="/security" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Trust &amp; Security</Link></li>
-                            <li><Link href="/features" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Features</Link></li>
-                            <li><Link href="/markets" className="text-slate-500 hover:text-navy text-sm font-medium transition-colors">Markets</Link></li>
+                            <li><Link href="/company" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">About Us</Link></li>
+                            <li><Link href="/security" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Trust &amp; Security</Link></li>
+                            <li><Link href="/features" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Features</Link></li>
+                            <li><Link href="/markets" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Markets</Link></li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-slate-400 text-sm font-medium">
+                    <p className="text-slate-300 text-sm font-medium">
                         &copy; {new Date().getFullYear()} Hashprime. All rights reserved.
                     </p>
                     <div className="flex items-center space-x-6">

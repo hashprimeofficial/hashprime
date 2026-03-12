@@ -75,27 +75,27 @@ export default function AdminDepositsPage() {
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-2xl font-black text-navy">Deposit Management</h1>
+                    <h1 className="text-2xl font-black text-white">Deposit Management</h1>
                     <p className="text-slate-500 font-medium text-sm">Review, approve, or reject user deposits</p>
                 </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                <div className="p-4 border-b border-slate-200 flex flex-col sm:flex-row gap-4">
+            <div className="bg-[#121212] rounded-2xl shadow-sm border border-white/10 overflow-hidden">
+                <div className="p-4 border-b border-white/10 flex flex-col sm:flex-row gap-4">
                     <div className="relative flex-1">
-                        <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-300" />
                         <input
                             type="text"
                             placeholder="Search by user name or email..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all"
+                            className="w-full pl-10 pr-4 py-2 bg-[#121212]/5 border border-white/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all"
                         />
                     </div>
                     <select
                         value={filterStatus}
                         onChange={(e) => setFilterStatus(e.target.value)}
-                        className="px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-navy focus:outline-none focus:ring-2 focus:ring-neon"
+                        className="px-4 py-2 bg-[#121212]/5 border border-white/10 rounded-xl text-sm font-bold text-white focus:outline-none focus:ring-2 focus:ring-neon"
                     >
                         <option value="all">All Statuses</option>
                         <option value="pending">Pending Review</option>
@@ -107,7 +107,7 @@ export default function AdminDepositsPage() {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="bg-slate-50 border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500 font-bold">
+                            <tr className="bg-[#121212]/5 border-b border-white/10 text-xs uppercase tracking-wider text-slate-500 font-bold">
                                 <th className="p-4">User</th>
                                 <th className="p-4">Amount</th>
                                 <th className="p-4">Method</th>
@@ -125,24 +125,24 @@ export default function AdminDepositsPage() {
                                     </td>
                                 </tr>
                             ) : deposits.map((deposit) => (
-                                <tr key={deposit._id} className="hover:bg-slate-50/50 transition-colors">
+                                <tr key={deposit._id} className="hover:bg-[#121212]/5/50 transition-colors">
                                     <td className="p-4">
-                                        <div className="font-bold text-navy">{deposit.userId?.name || 'Unknown'}</div>
+                                        <div className="font-bold text-white">{deposit.userId?.name || 'Unknown'}</div>
                                         <div className="text-xs text-slate-500">{deposit.userId?.email || 'N/A'}</div>
                                     </td>
-                                    <td className="p-4 font-black text-navy whitespace-nowrap">
+                                    <td className="p-4 font-black text-white whitespace-nowrap">
                                         {deposit.paymentMethod === 'usdt' ? '$' : '₹'}{deposit.amount.toLocaleString(deposit.paymentMethod === 'usdt' ? 'en-US' : 'en-IN')}
                                     </td>
                                     <td className="p-4">
                                         <div className="flex items-center gap-2">
-                                            <div className="w-6 h-6 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-inner">
+                                            <div className="w-6 h-6 rounded-full bg-[#121212]/5 flex items-center justify-center border border-white/5 shadow-inner">
                                                 {deposit.paymentMethod === 'usdt' ? (
                                                     <Coins className="w-4 h-4 text-blue-500" />
                                                 ) : (
-                                                    <IndianRupee className="w-4 h-4 text-slate-400" />
+                                                    <IndianRupee className="w-4 h-4 text-slate-300" />
                                                 )}
                                             </div>
-                                            <span className="inline-flex bg-slate-50 text-slate-600 px-2 py-0.5 border border-slate-200 rounded text-[10px] font-black uppercase tracking-wider">
+                                            <span className="inline-flex bg-[#121212]/5 text-slate-200 px-2 py-0.5 border border-white/10 rounded text-[10px] font-black uppercase tracking-wider">
                                                 {deposit.paymentMethod === 'usdt' ? 'USDC' : 'BANK'}
                                             </span>
                                         </div>
@@ -152,7 +152,7 @@ export default function AdminDepositsPage() {
                                             <a href={deposit.screenshotUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 font-bold text-sm inline-flex items-center gap-1">
                                                 <FileText className="w-4 h-4" /> View Image
                                             </a>
-                                        ) : <span className="text-xs text-slate-400">None</span>}
+                                        ) : <span className="text-xs text-slate-300">None</span>}
                                     </td>
                                     <td className="p-4 text-sm text-slate-500 font-medium">
                                         {new Date(deposit.createdAt).toLocaleDateString()}
@@ -173,7 +173,7 @@ export default function AdminDepositsPage() {
                                                 </button>
                                             </div>
                                         ) : (
-                                            <button disabled className="px-3 py-1.5 bg-slate-100 text-slate-400 rounded-lg text-xs font-bold cursor-not-allowed">
+                                            <button disabled className="px-3 py-1.5 bg-slate-100 text-slate-300 rounded-lg text-xs font-bold cursor-not-allowed">
                                                 Resolved
                                             </button>
                                         )}
@@ -190,11 +190,11 @@ export default function AdminDepositsPage() {
                 {actionDeposit && (
                     <motion.div
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 bg-navy/60 backdrop-blur-sm flex items-center justify-center p-4"
+                        className="fixed inset-0 z-50 bg-[#d4af35]/60 backdrop-blur-sm flex items-center justify-center p-4"
                     >
                         <motion.div
                             initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }}
-                            className="bg-white rounded-3xl w-full max-w-md overflow-hidden shadow-2xl"
+                            className="bg-[#121212] rounded-3xl w-full max-w-md overflow-hidden shadow-2xl"
                         >
                             <div className={`p-6 border-b ${actionType === 'approved' ? 'bg-green-50 border-green-100' : 'bg-red-50 border-red-100'}`}>
                                 <h3 className={`text-xl font-black flex items-center gap-2 ${actionType === 'approved' ? 'text-green-800' : 'text-red-800'}`}>
@@ -204,35 +204,35 @@ export default function AdminDepositsPage() {
                             </div>
 
                             <div className="p-6 space-y-4">
-                                <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                <div className="bg-[#121212]/5 p-4 rounded-xl border border-white/5">
                                     <div className="flex justify-between items-center mb-2">
                                         <span className="text-sm font-bold text-slate-500">Deposit Amount:</span>
-                                        <span className="font-black text-navy text-lg">{actionDeposit.paymentMethod === 'usdt' ? '$' : '₹'}{actionDeposit.amount.toLocaleString(actionDeposit.paymentMethod === 'usdt' ? 'en-US' : 'en-IN')}</span>
+                                        <span className="font-black text-white text-lg">{actionDeposit.paymentMethod === 'usdt' ? '$' : '₹'}{actionDeposit.amount.toLocaleString(actionDeposit.paymentMethod === 'usdt' ? 'en-US' : 'en-IN')}</span>
                                     </div>
                                     <div className="flex justify-between items-center">
                                         <span className="text-sm font-bold text-slate-500">User:</span>
-                                        <span className="font-bold text-navy">{actionDeposit.userId?.name}</span>
+                                        <span className="font-bold text-white">{actionDeposit.userId?.name}</span>
                                     </div>
                                 </div>
 
                                 {actionType === 'approved' ? (
-                                    <p className="text-sm text-slate-600 font-medium leading-relaxed">
-                                        This will add <strong className="text-navy">{actionDeposit.paymentMethod === 'usdt' ? `₹${(actionDeposit.amount * 85).toLocaleString('en-IN')}` : `₹${actionDeposit.amount.toLocaleString('en-IN')}`}</strong>
+                                    <p className="text-sm text-slate-200 font-medium leading-relaxed">
+                                        This will add <strong className="text-white">{actionDeposit.paymentMethod === 'usdt' ? `₹${(actionDeposit.amount * 85).toLocaleString('en-IN')}` : `₹${actionDeposit.amount.toLocaleString('en-IN')}`}</strong>
                                         {actionDeposit.paymentMethod === 'usdt' ? ` (converted from $${actionDeposit.amount})` : ''}
                                         to the user's wallet balance.
                                     </p>
                                 ) : (
-                                    <p className="text-sm text-slate-600 font-medium">
+                                    <p className="text-sm text-slate-200 font-medium">
                                         This deposit will be permanently rejected. Please provide a reason below.
                                     </p>
                                 )}
 
                                 <div>
-                                    <label className="block text-sm font-bold text-navy mb-1.5">Note / Reason (Optional)</label>
+                                    <label className="block text-sm font-bold text-white mb-1.5">Note / Reason (Optional)</label>
                                     <textarea
                                         value={adminNote}
                                         onChange={(e) => setAdminNote(e.target.value)}
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-neon"
+                                        className="w-full bg-[#121212]/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-neon"
                                         rows="2"
                                         placeholder="E.g. Verified via ICICI bank statement..."
                                     />
@@ -245,12 +245,12 @@ export default function AdminDepositsPage() {
                                 )}
                             </div>
 
-                            <div className="p-4 bg-slate-50 border-t border-slate-200 flex justify-end gap-3">
+                            <div className="p-4 bg-[#121212]/5 border-t border-white/10 flex justify-end gap-3">
                                 <button
                                     type="button"
                                     onClick={() => setActionDeposit(null)}
                                     disabled={isSubmitting}
-                                    className="px-5 py-2.5 rounded-xl font-bold text-slate-600 hover:bg-slate-200 transition-colors disabled:opacity-50"
+                                    className="px-5 py-2.5 rounded-xl font-bold text-slate-200 hover:bg-slate-200 transition-colors disabled:opacity-50"
                                 >
                                     Cancel
                                 </button>

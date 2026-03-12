@@ -13,7 +13,7 @@ export default function AdminWithdrawalsPage() {
     const [rejectingId, setRejectingId] = useState(null);
     const [filterStatus, setFilterStatus] = useState('all');
 
-    if (isLoading) return <div className="text-slate-400 animate-pulse font-medium">Loading withdrawal requests...</div>;
+    if (isLoading) return <div className="text-slate-300 animate-pulse font-medium">Loading withdrawal requests...</div>;
     if (error) return <div className="text-red-500 font-bold">Failed to load withdrawals data</div>;
 
     const { withdrawals = [] } = data || {};
@@ -57,7 +57,7 @@ export default function AdminWithdrawalsPage() {
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-black text-navy mb-2 tracking-tight flex items-center gap-3">
+                    <h1 className="text-3xl font-black text-white mb-2 tracking-tight flex items-center gap-3">
                         <ArrowUpRight className="text-neon w-8 h-8" />
                         Withdrawals
                     </h1>
@@ -65,16 +65,16 @@ export default function AdminWithdrawalsPage() {
                 </div>
 
                 <div className="flex bg-slate-100 p-1 rounded-xl">
-                    <button onClick={() => setFilterStatus('all')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${filterStatus === 'all' ? 'bg-white shadow-sm text-navy' : 'text-slate-500 hover:text-navy'}`}>All</button>
-                    <button onClick={() => setFilterStatus('pending')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${filterStatus === 'pending' ? 'bg-white shadow-sm text-amber-600' : 'text-slate-500 hover:text-navy'}`}>Pending</button>
-                    <button onClick={() => setFilterStatus('approved')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${filterStatus === 'approved' ? 'bg-white shadow-sm text-green-600' : 'text-slate-500 hover:text-navy'}`}>Approved</button>
+                    <button onClick={() => setFilterStatus('all')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${filterStatus === 'all' ? 'bg-[#121212] shadow-sm text-white' : 'text-slate-500 hover:text-white'}`}>All</button>
+                    <button onClick={() => setFilterStatus('pending')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${filterStatus === 'pending' ? 'bg-[#121212] shadow-sm text-amber-600' : 'text-slate-500 hover:text-white'}`}>Pending</button>
+                    <button onClick={() => setFilterStatus('approved')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${filterStatus === 'approved' ? 'bg-[#121212] shadow-sm text-green-600' : 'text-slate-500 hover:text-white'}`}>Approved</button>
                 </div>
             </div>
 
-            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+            <div className="bg-[#121212] border border-white/10 rounded-2xl overflow-hidden shadow-sm">
                 <div className="overflow-x-auto min-h-[50vh]">
                     <table className="w-full text-left whitespace-nowrap">
-                        <thead className="bg-slate-50 text-slate-500 text-sm border-b border-slate-200">
+                        <thead className="bg-[#121212]/5 text-slate-500 text-sm border-b border-white/10">
                             <tr>
                                 <th className="px-6 py-4 font-bold">User</th>
                                 <th className="px-6 py-4 font-bold">Amount (USDT)</th>
@@ -86,25 +86,25 @@ export default function AdminWithdrawalsPage() {
                         </thead>
                         <tbody className="divide-y divide-slate-100">
                             {filteredWithdrawals.map((withdraw) => (
-                                <tr key={withdraw._id} className="hover:bg-slate-50 transition-colors">
+                                <tr key={withdraw._id} className="hover:bg-[#121212]/5 transition-colors">
                                     <td className="px-6 py-4">
-                                        <div className="font-bold text-navy flex items-center gap-2">
+                                        <div className="font-bold text-white flex items-center gap-2">
                                             {withdraw.userId?.name || 'Unknown User'}
                                             {withdraw.status === 'pending' && <span className="flex h-2 w-2 rounded-full bg-amber-500 animate-pulse"></span>}
                                         </div>
                                         <div className="text-xs font-medium text-slate-500">{withdraw.userId?.email || 'No email'}</div>
                                     </td>
-                                    <td className="px-6 py-4 font-black text-navy text-lg">
+                                    <td className="px-6 py-4 font-black text-white text-lg">
                                         ${withdraw.amount.toFixed(2)}
                                     </td>
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-2 group">
-                                            <span className="text-sm font-mono text-slate-600 bg-slate-100 px-2 py-1 rounded">
+                                            <span className="text-sm font-mono text-slate-200 bg-slate-100 px-2 py-1 rounded">
                                                 {withdraw.walletAddress}
                                             </span>
                                             <button
                                                 onClick={() => copyToClipboard(withdraw.walletAddress)}
-                                                className="text-slate-400 hover:text-navy transition-colors opacity-0 group-hover:opacity-100"
+                                                className="text-slate-300 hover:text-white transition-colors opacity-0 group-hover:opacity-100"
                                                 title="Copy full address"
                                             >
                                                 <Copy className="w-4 h-4" />
@@ -143,7 +143,7 @@ export default function AdminWithdrawalsPage() {
                                                 </button>
                                             </div>
                                         ) : (
-                                            <span className="text-xs font-bold text-slate-400 italic">
+                                            <span className="text-xs font-bold text-slate-300 italic">
                                                 {withdraw.status === 'approved' ? 'Settled' : 'Refunded'}
                                             </span>
                                         )}
@@ -152,7 +152,7 @@ export default function AdminWithdrawalsPage() {
                             ))}
                             {filteredWithdrawals.length === 0 && (
                                 <tr>
-                                    <td colSpan="6" className="px-6 py-12 text-center text-slate-500 font-medium bg-slate-50 flex flex-col items-center justify-center">
+                                    <td colSpan="6" className="px-6 py-12 text-center text-slate-500 font-medium bg-[#121212]/5 flex flex-col items-center justify-center">
                                         <AlertCircle className="w-10 h-10 text-slate-300 mb-3" />
                                         No withdrawals match the current filter.
                                     </td>
@@ -165,9 +165,9 @@ export default function AdminWithdrawalsPage() {
 
             {/* Rejection Modal */}
             {rejectingId && (
-                <div className="fixed inset-0 bg-navy/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden border border-slate-200">
-                        <div className="p-6 border-b border-slate-100 text-center">
+                <div className="fixed inset-0 bg-[#d4af35]/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                    <div className="bg-[#121212] rounded-2xl shadow-2xl w-full max-w-md overflow-hidden border border-white/10">
+                        <div className="p-6 border-b border-white/5 text-center">
                             <h3 className="text-xl font-black text-red-600">Reject Withdrawal</h3>
                             <p className="text-sm text-slate-500 font-medium mt-1">Provide a reason for rejecting this payout request. Funds will be returned to the user's trading balance.</p>
                         </div>
@@ -177,13 +177,13 @@ export default function AdminWithdrawalsPage() {
                                 placeholder="E.g., Invalid wallet network, please read instructions..."
                                 value={rejectionNote}
                                 onChange={(e) => setRejectionNote(e.target.value)}
-                                className="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 text-navy font-medium focus:outline-none focus:ring-2 focus:ring-red-500 resize-none"
+                                className="w-full bg-[#121212]/5 border border-white/10 rounded-lg px-4 py-3 text-white font-medium focus:outline-none focus:ring-2 focus:ring-red-500 resize-none"
                             ></textarea>
 
                             <div className="flex gap-3">
                                 <button
                                     onClick={() => setRejectingId(null)}
-                                    className="flex-1 py-3 text-slate-500 font-bold hover:bg-slate-50 rounded-lg border border-slate-200 transition-colors"
+                                    className="flex-1 py-3 text-slate-500 font-bold hover:bg-[#121212]/5 rounded-lg border border-white/10 transition-colors"
                                 >
                                     Cancel
                                 </button>

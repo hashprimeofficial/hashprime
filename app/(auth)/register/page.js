@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, Eye, EyeOff, ArrowRight, Mail, CheckCircle2 } from 'lucide-react';
 
-const inputClass = "w-full bg-white border border-slate-200 rounded-xl px-4 py-3.5 text-slate-900 placeholder-slate-400 focus:outline-none transition-all font-medium shadow-sm text-sm";
+const inputClass = "w-full bg-[#121212] border border-white/10 rounded-xl px-4 py-3.5 text-slate-900 placeholder-slate-400 focus:outline-none transition-all font-medium shadow-sm text-sm";
 
 function Field({ label, children }) {
     return (
@@ -104,7 +104,7 @@ function RegisterForm() {
     };
 
     const btnStyle = {
-        background: 'linear-gradient(135deg, #39FF14, #22c55e)',
+        background: 'linear-gradient(135deg, #d4af35, #22c55e)',
         color: '#0b1120',
         boxShadow: '0 8px 24px rgba(57,255,20,0.25)',
     };
@@ -141,7 +141,7 @@ function RegisterForm() {
                         value={otpCode}
                         onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                         required
-                        className="w-full bg-white border border-slate-200 rounded-2xl px-6 py-5 text-center text-4xl tracking-[0.6em] text-slate-900 font-black focus:outline-none shadow-inner transition-all"
+                        className="w-full bg-[#121212] border border-white/10 rounded-2xl px-6 py-5 text-center text-4xl tracking-[0.6em] text-slate-900 font-black focus:outline-none shadow-inner transition-all"
                         placeholder="——————"
                         onFocus={focus} onBlur={blur}
                     />
@@ -205,7 +205,7 @@ function RegisterForm() {
                             onFocus={focus} onBlur={blur}
                         />
                         <button type="button" onClick={() => setShowPw(v => !v)}
-                            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 transition-colors">
+                            className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-200 transition-colors">
                             {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </button>
                     </div>
@@ -216,7 +216,7 @@ function RegisterForm() {
                         <input type="text" name="referredBy"
                             defaultValue={resolvedReferrer}
                             key={resolvedReferrer} // force re-render when resolved
-                            className={`${inputClass} pr-24 ${isResolving ? 'animate-pulse bg-slate-50' : ''}`}
+                            className={`${inputClass} pr-24 ${isResolving ? 'animate-pulse bg-[#121212]/5' : ''}`}
                             placeholder="Optional"
                             onFocus={focus} onBlur={blur} />
                         <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold bg-lime-50 text-lime-700 border border-lime-200 px-2 py-0.5 rounded-md">
@@ -236,7 +236,7 @@ function RegisterForm() {
                     )}
                 </motion.button>
 
-                <p className="text-center text-xs text-slate-400 font-medium pt-1">
+                <p className="text-center text-xs text-slate-300 font-medium pt-1">
                     By signing up you agree to our{' '}
                     <span className="text-slate-500 font-semibold cursor-pointer hover:underline">Terms</span>{' '}
                     &amp;{' '}
@@ -253,7 +253,7 @@ export default function RegisterPage() {
     return (
         <Suspense fallback={
             <div className="flex justify-center py-8">
-                <Loader2 className="w-6 h-6 animate-spin" style={{ color: '#39FF14' }} />
+                <Loader2 className="w-6 h-6 animate-spin" style={{ color: '#d4af35' }} />
             </div>
         }>
             <AnimatePresence mode="wait">

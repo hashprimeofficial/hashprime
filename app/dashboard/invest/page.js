@@ -125,17 +125,17 @@ export default function InvestPage() {
             {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
                 <div>
-                    <h1 className="text-3xl font-black text-navy mb-2 tracking-tight">Investment Plans</h1>
+                    <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Investment Plans</h1>
                     <p className="text-slate-500 font-medium">Choose a scheme to compound your wealth in USDT.</p>
                 </div>
                 {/* Wallet Balance Card */}
-                <div className="bg-navy text-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-navy/20 shrink-0">
+                <div className="bg-[#d4af35] text-white rounded-2xl px-5 py-4 flex items-center gap-3 shadow-lg shadow-navy/20 shrink-0">
                     <Wallet className="w-5 h-5 text-neon" />
                     <div>
                         <div className="text-xs text-slate-300 font-bold uppercase tracking-wider">Available Balance</div>
                         <div className="text-2xl font-black">₹{walletBalance.toLocaleString('en-IN')}</div>
                     </div>
-                    <Link href="/dashboard/deposit" className="ml-2 bg-neon text-navy text-xs font-black px-3 py-1.5 rounded-lg hover:bg-lime-300 transition-colors">
+                    <Link href="/dashboard/deposit" className="ml-2 bg-neon text-white text-xs font-black px-3 py-1.5 rounded-lg hover:bg-lime-300 transition-colors">
                         + Deposit
                     </Link>
                 </div>
@@ -185,24 +185,24 @@ export default function InvestPage() {
                         key={scheme.id}
                         onClick={() => handleSchemeSelect(scheme)}
                         className={`p-5 rounded-2xl cursor-pointer transition-all border shadow-sm ${selectedScheme.id === scheme.id
-                            ? 'bg-navy border-navy shadow-[0_4px_20px_rgba(11,17,32,0.15)] scale-[1.02]'
-                            : 'bg-white border-slate-200 hover:border-lime-300 hover:shadow-md'
+                            ? 'bg-[#d4af35] border-[#d4af35] shadow-[0_4px_20px_rgba(11,17,32,0.15)] scale-[1.02]'
+                            : 'bg-[#121212] border-white/10 hover:border-lime-300 hover:shadow-md'
                             }`}
                     >
-                        <h3 className={`font-bold mb-1 ${selectedScheme.id === scheme.id ? 'text-white' : 'text-navy'}`}>{scheme.name}</h3>
-                        <div className={`text-3xl font-black my-3 flex items-center gap-1 ${selectedScheme.id === scheme.id ? 'text-neon' : 'text-navy'}`}>
+                        <h3 className={`font-bold mb-1 ${selectedScheme.id === scheme.id ? 'text-white' : 'text-white'}`}>{scheme.name}</h3>
+                        <div className={`text-3xl font-black my-3 flex items-center gap-1 ${selectedScheme.id === scheme.id ? 'text-neon' : 'text-white'}`}>
                             {scheme.rate}
                             <TrendingUp className="w-5 h-5 text-neon" />
                         </div>
-                        <p className={`text-xs uppercase tracking-wider font-bold ${selectedScheme.id === scheme.id ? 'text-slate-300' : 'text-slate-400'}`}>{scheme.desc}</p>
+                        <p className={`text-xs uppercase tracking-wider font-bold ${selectedScheme.id === scheme.id ? 'text-slate-300' : 'text-slate-300'}`}>{scheme.desc}</p>
                     </motion.div>
                 ))}
             </div>
 
             {/* Config Panel */}
-            <div className={`bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm ${!isKycApproved ? 'opacity-40 pointer-events-none select-none' : ''}`}>
+            <div className={`bg-[#121212] border border-white/10 rounded-3xl p-6 md:p-8 shadow-sm ${!isKycApproved ? 'opacity-40 pointer-events-none select-none' : ''}`}>
                 <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-black text-navy">Configure Your Investment</h2>
+                    <h2 className="text-2xl font-black text-white">Configure Your Investment</h2>
                     {!hasSufficientBalance && isKycApproved && (
                         <Link href="/dashboard/deposit" className="text-sm font-bold text-amber-600 hover:text-amber-800 flex items-center gap-1.5">
                             <Wallet className="w-4 h-4" /> Top Up Balance
@@ -212,7 +212,7 @@ export default function InvestPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                        <label className="block text-sm font-bold text-navy mb-4">Investment Amount (INR)</label>
+                        <label className="block text-sm font-bold text-white mb-4">Investment Amount (INR)</label>
                         {selectedScheme.amounts ? (
                             <div className="grid grid-cols-2 gap-3">
                                 {selectedScheme.amounts.map(amt => (
@@ -220,8 +220,8 @@ export default function InvestPage() {
                                         key={amt}
                                         onClick={() => setAmount(amt)}
                                         className={`py-3 rounded-xl border font-bold transition-all shadow-sm ${amount === amt
-                                            ? 'bg-neon border-neon text-navy shadow-neon/20'
-                                            : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-lime-300 hover:bg-lime-50'
+                                            ? 'bg-neon border-neon text-white shadow-neon/20'
+                                            : 'bg-[#121212]/5 border-white/10 text-slate-200 hover:border-lime-300 hover:bg-lime-50'
                                             }`}
                                     >
                                         ₹{amt.toLocaleString('en-IN')}
@@ -236,7 +236,7 @@ export default function InvestPage() {
                                     onChange={(e) => setAmount(e.target.value)}
                                     min={selectedScheme.min}
                                     max={selectedScheme.max || undefined}
-                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-navy font-bold focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all text-lg"
+                                    className="w-full bg-[#121212]/5 border border-white/10 rounded-xl px-4 py-3 text-white font-bold focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all text-lg"
                                 />
                                 <p className="text-xs text-slate-500 font-medium mt-2">
                                     Min: ₹{selectedScheme.min.toLocaleString('en-IN')}
@@ -246,7 +246,7 @@ export default function InvestPage() {
                         )}
                     </div>
 
-                    <div className="bg-slate-50 rounded-2xl p-6 flex flex-col justify-between border border-slate-200">
+                    <div className="bg-[#121212]/5 rounded-2xl p-6 flex flex-col justify-between border border-white/10">
                         <div>
                             <p className="text-slate-500 font-bold text-sm mb-1">
                                 Expected Return ({selectedScheme.id.replace('m', ' Months').replace('y', ' Years')})
@@ -269,9 +269,9 @@ export default function InvestPage() {
                         </div>
 
                         {showOtpPrompt ? (
-                            <div className="mt-5 p-4 bg-slate-100 border border-slate-200 rounded-xl space-y-3">
+                            <div className="mt-5 p-4 bg-slate-100 border border-white/10 rounded-xl space-y-3">
                                 <div>
-                                    <label className="block text-sm font-bold text-navy mb-1 flex justify-between items-center">
+                                    <label className="block text-sm font-bold text-white mb-1 flex justify-between items-center">
                                         Verification Code
                                         <span className="text-xs text-slate-500 font-medium">{user.isTwoFactorEnabled ? 'Google Authenticator' : 'Sent to Email'}</span>
                                     </label>
@@ -280,21 +280,21 @@ export default function InvestPage() {
                                         placeholder="6-digit code"
                                         value={otpToken}
                                         onChange={(e) => setOtpToken(e.target.value)}
-                                        className="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-center tracking-[0.5em] font-mono text-lg focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all"
+                                        className="w-full bg-[#121212] border border-white/20 rounded-lg px-4 py-3 text-center tracking-[0.5em] font-mono text-lg focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all"
                                         maxLength="6"
                                     />
                                 </div>
                                 <div className="flex gap-2">
                                     <button
                                         onClick={() => { setShowOtpPrompt(false); setOtpToken(''); setError(''); }}
-                                        className="flex-1 py-3 bg-white text-slate-600 font-bold rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors text-sm"
+                                        className="flex-1 py-3 bg-[#121212] text-slate-200 font-bold rounded-lg border border-white/10 hover:bg-[#121212]/5 transition-colors text-sm"
                                     >
                                         Cancel
                                     </button>
                                     <button
                                         onClick={handleInvest}
                                         disabled={loading || otpToken.length < 6}
-                                        className="flex-[2] bg-neon hover:bg-[#32e512] text-navy font-black py-3 rounded-lg flex justify-center items-center gap-2 transition-all shadow-md disabled:opacity-50"
+                                        className="flex-[2] bg-neon hover:bg-[#32e512] text-white font-black py-3 rounded-lg flex justify-center items-center gap-2 transition-all shadow-md disabled:opacity-50"
                                     >
                                         {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Finalize Investment'}
                                     </button>
@@ -306,7 +306,7 @@ export default function InvestPage() {
                                 whileTap={{ scale: hasSufficientBalance ? 0.98 : 1 }}
                                 onClick={initiateInvestment}
                                 disabled={isOtpSending || !amount || !hasSufficientBalance}
-                                className="w-full mt-5 bg-navy hover:bg-black text-white font-bold py-4 rounded-xl flex justify-center items-center gap-2 transition-all shadow-lg shadow-navy/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full mt-5 bg-[#d4af35] hover:bg-[#121212]/10 text-white font-bold py-4 rounded-xl flex justify-center items-center gap-2 transition-all shadow-lg shadow-navy/20 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {isOtpSending ? <Loader2 className="w-5 h-5 animate-spin" /> : (
                                     <>Confirm Investment <ArrowRight className="w-5 h-5 text-neon" /></>

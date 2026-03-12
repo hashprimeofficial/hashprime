@@ -1,131 +1,145 @@
 "use client";
 
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Link from 'next/link';
-import LightPillar from './LightPillar';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Play, TrendingUp, ShieldCheck } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 gsap.registerPlugin(useGSAP);
-
-// Currency symbols — size = desktop px, mobileSize = mobile px, hideMobile = hide on small screens
-const symbols = [
-    { char: '$', cls: 'cs-1', top: '12%', left: '2%', size: 88, mobileSize: 36, hideMobile: false },
-    { char: '₹', cls: 'cs-2', top: '15%', right: '2%', size: 74, mobileSize: 32, hideMobile: false },
-    { char: '€', cls: 'cs-3', top: '60%', left: '1%', size: 64, mobileSize: 28, hideMobile: true },
-    { char: '£', cls: 'cs-5', bottom: '16%', right: '2%', size: 68, mobileSize: 28, hideMobile: true },
-];
 
 export default function Hero() {
     const containerRef = useRef(null);
 
     useGSAP(() => {
-        const tl = gsap.timeline({ delay: 0.05 });
-        tl.fromTo('.hero-badge', { y: -18, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' })
-            .fromTo('.hero-line-1', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: 'power4.out' }, '-=0.1')
-            .fromTo('.hero-line-2', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.8, ease: 'power4.out' }, '-=0.6')
-            .fromTo('.hero-sub', { x: -20, opacity: 0 }, { x: 0, opacity: 1, duration: 0.55, ease: 'power3.out' }, '-=0.4')
-            .fromTo('.hero-cta', { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out', stagger: 0.1 }, '-=0.3')
-            .fromTo('.hero-lottie-wrap', { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, ease: 'back.out(1.2)' }, '-=0.8')
-            .fromTo('.cs-wrap', { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.5)', stagger: 0.1 }, '-=0.3');
+        const tl = gsap.timeline({ delay: 0.1 });
 
-        tl.call(() => {
-            gsap.to('.cs-1', { y: -36, x: 14, rotation: 10, duration: 4.5, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-            gsap.to('.cs-2', { y: 28, x: -18, rotation: -12, duration: 5.2, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.4 });
-            gsap.to('.cs-3', { y: -22, x: 10, rotation: 8, duration: 6.0, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.6 });
-            gsap.to('.cs-5', { y: -24, x: 8, rotation: 11, duration: 4.8, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.8 });
-        });
+        tl.fromTo('.hero-glass-badge', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power4.out' })
+            .fromTo('.hero-title-line', { y: 40, opacity: 0, rotationX: 10 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.9, stagger: 0.2, ease: 'power4.out' }, '-=0.6')
+            .fromTo('.hero-desc', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.4')
+            .fromTo('.hero-actions', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, '-=0.5')
+            .fromTo('.hero-floating-card', { x: 50, opacity: 0 }, { x: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'back.out(1.2)' }, '-=0.4');
+
+        // Continuous floating animation
+        gsap.to('.hero-float-1', { y: -15, duration: 3, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+        gsap.to('.hero-float-2', { y: 15, x: 10, duration: 4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1 });
+
+        // Scanline animation
+        gsap.to('.hero-scanline', { top: '100%', duration: 8, repeat: -1, ease: 'none' });
 
     }, { scope: containerRef });
 
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white pt-24 pb-16"
+            className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A0A0A] pt-24 pb-20 perspective-1000"
         >
-            {/* Background */}
-            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-65">
-                <LightPillar
-                    topColor="#39FF14" bottomColor="#10B981"
-                    intensity={0.8} rotationSpeed={0.15} glowAmount={0.005}
-                    pillarWidth={2} pillarHeight={0.25} noiseIntensity={0.1}
-                    pillarRotation={90} interactive={true} mixBlendMode="normal" quality="high"
-                />
+            {/* Absolute Background Setup */}
+            <div className="absolute inset-0 z-0">
+                {/* Dotted Grid Pattern */}
+                <div className="absolute inset-0 bg-[radial-gradient(#d4af35_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.03]"></div>
+
+                {/* Optical Glows (No CSS linear gradients) */}
+                <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#d4af35] rounded-full blur-[150px] opacity-[0.04]"></div>
+                <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-[#d4af35] rounded-full blur-[120px] opacity-[0.03]"></div>
+
+                {/* Animated Vertical Scanline */}
+                <div className="hero-scanline absolute top-0 left-0 right-0 h-[1px] bg-[#d4af35] opacity-20 blur-[1px]"></div>
             </div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#39FF14] opacity-[0.025] rounded-full blur-3xl pointer-events-none z-0" />
 
-            {/* ── Floating Currency Symbols ─────── */}
-            {symbols.map(({ char, cls, size, mobileSize, hideMobile, top, left, right, bottom }) => (
-                <div
-                    key={cls}
-                    className={`cs-wrap ${cls} absolute z-0 pointer-events-none ${hideMobile ? 'hidden md:flex' : 'flex'}`}
-                    style={{ top, left, right, bottom }}
-                >
-                    <div className="hidden md:flex items-center justify-center" style={{ width: size + 24, height: size + 24 }}>
-                        <span className="font-black text-[#0B1120] opacity-20 select-none leading-none" style={{ fontSize: size * 0.65, lineHeight: 1 }}>
-                            {char}
-                        </span>
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+                {/* Left side content */}
+                <div className="lg:col-span-7 flex flex-col items-start z-20">
+                    <div className="hero-glass-badge inline-flex items-center gap-2 pl-2 pr-4 py-1.5 rounded-full bg-[#121212] border border-[#d4af35]/20 shadow-[0_0_15px_rgba(212,175,53,0.05)] mb-8">
+                        <span className="bg-[#d4af35] text-[#0A0A0A] text-[10px] font-black uppercase px-2 py-1 rounded-full">New</span>
+                        <span className="text-[#d4af35] text-xs font-bold uppercase tracking-widest">Institutional Yield Platform</span>
                     </div>
-                    <div className="flex md:hidden items-center justify-center" style={{ width: mobileSize + 12, height: mobileSize + 12 }}>
-                        <span className="font-black text-[#0B1120] opacity-10 select-none leading-none" style={{ fontSize: mobileSize * 0.65, lineHeight: 1 }}>
-                            {char}
-                        </span>
-                    </div>
-                </div>
-            ))}
 
-            {/* ── Main Content ─────────────────── */}
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-                {/* Left Side: Text */}
-                <div className="flex flex-col items-start text-left">
-
-
-                    <div className="mb-8">
+                    <div className="mb-8 [perspective:1000px]">
                         <div className="overflow-hidden">
-                            <h1 className="hero-line-1 text-shine font-black leading-tight tracking-tight text-[clamp(2.8rem,7vw,5.5rem)] text-[#0B1120]">
-                                Let's Save Money
+                            <h1 className="hero-title-line font-black text-6xl md:text-[5.5rem] leading-[0.9] tracking-tighter text-white drop-shadow-sm mb-2">
+                                REIMAGINE
                             </h1>
                         </div>
                         <div className="overflow-hidden">
-                            <h1 className="hero-line-2 font-black  leading-tight tracking-tight text-[clamp(2.8rem,7vw,5.5rem)] text-[#0B1120]">
-                                For The Future
+                            <h1 className="hero-title-line font-black text-6xl md:text-[5.5rem] leading-[0.9] tracking-tighter text-[#d4af35] mb-2">
+                                YOUR WEALTH
+                            </h1>
+                        </div>
+                        <div className="overflow-hidden">
+                            <h1 className="hero-title-line font-black text-5xl md:text-7xl leading-[0.9] tracking-tighter text-white/50">
+                                FOR THE FUTURE
                             </h1>
                         </div>
                     </div>
 
-                    <p className="hero-sub text-[#0B1120] text-md md:text-lg font-medium max-w-lg mb-12 leading-relaxed opacity-80">
-                        Multiply your wealth with structured plans across stocks, commodities, and global markets. Engineered for elite investors.
+                    <p className="hero-desc text-slate-300 text-lg md:text-xl font-medium max-w-xl mb-12 leading-relaxed">
+                        Execute strategies with precision. We combine deep liquidity, algorithmic trading access, and vault-grade security into a single, seamless terminal.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                    <div className="hero-actions flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto">
                         <Link href="/register"
-                            className="hero-cta group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0B1120] text-white px-10 py-5 rounded-full text-sm font-bold shadow-lg hover:bg-black hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-                            Start Investing
-                            <ArrowUpRight size={16} className="text-[#39FF14] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                            className="group relative flex items-center justify-center gap-3 w-full sm:w-auto bg-[#d4af35] text-[#0A0A0A] px-10 py-5 rounded-full font-black text-sm uppercase tracking-wider overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,53,0.3)]">
+                            <span className="relative z-10 flex items-center gap-2">
+                                Open Account <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                            </span>
+                            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
                         </Link>
-                        <Link href="/markets"
-                            className="hero-cta w-full sm:w-auto inline-flex items-center justify-center border-2 border-slate-200 text-[#0B1120] px-10 py-5 rounded-full text-sm font-bold hover:border-[#39FF14] hover:bg-[#39FF14] hover:text-[#0B1120] transition-all duration-300">
-                            Explore Markets
-                        </Link>
+
+                        <button className="group flex items-center justify-center gap-3 w-full sm:w-auto text-white px-8 py-5 rounded-full font-bold text-sm bg-[#121212] border border-white/5 hover:border-[#d4af35]/50 transition-all hover:bg-[#d4af35]/5">
+                            <div className="w-8 h-8 rounded-full bg-[#d4af35]/10 flex items-center justify-center group-hover:bg-[#d4af35] transition-colors">
+                                <Play size={14} className="text-[#d4af35] group-hover:text-[#0A0A0A] ml-1 transition-colors" />
+                            </div>
+                            How It Works
+                        </button>
                     </div>
                 </div>
 
-                {/* Right Side: Lottie */}
-                <div className="hero-lottie-wrap relative w-full aspect-square max-w-[350px] mx-auto lg:ml-auto">
-                    <div className="absolute inset-0 bg-[#39FF14]/5 rounded-full blur-[100px] animate-pulse" />
-                    <DotLottieReact
-                        src="https://lottie.host/5c4816c7-cb2f-4fd4-aab5-971db825b83e/mi4CERlSie.lottie"
-                        autoplay
-                        loop
-                        style={{ width: '100%', height: '100%', transform: 'scale(1.1)' }}
-                    />
+                {/* Right side immersive visuals */}
+                <div className="lg:col-span-5 relative w-full aspect-square md:aspect-[4/5] z-10">
+                    {/* Dark Golden Central Globe/Lottie */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="absolute w-[300px] h-[300px] bg-[#d4af35] rounded-full blur-[100px] opacity-[0.08] animate-pulse"></div>
+                        <div className="w-[120%] h-[120%] relative z-10">
+                            <DotLottieReact
+                                src="https://lottie.host/5c4816c7-cb2f-4fd4-aab5-971db825b83e/mi4CERlSie.lottie"
+                                autoplay
+                                loop
+                                className="w-full h-full scale-[1.2] drop-shadow-[0_0_20px_rgba(212,175,53,0.2)]"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Immersive Floating Glass Cards */}
+                    <div className="hero-floating-card hero-float-1 absolute top-[15%] right-[-5%] sm:right-[-10%] md:right-0 bg-[#121212]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-[0_20px_40px_rgba(0,0,0,0.5)] w-48 z-20">
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="w-8 h-8 rounded-full bg-[#d4af35]/10 flex items-center justify-center border border-[#d4af35]/20">
+                                <TrendingUp size={14} className="text-[#d4af35]" />
+                            </div>
+                            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Live Yield</span>
+                        </div>
+                        <div className="text-2xl font-black text-white">+14.2%</div>
+                        <div className="text-[10px] text-[#d4af35] font-bold mt-1">Global average APY</div>
+                    </div>
+
+                    <div className="hero-floating-card hero-float-2 absolute bottom-[20%] left-[-5%] sm:left-[-10%] md:left-[-20%] bg-[#121212]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-[0_20px_40px_rgba(0,0,0,0.5)] w-52 z-20">
+                        <div className="flex items-center gap-3 mb-2">
+                            <div className="w-8 h-8 rounded-full bg-[#d4af35]/10 flex items-center justify-center border border-[#d4af35]/20">
+                                <ShieldCheck size={14} className="text-[#d4af35]" />
+                            </div>
+                            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Vault Status</span>
+                        </div>
+                        <div className="text-lg font-black text-white">Secured</div>
+                        <div className="text-[10px] text-[#d4af35] font-bold mt-1">Multi-sig verified</div>
+                    </div>
+
+                    {/* Frame elements */}
+                    <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-[#d4af35]/20 rounded-tr-3xl"></div>
+                    <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-[#d4af35]/20 rounded-bl-3xl"></div>
                 </div>
             </div>
-
-            <div className="absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
         </section>
     );
 }

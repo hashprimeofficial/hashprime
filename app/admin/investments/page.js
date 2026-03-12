@@ -26,7 +26,7 @@ export default function AdminInvestmentsPage() {
     // Filter State
     const [filterStatus, setFilterStatus] = useState('all');
 
-    if (isLoading) return <div className="text-slate-400 animate-pulse font-medium">Loading investments...</div>;
+    if (isLoading) return <div className="text-slate-300 animate-pulse font-medium">Loading investments...</div>;
     if (error) return <div className="text-red-500 font-bold">Failed to load investments data</div>;
 
     const { investments = [] } = data || {};
@@ -165,20 +165,20 @@ export default function AdminInvestmentsPage() {
         <div className="space-y-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-black text-navy mb-2 tracking-tight">Investments Ledger</h1>
+                    <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Investments Ledger</h1>
                     <p className="text-slate-500 font-medium">View, edit, and manage all protocol capital locked across all schemes.</p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
                     <button
                         onClick={handleProcessMatured}
                         disabled={isProcessing}
-                        className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-5 rounded-xl flex items-center justify-center gap-2 transition-colors border border-slate-200 disabled:opacity-50"
+                        className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-5 rounded-xl flex items-center justify-center gap-2 transition-colors border border-white/10 disabled:opacity-50"
                     >
                         {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Process Matured'}
                     </button>
                     <button
                         onClick={() => setIsCreating(true)}
-                        className="bg-navy hover:bg-black text-white font-bold py-2.5 px-5 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-lg shadow-navy/20"
+                        className="bg-[#d4af35] hover:bg-[#121212]/10 text-white font-bold py-2.5 px-5 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-lg shadow-navy/20"
                     >
                         <PlusCircle className="w-5 h-5 text-neon" />
                         Create Investment
@@ -193,8 +193,8 @@ export default function AdminInvestmentsPage() {
                         key={status}
                         onClick={() => setFilterStatus(status)}
                         className={`px-4 py-2 rounded-xl text-sm font-bold capitalize transition-colors border ${filterStatus === status
-                                ? 'bg-navy text-white border-navy'
-                                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+                                ? 'bg-[#d4af35] text-white border-[#d4af35]'
+                                : 'bg-[#121212] text-slate-200 border-white/10 hover:bg-[#121212]/5'
                             }`}
                     >
                         {status === 'pending' ? 'requested' : status}
@@ -202,10 +202,10 @@ export default function AdminInvestmentsPage() {
                 ))}
             </div>
 
-            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+            <div className="bg-[#121212] border border-white/10 rounded-2xl overflow-hidden shadow-sm">
                 <div className="overflow-x-auto min-h-[50vh]">
                     <table className="w-full text-left whitespace-nowrap border-collapse">
-                        <thead className="bg-slate-50 text-slate-500 text-sm border-b border-slate-200">
+                        <thead className="bg-[#121212]/5 text-slate-500 text-sm border-b border-white/10">
                             <tr>
                                 <th className="px-6 py-4 font-bold">Investor</th>
                                 <th className="px-6 py-4 font-bold">Amount (INR)</th>
@@ -218,15 +218,15 @@ export default function AdminInvestmentsPage() {
                         </thead>
                         <tbody className="divide-y divide-slate-100">
                             {filteredInvestments.map((inv) => (
-                                <tr key={inv._id} className="hover:bg-slate-50 transition-colors group">
+                                <tr key={inv._id} className="hover:bg-[#121212]/5 transition-colors group">
                                     <td className="px-6 py-4">
-                                        <div className="font-bold text-navy">{inv.userId?.name || 'Unknown User (Deleted)'}</div>
+                                        <div className="font-bold text-white">{inv.userId?.name || 'Unknown User (Deleted)'}</div>
                                         <div className="text-xs font-medium text-slate-500">{inv.userId?.email || `${inv.userId}`}</div>
                                     </td>
-                                    <td className="px-6 py-4 font-black text-navy">₹{inv.amount.toLocaleString('en-IN')}</td>
+                                    <td className="px-6 py-4 font-black text-white">₹{inv.amount.toLocaleString('en-IN')}</td>
                                     <td className="px-6 py-4 font-black text-green-600">+{inv.usdtReward?.toFixed(2) || '0.00'}</td>
                                     <td className="px-6 py-4">
-                                        <span className="bg-navy text-white px-2.5 py-1 rounded text-xs uppercase font-bold shadow-sm">{inv.schemeType} Plan</span>
+                                        <span className="bg-[#d4af35] text-white px-2.5 py-1 rounded text-xs uppercase font-bold shadow-sm">{inv.schemeType} Plan</span>
                                     </td>
                                     <td className="px-6 py-4 text-sm font-medium text-slate-500">
                                         {inv.maturesAt ? new Date(inv.maturesAt).toLocaleDateString() : 'N/A'}
@@ -235,7 +235,7 @@ export default function AdminInvestmentsPage() {
                                         <span className={`px-2.5 py-1 rounded text-xs font-bold shadow-sm capitalize ${inv.status === 'active' ? 'bg-green-100 text-green-700' :
                                                 inv.status === 'pending' ? 'bg-amber-100 text-amber-700 border border-amber-200' :
                                                     inv.status === 'completed' ? 'bg-blue-100 text-blue-700' :
-                                                        'bg-slate-100 text-slate-600'
+                                                        'bg-slate-100 text-slate-200'
                                             }`}>
                                             {inv.status === 'pending' ? 'requested' : inv.status}
                                         </span>
@@ -271,7 +271,7 @@ export default function AdminInvestmentsPage() {
                             ))}
                             {filteredInvestments.length === 0 && (
                                 <tr>
-                                    <td colSpan="7" className="px-6 py-12 text-center text-slate-500 font-medium bg-slate-50 flex flex-col items-center justify-center">
+                                    <td colSpan="7" className="px-6 py-12 text-center text-slate-500 font-medium bg-[#121212]/5 flex flex-col items-center justify-center">
                                         <ShieldAlert className="w-10 h-10 text-slate-300 mb-3" />
                                         No investments recorded in the platform yet.
                                     </td>
@@ -285,23 +285,23 @@ export default function AdminInvestmentsPage() {
             {/* Edit Investment Modal */}
             <AnimatePresence>
                 {editingInvestment && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-navy/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                        <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden border border-slate-200">
-                            <div className="flex justify-between items-center p-6 border-b border-slate-100 bg-slate-50">
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-[#d4af35]/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                        <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="bg-[#121212] rounded-3xl shadow-2xl w-full max-w-md overflow-hidden border border-white/10">
+                            <div className="flex justify-between items-center p-6 border-b border-white/5 bg-[#121212]/5">
                                 <div>
-                                    <h3 className="text-xl font-black text-navy border-b-2 border-neon inline-block pb-1">Edit Investment</h3>
+                                    <h3 className="text-xl font-black text-white border-b-2 border-neon inline-block pb-1">Edit Investment</h3>
                                     <p className="text-xs text-slate-500 font-medium mt-2">
-                                        User: <strong className="text-navy">{editingInvestment.userId?.name}</strong> • Amount: <strong className="text-navy">₹{editingInvestment.amount.toLocaleString('en-IN')}</strong>
+                                        User: <strong className="text-white">{editingInvestment.userId?.name}</strong> • Amount: <strong className="text-white">₹{editingInvestment.amount.toLocaleString('en-IN')}</strong>
                                     </p>
                                 </div>
-                                <button onClick={() => setEditingInvestment(null)} className="text-slate-400 hover:text-navy transition-colors bg-white p-1 rounded-full shadow-sm">
+                                <button onClick={() => setEditingInvestment(null)} className="text-slate-300 hover:text-white transition-colors bg-[#121212] p-1 rounded-full shadow-sm">
                                     <X className="w-5 h-5" />
                                 </button>
                             </div>
                             <form onSubmit={handleSaveEdit} className="p-6 space-y-5">
                                 <div>
-                                    <label className="block text-sm font-bold text-navy mb-2">Change Status</label>
-                                    <select name="status" defaultValue={editingInvestment.status} className="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-navy font-bold focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all cursor-pointer shadow-sm">
+                                    <label className="block text-sm font-bold text-white mb-2">Change Status</label>
+                                    <select name="status" defaultValue={editingInvestment.status} className="w-full bg-[#121212] border border-white/10 rounded-xl px-4 py-3 text-white font-bold focus:outline-none focus:ring-2 focus:ring-neon focus:border-neon transition-all cursor-pointer shadow-sm">
                                         <option value="pending">Pending</option>
                                         <option value="active">Active</option>
                                         <option value="completed">Completed</option>
@@ -309,8 +309,8 @@ export default function AdminInvestmentsPage() {
                                     </select>
                                 </div>
                                 <div className="pt-2 flex gap-3">
-                                    <button type="button" onClick={() => setEditingInvestment(null)} className="flex-1 py-3.5 text-slate-500 font-bold hover:bg-slate-50 rounded-xl transition-colors border border-transparent hover:border-slate-200">Cancel</button>
-                                    <button type="submit" disabled={isSaving} className="flex-1 py-3.5 bg-neon hover:bg-[#32e512] text-navy font-black rounded-xl shadow-lg transition-all flex justify-center items-center disabled:opacity-50">
+                                    <button type="button" onClick={() => setEditingInvestment(null)} className="flex-1 py-3.5 text-slate-500 font-bold hover:bg-[#121212]/5 rounded-xl transition-colors border border-transparent hover:border-white/10">Cancel</button>
+                                    <button type="submit" disabled={isSaving} className="flex-1 py-3.5 bg-neon hover:bg-[#32e512] text-white font-black rounded-xl shadow-lg transition-all flex justify-center items-center disabled:opacity-50">
                                         {isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Save Changes'}
                                     </button>
                                 </div>
@@ -323,17 +323,17 @@ export default function AdminInvestmentsPage() {
             {/* Create Investment Modal */}
             <AnimatePresence>
                 {isCreating && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-navy/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                        <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden border border-slate-200">
-                            <div className="flex justify-between items-center p-6 border-b border-slate-100 bg-slate-50">
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-[#d4af35]/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                        <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className="bg-[#121212] rounded-3xl shadow-2xl w-full max-w-md overflow-hidden border border-white/10">
+                            <div className="flex justify-between items-center p-6 border-b border-white/5 bg-[#121212]/5">
                                 <div>
-                                    <h3 className="text-xl font-black text-navy flex items-center gap-2">
+                                    <h3 className="text-xl font-black text-white flex items-center gap-2">
                                         <span className="w-2 h-2 rounded-full bg-neon animate-pulse" />
                                         Create Investment
                                     </h3>
                                     <p className="text-xs text-slate-500 font-medium mt-1">Deduct from user wallet & activate a scheme.</p>
                                 </div>
-                                <button onClick={() => setIsCreating(false)} className="text-slate-400 hover:text-navy transition-colors bg-white p-1 rounded-full shadow-sm">
+                                <button onClick={() => setIsCreating(false)} className="text-slate-300 hover:text-white transition-colors bg-[#121212] p-1 rounded-full shadow-sm">
                                     <X className="w-5 h-5" />
                                 </button>
                             </div>
@@ -346,38 +346,38 @@ export default function AdminInvestmentsPage() {
                                 )}
 
                                 <div>
-                                    <label className="block text-sm font-bold text-navy mb-1.5">User Email</label>
+                                    <label className="block text-sm font-bold text-white mb-1.5">User Email</label>
                                     <input
                                         type="email"
                                         required
                                         value={createForm.userEmail}
                                         onChange={(e) => setCreateForm({ ...createForm, userEmail: e.target.value })}
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-neon"
+                                        className="w-full bg-[#121212]/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-neon"
                                         placeholder="user@example.com"
                                     />
-                                    <p className="text-xs text-slate-400 mt-1">User must have an approved KYC.</p>
+                                    <p className="text-xs text-slate-300 mt-1">User must have an approved KYC.</p>
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-bold text-navy mb-1.5">Amount (INR)</label>
+                                    <label className="block text-sm font-bold text-white mb-1.5">Amount (INR)</label>
                                     <input
                                         type="number"
                                         min="1"
                                         required
                                         value={createForm.amount}
                                         onChange={(e) => setCreateForm({ ...createForm, amount: e.target.value })}
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-neon font-bold text-navy"
+                                        className="w-full bg-[#121212]/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-neon font-bold text-white"
                                         placeholder="50000"
                                     />
-                                    <p className="text-xs text-slate-400 mt-1">Amount will be deducted from Wallet Balance.</p>
+                                    <p className="text-xs text-slate-300 mt-1">Amount will be deducted from Wallet Balance.</p>
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-bold text-navy mb-1.5">Scheme Type</label>
+                                    <label className="block text-sm font-bold text-white mb-1.5">Scheme Type</label>
                                     <select
                                         value={createForm.schemeType}
                                         onChange={(e) => setCreateForm({ ...createForm, schemeType: e.target.value })}
-                                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-bold text-navy focus:outline-none focus:ring-2 focus:ring-neon cursor-pointer"
+                                        className="w-full bg-[#121212]/5 border border-white/10 rounded-xl px-4 py-3 text-sm font-bold text-white focus:outline-none focus:ring-2 focus:ring-neon cursor-pointer"
                                     >
                                         <option value="3m">3 Months (18% Return)</option>
                                         <option value="6m">6 Months (38% Return)</option>
@@ -387,8 +387,8 @@ export default function AdminInvestmentsPage() {
                                 </div>
 
                                 <div className="pt-2 flex gap-3">
-                                    <button type="button" onClick={() => setIsCreating(false)} className="flex-1 py-3.5 text-slate-500 font-bold hover:bg-slate-50 rounded-xl transition-colors border border-transparent hover:border-slate-200">Cancel</button>
-                                    <button type="submit" disabled={isCreatingSubmitting} className="flex-1 py-3.5 bg-navy hover:bg-black text-white font-black rounded-xl shadow-lg transition-all flex justify-center items-center gap-2 disabled:opacity-50">
+                                    <button type="button" onClick={() => setIsCreating(false)} className="flex-1 py-3.5 text-slate-500 font-bold hover:bg-[#121212]/5 rounded-xl transition-colors border border-transparent hover:border-white/10">Cancel</button>
+                                    <button type="submit" disabled={isCreatingSubmitting} className="flex-1 py-3.5 bg-[#d4af35] hover:bg-[#121212]/10 text-white font-black rounded-xl shadow-lg transition-all flex justify-center items-center gap-2 disabled:opacity-50">
                                         {isCreatingSubmitting ? <Loader2 className="w-5 h-5 animate-spin text-neon" /> : 'Create & Activate'}
                                     </button>
                                 </div>

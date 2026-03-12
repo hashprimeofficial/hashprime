@@ -9,11 +9,11 @@ import { ShieldCheck, Lock, Eye, Server, FileCheck, BadgeCheck } from "lucide-re
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const SecurityFeature = ({ icon: Icon, title, description, color }) => (
-    <div className="group bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 reveal-card">
+    <div className="group bg-[#121212] border border-white/10 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 reveal-card">
         <div className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
             <Icon className="w-6 h-6 text-white" />
         </div>
-        <h3 className="text-lg font-black text-navy mb-2">{title}</h3>
+        <h3 className="text-lg font-black text-white mb-2">{title}</h3>
         <p className="text-slate-500 text-sm font-medium leading-relaxed">{description}</p>
     </div>
 );
@@ -87,20 +87,20 @@ export default function SecurityPage() {
     }, { scope: containerRef });
 
     return (
-        <div ref={containerRef} className="min-h-screen bg-slate-50 text-slate-800 pt-32 pb-24 px-4 sm:px-6">
+        <div ref={containerRef} className="min-h-screen bg-[#121212]/5 text-slate-100 pt-32 pb-24 px-4 sm:px-6">
             {/* Background blobs */}
-            <div className="fixed top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-emerald-100/60 via-transparent to-transparent rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2 z-0" />
+            <div className="fixed top-0 right-0 w-[600px] h-[600px] bg-[#d4af35]/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2 z-0" />
 
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Hero Header */}
                 <div className="text-center mb-20">
-                    <div className="reveal-text inline-flex items-center space-x-2 bg-white border border-slate-200 py-2 px-4 rounded-full mb-8 shadow-sm">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                        <span className="text-sm font-bold text-slate-600 uppercase tracking-widest">Bank-Grade Protection</span>
+                    <div className="reveal-text inline-flex items-center space-x-2 bg-[#121212] border border-white/10 py-2 px-4 rounded-full mb-8 shadow-sm">
+                        <span className="w-2 h-2 rounded-full bg-[#d4af35] animate-pulse" />
+                        <span className="text-sm font-bold text-slate-200 uppercase tracking-widest">Bank-Grade Protection</span>
                     </div>
-                    <h1 className="reveal-text text-5xl md:text-7xl font-black mb-6 tracking-tighter text-navy leading-none">
+                    <h1 className="reveal-text text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white leading-none">
                         Uncompromising <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-400">Security</span>
+                        <span className="text-[#d4af35]
                     </h1>
                     <p className="reveal-text text-xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
                         Your capital and your data are protected by the same standards used by global financial institutions. Here's exactly how.
@@ -110,8 +110,8 @@ export default function SecurityPage() {
                 {/* Stats Row */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
                     {STATS.map((stat) => (
-                        <div key={stat.label} className="stat-item bg-white border border-slate-100 rounded-2xl p-6 text-center shadow-sm">
-                            <div className="text-3xl font-black text-navy mb-1">{stat.suffix}{stat.value}</div>
+                        <div key={stat.label} className="stat-item bg-[#121212] border border-white/5 rounded-2xl p-6 text-center shadow-sm">
+                            <div className="text-3xl font-black text-white mb-1">{stat.suffix}{stat.value}</div>
                             <div className="text-slate-500 text-sm font-semibold">{stat.label}</div>
                         </div>
                     ))}
@@ -125,7 +125,7 @@ export default function SecurityPage() {
                 </div>
 
                 {/* Trust Banner */}
-                <div className="bg-navy rounded-3xl p-10 md:p-14 text-center relative overflow-hidden shadow-2xl">
+                <div className="bg-[#d4af35] rounded-3xl p-10 md:p-14 text-center relative overflow-hidden shadow-2xl">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-neon/20 blur-3xl rounded-full pointer-events-none" />
                     <ShieldCheck className="w-14 h-14 text-neon mx-auto mb-6" />
                     <h2 className="text-3xl md:text-4xl font-black text-white mb-4 relative z-10">Your Trust is Our Foundation</h2>
@@ -133,10 +133,10 @@ export default function SecurityPage() {
                         We have never experienced a security breach. We intend to keep it that way — through continuous investment in the best people, processes, and technology available.
                     </p>
                     <div className="flex flex-wrap gap-3 justify-center relative z-10">
-                        <span className="bg-white/10 text-white border border-white/20 px-4 py-2 rounded-full text-sm font-bold">✓ HTTPS Enforced</span>
-                        <span className="bg-white/10 text-white border border-white/20 px-4 py-2 rounded-full text-sm font-bold">✓ HttpOnly Cookies</span>
-                        <span className="bg-white/10 text-white border border-white/20 px-4 py-2 rounded-full text-sm font-bold">✓ CSRF Protected</span>
-                        <span className="bg-white/10 text-white border border-white/20 px-4 py-2 rounded-full text-sm font-bold">✓ XSS Hardened</span>
+                        <span className="bg-[#121212]/10 text-white border border-white/20 px-4 py-2 rounded-full text-sm font-bold">✓ HTTPS Enforced</span>
+                        <span className="bg-[#121212]/10 text-white border border-white/20 px-4 py-2 rounded-full text-sm font-bold">✓ HttpOnly Cookies</span>
+                        <span className="bg-[#121212]/10 text-white border border-white/20 px-4 py-2 rounded-full text-sm font-bold">✓ CSRF Protected</span>
+                        <span className="bg-[#121212]/10 text-white border border-white/20 px-4 py-2 rounded-full text-sm font-bold">✓ XSS Hardened</span>
                     </div>
                 </div>
             </div>

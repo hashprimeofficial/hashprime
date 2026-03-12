@@ -14,7 +14,7 @@ export default function DashboardOverview() {
     const { data: rateData } = useSWR('/api/exchange-rate', fetcher);
     const [copied, setCopied] = useState(false);
 
-    if (isLoading) return <div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-4 py-1"><div className="h-4 bg-white/10 rounded w-3/4"></div><div className="space-y-2"><div className="h-4 bg-white/10 rounded"></div><div className="h-4 bg-white/10 rounded w-5/6"></div></div></div></div>;
+    if (isLoading) return <div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-4 py-1"><div className="h-4 bg-[#121212]/10 rounded w-3/4"></div><div className="space-y-2"><div className="h-4 bg-[#121212]/10 rounded"></div><div className="h-4 bg-[#121212]/10 rounded w-5/6"></div></div></div></div>;
     if (error || !data) return <div className="text-red-500">Failed to load dashboard</div>;
     if (data.error) return <div className="text-red-500">{data.error}</div>;
 
@@ -64,31 +64,31 @@ export default function DashboardOverview() {
     return (
         <div className="space-y-8">
             <div>
-                <h1 className="text-3xl font-black text-navy mb-2 tracking-tight">Welcome, {user.name}</h1>
+                <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Welcome, {user.name}</h1>
                 <p className="text-slate-500 font-medium">Here's an overview of your wealth generation.</p>
             </div>
 
             {!isProfileFullyComplete && (
                 <div className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 shadow-sm overflow-hidden relative">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl flex items-center justify-center -mr-10 -mt-10 pointer-events-none" />
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af35]/10 rounded-full blur-2xl flex items-center justify-center -mr-10 -mt-10 pointer-events-none" />
                     <div className="flex items-start gap-4">
                         <div className="pt-1">
                             <AlertCircle className="w-8 h-8 text-amber-500" />
                         </div>
                         <div className="flex-1">
                             <h2 className="text-xl font-black text-amber-900 mb-2">Complete Your Profile</h2>
-                            <p className="text-sm font-medium text-amber-800/80 mb-5">
+                            <p className="text-sm font-medium text-#d4af35/10 mb-5">
                                 Essential security and verification steps are missing. Completing these unlocks full access to deposits, investments, and fast withdrawals.
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {completionItems.map((item, idx) => {
                                     const Icon = item.icon;
                                     return (
-                                        <Link href={item.link} key={idx} className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${item.check ? 'bg-white/50 border-amber-100 opacity-60' : 'bg-white border-amber-300 hover:border-amber-400 hover:shadow-md cursor-pointer'}`}>
-                                            <div className={`p-2 rounded-lg ${item.check ? 'bg-green-100 text-green-600' : 'bg-slate-100 text-slate-400'}`}>
+                                        <Link href={item.link} key={idx} className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${item.check ? 'bg-[#121212]/50 border-amber-100 opacity-60' : 'bg-[#121212] border-amber-300 hover:border-amber-400 hover:shadow-md cursor-pointer'}`}>
+                                            <div className={`p-2 rounded-lg ${item.check ? 'bg-green-100 text-green-600' : 'bg-slate-100 text-slate-300'}`}>
                                                 {item.check ? <CheckCircle2 className="w-5 h-5" /> : <Icon className="w-5 h-5" />}
                                             </div>
-                                            <span className={`text-sm font-bold ${item.check ? 'text-amber-900 line-through decoration-amber-300' : 'text-navy'}`}>{item.title}</span>
+                                            <span className={`text-sm font-bold ${item.check ? 'text-amber-900 line-through decoration-amber-300' : 'text-white'}`}>{item.title}</span>
                                         </Link>
                                     );
                                 })}
@@ -100,28 +100,28 @@ export default function DashboardOverview() {
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0 }} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm">
-                    <div className="flex items-center gap-3 mb-4 text-navy"><Wallet className="w-5 h-5 text-neon" /> <h3 className="font-bold">Total Capital</h3></div>
-                    <div className="text-4xl font-black text-navy mb-1 leading-tight">₹{(user.walletBalance || 0).toLocaleString('en-IN')}</div>
-                    <div className="flex items-center gap-2 mt-4 pt-4 border-t border-slate-200">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0 }} className="bg-[#121212]/5 border border-white/10 p-6 rounded-2xl shadow-sm">
+                    <div className="flex items-center gap-3 mb-4 text-white"><Wallet className="w-5 h-5 text-neon" /> <h3 className="font-bold">Total Capital</h3></div>
+                    <div className="text-4xl font-black text-white mb-1 leading-tight">₹{(user.walletBalance || 0).toLocaleString('en-IN')}</div>
+                    <div className="flex items-center gap-2 mt-4 pt-4 border-t border-white/10">
                         <div className="bg-green-50 text-green-700 px-2 py-1 rounded text-[10px] font-black uppercase tracking-wider border border-green-200">Trading Profits</div>
-                        <div className="text-lg font-black text-navy">
+                        <div className="text-lg font-black text-white">
                             ₹{usdtBalanceInr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
-                            <span className="text-xs text-slate-400 font-bold ml-1">({(user.usdtBalance || 0).toFixed(2)} USDT)</span>
+                            <span className="text-xs text-slate-300 font-bold ml-1">({(user.usdtBalance || 0).toFixed(2)} USDT)</span>
                         </div>
                     </div>
                 </motion.div>
 
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.1 }} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm">
-                    <div className="flex items-center gap-3 mb-4 text-navy"><Clock className="w-5 h-5 text-blue-500" /> <h3 className="font-bold">Total Invested</h3></div>
-                    <div className="text-4xl font-black text-navy mb-1">₹{totalInvested.toLocaleString('en-IN')}</div>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.1 }} className="bg-[#121212]/5 border border-white/10 p-6 rounded-2xl shadow-sm">
+                    <div className="flex items-center gap-3 mb-4 text-white"><Clock className="w-5 h-5 text-blue-500" /> <h3 className="font-bold">Total Invested</h3></div>
+                    <div className="text-4xl font-black text-white mb-1">₹{totalInvested.toLocaleString('en-IN')}</div>
                     <p className="text-sm text-slate-500 mt-4 font-medium">Across {investments.length} active scheme(s)</p>
                 </motion.div>
 
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.2 }} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl shadow-sm">
-                    <div className="flex items-center gap-3 mb-4 text-navy"><ArrowUpRight className="w-5 h-5 text-green-500" /> <h3 className="font-bold">Expected Return</h3></div>
-                    <div className="text-4xl font-black text-navy mb-1">₹{totalExpectedReturnInr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
-                    <p className="text-xs text-slate-400 mt-1 font-medium">≈ {totalExpectedReturnUsdt.toFixed(2)} USDT @ ₹{usdtToInr.toFixed(2)}/USDT</p>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.2 }} className="bg-[#121212]/5 border border-white/10 p-6 rounded-2xl shadow-sm">
+                    <div className="flex items-center gap-3 mb-4 text-white"><ArrowUpRight className="w-5 h-5 text-amber-500" /> <h3 className="font-bold">Expected Return</h3></div>
+                    <div className="text-4xl font-black text-white mb-1">₹{totalExpectedReturnInr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
+                    <p className="text-xs text-slate-300 mt-1 font-medium">≈ {totalExpectedReturnUsdt.toFixed(2)} USDT @ ₹{usdtToInr.toFixed(2)}/USDT</p>
                     <p className="text-sm text-slate-500 mt-3 font-medium">Total protocol maturity yield</p>
                 </motion.div>
             </div>
@@ -130,15 +130,15 @@ export default function DashboardOverview() {
                 {/* Recent Investments */}
                 <div>
                     <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-xl font-black text-navy">Recent Investments</h2>
-                        <Link href="/dashboard/invest" className="text-sm font-bold text-navy underline decoration-neon decoration-2 hover:text-black transition-colors">New Investment &rarr;</Link>
+                        <h2 className="text-xl font-black text-white">Recent Investments</h2>
+                        <Link href="/dashboard/invest" className="text-sm font-bold text-white underline decoration-neon decoration-2 hover:text-white transition-colors">New Investment &rarr;</Link>
                     </div>
-                    <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                    <div className="bg-[#121212] border border-white/10 rounded-2xl shadow-sm overflow-hidden">
                         {investments.length === 0 ? (
-                            <div className="p-8 text-center text-slate-500 font-medium bg-slate-50/50">No active investments yet. Start generating wealth today.</div>
+                            <div className="p-8 text-center text-slate-500 font-medium bg-[#121212]/5/50">No active investments yet. Start generating wealth today.</div>
                         ) : (
                             <table className="w-full text-left">
-                                <thead className="bg-slate-50 text-slate-500 text-sm border-b border-slate-200">
+                                <thead className="bg-[#121212]/5 text-slate-500 text-sm border-b border-white/10">
                                     <tr>
                                         <th className="px-6 py-4 font-bold">Scheme</th>
                                         <th className="px-6 py-4 font-bold">Amount</th>
@@ -148,14 +148,14 @@ export default function DashboardOverview() {
                                 </thead>
                                 <tbody className="divide-y divide-slate-100">
                                     {investments.slice(0, 5).map(inv => (
-                                        <tr key={inv._id} className="hover:bg-slate-50 transition-colors border-b border-slate-50 last:border-0">
+                                        <tr key={inv._id} className="hover:bg-[#121212]/5 transition-colors border-b border-slate-50 last:border-0">
                                             <td className="px-6 py-5">
                                                 <span className="bg-slate-100 text-slate-500 px-2 py-1 rounded text-[10px] font-black uppercase tracking-wider">{inv.schemeType} Plan</span>
                                             </td>
-                                            <td className="px-6 py-5 font-black text-navy text-lg">₹{inv.amount.toLocaleString('en-IN')}</td>
+                                            <td className="px-6 py-5 font-black text-white text-lg">₹{inv.amount.toLocaleString('en-IN')}</td>
                                             <td className="px-6 py-5 text-green-600 font-extrabold">
                                                 +₹{(inv.usdtReward * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
-                                                <span className="text-[10px] text-slate-400 ml-1">({inv.usdtReward.toFixed(2)} USDT)</span>
+                                                <span className="text-[10px] text-slate-300 ml-1">({inv.usdtReward.toFixed(2)} USDT)</span>
                                             </td>
                                             <td className="px-6 py-5">
                                                 {inv.status === 'pending' && (
@@ -169,7 +169,7 @@ export default function DashboardOverview() {
                                                     </span>
                                                 )}
                                                 {inv.status === 'completed' && (
-                                                    <span className="inline-flex items-center gap-1.5 bg-slate-100 text-slate-600 border border-slate-200 px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter">
+                                                    <span className="inline-flex items-center gap-1.5 bg-slate-100 text-slate-200 border border-white/10 px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter">
                                                         <CheckCircle2 className="w-3 h-3" /> Completed
                                                     </span>
                                                 )}
@@ -186,14 +186,14 @@ export default function DashboardOverview() {
                 <div className="space-y-6">
                     {/* Referral Link Card */}
                     <div>
-                        <h2 className="text-xl font-black text-navy mb-4">Invite &amp; Earn 5% Instant</h2>
-                        <div className="bg-navy border border-slate-800 p-6 rounded-2xl shadow-lg relative overflow-hidden">
+                        <h2 className="text-xl font-black text-white mb-4">Invite &amp; Earn 5% Instant</h2>
+                        <div className="bg-[#d4af35] border border-slate-800 p-6 rounded-2xl shadow-lg relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-neon/20 blur-[50px] rounded-full"></div>
                             <h3 className="text-lg font-bold text-white mb-2">Your Referral Link</h3>
                             <p className="text-sm text-slate-300 mb-4 font-medium">Earn 5% of capital invested by your referrals, paid in INR.</p>
-                            <div className="flex bg-white/10 border border-white/20 rounded-lg overflow-hidden backdrop-blur-sm shadow-inner">
-                                <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user.referralCode || user._id}` : ''} className="flex-1 bg-transparent px-4 py-3 text-sm text-white font-medium outline-none" />
-                                <button onClick={copyRefLink} className="bg-neon hover:bg-[#32e512] px-4 py-3 text-navy font-bold transition-colors flex items-center gap-2">
+                            <div className="flex bg-[#121212]/10 border border-white/20 rounded-lg overflow-hidden backdrop-blur-sm shadow-inner">
+                                <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user.referralCode || user._id}` : ''} className="flex-1 bg-transparent text-white text-white px-4 py-3 text-sm text-white font-medium outline-none" />
+                                <button onClick={copyRefLink} className="bg-neon hover:bg-[#32e512] px-4 py-3 text-white font-bold transition-colors flex items-center gap-2">
                                     {copied ? <CheckCircle2 className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                                     <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy'}</span>
                                 </button>
@@ -204,12 +204,12 @@ export default function DashboardOverview() {
                     {/* Recent Deposits */}
                     <div>
                         <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-black text-navy">Recent Deposits</h2>
-                            <Link href="/dashboard/deposit" className="text-sm font-bold text-navy underline decoration-neon decoration-2 hover:text-black transition-colors">+ New Deposit</Link>
+                            <h2 className="text-xl font-black text-white">Recent Deposits</h2>
+                            <Link href="/dashboard/deposit" className="text-sm font-bold text-white underline decoration-neon decoration-2 hover:text-white transition-colors">+ New Deposit</Link>
                         </div>
-                        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden p-2">
+                        <div className="bg-[#121212] border border-white/10 rounded-2xl shadow-sm overflow-hidden p-2">
                             {recentDeposits.length === 0 ? (
-                                <div className="p-6 text-center text-sm font-medium text-slate-500 bg-slate-50/50 rounded-xl m-2">No deposits yet.</div>
+                                <div className="p-6 text-center text-sm font-medium text-slate-500 bg-[#121212]/5/50 rounded-xl m-2">No deposits yet.</div>
                             ) : (
                                 <ul className="divide-y divide-slate-100">
                                     {recentDeposits.map(dep => {
@@ -218,13 +218,13 @@ export default function DashboardOverview() {
                                             ? `₹${(dep.amount * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })} (≈$${dep.amount})`
                                             : `₹${dep.amount.toLocaleString('en-IN')}`;
                                         return (
-                                            <li key={dep._id} className="p-4 flex justify-between items-center hover:bg-slate-50 rounded-xl transition-colors">
+                                            <li key={dep._id} className="p-4 flex justify-between items-center hover:bg-[#121212]/5 rounded-xl transition-colors">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-9 h-9 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-inner">
-                                                        {isUsdt ? <Coins className="w-4 h-4 text-blue-500" /> : <IndianRupee className="w-4 h-4 text-slate-400" />}
+                                                    <div className="w-9 h-9 rounded-full bg-[#121212]/5 flex items-center justify-center border border-white/5 shadow-inner">
+                                                        {isUsdt ? <Coins className="w-4 h-4 text-blue-500" /> : <IndianRupee className="w-4 h-4 text-slate-300" />}
                                                     </div>
                                                     <div>
-                                                        <p className="text-navy font-bold text-sm">{displayAmount}</p>
+                                                        <p className="text-white font-bold text-sm">{displayAmount}</p>
                                                         <p className="text-slate-500 text-[10px] mt-0.5 font-medium">{new Date(dep.createdAt).toLocaleDateString()} · {isUsdt ? 'USDC BEP20' : 'Bank Transfer'}</p>
                                                     </div>
                                                 </div>
@@ -243,34 +243,34 @@ export default function DashboardOverview() {
 
                     {/* Recent Transactions */}
                     <div>
-                        <h2 className="text-xl font-black text-navy mb-4">Recent Transactions</h2>
-                        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden p-2">
+                        <h2 className="text-xl font-black text-white mb-4">Recent Transactions</h2>
+                        <div className="bg-[#121212] border border-white/10 rounded-2xl shadow-sm overflow-hidden p-2">
                             {transactions.length === 0 ? (
-                                <div className="p-6 text-center text-sm font-medium text-slate-500 bg-slate-50/50 rounded-xl m-2">No transactions recorded.</div>
+                                <div className="p-6 text-center text-sm font-medium text-slate-500 bg-[#121212]/5/50 rounded-xl m-2">No transactions recorded.</div>
                             ) : (
                                 <ul className="divide-y divide-slate-100">
                                     {transactions.slice(0, 5).map(tx => (
-                                        <li key={tx._id} className="p-4 flex justify-between items-center hover:bg-slate-50 rounded-xl transition-colors">
+                                        <li key={tx._id} className="p-4 flex justify-between items-center hover:bg-[#121212]/5 rounded-xl transition-colors">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100 shadow-inner">
+                                                <div className="w-10 h-10 rounded-full bg-[#121212]/5 flex items-center justify-center border border-white/5 shadow-inner">
                                                     {tx.currency === 'USDC' || tx.currency === 'USDT' ? (
                                                         <Coins className="w-5 h-5 text-blue-500" />
                                                     ) : (
-                                                        <IndianRupee className="w-5 h-5 text-slate-400" />
+                                                        <IndianRupee className="w-5 h-5 text-slate-300" />
                                                     )}
                                                 </div>
                                                 <div>
-                                                    <p className="text-navy font-bold capitalize flex items-center gap-2">
+                                                    <p className="text-white font-bold capitalize flex items-center gap-2">
                                                         {tx.type.replace('_', ' ')}
                                                         {(tx.type === 'referral_bonus' || tx.type === 'deposit') && <span className="bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded font-bold border border-green-200">Credit</span>}
                                                     </p>
                                                     <p className="text-slate-500 text-[10px] mt-0.5 font-medium">{new Date(tx.createdAt).toLocaleDateString()}</p>
                                                 </div>
                                             </div>
-                                            <div className={`font-black ${(tx.type === 'referral_bonus' || tx.type === 'deposit') ? 'text-green-600' : 'text-navy'}`}>
+                                            <div className={`font-black ${(tx.type === 'referral_bonus' || tx.type === 'deposit') ? 'text-green-600' : 'text-white'}`}>
                                                 {(tx.type === 'referral_bonus' || tx.type === 'deposit') ? '+' : ''}{formatTxAmount(tx)}
                                                 {(tx.currency === 'USDT' || tx.currency === 'USDC') && (
-                                                    <div className="text-[10px] text-slate-400 font-normal text-right">{tx.amount.toFixed(2)} USDT</div>
+                                                    <div className="text-[10px] text-slate-300 font-normal text-right">{tx.amount.toFixed(2)} USDT</div>
                                                 )}
                                             </div>
                                         </li>

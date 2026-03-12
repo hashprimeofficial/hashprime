@@ -68,7 +68,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} ${spaceGrotesk.variable} font-sans bg-white text-navy antialiased min-h-screen flex flex-col`}>
+      <body className={`${dmSans.variable} ${spaceGrotesk.variable} font-sans bg-[#121212] text-white antialiased min-h-screen flex flex-col`}>
         <NavbarWrapper />
         <main className="flex-grow">
           {children}

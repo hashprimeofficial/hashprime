@@ -49,17 +49,17 @@ export default function Community() {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="py-24 md:py-40 relative overflow-hidden bg-white" id="community">
+        <section ref={containerRef} className="py-24 md:py-40 relative overflow-hidden bg-[#121212]" id="community">
 
             {/* Minimal Background Aura */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#39FF14]/5 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#d4af35]/5 rounded-full blur-[120px] pointer-events-none" />
 
             {/* Floating Avatars (Simplified/Hardware Accelerated) */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden hidden lg:block">
                 {avatars.map((avatar) => (
                     <div
                         key={avatar.id}
-                        className={`comm-avatar-min absolute ${avatar.size} rounded-full border-2 border-slate-100 bg-white shadow-sm overflow-hidden will-change-transform opacity-40`}
+                        className={`comm-avatar-min absolute ${avatar.size} rounded-full border-2 border-white/5 bg-[#121212] shadow-sm overflow-hidden will-change-transform opacity-40`}
                         style={{ top: avatar.top, left: avatar.left }}
                     >
                         <Image src={avatar.src} alt="Member" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500" unoptimized />
@@ -72,16 +72,16 @@ export default function Community() {
                 {/* Minimal Header */}
                 <div className="mb-16">
                     <div className="comm-min-reveal inline-flex items-center gap-2 mb-8">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#39FF14] animate-pulse" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">Join the Collective</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-300">Join the Collective</span>
                     </div>
 
-                    <h2 className="comm-min-reveal text-4xl md:text-6xl font-black text-[#0B1120] tracking-tighter leading-tight mb-8">
+                    <h2 className="comm-min-reveal text-4xl md:text-6xl font-black text-white tracking-tighter leading-tight mb-8">
                         OUR GLOBAL<br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0B1120] to-[#39FF14]">NETWORK</span>
+                        <span className="text-[#d4af35]">NETWORK</span>
                     </h2>
 
-                    <p className="comm-min-reveal text-lg text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
+                    <p className="comm-min-reveal text-lg text-slate-300 font-medium max-w-2xl mx-auto leading-relaxed">
                         Connect with the forward-thinkers building the future of finance. Transparent, collaborative, and entirely decentralised.
                     </p>
                 </div>
@@ -92,9 +92,9 @@ export default function Community() {
                         <Link
                             key={social.name}
                             href={social.link}
-                            className="group flex items-center gap-3 text-slate-400 hover:text-[#0B1120] transition-colors duration-300"
+                            className="group flex items-center gap-3 text-slate-300 hover:text-white transition-colors duration-300"
                         >
-                            <span className="p-2 rounded-xl bg-slate-50 group-hover:bg-[#39FF14]/10 group-hover:text-[#39FF14] transition-all duration-300">
+                            <span className="p-2 rounded-xl bg-[#121212]/5 group-hover:bg-[#d4af35]/10 group-hover:text-[#d4af35] transition-all duration-300">
                                 {social.icon}
                             </span>
                             <span className="text-xs font-black uppercase tracking-widest">{social.name}</span>

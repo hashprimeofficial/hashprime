@@ -21,8 +21,8 @@ const SETTINGS_ITEMS = [
 ];
 
 // ── Shared style tokens ──────────────────────────────────────
-const field = "w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-[#0B1120] text-sm font-medium placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#39FF14]/40 focus:border-[#39FF14] transition-all";
-const lbl = "block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1.5";
+const field = "w-full bg-[#121212] border border-white/10 rounded-xl px-4 py-3 text-white text-sm font-medium placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#d4af35]/40 focus:border-[#d4af35] transition-all";
+const lbl = "block text-[10px] font-black uppercase tracking-widest text-slate-300 mb-1.5";
 
 // ── Tiny utility components ──────────────────────────────────
 function FieldGroup({ label, children }) {
@@ -31,7 +31,7 @@ function FieldGroup({ label, children }) {
 
 function Card({ children, className = '' }) {
     return (
-        <div className={`bg-white rounded-2xl border border-slate-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] overflow-hidden ${className}`}>
+        <div className={`bg-[#121212] rounded-2xl border border-white/5 shadow-[0_2px_12px_rgba(0,0,0,0.04)] overflow-hidden ${className}`}>
             {children}
         </div>
     );
@@ -43,7 +43,7 @@ function CardHeader({ icon: Icon, title, accent }) {
             <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${accent}`}>
                 <Icon className="w-4 h-4" />
             </div>
-            <span className="text-sm font-black text-[#0B1120] tracking-tight">{title}</span>
+            <span className="text-sm font-black text-white tracking-tight">{title}</span>
         </div>
     );
 }
@@ -69,13 +69,13 @@ function KycBadge({ status }) {
         pending: <span className="inline-flex items-center gap-1.5 bg-amber-50  text-amber-600  border border-amber-200  px-3 py-1 rounded-full text-[11px] font-black"><Clock className="w-3 h-3" />Pending</span>,
         rejected: <span className="inline-flex items-center gap-1.5 bg-red-50    text-red-600    border border-red-200    px-3 py-1 rounded-full text-[11px] font-black"><X className="w-3 h-3" />Rejected</span>,
     };
-    return map[status] || <span className="inline-flex items-center gap-1.5 bg-slate-50 text-slate-500 border border-slate-200 px-3 py-1 rounded-full text-[11px] font-black"><AlertCircle className="w-3 h-3" />Unverified</span>;
+    return map[status] || <span className="inline-flex items-center gap-1.5 bg-[#121212]/5 text-slate-500 border border-white/10 px-3 py-1 rounded-full text-[11px] font-black"><AlertCircle className="w-3 h-3" />Unverified</span>;
 }
 
 function SaveBtn({ disabled, loading }) {
     return (
         <button type="submit" disabled={disabled}
-            className="inline-flex items-center gap-2 bg-[#0B1120] hover:bg-[#162032] text-white font-black text-sm px-8 py-3.5 rounded-xl shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none">
+            className="inline-flex items-center gap-2 bg-[#d4af35] hover:bg-[#f5e0a3] text-white font-black text-sm px-8 py-3.5 rounded-xl shadow-sm transition-all hover:-translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none">
             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Save Changes'}
         </button>
     );
@@ -110,7 +110,7 @@ function ProfileTab({ formData, onChange, onSubmit, saving, message }) {
 // ════════════════════════════════════════════════════════
 function KycTab({ formData, onChange, onFileChange, uploads, user, onSubmit, saving, message }) {
     const locked = user?.kycStatus === 'approved';
-    const dis = `${field} disabled:opacity-50 disabled:bg-slate-50 disabled:cursor-not-allowed`;
+    const dis = `${field} disabled:opacity-50 disabled:bg-[#121212]/5 disabled:cursor-not-allowed`;
     return (
         <form onSubmit={onSubmit} className="space-y-5">
             <Toast type={message.type} msg={message.text} />
@@ -148,18 +148,18 @@ function KycTab({ formData, onChange, onFileChange, uploads, user, onSubmit, sav
                         <div key={name}>
                             <label className={lbl}>{label}</label>
                             {uploads[b64Key] ? (
-                                <div className="mb-3 rounded-xl overflow-hidden border-2 border-[#39FF14] relative">
+                                <div className="mb-3 rounded-xl overflow-hidden border-2 border-[#d4af35] relative">
                                     <img src={uploads[b64Key]} alt={label} className="w-full h-32 object-cover" />
-                                    <div className="absolute top-2 right-2 bg-[#39FF14] text-[#0B1120] text-[10px] font-black px-2 py-0.5 rounded-full">New</div>
+                                    <div className="absolute top-2 right-2 bg-[#d4af35] text-white text-[10px] font-black px-2 py-0.5 rounded-full">New</div>
                                 </div>
                             ) : formData[urlKey] ? (
-                                <div className="mb-3 rounded-xl overflow-hidden border border-slate-200 relative group">
+                                <div className="mb-3 rounded-xl overflow-hidden border border-white/10 relative group">
                                     <img src={formData[urlKey]} alt={label} className="w-full h-32 object-cover" />
-                                    {!locked && <div className="absolute inset-0 bg-[#0B1120]/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-bold rounded-xl">Replace</div>}
+                                    {!locked && <div className="absolute inset-0 bg-[#d4af35]/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-bold rounded-xl">Replace</div>}
                                 </div>
                             ) : null}
                             <input type="file" name={name} accept="image/*" onChange={onFileChange} disabled={locked}
-                                className="w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-[#0B1120] file:text-white hover:file:bg-[#162032] disabled:opacity-50 cursor-pointer" />
+                                className="w-full text-xs text-slate-300 file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-[#d4af35] file:text-white hover:file:bg-[#162032] disabled:opacity-50 cursor-pointer" />
                         </div>
                     ))}
                 </div>
@@ -196,10 +196,10 @@ function BankTab() {
     return (
         <div className="space-y-5">
             <div className="flex items-center justify-between">
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Your Accounts</p>
+                <p className="text-xs font-bold text-slate-300 uppercase tracking-widest">Your Accounts</p>
                 {!adding && (
                     <button onClick={() => setAdding(true)}
-                        className="inline-flex items-center gap-1.5 text-xs font-black text-[#0B1120] bg-[#39FF14]/10 hover:bg-[#39FF14]/20 border border-[#39FF14]/30 px-4 py-2 rounded-xl transition-all">
+                        className="inline-flex items-center gap-1.5 text-xs font-black text-white bg-[#d4af35]/10 hover:bg-[#d4af35]/20 border border-[#d4af35]/30 px-4 py-2 rounded-xl transition-all">
                         <Plus className="w-3.5 h-3.5" /> Add Account
                     </button>
                 )}
@@ -226,8 +226,8 @@ function BankTab() {
                                         </select>
                                     </FieldGroup>
                                     <div className="sm:col-span-2 flex gap-3 pt-2">
-                                        <button type="button" onClick={() => { setAdding(false); setErr(''); }} className="flex-1 py-3 text-sm font-bold text-slate-500 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all">Cancel</button>
-                                        <button type="submit" disabled={saving} className="flex-1 py-3 text-sm font-black bg-[#0B1120] text-white hover:bg-[#162032] rounded-xl flex justify-center items-center gap-2 transition-all disabled:opacity-50">
+                                        <button type="button" onClick={() => { setAdding(false); setErr(''); }} className="flex-1 py-3 text-sm font-bold text-slate-500 bg-[#121212]/5 hover:bg-slate-100 border border-white/10 rounded-xl transition-all">Cancel</button>
+                                        <button type="submit" disabled={saving} className="flex-1 py-3 text-sm font-black bg-[#d4af35] text-white hover:bg-[#f5e0a3] rounded-xl flex justify-center items-center gap-2 transition-all disabled:opacity-50">
                                             {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Save Account'}
                                         </button>
                                     </div>
@@ -238,14 +238,14 @@ function BankTab() {
                 )}
             </AnimatePresence>
 
-            {isLoading && <div className="h-28 bg-slate-50 rounded-2xl animate-pulse border border-slate-100" />}
+            {isLoading && <div className="h-28 bg-[#121212]/5 rounded-2xl animate-pulse border border-white/5" />}
 
             {!isLoading && !data?.bankAccounts?.length && !adding && (
-                <div className="flex flex-col items-center py-16 text-center bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+                <div className="flex flex-col items-center py-16 text-center bg-[#121212]/5 rounded-2xl border border-dashed border-white/10">
                     <Building2 className="w-10 h-10 text-slate-300 mb-3" />
-                    <p className="font-black text-[#0B1120] text-sm mb-1">No accounts yet</p>
-                    <p className="text-slate-400 text-xs font-medium mb-5">Add a bank account to enable withdrawals.</p>
-                    <button onClick={() => setAdding(true)} className="text-xs font-bold px-5 py-2.5 bg-white border border-slate-200 rounded-xl hover:bg-slate-50 text-[#0B1120] shadow-sm transition-all">Add Your First Account</button>
+                    <p className="font-black text-white text-sm mb-1">No accounts yet</p>
+                    <p className="text-slate-300 text-xs font-medium mb-5">Add a bank account to enable withdrawals.</p>
+                    <button onClick={() => setAdding(true)} className="text-xs font-bold px-5 py-2.5 bg-[#121212] border border-white/10 rounded-xl hover:bg-[#121212]/5 text-white shadow-sm transition-all">Add Your First Account</button>
                 </div>
             )}
 
@@ -256,14 +256,14 @@ function BankTab() {
                             <div className="flex items-center gap-2 mb-3">
                                 <div className="w-8 h-8 rounded-xl bg-violet-50 flex items-center justify-center"><Landmark className="w-4 h-4 text-violet-500" /></div>
                                 <div>
-                                    <p className="font-black text-[#0B1120] text-sm">{acc.bankName}</p>
-                                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{acc.accountType}</p>
+                                    <p className="font-black text-white text-sm">{acc.bankName}</p>
+                                    <p className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">{acc.accountType}</p>
                                 </div>
                             </div>
-                            <p className="font-mono font-bold text-[#0B1120] text-base tracking-widest mb-3">•••• •••• {acc.accountNumber.slice(-4)}</p>
+                            <p className="font-mono font-bold text-white text-base tracking-widest mb-3">•••• •••• {acc.accountNumber.slice(-4)}</p>
                             <div className="flex gap-6">
-                                <div><p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">IFSC</p><p className="text-xs font-bold text-[#0B1120] uppercase">{acc.ifsc}</p></div>
-                                <div><p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Holder</p><p className="text-xs font-bold text-[#0B1120]">{acc.accountHolderName}</p></div>
+                                <div><p className="text-[10px] text-slate-300 font-bold uppercase tracking-wider mb-0.5">IFSC</p><p className="text-xs font-bold text-white uppercase">{acc.ifsc}</p></div>
+                                <div><p className="text-[10px] text-slate-300 font-bold uppercase tracking-wider mb-0.5">Holder</p><p className="text-xs font-bold text-white">{acc.accountHolderName}</p></div>
                             </div>
                         </div>
                         <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-600 border border-emerald-200 px-2.5 py-1 rounded-full text-[10px] font-black shrink-0"><CheckCircle2 className="w-3 h-3" />Active</span>
@@ -332,13 +332,13 @@ function SecurityTab() {
             {/* Enable start */}
             {!enabled && !setup && (
                 <Card>
-                    <CardHeader icon={KeyRound} title="Set Up Two-Factor Authentication" accent="bg-[#39FF14]/10 text-[#1a8a00]" />
+                    <CardHeader icon={KeyRound} title="Set Up Two-Factor Authentication" accent="bg-[#d4af35]/10 text-[#1a8a00]" />
                     <div className="p-6">
-                        <div className="flex items-start gap-3 bg-slate-50 rounded-xl border border-slate-100 p-4 mb-6">
-                            <Smartphone className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+                        <div className="flex items-start gap-3 bg-[#121212]/5 rounded-xl border border-white/5 p-4 mb-6">
+                            <Smartphone className="w-5 h-5 text-slate-300 shrink-0 mt-0.5" />
                             <p className="text-sm text-slate-500 font-medium">Use Google Authenticator, Authy, or any TOTP-compatible app to scan a QR code.</p>
                         </div>
-                        <button onClick={generate} disabled={generating} className="inline-flex items-center gap-2 bg-[#0B1120] hover:bg-[#162032] text-white font-black text-sm px-6 py-3 rounded-xl transition-all disabled:opacity-50">
+                        <button onClick={generate} disabled={generating} className="inline-flex items-center gap-2 bg-[#d4af35] hover:bg-[#f5e0a3] text-white font-black text-sm px-6 py-3 rounded-xl transition-all disabled:opacity-50">
                             {generating ? <Loader2 className="w-4 h-4 animate-spin" /> : <><KeyRound className="w-4 h-4" />Begin Setup</>}
                         </button>
                     </div>
@@ -351,16 +351,16 @@ function SecurityTab() {
                     <Card>
                         <CardHeader icon={Smartphone} title="Step 1 — Scan QR Code" accent="bg-blue-50 text-blue-500" />
                         <div className="p-6">
-                            <div className="flex flex-col sm:flex-row items-center gap-6 bg-slate-50 rounded-2xl border border-slate-100 p-5">
-                                <div className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm shrink-0">
+                            <div className="flex flex-col sm:flex-row items-center gap-6 bg-[#121212]/5 rounded-2xl border border-white/5 p-5">
+                                <div className="bg-[#121212] p-3 rounded-xl border border-white/10 shadow-sm shrink-0">
                                     <Image src={setup.qrCodeDataUrl} alt="2FA QR Code" width={130} height={130} className="rounded-lg" />
                                 </div>
                                 <div className="space-y-3 text-center sm:text-left">
-                                    <p className="text-sm font-black text-[#0B1120]">Can't scan the QR?</p>
-                                    <p className="text-xs text-slate-400 font-medium">Enter this key manually in your app:</p>
+                                    <p className="text-sm font-black text-white">Can't scan the QR?</p>
+                                    <p className="text-xs text-slate-300 font-medium">Enter this key manually in your app:</p>
                                     <div className="flex items-center justify-center sm:justify-start gap-2">
-                                        <code className="bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs font-mono font-bold text-[#0B1120] tracking-wider shadow-sm">{setup.secret}</code>
-                                        <button type="button" onClick={copy} className="p-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-400 hover:text-[#0B1120] transition-colors shadow-sm">
+                                        <code className="bg-[#121212] border border-white/10 rounded-lg px-3 py-2 text-xs font-mono font-bold text-white tracking-wider shadow-sm">{setup.secret}</code>
+                                        <button type="button" onClick={copy} className="p-2 rounded-lg border border-white/10 bg-[#121212] hover:bg-[#121212]/5 text-slate-300 hover:text-white transition-colors shadow-sm">
                                             {copied ? <CheckCircle2 className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
                                         </button>
                                     </div>
@@ -370,15 +370,15 @@ function SecurityTab() {
                         </div>
                     </Card>
                     <Card>
-                        <CardHeader icon={ShieldCheck} title="Step 2 — Verify & Activate" accent="bg-[#39FF14]/10 text-[#1a8a00]" />
+                        <CardHeader icon={ShieldCheck} title="Step 2 — Verify & Activate" accent="bg-[#d4af35]/10 text-[#1a8a00]" />
                         <div className="p-6">
                             <p className="text-sm text-slate-500 font-medium mb-5">Enter the 6-digit code from your authenticator app to confirm.</p>
                             <form onSubmit={enable} className="max-w-xs space-y-4">
                                 <input type="text" inputMode="numeric" value={verifyCode} onChange={e => setVerifyCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                                     placeholder="6-digit code" className={`${field} text-center text-2xl tracking-[0.5em] font-black`} />
                                 <div className="flex gap-3">
-                                    <button type="button" onClick={() => setSetup(null)} className="flex-1 py-3 text-sm font-bold text-slate-500 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all">Cancel</button>
-                                    <button type="submit" disabled={verifying || verifyCode.length !== 6} className="flex-1 py-3 text-sm font-black bg-[#0B1120] text-white hover:bg-[#162032] rounded-xl flex justify-center items-center gap-2 transition-all disabled:opacity-40">
+                                    <button type="button" onClick={() => setSetup(null)} className="flex-1 py-3 text-sm font-bold text-slate-500 bg-[#121212]/5 hover:bg-slate-100 border border-white/10 rounded-xl transition-all">Cancel</button>
+                                    <button type="submit" disabled={verifying || verifyCode.length !== 6} className="flex-1 py-3 text-sm font-black bg-[#d4af35] text-white hover:bg-[#f5e0a3] rounded-xl flex justify-center items-center gap-2 transition-all disabled:opacity-40">
                                         {verifying ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Activate'}
                                     </button>
                                 </div>
@@ -396,19 +396,19 @@ function SecurityTab() {
 // ════════════════════════════════════════════════════════
 function AccountCard({ authUser, user }) {
     return (
-        <div className="relative bg-white border border-slate-100 rounded-2xl p-6 flex items-center justify-between gap-4 overflow-hidden mb-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
-            <div className="absolute -top-8 -right-8 w-36 h-36 bg-[#39FF14]/8 rounded-full blur-2xl pointer-events-none" />
+        <div className="relative bg-[#121212] border border-white/5 rounded-2xl p-6 flex items-center justify-between gap-4 overflow-hidden mb-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+            <div className="absolute -top-8 -right-8 w-36 h-36 bg-[#d4af35]/8 rounded-full blur-2xl pointer-events-none" />
             <div className="flex items-center gap-4 z-10">
-                <div className="w-12 h-12 rounded-2xl bg-[#39FF14] flex items-center justify-center font-black text-[#0B1120] text-xl shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-[#d4af35] flex items-center justify-center font-black text-white text-xl shadow-sm">
                     {authUser?.name?.charAt(0)?.toUpperCase()}
                 </div>
                 <div>
-                    <p className="font-black text-[#0B1120] text-base">{authUser?.name}</p>
-                    <p className="text-slate-400 text-sm">{authUser?.email}</p>
+                    <p className="font-black text-white text-base">{authUser?.name}</p>
+                    <p className="text-slate-300 text-sm">{authUser?.email}</p>
                 </div>
             </div>
             <div className="z-10 text-right shrink-0">
-                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1.5">KYC</p>
+                <p className="text-[10px] text-slate-300 font-bold uppercase tracking-widest mb-1.5">KYC</p>
                 <KycBadge status={user?.kycStatus} />
             </div>
         </div>
@@ -428,13 +428,13 @@ function MobileList({ authUser, user, onSelect }) {
                         key={id}
                         onClick={() => onSelect(id)}
                         whileTap={{ scale: 0.98 }}
-                        className="w-full flex items-center gap-4 px-5 py-5 bg-white border border-slate-100 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:border-[#39FF14]/50 hover:shadow-[0_4px_20px_rgba(57,255,20,0.10)] transition-all duration-200 text-left group"
+                        className="w-full flex items-center gap-4 px-5 py-5 bg-[#121212] border border-white/5 rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:border-[#d4af35]/50 hover:shadow-[0_4px_20px_rgba(57,255,20,0.10)] transition-all duration-200 text-left group"
                     >
-                        <div className="w-12 h-12 rounded-2xl bg-[#39FF14]/10 border border-[#39FF14]/20 flex items-center justify-center shrink-0 group-hover:bg-[#39FF14]/20 group-hover:scale-105 transition-all">
+                        <div className="w-12 h-12 rounded-2xl bg-[#d4af35]/10 border border-[#d4af35]/20 flex items-center justify-center shrink-0 group-hover:bg-[#d4af35]/20 group-hover:scale-105 transition-all">
                             <Icon className="w-5 h-5 text-[#1a8a00]" />
                         </div>
-                        <p className="flex-1 font-black text-[#0B1120] text-base tracking-tight">{label}</p>
-                        <div className="w-8 h-8 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center group-hover:bg-[#39FF14]/10 group-hover:border-[#39FF14]/30 transition-all">
+                        <p className="flex-1 font-black text-white text-base tracking-tight">{label}</p>
+                        <div className="w-8 h-8 rounded-xl bg-[#121212]/5 border border-white/5 flex items-center justify-center group-hover:bg-[#d4af35]/10 group-hover:border-[#d4af35]/30 transition-all">
                             <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-[#1a8a00] group-hover:translate-x-0.5 transition-all" />
                         </div>
                     </motion.button>
@@ -451,13 +451,13 @@ function MobileDetail({ sectionId, onBack, tabProps }) {
     const item = SETTINGS_ITEMS.find(i => i.id === sectionId);
     return (
         <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'tween', duration: 0.22 }}
-            className="absolute inset-0 bg-slate-50 z-10 overflow-y-auto">
-            <div className="sticky top-0 bg-white/90 backdrop-blur-md border-b border-slate-100 flex items-center gap-3 px-4 py-3.5 z-20">
-                <button onClick={onBack} className="flex items-center gap-1 text-sm font-black text-[#0B1120] -ml-1 px-2 py-1.5 rounded-lg hover:bg-slate-100 transition-colors">
-                    <ArrowLeft className="w-4 h-4 text-[#39FF14]" /> Settings
+            className="absolute inset-0 bg-[#121212]/5 z-10 overflow-y-auto">
+            <div className="sticky top-0 bg-[#121212]/90 backdrop-blur-md border-b border-white/5 flex items-center gap-3 px-4 py-3.5 z-20">
+                <button onClick={onBack} className="flex items-center gap-1 text-sm font-black text-white -ml-1 px-2 py-1.5 rounded-lg hover:bg-slate-100 transition-colors">
+                    <ArrowLeft className="w-4 h-4 text-[#d4af35]" /> Settings
                 </button>
                 <div className="h-3.5 w-px bg-slate-200" />
-                <span className="text-sm font-black text-[#0B1120] truncate">{item?.label}</span>
+                <span className="text-sm font-black text-white truncate">{item?.label}</span>
             </div>
             <div className="p-4 pb-12">
                 {sectionId === 'profile' && <ProfileTab  {...tabProps} />}
@@ -492,8 +492,8 @@ function DesktopHub({ authUser, user, tabProps }) {
                     const on = active === id;
                     return (
                         <button key={id} onClick={() => setActive(id)}
-                            className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-black transition-all ${on ? 'bg-white text-[#0B1120] shadow-sm' : 'text-slate-400 hover:text-[#0B1120]'}`}>
-                            <Icon className={`w-4 h-4 shrink-0 ${on ? 'text-[#39FF14]' : ''}`} />
+                            className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs font-black transition-all ${on ? 'bg-[#121212] text-white shadow-sm' : 'text-slate-300 hover:text-white'}`}>
+                            <Icon className={`w-4 h-4 shrink-0 ${on ? 'text-[#d4af35]' : ''}`} />
                             <span className="hidden sm:inline">{label.split(' ')[0]}</span>
                         </button>
                     );
