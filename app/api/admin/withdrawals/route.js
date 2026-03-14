@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/db';
 import Withdrawal from '@/models/Withdrawal';
+import BankAccount from '@/models/BankAccount';
 import { verifyToken } from '@/lib/auth';
 
 export async function GET(req) {
@@ -14,12 +15,26 @@ export async function GET(req) {
 
         await connectToDatabase();
 
-        // Fetch all withdrawals, newest first, with user details populated
+        // Fetch all withdrawals, newest first, with user + bank details populated
         const withdrawals = await Withdrawal.find()
             .sort({ createdAt: -1 })
-            .populate('userId', 'name email');
+            .populate('userId', 'name email')
+            .populate('bankAccountId')
+            .lean();
 
-        return NextResponse.json({ withdrawals }, { status: 200 });
+        // For INR/Bank withdrawals that don't yet have a bankAccountId stored
+        // (submitted before the schema update), fetch the user's primary bank account
+        const enriched = await Promise.all(withdrawals.map(async (w) => {
+            if (w.payoutMethod === 'Bank' && !w.bankAccountId && w.userId?._id) {
+                const bank = await BankAccount.findOne({ user: w.userId._id })
+                    .sort({ createdAt: -1 })
+                    .lean();
+                return { ...w, bankAccountId: bank || null };
+            }
+            return w;
+        }));
+
+        return NextResponse.json({ withdrawals: enriched }, { status: 200 });
     } catch (error) {
         console.error('Fetch Withdrawals Error:', error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

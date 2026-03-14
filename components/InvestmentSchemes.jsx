@@ -70,7 +70,7 @@ export default function InvestmentSchemes() {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="relative bg-[#F9FAFB] py-32 md:py-48 overflow-hidden border-t border-white/5" id="investment-schemes">
+        <section ref={sectionRef} className="relative bg-transparent py-32 md:py-48 overflow-hidden border-t border-white/[0.02]" id="investment-schemes">
 
             {/* Background Orbs */}
             <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-[#d4af35]/10 rounded-full blur-[150px] pointer-events-none" />
@@ -82,12 +82,12 @@ export default function InvestmentSchemes() {
                 <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-24">
                     <div className="is-header-animate inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-white/10 shadow-sm mb-8">
                         <TrendingUp className="w-4 h-4 text-[#d4af35]" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500">Structured Yield</span>
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">Structured Yield</span>
                     </div>
 
                     <h2 className="is-header-animate text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.9] mb-8">
                         INVESTMENT<br />
-                        <span className="text-[#d4af35]
+                        <span className="text-[#d4af35]">SCHEMES</span>
                     </h2>
 
                     <p className="is-header-animate text-xl text-slate-500 font-medium max-w-2xl leading-relaxed">
@@ -111,7 +111,7 @@ export default function InvestmentSchemes() {
                                     <div className="flex flex-col gap-2">
                                         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#121212]/5 border border-white/5">
                                             <ShieldCheck className="w-3.5 h-3.5 text-[#d4af35]" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">{scheme.duration} Lock</span>
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-[#d4af35]/70">{scheme.duration} Lock</span>
                                         </div>
                                         <h3 className="text-4xl font-black text-white tracking-tight">{scheme.title}</h3>
                                         <span className="text-sm font-bold text-slate-300 uppercase tracking-widest">{scheme.period}</span>
@@ -141,8 +141,8 @@ export default function InvestmentSchemes() {
                                                     key={idx}
                                                     onMouseEnter={() => setHoveredTier(uid)}
                                                     onMouseLeave={() => setHoveredTier(null)}
-                                                    className={`py-4 px-8 rounded-2xl border-2 font-black text-xl transition-all duration-500 cursor-default
-                                                    ${hoveredTier === uid ? 'border-[#0B1120] bg-[#d4af35] text-[#d4af35] shadow-xl -translate-y-1' : 'border-white/5 bg-[#121212] text-slate-300'}`}
+                                                    className={`py-4 px-8 rounded-2xl border font-black text-xl transition-all duration-500 cursor-default
+                                                    ${hoveredTier === uid ? 'border-[#d4af35] bg-[#d4af35] text-[#0A0A0A] shadow-[0_8px_20px_rgba(212,175,53,0.3)] -translate-y-1' : 'border-white/10 bg-[#121212] text-slate-300'}`}
                                                 >{inv}</div>
                                             );
                                         })}

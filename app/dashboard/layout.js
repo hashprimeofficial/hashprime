@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
     LayoutDashboard, Wallet, Users, LogOut, Loader2,
-    Settings2, Menu, X, Headphones, TrendingUp
+    Settings2, Menu, X, Headphones, TrendingUp, RefreshCw, ArrowUpRight
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import useSWR from 'swr';
@@ -15,6 +15,8 @@ const NAV_ITEMS = [
     { name: 'Overview', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Invest', href: '/dashboard/invest', icon: TrendingUp },
     { name: 'Deposits', href: '/dashboard/deposit', icon: Wallet },
+    { name: 'Withdraw', href: '/dashboard/withdraw', icon: ArrowUpRight },
+    { name: 'Conversion', href: '/dashboard/convert', icon: RefreshCw },
     { name: 'Referrals', href: '/dashboard/referrals', icon: Users },
     { name: 'Support', href: '/dashboard/tickets', icon: Headphones },
     { name: 'Nominee', href: '/dashboard/nominee', icon: Users },
@@ -35,14 +37,15 @@ function UserAvatarBlock() {
             </div>
         </div>
     );
+
     return (
-        <div className="flex items-center gap-3 bg-[#121212] border border-white/10 rounded-xl px-3 py-2.5 shadow-sm mb-2">
-            <div className="w-9 h-9 rounded-xl bg-[#d4af35] flex items-center justify-center text-neon font-black text-sm shrink-0 shadow-inner">
-                {user.name.charAt(0).toUpperCase()}
+        <div className="flex items-center gap-3 bg-[#0A0A0A] border border-[#d4af35]/20 rounded-xl px-3 py-2.5 shadow-sm mb-2 hover:border-[#d4af35]/40 transition-colors">
+            <div className="w-9 h-9 rounded-xl bg-[#d4af35]/10 flex items-center justify-center text-[#d4af35] font-black text-sm shrink-0 shadow-inner border border-[#d4af35]/20">
+                {user.name?.charAt(0).toUpperCase()}
             </div>
             <div className="min-w-0">
                 <div className="text-white font-bold text-sm truncate">{user.name}</div>
-                <div className="text-slate-300 text-xs font-medium truncate capitalize">{user.role}</div>
+                <div className="text-[#d4af35] text-xs font-medium truncate capitalize">{user.role}</div>
             </div>
         </div>
     );
@@ -65,7 +68,7 @@ function SettingsSubmenu() {
                     <Link
                         key={sub.id}
                         href={`/dashboard/profile?tab=${sub.id}`}
-                        className={`block px-3 py-2 text-sm rounded-lg transition-colors ${subIsActive ? 'text-white font-bold bg-slate-200/50' : 'text-slate-500 hover:text-white hover:bg-slate-200/50'}`}
+                        className={`block px-3 py-2 text-sm rounded-lg transition-colors ${subIsActive ? 'text-[#d4af35] font-bold bg-[#d4af35]/10 border border-[#d4af35]/20' : 'text-slate-400 hover:text-[#d4af35] hover:bg-[#d4af35]/5'}`}
                     >
                         {sub.name}
                     </Link>
@@ -88,14 +91,19 @@ export default function DashboardLayout({ children }) {
     };
 
     return (
-        <div className="min-h-screen bg-[#121212] text-white flex flex-col md:flex-row font-sans">
+        <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col md:flex-row font-sans">
 
             {/* ── Desktop Sidebar ─────────────────────────────────────────── */}
-            <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-white/10 bg-[#121212]/5 p-6 flex-col justify-between hidden md:flex h-screen sticky top-0">
-                <div>
-                    <div className="text-xl font-black text-white tracking-tight mb-5">HashPrime</div>
+            <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-[#d4af35]/20 bg-[#0A0A0A] p-6 flex-col justify-between hidden md:flex h-screen sticky top-0 relative overflow-hidden">
+                {/* Background glow effect */}
+                <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#d4af35]/10 to-transparent pointer-events-none" />
+
+                <div className="relative z-10">
+                    <Link href="/" className="block mb-8 mt-2">
+                        <Image src="/textonly.png" alt="HashPrime" width={140} height={32} className="w-auto h-6 object-contain" />
+                    </Link>
                     <UserAvatarBlock />
-                    <nav className="space-y-1 relative mt-4">
+                    <nav className="space-y-1.5 relative mt-6">
                         {NAV_ITEMS.map((item) => {
                             const isActive = pathname === item.href;
                             const Icon = item.icon;
@@ -105,14 +113,14 @@ export default function DashboardLayout({ children }) {
                                     <div key={item.href}>
                                         <Link
                                             href={item.href}
-                                            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all relative z-10 ${isActive ? 'bg-neon/10 text-white font-bold' : 'text-slate-500 font-medium hover:text-white hover:bg-slate-200/50'}`}
+                                            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all relative z-10 ${isActive ? 'bg-[#d4af35]/10 text-[#d4af35] font-bold border border-[#d4af35]/20 shadow-[0_0_15px_rgba(212,175,53,0.1)]' : 'text-slate-400 font-medium hover:text-[#d4af35] hover:bg-[#d4af35]/5'}`}
                                         >
-                                            <Icon className="w-5 h-5 shrink-0" />
+                                            <Icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-[#d4af35]' : 'text-slate-500'}`} />
                                             <span>{item.name}</span>
                                             {isActive && (
                                                 <motion.div
                                                     layoutId="sidebar-active"
-                                                    className="absolute left-0 w-1 h-8 bg-neon rounded-r-full"
+                                                    className="absolute left-0 w-1 h-8 bg-[#d4af35] rounded-r-full shadow-[0_0_10px_rgba(212,175,53,0.8)]"
                                                 />
                                             )}
                                         </Link>
@@ -129,14 +137,14 @@ export default function DashboardLayout({ children }) {
                                 <Link
                                     key={item.href}
                                     href={item.href}
-                                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all relative z-10 ${isActive ? 'bg-neon/10 text-white font-bold' : 'text-slate-500 font-medium hover:text-white hover:bg-slate-200/50'}`}
+                                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all relative z-10 ${isActive ? 'bg-[#d4af35]/10 text-[#d4af35] font-bold border border-[#d4af35]/20 shadow-[0_0_15px_rgba(212,175,53,0.1)]' : 'text-slate-400 font-medium hover:text-[#d4af35] hover:bg-[#d4af35]/5'}`}
                                 >
-                                    <Icon className="w-5 h-5 shrink-0" />
+                                    <Icon className={`w-5 h-5 shrink-0 ${isActive ? 'text-[#d4af35]' : 'text-slate-500'}`} />
                                     <span>{item.name}</span>
                                     {isActive && (
                                         <motion.div
                                             layoutId="sidebar-active"
-                                            className="absolute left-0 w-1 h-8 bg-neon rounded-r-full"
+                                            className="absolute left-0 w-1 h-8 bg-[#d4af35] rounded-r-full shadow-[0_0_10px_rgba(212,175,53,0.8)]"
                                         />
                                     )}
                                 </Link>
@@ -147,33 +155,34 @@ export default function DashboardLayout({ children }) {
                 <button
                     onClick={handleLogout}
                     disabled={loggingOut}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 transition-all font-medium mt-auto"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-all font-medium mt-auto relative z-10"
                 >
-                    {loggingOut ? <Loader2 className="w-5 h-5 animate-spin" /> : <LogOut className="w-5 h-5" />}
+                    {loggingOut ? <Loader2 className="w-5 h-5 animate-spin text-[#d4af35]" /> : <LogOut className="w-5 h-5" />}
                     <span>Sign Out</span>
                 </button>
             </div>
 
             {/* ── Main content ─────────────────────────────────────────────── */}
-            <div className="flex-1 overflow-y-auto w-full relative min-h-screen bg-[#121212]">
-                <main className="p-4 md:p-8 max-w-6xl mx-auto relative z-10 w-full">
+            <div className="flex-1 overflow-y-auto w-full relative min-h-screen bg-[#0A0A0A]">
+                {/* Subtle global gradient background to match homepage */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#d4af35]/5 via-[#0A0A0A] to-[#0A0A0A] pointer-events-none" />
+
+                <main className="p-4 md:p-8 max-w-6xl mx-auto relative z-10 w-full min-h-screen">
 
                     {/* ── Mobile Floating Navbar (homepage style) ─────────── */}
                     <div className="md:hidden mb-8">
                         {/* Pill topbar */}
                         <div className="fixed top-6 left-4 right-4 z-50">
-                            <header className="w-full bg-[#121212]/60 backdrop-blur-xl backdrop-saturate-150 border border-white/80 shadow-[0_8px_32px_0_rgba(31,38,135,0.08)] rounded-full px-5 flex items-center justify-between h-14">
+                            <header className="w-full bg-[#0A0A0A]/80 backdrop-blur-xl border border-[#d4af35]/20 shadow-[0_8px_32px_0_rgba(212,175,53,0.1)] rounded-full px-5 flex items-center justify-between h-14">
                                 {/* Logo */}
-                                <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
-                                    <span className="font-bold text-[#d4af35] drop-shadow-[0_0_8px_rgba(57,255,20,0.3)] text-base tracking-tight">HashPrime</span>
+                                <Link href="/dashboard" className="flex items-center pt-1 shrink-0">
+                                    <Image src="/textonly.png" alt="HashPrime" width={110} height={24} className="h-5 w-auto object-contain" />
                                 </Link>
-
-
 
                                 {/* Menu toggle */}
                                 <button
                                     onClick={() => setMobileOpen(true)}
-                                    className="p-2 text-white rounded-full hover:bg-slate-100 transition-colors"
+                                    className="p-2 text-[#d4af35] rounded-full hover:bg-[#d4af35]/10 transition-colors"
                                 >
                                     <Menu className="w-5 h-5" />
                                 </button>
@@ -191,19 +200,16 @@ export default function DashboardLayout({ children }) {
 
             {/* ── Mobile Offcanvas (matches homepage style) ───────────────── */}
             <div
-                className={`fixed inset-0 bg-[#121212] z-[60] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col md:hidden ${mobileOpen ? 'translate-y-0' : '-translate-y-full'}`}
+                className={`fixed inset-0 bg-[#0A0A0A] z-[60] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col md:hidden ${mobileOpen ? 'translate-y-0' : '-translate-y-full'}`}
             >
                 {/* Offcanvas header */}
-                <div className="flex justify-between items-center px-6 py-5 border-b border-white/5">
-                    <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded-lg bg-[#d4af35] flex items-center justify-center">
-                            <span className="text-neon font-black text-xs">H</span>
-                        </div>
-                        <span className="font-black text-white text-lg tracking-tight">HashPrime</span>
+                <div className="flex justify-between items-center px-6 py-5 border-b border-[#d4af35]/20">
+                    <div className="flex items-center gap-2 pt-1">
+                        <Image src="/textonly.png" alt="HashPrime" width={130} height={28} className="h-6 w-auto object-contain" />
                     </div>
                     <button
                         onClick={() => setMobileOpen(false)}
-                        className="p-2 text-slate-500 hover:text-white transition-colors bg-[#121212]/5 rounded-full"
+                        className="p-2 text-[#d4af35] hover:text-white transition-colors bg-[#d4af35]/10 rounded-full"
                     >
                         <X className="w-5 h-5" />
                     </button>
@@ -219,14 +225,14 @@ export default function DashboardLayout({ children }) {
                                 href={href}
                                 onClick={() => setMobileOpen(false)}
                                 className={`offcanvas-link flex items-center gap-4 text-2xl font-black border-b pb-5 pt-3 transition-colors duration-200 ${isActive
-                                    ? 'text-neon border-neon/20'
-                                    : 'text-white border-white/5 hover:text-neon'
+                                    ? 'text-[#d4af35] border-[#d4af35]/30'
+                                    : 'text-slate-300 border-white/5 hover:text-[#d4af35]'
                                     }`}
                             >
-                                <Icon className={`w-6 h-6 shrink-0 ${isActive ? 'text-neon' : 'text-slate-300'}`} />
+                                <Icon className={`w-6 h-6 shrink-0 ${isActive ? 'text-[#d4af35]' : 'text-slate-500'}`} />
                                 {name}
                                 {isActive && (
-                                    <span className="ml-auto text-xs font-black bg-neon/10 text-neon px-2 py-0.5 rounded-full uppercase tracking-wider">Active</span>
+                                    <span className="ml-auto text-xs font-black bg-[#d4af35]/10 border border-[#d4af35]/20 text-[#d4af35] px-2 py-0.5 rounded-full uppercase tracking-wider">Active</span>
                                 )}
                             </Link>
                         );
@@ -234,13 +240,13 @@ export default function DashboardLayout({ children }) {
                 </div>
 
                 {/* Logout at bottom */}
-                <div className="px-8 pb-10 pt-4 border-t border-white/5">
+                <div className="px-8 pb-10 pt-4 border-t border-[#d4af35]/20">
                     <button
                         onClick={() => { setMobileOpen(false); handleLogout(); }}
                         disabled={loggingOut}
-                        className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl text-lg font-bold text-red-600 bg-red-50 border border-red-100 hover:bg-red-100 transition-all"
+                        className="w-full flex items-center justify-center gap-3 py-4 rounded-2xl text-lg font-bold text-red-500 bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 transition-all"
                     >
-                        {loggingOut ? <Loader2 className="w-5 h-5 animate-spin" /> : <LogOut className="w-5 h-5" />}
+                        {loggingOut ? <Loader2 className="w-5 h-5 animate-spin text-red-500" /> : <LogOut className="w-5 h-5" />}
                         Sign Out
                     </button>
                 </div>

@@ -11,9 +11,15 @@ const InvestmentSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        currency: {
+            type: String,
+            enum: ['USD', 'INR'],
+            required: true,
+            default: 'INR'
+        },
         schemeType: {
             type: String,
-            enum: ['3m', '6m', '1y', '5y'],
+            enum: ['3m_inr', '6m_inr', '1y_inr', '5y_inr', '3m_usd', '6m_usd', '1y_usd', '5y_usd'],
             required: true,
         },
         usdtReward: {

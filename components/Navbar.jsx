@@ -90,16 +90,20 @@ export default function Navbar() {
             <header
                 ref={containerRef}
                 className={`pointer-events-auto w-full max-w-5xl transition-all duration-500 rounded-full px-6 py-1 ${scrolled
-                        ? 'bg-[#0A0A0A]/80 backdrop-blur-2xl border border-[#d4af35]/20 shadow-[0_10px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,53,0.1)]'
-                        : 'bg-[#121212]/40 backdrop-blur-md border border-white/5 shadow-2xl'
+                    ? 'bg-[#0A0A0A]/80 backdrop-blur-2xl border border-[#d4af35]/20 shadow-[0_10px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,53,0.1)]'
+                    : 'bg-[#121212]/40 backdrop-blur-md border border-white/5 shadow-2xl'
                     }`}
             >
                 <div className="flex justify-between items-center h-14 md:h-16">
                     <div className="flex items-center">
                         <Link href="/" className="flex items-center group relative overflow-hidden">
-                            <span className="text-2xl font-black tracking-tighter text-white relative z-10 flex items-center transition-colors duration-300 group-hover:text-[#d4af35]">
-                                Hashprime
-                            </span>
+                            <Image
+                                src="/textonly.png"
+                                alt="Hashprime Logo"
+                                width={140}
+                                height={40}
+                                className="object-contain relative z-10 brightness-0 invert opacity-90 group-hover:opacity-100 transition-opacity"
+                            />
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af35]/20 to-transparent -translate-x-full group-hover:animate-shimmer z-0" />
                         </Link>
                     </div>
@@ -165,9 +169,13 @@ export default function Navbar() {
 
                 <div className="flex justify-between items-center p-6 border-b border-white/5 relative z-10">
                     <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
-                        <span className="text-2xl font-black tracking-tighter text-white">
-                            Hashprime
-                        </span>
+                        <Image
+                            src="/textonly.png"
+                            alt="Hashprime Logo"
+                            width={120}
+                            height={32}
+                            className="object-contain brightness-0 invert opacity-90"
+                        />
                     </Link>
                     <button className="p-2 text-slate-400 hover:text-[#d4af35] transition-colors bg-[#121212]/50 rounded-full border border-white/5" onClick={() => setIsMobileMenuOpen(false)}>
                         <X className="w-6 h-6" />

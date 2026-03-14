@@ -1,7 +1,11 @@
 import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/db';
+import { uploadToCloudinary } from '@/lib/cloudinary';
 import Ticket from '@/models/Ticket';
 import { verifyToken } from '@/lib/auth';
+
+export const maxDuration = 60;
+export const dynamic = 'force-dynamic';
 
 export async function GET(req) {
     try {
@@ -37,15 +41,28 @@ export async function POST(req) {
 
         await connectToDatabase();
 
-        const { subject, description } = await req.json();
+        const { subject, description, category, subCategory, screenshotBase64 } = await req.json();
 
-        if (!subject || !description) {
-            return NextResponse.json({ error: 'Subject and description are required' }, { status: 400 });
+        if (!subject || !description || !category) {
+            return NextResponse.json({ error: 'Subject, description, and category are required' }, { status: 400 });
+        }
+
+        let screenshotUrl = '';
+        if (screenshotBase64) {
+            try {
+                screenshotUrl = await uploadToCloudinary(screenshotBase64, `hashprime_tickets/${payload.userId}`);
+            } catch (err) {
+                console.error('Ticket upload err:', err);
+                return NextResponse.json({ error: 'Failed to upload screenshot' }, { status: 500 });
+            }
         }
 
         const newTicket = await Ticket.create({
             user: payload.userId,
             subject,
+            category,
+            subCategory,
+            screenshotUrl,
             description
         });
 

@@ -55,16 +55,23 @@ export async function PUT(req) {
 
         if (status === 'approved') {
             const user = deposit.userId;
+            let txCurrency;
+            let description;
 
-            // Calculate amount to credit in INR
-            // If it's a USDC deposit, convert to INR using the rate
-            const isUsdc = deposit.paymentMethod === 'usdt';
-            const liveRate = await getExchangeRate();
-            const amountToCredit = Math.round((isUsdc ? (deposit.amount * liveRate) : deposit.amount) * 100) / 100;
+            if (deposit.paymentMethod === 'usdt') {
+                user.usdWallet += deposit.amount;
+                txCurrency = 'USDT';
+                description = `Admin approved USDT (BEP20) deposit.`;
+            } else {
+                user.inrWallet += deposit.amount;
+                txCurrency = 'INR';
+                description = `Admin approved Bank Transfer deposit.`;
+            }
 
-            // Add to User's Wallet Balance (Capital)
+            // Update user's wallets
             await User.findByIdAndUpdate(user._id, {
-                $inc: { walletBalance: amountToCredit }
+                usdWallet: user.usdWallet,
+                inrWallet: user.inrWallet
             });
 
             // Record a transaction
@@ -72,8 +79,8 @@ export async function PUT(req) {
                 userId: user._id,
                 type: 'deposit',
                 amount: Math.round(deposit.amount * 100) / 100,
-                currency: isUsdc ? 'USDT' : 'INR',
-                description: `Admin approved ${isUsdc ? 'USDT (BEP20)' : 'Bank Transfer'} deposit. ${isUsdc ? `Converted $${deposit.amount} to ₹${amountToCredit.toLocaleString()}` : ''}`
+                currency: txCurrency,
+                description: description
             });
         }
 

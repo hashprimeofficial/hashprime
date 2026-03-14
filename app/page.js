@@ -22,7 +22,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative bg-[#121212] overflow-hidden">
+    <div className="relative bg-[#050505] overflow-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -30,23 +30,21 @@ export default function Home() {
 
       <div className="relative z-20"><Hero /></div>
 
-      {/* Transition Orb 1 (Between Hero and HowToStart) */}
-      <div className="absolute top-[800px] left-0 w-[800px] h-[800px] bg-[#d4af35]/10 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 z-0"></div>
+      {/* Transition Orb 1 */}
+      <div className="absolute top-[800px] left-[-10%] w-[800px] h-[800px] bg-[#d4af35] opacity-[0.03] rounded-full blur-[150px] pointer-events-none z-0"></div>
 
       <div className="relative z-20"><HowToStart /></div>
 
-      {/* Transition Orb 2 (Between HowToStart and OurProjects) */}
-      <div className="absolute top-[2000px] right-0 w-[1000px] h-[1000px] bg-[#d4af35]/10 rounded-full blur-[150px] pointer-events-none translate-x-1/3 z-0"></div>
+      {/* Transition Orb 2 */}
+      <div className="absolute top-[2000px] right-[-10%] w-[1000px] h-[1000px] bg-[#d4af35] opacity-[0.02] rounded-full blur-[150px] pointer-events-none z-0"></div>
 
       <div className="relative z-20"><OurProjects /></div>
 
-      {/* Transition Orb 3 (Between OurProjects and BentoFeatures) */}
-      <div className="absolute top-[3400px] left-0 w-[800px] h-[800px] bg-[#d4af35]/10 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 z-0"></div>
+      {/* Transition Orb 3 */}
+      <div className="absolute top-[3400px] left-[-10%] w-[800px] h-[800px] bg-[#d4af35] opacity-[0.03] rounded-full blur-[150px] pointer-events-none z-0"></div>
 
-
-
-      {/* Transition Orb 4 (Between SalientFeatures and Community) */}
-      <div className="absolute bottom-[800px] left-1/2 w-[1200px] h-[600px] bg-[#d4af35]/10 rounded-[100%] blur-[120px] pointer-events-none -translate-x-1/2 z-0"></div>
+      {/* Transition Orb 4 */}
+      <div className="absolute bottom-[800px] left-1/2 w-[1200px] h-[600px] bg-[#d4af35] opacity-[0.02] rounded-[100%] blur-[150px] pointer-events-none -translate-x-1/2 z-0"></div>
 
       <div className="relative z-20"><SalientFeatures /></div>
       <div className="relative z-20"><Community /></div>

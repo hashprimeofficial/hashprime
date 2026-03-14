@@ -43,12 +43,17 @@ export async function PATCH(req, { params }) {
             const user = await User.findById(currentInvestment.userId._id);
             const amountNeeded = currentInvestment.amount;
 
-            if ((user.walletBalance || 0) < amountNeeded) {
-                return NextResponse.json({ error: `User has insufficient INR balance (₹${user.walletBalance || 0}) to cover this ₹${amountNeeded} investment.` }, { status: 400 });
+            const activeWalletBalance = currentInvestment.currency === 'USD' ? (user.usdWallet || 0) : (user.inrWallet || 0);
+            if (activeWalletBalance < amountNeeded) {
+                return NextResponse.json({ error: `User has insufficient balance (${activeWalletBalance}) to cover this investment.` }, { status: 400 });
             }
 
             // Deduct from wallet
-            user.walletBalance -= amountNeeded;
+            if (currentInvestment.currency === 'USD') {
+                user.usdWallet -= amountNeeded;
+            } else {
+                user.inrWallet -= amountNeeded;
+            }
             await user.save();
 
             // Create Transaction Record for the initial deduction
@@ -56,7 +61,7 @@ export async function PATCH(req, { params }) {
                 userId: user._id,
                 type: 'investment',
                 amount: -amountNeeded,
-                currency: 'INR',
+                currency: currentInvestment.currency,
                 description: `Invested in ${currentInvestment.schemeType} scheme (Admin Approved)`,
             });
 
@@ -65,17 +70,19 @@ export async function PATCH(req, { params }) {
                 const referrer = await User.findOne({ referralCode: user.referredBy });
                 if (referrer) {
                     const liveRate = await getExchangeRate();
-                    const bonusUsdt = Math.round(((amountNeeded * 0.05) / liveRate) * 100) / 100;
+                    const bonusUsd = currentInvestment.currency === 'USD'
+                        ? Math.round((amountNeeded * 0.05) * 100) / 100
+                        : Math.round(((amountNeeded * 0.05) / liveRate) * 100) / 100;
 
                     await User.findByIdAndUpdate(referrer._id, {
-                        $inc: { usdtBalance: bonusUsdt }
+                        $inc: { referralWallet: bonusUsd }
                     });
 
                     await Transaction.create({
                         userId: referrer._id,
                         type: 'referral_bonus',
-                        amount: bonusUsdt,
-                        currency: 'USDT',
+                        amount: bonusUsd,
+                        currency: 'USD',
                         description: `5% Referral bonus from ${user.name}'s investment approval`
                     });
                 }
@@ -86,26 +93,40 @@ export async function PATCH(req, { params }) {
 
         // --- EXISTING LOGIC: Completing/Maturing an Active Investment ---
         if (safeUpdate.status === 'completed' && currentInvestment.status !== 'completed') {
-            const reward = currentInvestment.usdtReward;
+            const principal = currentInvestment.amount;
 
-            // 1. Credit the User's USDT Balance
+            // Re-calculate the specific reward in exactly the currency they invested in
+            // If they invested in USD, they get USD back. If INR, they get INR.
+            // Wait, usdtReward in the schema stores the expected return, but maybe we should just calculate it here to be safe and clear.
+            // Actually, we can just use the scheme data, or we could just credit `principal + usdtReward` to USD if it was a USD investment.
+            // If it was an INR investment, we credit `principal + (usdtReward * liveRate)`. Wait, we should just read from `usdtReward` if USD, or calculate back down.
+            // Let's just use `getExchangeRate` if we need to convert back, but ideally we credit `principal + yield`.
+
+            const totalToCredit = currentInvestment.currency === 'USD'
+                ? principal + currentInvestment.usdtReward
+                : principal + Math.round(currentInvestment.usdtReward * await getExchangeRate());
+
+            const updateField = currentInvestment.currency === 'USD' ? 'usdWallet' : 'inrWallet';
+
+            // 1. Credit the User's specific Balance
             await User.findByIdAndUpdate(currentInvestment.userId._id, {
-                $inc: { usdtBalance: reward }
+                $inc: { [updateField]: totalToCredit }
             });
 
             // 2. Create a Transaction Record for transparency
             await Transaction.create({
                 userId: currentInvestment.userId._id,
                 type: 'investment',
-                amount: reward,
-                currency: 'USDT',
-                description: `Investment matured/completed. Credited ${reward} USDT to Trading Balance.`,
+                amount: totalToCredit,
+                currency: currentInvestment.currency,
+                description: `Investment matured/completed. Credited Capital + Return to Wallet.`,
             });
         }
 
         return NextResponse.json({ investment: updatedInvestment }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+        console.error('PATCH Admin Investment Error:', error);
+        return NextResponse.json({ error: 'Internal Server Error', details: error.message, stack: error.stack }, { status: 500 });
     }
 }
 

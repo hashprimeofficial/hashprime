@@ -11,13 +11,24 @@ const WithdrawalSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        currency: {
+        sourceWallet: {
             type: String,
-            default: 'USDT', // Currently, withdrawals are only in USDT profits
+            enum: ['USD', 'INR', 'Referral'],
+            required: true,
+        },
+        payoutMethod: {
+            type: String,
+            enum: ['USDT', 'Bank'],
+            required: true,
         },
         walletAddress: {
-            type: String, // BEP20 Wallet Address
+            type: String, // BEP20 Wallet Address or bank summary string
             required: true,
+        },
+        bankAccountId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'BankAccount',
+            default: null,
         },
         status: {
             type: String,

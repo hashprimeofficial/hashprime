@@ -1,22 +1,22 @@
 'use client';
+import Image from 'next/image';
 
 export default function AuthLayout({ children }) {
     return (
-        <div className="min-h-screen relative overflow-hidden flex" style={{ background: 'linear-gradient(135deg, #f8fafb 0%, #eef7f0 50%, #f4f9f5 100%)' }}>
+        <div className="min-h-screen relative overflow-hidden flex" style={{ background: '#050505' }}>
             {/* Left decorative panel */}
-            <div className="hidden lg:flex lg:w-[45%] xl:w-[42%] flex-col justify-between p-12 relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #0b1120 0%, #0f1f14 40%, #0b1120 100%)' }}>
+            <div className="hidden lg:flex lg:w-[45%] xl:w-[42%] flex-col justify-between p-12 relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #0A0A0A 0%, #0d0d0d 40%, #0A0A0A 100%)' }}>
                 {/* subtle grid */}
-                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(57,255,20,0.07) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
+                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(212,175,53,0.05) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
                 {/* top glow */}
-                <div className="absolute top-0 left-0 w-80 h-80 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(57,255,20,0.12) 0%, transparent 70%)' }} />
+                <div className="absolute top-0 left-0 w-80 h-80 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(212,175,53,0.10) 0%, transparent 70%)' }} />
                 {/* bottom-right glow */}
-                <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(57,255,20,0.08) 0%, transparent 70%)' }} />
+                <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(212,175,53,0.07) 0%, transparent 70%)' }} />
 
                 {/* Brand */}
                 <div className="relative z-10">
                     <div className=" items-center hidden md:flex lg:flex gap-3 mb-16">
-                        <div className="w-9 h-9 rounded-xl flex items-center justify-center font-black text-sm" style={{ background: '#d4af35', color: '#0b1120' }}>H</div>
-                        <span className="text-white text-xl font-black tracking-tight">HashPrime</span>
+                        <Image src="/textonly.png" alt="Hashprime Logo" width={160} height={40} className="object-contain brightness-0 invert opacity-90" />
                     </div>
 
                     <div className="space-y-1 mb-10">
@@ -53,12 +53,11 @@ export default function AuthLayout({ children }) {
             </div>
 
             {/* Right — form panel */}
-            <div className="flex-1 flex items-center justify-center p-6 sm:p-10 lg:p-16">
+            <div className="flex-1 flex items-center justify-center p-6 sm:p-10 lg:p-16 border-l border-white/5">
                 <div className="w-full max-w-md">
                     {/* Mobile logo */}
                     <div className="lg:hidden flex items-center gap-2.5 mb-10">
-                        <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm" style={{ background: '#d4af35', color: '#0b1120' }}>H</div>
-                        <span className="text-xl font-black tracking-tight" style={{ color: '#0b1120' }}>HashPrime</span>
+                        <Image src="/textonly.png" alt="Hashprime Logo" width={140} height={35} className="object-contain brightness-0 invert opacity-90" />
                     </div>
                     {children}
                 </div>

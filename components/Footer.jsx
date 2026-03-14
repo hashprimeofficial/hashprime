@@ -31,7 +31,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="bg-[#121212] border-t border-gray-100 w-full pt-20 pb-10 mt-auto">
+        <footer className="bg-[#121212] w-full pt-20 pb-10 mt-auto">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
                     <div className="lg:col-span-2">
@@ -101,7 +101,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-slate-300 text-sm font-medium">
                         &copy; {new Date().getFullYear()} Hashprime. All rights reserved.
                     </p>

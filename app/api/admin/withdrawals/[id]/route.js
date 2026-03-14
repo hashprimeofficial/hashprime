@@ -43,8 +43,8 @@ export async function PATCH(req, { params }) {
                 userId: withdrawal.userId._id,
                 type: 'withdrawal',
                 amount: -withdrawal.amount,
-                currency: 'USDT',
-                description: `Withdrawal to ${withdrawal.walletAddress} approved. ${adminNote || ''}`.trim(),
+                currency: withdrawal.sourceWallet === 'INR' ? 'INR' : 'USD',
+                description: `Withdrawal from ${withdrawal.sourceWallet} to ${withdrawal.walletAddress} approved. ${adminNote || ''}`.trim(),
             });
 
         } else if (status === 'rejected') {
@@ -53,9 +53,12 @@ export async function PATCH(req, { params }) {
             withdrawal.adminNote = adminNote || 'Rejected by administration';
             await withdrawal.save();
 
-            // Refund the user's USDT Balance (release from escrow)
+            const updateField = withdrawal.sourceWallet === 'USD' ? 'usdWallet' :
+                withdrawal.sourceWallet === 'INR' ? 'inrWallet' : 'referralWallet';
+
+            // Refund the user's Specific Balance (release from escrow)
             await User.findByIdAndUpdate(withdrawal.userId._id, {
-                $inc: { usdtBalance: withdrawal.amount }
+                $inc: { [updateField]: withdrawal.amount }
             });
             // No transaction receipt created for a rejected withdrawal to keep the ledger clean of failed attempts.
         }

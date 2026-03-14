@@ -40,23 +40,23 @@ export default function OurProjects() {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="relative bg-[#121212] py-8 md:py-12 overflow-hidden">
+        <section ref={sectionRef} className="relative bg-transparent py-20 md:py-32 overflow-hidden border-t border-white/[0.02]">
 
-            {/* Soft Ambient Background */}
+            {/* Soft Ambient Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-                <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-[#d4af35]/5 rounded-full blur-[120px]" />
-                <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#f5e0a3]/5 rounded-full blur-[120px]" />
+                <div className="absolute top-[10%] right-[-10%] w-[600px] h-[600px] bg-[#d4af35] opacity-[0.02] rounded-full blur-[120px]" />
+                <div className="absolute bottom-[10%] left-[-10%] w-[600px] h-[600px] bg-[#d4af35] opacity-[0.02] rounded-full blur-[120px]" />
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-3 lg:px-4">
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* ── Header ───────────────────────── */}
-                <div className="op-header-content flex flex-col items-center text-center mb-20">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="h-[2px] w-8 bg-[#d4af35]" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-300">Our Strategic Verticals</span>
+                <div className="op-header-content flex flex-col items-center text-center mb-24">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4af35]/20 bg-[#d4af35]/5 mb-6">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse"></span>
+                        <span className="text-xs uppercase tracking-[0.2em] font-medium text-[#d4af35]">Strategic Verticals</span>
                     </div>
-                    <h2 className="text-5xl md:text-7xl font-black text-white leading-[0.9] tracking-tighter mb-8 ">
+                    <h2 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tight mb-6 mt-4">
                         WHERE YOUR<br />
                         <span className="text-[#d4af35]">MONEY WORKS</span>
                     </h2>
@@ -66,44 +66,48 @@ export default function OurProjects() {
                 </div>
 
                 {/* ── Showcase Rows ─────── */}
-                <div className="op-rows space-y-4">
+                <div className="op-rows grid grid-cols-1 md:grid-cols-1 gap-4">
                     {projects.map(({ num, Icon, title, tag, desc }) => (
                         <div
                             key={num}
                             className="op-row group relative flex flex-col md:flex-row md:items-center gap-6 p-6 md:p-8 
-                                       bg-[#121212]/5 border border-white/5 rounded-3xl
-                                       hover:bg-[#121212] hover:border-[#d4af35]/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.03)]
-                                       transition-all duration-500 cursor-default"
+                                       bg-[#0A0A0A]/50 backdrop-blur-sm border border-white/5 rounded-[2rem]
+                                       hover:bg-[#121212]/80 hover:border-[#d4af35]/20 hover:shadow-[0_10px_40px_rgba(212,175,53,0.05)]
+                                       transition-all duration-700 cursor-default overflow-hidden"
                         >
-                            {/* Left Accent */}
-                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-12 bg-[#d4af35] rounded-r-full opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                            {/* Subtle Radial Gradient Hover Map */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#d4af35]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none" />
 
-                            {/* Icon bubble */}
-                            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#121212] border border-white/5 flex items-center justify-center
-                                            group-hover:scale-110 group-hover:shadow-lg group-hover:border-[#d4af35]/20 transition-all duration-500">
-                                <Icon size={28} strokeWidth={1.5} className="text-[#d4af35]" />
+                            {/* Left Line Accent (Clean & Minimal) */}
+                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-0 bg-[#d4af35] opacity-0 group-hover:h-3/4 group-hover:opacity-100 transition-all duration-500 rounded-r-full" />
+
+                            {/* Minimal Icon Bubble */}
+                            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#0A0A0A] border border-white/5 flex items-center justify-center relative z-10
+                                            group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(212,175,53,0.1)] group-hover:border-[#d4af35]/30 transition-all duration-500 overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-b from-[#d4af35]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]"></div>
+                                <Icon size={24} strokeWidth={1.5} className="text-[#d4af35]" />
                             </div>
 
                             {/* Center Content */}
-                            <div className="flex-1 min-w-0">
-                                <div className="flex items-baseline gap-4 mb-2">
-                                    <span className="text-[12px] font-black text-slate-300 tracking-widest">{num}</span>
-                                    <h3 className="text-2xl font-black text-white tracking-tight group-hover:text-white transition-colors">
+                            <div className="flex-1 min-w-0 relative z-10">
+                                <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-3">
+                                    <span className="text-[11px] font-black text-slate-500 tracking-widest font-display">{num}</span>
+                                    <h3 className="text-2xl font-black text-white tracking-tight group-hover:text-[#d4af35] transition-colors duration-500 font-display">
                                         {title}
                                     </h3>
-                                    <span className="hidden sm:inline-block text-[10px] font-black uppercase tracking-[0.2em] text-[#d4af35]/60 bg-[#d4af35]/5 border border-[#d4af35]/20 px-3 py-1 rounded-full">
+                                    <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#d4af35]/80 bg-[#d4af35]/5 border border-[#d4af35]/20 px-3 py-1 rounded-full whitespace-nowrap">
                                         {tag}
                                     </span>
                                 </div>
-                                <p className="text-slate-300 text-base leading-relaxed max-w-2xl">{desc}</p>
+                                <p className="text-slate-400 font-normal text-[15px] leading-relaxed max-w-2xl group-hover:text-slate-300 transition-colors duration-500">{desc}</p>
                             </div>
 
-                            {/* Right Arrow */}
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-slate-300
-                                                group-hover:border-[#0B1120] group-hover:text-white group-hover:shadow-md
-                                                transition-all duration-500">
-                                    <ArrowRight size={20} className="group-hover:translate-x-0.5 transition-transform duration-500" />
+                            {/* Right Arrow (Minimal Reveal) */}
+                            <div className="flex items-center gap-4 relative z-10">
+                                <div className="w-12 h-12 rounded-full border border-white/5 flex items-center justify-center text-slate-500 bg-[#0A0A0A]
+                                                group-hover:border-[#d4af35]/40 group-hover:text-[#d4af35] group-hover:bg-[#d4af35]/5
+                                                transition-all duration-500 group-hover:translate-x-1">
+                                    <ArrowRight size={18} strokeWidth={2} />
                                 </div>
                             </div>
                         </div>

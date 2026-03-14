@@ -27,7 +27,15 @@ const UserSchema = new mongoose.Schema(
             type: String,
             default: '',
         },
-        usdtBalance: {
+        usdWallet: {
+            type: Number,
+            default: 0,
+        },
+        inrWallet: {
+            type: Number,
+            default: 0,
+        },
+        referralWallet: {
             type: Number,
             default: 0,
         },
@@ -64,7 +72,6 @@ const UserSchema = new mongoose.Schema(
         otpExpiry: { type: Date, default: null },
 
         // Deposit & Referrals
-        walletBalance: { type: Number, default: 0 },
         referralCode: { type: String, unique: true, sparse: true, default: null }
     },
     { timestamps: true }

@@ -4,6 +4,7 @@ import Investment from '@/models/Investment';
 import User from '@/models/User';
 import Transaction from '@/models/Transaction';
 import { verifyToken } from '@/lib/auth';
+import { getExchangeRate } from '@/lib/exchangeRate';
 
 export async function POST(req) {
     try {
@@ -29,23 +30,30 @@ export async function POST(req) {
 
         // Process each matured investment
         for (const investment of maturedInvestments) {
-            const reward = investment.usdtReward;
+            const principal = investment.amount;
+
+            const liveRate = await getExchangeRate();
+            const totalToCredit = investment.currency === 'USD'
+                ? principal + investment.usdtReward
+                : principal + Math.round(investment.usdtReward * liveRate);
+
+            const updateField = investment.currency === 'USD' ? 'usdWallet' : 'inrWallet';
 
             // 1. Update investment status to completed
             await Investment.findByIdAndUpdate(investment._id, { status: 'completed' });
 
-            // 2. Credit the User's USDT Balance
+            // 2. Credit the User's specific Balance
             await User.findByIdAndUpdate(investment.userId, {
-                $inc: { usdtBalance: reward }
+                $inc: { [updateField]: totalToCredit }
             });
 
             // 3. Create a Transaction Record
             await Transaction.create({
                 userId: investment.userId,
                 type: 'investment',
-                amount: reward,
-                currency: 'USDT',
-                description: `Investment matured automatically. Credited ${reward} USDT to Trading Balance.`,
+                amount: totalToCredit,
+                currency: investment.currency,
+                description: `Investment matured automatically. Credited Capital + Return to Wallet.`,
             });
 
             processedCount++;

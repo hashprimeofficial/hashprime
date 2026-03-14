@@ -11,6 +11,19 @@ const TicketSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        category: {
+            type: String,
+            required: true,
+            default: 'General',
+        },
+        subCategory: {
+            type: String,
+            default: '',
+        },
+        screenshotUrl: {
+            type: String,
+            default: '',
+        },
         description: {
             type: String,
             required: true,

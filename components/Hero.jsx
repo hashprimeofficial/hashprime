@@ -52,27 +52,21 @@ export default function Hero() {
 
                 {/* Left side content */}
                 <div className="lg:col-span-7 flex flex-col items-start z-20">
-                    <div className="hero-glass-badge inline-flex items-center gap-2 pl-2 pr-4 py-1.5 rounded-full bg-[#121212] border border-[#d4af35]/20 shadow-[0_0_15px_rgba(212,175,53,0.05)] mb-8">
-                        <span className="bg-[#d4af35] text-[#0A0A0A] text-[10px] font-black uppercase px-2 py-1 rounded-full">New</span>
-                        <span className="text-[#d4af35] text-xs font-bold uppercase tracking-widest">Institutional Yield Platform</span>
-                    </div>
-
                     <div className="mb-8 [perspective:1000px]">
                         <div className="overflow-hidden">
                             <h1 className="hero-title-line font-black text-6xl md:text-[5.5rem] leading-[0.9] tracking-tighter text-white drop-shadow-sm mb-2">
-                                REIMAGINE
+                                Smart Assets
                             </h1>
                         </div>
-                        <div className="overflow-hidden">
+                        <div className="overflow-hidden flex items-center gap-4">
                             <h1 className="hero-title-line font-black text-6xl md:text-[5.5rem] leading-[0.9] tracking-tighter text-[#d4af35] mb-2">
-                                YOUR WEALTH
+                                Prime
+                            </h1>
+                            <h1 className="hero-title-line font-black text-5xl md:text-7xl  tracking-tighter text-white/50">
+                                Growth
                             </h1>
                         </div>
-                        <div className="overflow-hidden">
-                            <h1 className="hero-title-line font-black text-5xl md:text-7xl leading-[0.9] tracking-tighter text-white/50">
-                                FOR THE FUTURE
-                            </h1>
-                        </div>
+
                     </div>
 
                     <p className="hero-desc text-slate-300 text-lg md:text-xl font-medium max-w-xl mb-12 leading-relaxed">
@@ -104,7 +98,7 @@ export default function Hero() {
                         <div className="absolute w-[300px] h-[300px] bg-[#d4af35] rounded-full blur-[100px] opacity-[0.08] animate-pulse"></div>
                         <div className="w-[120%] h-[120%] relative z-10">
                             <DotLottieReact
-                                src="https://lottie.host/5c4816c7-cb2f-4fd4-aab5-971db825b83e/mi4CERlSie.lottie"
+                                src="https://lottie.host/e61885b3-055e-4e5d-a614-d3cefb60503a/2plPOrpn03.lottie"
                                 autoplay
                                 loop
                                 className="w-full h-full scale-[1.2] drop-shadow-[0_0_20px_rgba(212,175,53,0.2)]"
@@ -120,8 +114,8 @@ export default function Hero() {
                             </div>
                             <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Live Yield</span>
                         </div>
-                        <div className="text-2xl font-black text-white">+14.2%</div>
-                        <div className="text-[10px] text-[#d4af35] font-bold mt-1">Global average APY</div>
+                        <div className="text-2xl font-black text-white">+500%</div>
+                        <div className="text-[10px] text-[#d4af35] font-bold mt-1">Highest returns</div>
                     </div>
 
                     <div className="hero-floating-card hero-float-2 absolute bottom-[20%] left-[-5%] sm:left-[-10%] md:left-[-20%] bg-[#121212]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-[0_20px_40px_rgba(0,0,0,0.5)] w-52 z-20">
@@ -129,10 +123,10 @@ export default function Hero() {
                             <div className="w-8 h-8 rounded-full bg-[#d4af35]/10 flex items-center justify-center border border-[#d4af35]/20">
                                 <ShieldCheck size={14} className="text-[#d4af35]" />
                             </div>
-                            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Vault Status</span>
+                            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Trusted Investments</span>
                         </div>
-                        <div className="text-lg font-black text-white">Secured</div>
-                        <div className="text-[10px] text-[#d4af35] font-bold mt-1">Multi-sig verified</div>
+                        <div className="text-lg font-black text-white">100%</div>
+                        <div className="text-[10px] text-[#d4af35] font-bold mt-1">Secured & Verified</div>
                     </div>
 
                     {/* Frame elements */}

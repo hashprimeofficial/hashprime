@@ -11,27 +11,29 @@ import {
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-// ── Field row ─────────────────────────────────────────────────────
+// ── Field ─────────────────────────────────────────────────────────────
 const Field = ({ label, value }) => (
     <div>
-        <div className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-0.5">{label}</div>
-        <div className="text-sm font-bold text-white">{value || <span className="text-slate-300 font-medium italic">Not provided</span>}</div>
+        <div className="text-[9px] font-black text-[#d4af35]/40 uppercase tracking-[0.2em] mb-1">{label}</div>
+        <div className="text-sm font-bold text-white">{value || <span className="text-white/20 font-medium italic">Not provided</span>}</div>
     </div>
 );
 
-// ── Section header ────────────────────────────────────────────────
+// ── Section header ─────────────────────────────────────────────────────
 const Section = ({ icon: Icon, title, children }) => (
     <div>
-        <div className="flex items-center gap-2 mb-4 pb-2 border-b border-white/5">
-            <Icon className="w-4 h-4" style={{ color: '#d4af35' }} />
-            <h3 className="text-xs font-black uppercase tracking-widest text-slate-500">{title}</h3>
+        <div className="flex items-center gap-2 mb-4 pb-2 border-b border-[#d4af35]/10">
+            <div className="w-6 h-6 rounded-lg bg-[#d4af35]/10 border border-[#d4af35]/20 flex items-center justify-center">
+                <Icon className="w-3.5 h-3.5 text-[#d4af35]" />
+            </div>
+            <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-[#d4af35]/60">{title}</h3>
         </div>
         <div className="grid grid-cols-2 gap-x-6 gap-y-4">{children}</div>
     </div>
 );
 
-// ── KYC Detail Slide-over ──────────────────────────────────────────
-function KYCDetailPanel({ user, onClose, onAction, actioning }) {
+// ── KYC Detail Slide-over ──────────────────────────────────────────────
+function KYCDetailPanel({ user, onClose, onAction }) {
     const [showRejectForm, setShowRejectForm] = useState(false);
     const [rejectMsg, setRejectMsg] = useState('');
     const [approving, setApproving] = useState(false);
@@ -50,46 +52,47 @@ function KYCDetailPanel({ user, onClose, onAction, actioning }) {
         onClose();
     };
 
+    const initials = (user.firstName?.[0] || user.name?.[0] || '?').toUpperCase();
+
     return (
         <AnimatePresence>
             {/* Backdrop */}
             <motion.div
                 key="backdrop"
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-[#121212]/10/40 backdrop-blur-sm z-40"
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
                 onClick={onClose}
             />
-            {/* Panel */}
+            {/* Slide panel */}
             <motion.div
                 key="panel"
                 initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-                className="fixed right-0 top-0 h-full w-full max-w-lg bg-[#121212] z-50 shadow-2xl flex flex-col overflow-hidden"
+                className="fixed right-0 top-0 h-full w-full max-w-lg bg-[#080808] z-50 shadow-[−8px_0_40px_rgba(0,0,0,0.8)] flex flex-col overflow-hidden border-l border-[#d4af35]/20"
             >
                 {/* Header */}
-                <div className="flex items-center justify-between px-7 py-5 border-b border-white/5 bg-[#d4af35]">
+                <div className="flex items-center justify-between px-6 py-5 border-b border-[#d4af35]/15 bg-gradient-to-r from-[#d4af35]/10 to-transparent">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm" style={{ background: '#d4af35', color: '#0B1120' }}>
-                            {(user.firstName?.[0] || user.name?.[0] || '?').toUpperCase()}
+                        <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#d4af35]/30 to-[#d4af35]/5 border border-[#d4af35]/30 flex items-center justify-center font-black text-[#d4af35] text-base shrink-0">
+                            {initials}
                         </div>
                         <div>
-                            <div className="font-black text-white text-base">{user.firstName} {user.lastName}</div>
-                            <div className="text-slate-300 text-xs font-medium">{user.email}</div>
+                            <div className="font-black text-white text-base leading-tight">{user.firstName} {user.lastName}</div>
+                            <div className="text-[#d4af35]/50 text-xs font-medium">{user.email}</div>
                         </div>
                     </div>
-                    <button onClick={onClose} className="text-slate-300 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-[#121212]/10">
+                    <button onClick={onClose} className="p-2 text-[#d4af35]/40 hover:text-[#d4af35] hover:bg-[#d4af35]/10 transition-colors rounded-xl">
                         <X className="w-5 h-5" />
                     </button>
                 </div>
 
                 {/* Scrollable body */}
-                <div className="flex-1 overflow-y-auto p-7 space-y-7">
-
+                <div className="flex-1 overflow-y-auto p-6 space-y-7">
                     <Section icon={UserIcon} title="Personal Details">
                         <Field label="First Name" value={user.firstName} />
                         <Field label="Last Name" value={user.lastName} />
                         <Field label="Email" value={user.email} />
-                        <Field label="Name (Account)" value={user.name} />
+                        <Field label="Account Name" value={user.name} />
                     </Section>
 
                     <Section icon={MapPin} title="Address">
@@ -107,24 +110,57 @@ function KYCDetailPanel({ user, onClose, onAction, actioning }) {
                     </Section>
 
                     <Section icon={FileText} title="Identity Documents">
+                        {/* PAN */}
                         <div>
-                            <div className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-1">PAN Number</div>
-                            <div className="text-sm font-black text-white uppercase tracking-widest">{user.panNumber || <span className="text-slate-300 font-medium italic">Not provided</span>}</div>
-                            {user.panDocumentUrl && (
-                                <a href={user.panDocumentUrl} target="_blank" rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 mt-2 text-xs font-bold px-2.5 py-1 rounded-lg border border-white/10 text-slate-200 hover:border-[#d4af35] hover:text-white transition-all">
-                                    <ExternalLink className="w-3 h-3" /> View PAN Doc
-                                </a>
+                            <div className="text-[9px] font-black text-[#d4af35]/40 uppercase tracking-[0.2em] mb-1">PAN Number</div>
+                            <div className="text-sm font-black text-white uppercase tracking-widest mb-2">
+                                {user.panNumber || <span className="text-white/20 font-medium italic normal-case">Not provided</span>}
+                            </div>
+                            {user.panDocumentUrl ? (
+                                <div className="space-y-1.5">
+                                    <a href={user.panDocumentUrl} target="_blank" rel="noopener noreferrer" className="relative block w-full h-24 rounded-xl overflow-hidden border border-[#d4af35]/20 hover:border-[#d4af35]/60 transition-all group">
+                                        <img src={user.panDocumentUrl} alt="PAN Document" className="w-full h-full object-cover" />
+                                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5">
+                                            <ExternalLink className="w-4 h-4 text-[#d4af35]" />
+                                            <span className="text-[#d4af35] text-[10px] font-black">Open</span>
+                                        </div>
+                                    </a>
+                                    <a href={user.panDocumentUrl} target="_blank" rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-1 text-[10px] font-black px-2.5 py-1 rounded-lg border border-[#d4af35]/20 text-[#d4af35]/60 hover:border-[#d4af35] hover:text-[#d4af35] transition-all">
+                                        <ExternalLink className="w-3 h-3" /> View Full PAN Doc
+                                    </a>
+                                </div>
+                            ) : (
+                                <div className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white/25 text-[10px] font-black">
+                                    <FileText className="w-3 h-3" /> No image attached
+                                </div>
                             )}
                         </div>
+
+                        {/* Aadhaar */}
                         <div>
-                            <div className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-1">Aadhaar Number</div>
-                            <div className="text-sm font-black text-white tracking-widest">{user.aadhaarNumber || <span className="text-slate-300 font-medium italic">Not provided</span>}</div>
-                            {user.aadhaarDocumentUrl && (
-                                <a href={user.aadhaarDocumentUrl} target="_blank" rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1 mt-2 text-xs font-bold px-2.5 py-1 rounded-lg border border-white/10 text-slate-200 hover:border-[#d4af35] hover:text-white transition-all">
-                                    <ExternalLink className="w-3 h-3" /> View Aadhaar Doc
-                                </a>
+                            <div className="text-[9px] font-black text-[#d4af35]/40 uppercase tracking-[0.2em] mb-1">Aadhaar Number</div>
+                            <div className="text-sm font-black text-white tracking-widest mb-2">
+                                {user.aadhaarNumber || <span className="text-white/20 font-medium italic normal-case tracking-normal">Not provided</span>}
+                            </div>
+                            {user.aadhaarDocumentUrl ? (
+                                <div className="space-y-1.5">
+                                    <a href={user.aadhaarDocumentUrl} target="_blank" rel="noopener noreferrer" className="relative block w-full h-24 rounded-xl overflow-hidden border border-[#d4af35]/20 hover:border-[#d4af35]/60 transition-all group">
+                                        <img src={user.aadhaarDocumentUrl} alt="Aadhaar Document" className="w-full h-full object-cover" />
+                                        <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5">
+                                            <ExternalLink className="w-4 h-4 text-[#d4af35]" />
+                                            <span className="text-[#d4af35] text-[10px] font-black">Open</span>
+                                        </div>
+                                    </a>
+                                    <a href={user.aadhaarDocumentUrl} target="_blank" rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-1 text-[10px] font-black px-2.5 py-1 rounded-lg border border-[#d4af35]/20 text-[#d4af35]/60 hover:border-[#d4af35] hover:text-[#d4af35] transition-all">
+                                        <ExternalLink className="w-3 h-3" /> View Full Aadhaar Doc
+                                    </a>
+                                </div>
+                            ) : (
+                                <div className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/10 text-white/25 text-[10px] font-black">
+                                    <FileText className="w-3 h-3" /> No image attached
+                                </div>
                             )}
                         </div>
                     </Section>
@@ -133,26 +169,26 @@ function KYCDetailPanel({ user, onClose, onAction, actioning }) {
                     <AnimatePresence>
                         {showRejectForm && (
                             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-                                className="bg-red-50 border border-red-200 rounded-2xl p-5 space-y-3">
+                                className="bg-red-500/5 border border-red-500/20 rounded-2xl p-5 space-y-3">
                                 <div className="flex items-center gap-2">
-                                    <Mail className="w-4 h-4 text-red-500" />
-                                    <p className="text-sm font-black text-red-700">Rejection Reason </p>
+                                    <Mail className="w-4 h-4 text-red-400" />
+                                    <p className="text-sm font-black text-red-400">Rejection Reason <span className="text-red-400/50 font-normal">(will be emailed to user)</span></p>
                                 </div>
                                 <textarea
                                     value={rejectMsg}
                                     onChange={e => setRejectMsg(e.target.value)}
                                     placeholder="e.g. PAN document is blurry. Please resubmit a clear photo of your PAN card."
                                     rows={4}
-                                    className="w-full bg-[#121212] border border-red-200 rounded-xl px-4 py-3 text-sm text-slate-100 font-medium focus:outline-none focus:border-red-400 resize-none"
+                                    className="w-full bg-[#0A0A0A] border border-red-500/20 rounded-xl px-4 py-3 text-sm text-white font-medium focus:outline-none focus:border-red-500/50 resize-none"
                                 />
                                 <div className="flex gap-2">
                                     <button onClick={() => { setShowRejectForm(false); setRejectMsg(''); }}
-                                        className="flex-1 bg-[#121212] border border-white/10 text-slate-200 font-bold py-2.5 rounded-xl text-sm hover:bg-[#121212]/5 transition-all">
+                                        className="flex-1 bg-[#0A0A0A] border border-white/10 text-white/50 font-bold py-2.5 rounded-xl text-sm hover:bg-white/5 transition-all">
                                         Cancel
                                     </button>
                                     <button onClick={handleReject} disabled={!rejectMsg.trim() || rejecting}
-                                        className="flex-1 bg-red-600 hover:bg-red-700 text-white font-black py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-50">
-                                        {rejecting ? <Loader2 className="w-4 h-4 animate-spin" /> : <><XCircle className="w-4 h-4" /> Reject</>}
+                                        className="flex-1 bg-red-500 hover:bg-red-600 text-white font-black py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 transition-all disabled:opacity-50">
+                                        {rejecting ? <Loader2 className="w-4 h-4 animate-spin" /> : <><XCircle className="w-4 h-4" /> Confirm Reject</>}
                                     </button>
                                 </div>
                             </motion.div>
@@ -160,16 +196,15 @@ function KYCDetailPanel({ user, onClose, onAction, actioning }) {
                     </AnimatePresence>
                 </div>
 
-                {/* Action footer */}
+                {/* Footer actions */}
                 {!showRejectForm && (
-                    <div className="px-7 py-5 border-t border-white/5 flex gap-3 bg-[#121212]">
+                    <div className="px-6 py-5 border-t border-[#d4af35]/10 flex gap-3 bg-[#080808]">
                         <button onClick={() => setShowRejectForm(true)}
-                            className="flex-1 bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 font-black py-3 rounded-xl flex items-center justify-center gap-2 transition-all text-sm">
+                            className="flex-1 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 font-black py-3 rounded-2xl flex items-center justify-center gap-2 transition-all text-sm">
                             <XCircle className="w-4 h-4" /> Reject
                         </button>
                         <button onClick={handleApprove} disabled={approving}
-                            className="flex-1 font-black py-3 rounded-xl flex items-center justify-center gap-2 transition-all text-sm disabled:opacity-50"
-                            style={{ background: '#d4af35', color: '#0B1120', boxShadow: '0 4px 16px rgba(57,255,20,0.25)' }}>
+                            className="flex-1 bg-[#d4af35] text-black font-black py-3 rounded-2xl flex items-center justify-center gap-2 transition-all text-sm hover:opacity-90 shadow-[0_0_20px_rgba(212,175,53,0.3)] disabled:opacity-50">
                             {approving ? <Loader2 className="w-4 h-4 animate-spin" /> : <><CheckCircle2 className="w-4 h-4" /> Approve KYC</>}
                         </button>
                     </div>
@@ -179,7 +214,7 @@ function KYCDetailPanel({ user, onClose, onAction, actioning }) {
     );
 }
 
-// ── Main page ──────────────────────────────────────────────────────
+// ── Main page ──────────────────────────────────────────────────────────
 export default function AdminKYCPage() {
     const { data, error, isLoading, mutate } = useSWR('/api/kyc', fetcher);
     const [selectedUser, setSelectedUser] = useState(null);
@@ -195,21 +230,18 @@ export default function AdminKYCPage() {
                 body: JSON.stringify({ userId, status, rejectionMessage })
             });
             if (res.ok) mutate();
-            else alert('Failed to update KYC status');
-        } catch {
-            alert('An unexpected error occurred');
         } finally {
             setActioningId(null);
         }
     };
 
     if (isLoading) return (
-        <div className="space-y-4">
-            <div className="h-10 bg-slate-200 rounded w-1/4 animate-pulse" />
-            <div className="h-64 bg-slate-100 rounded-2xl animate-pulse" />
+        <div className="flex flex-col items-center justify-center py-20 gap-4">
+            <Loader2 className="w-8 h-8 animate-spin text-[#d4af35]" />
+            <p className="text-[#d4af35]/50 text-sm font-black uppercase tracking-widest">Loading KYC queue…</p>
         </div>
     );
-    if (error) return <div className="text-red-500 font-bold p-6">Failed to load pending KYC applications.</div>;
+    if (error) return <div className="p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-2xl font-bold">Failed to load KYC applications.</div>;
 
     const pendingUsers = data?.users || [];
     const filteredUsers = pendingUsers.filter(u =>
@@ -220,74 +252,74 @@ export default function AdminKYCPage() {
 
     return (
         <>
-            <div className="space-y-8">
+            <div className="space-y-6">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
-                        <h1 className="text-3xl font-black text-white tracking-tight flex items-center gap-3">
-                            <ShieldCheck className="w-8 h-8" style={{ color: '#d4af35' }} />
+                        <h1 className="text-2xl font-black text-white flex items-center gap-3">
+                            <div className="w-9 h-9 bg-[#d4af35]/10 rounded-xl border border-[#d4af35]/20 flex items-center justify-center">
+                                <ShieldCheck className="w-5 h-5 text-[#d4af35]" />
+                            </div>
                             KYC Approvals
                         </h1>
-                        <p className="text-slate-500 font-medium">Review and verify user KYC submissions.</p>
+                        <p className="text-[#d4af35]/40 text-sm font-medium mt-1 ml-12">
+                            <span className="text-amber-400 font-black">{pendingUsers.length}</span> pending verification{pendingUsers.length !== 1 ? 's' : ''}
+                        </p>
                     </div>
                     <div className="relative w-full md:w-64">
-                        <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-300" />
-                        <input type="text" placeholder="Search by name or email…" value={searchTerm}
+                        <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#d4af35]/40" />
+                        <input type="text" placeholder="Search name, email, PAN…" value={searchTerm}
                             onChange={e => setSearchTerm(e.target.value)}
-                            className="w-full bg-[#121212] border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm font-medium focus:outline-none transition-all"
-                            onFocus={e => e.target.style.boxShadow = '0 0 0 3px rgba(57,255,20,0.15)'}
-                            onBlur={e => e.target.style.boxShadow = ''} />
+                            className="w-full bg-[#080808] border border-[#d4af35]/15 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#d4af35]/40 transition-all" />
                     </div>
                 </div>
 
-                {/* Table */}
-                <div className="bg-[#121212] border border-white/10 rounded-2xl shadow-sm overflow-hidden">
-                    {filteredUsers.length === 0 ? (
-                        <div className="p-14 text-center">
-                            <CheckCircle2 className="w-14 h-14 mx-auto mb-4 text-slate-200" />
-                            <h3 className="text-lg font-black text-white mb-1">All caught up!</h3>
-                            <p className="text-slate-300 font-medium text-sm">No pending KYC applications.</p>
+                {filteredUsers.length === 0 ? (
+                    <div className="bg-[#080808] border border-[#d4af35]/15 rounded-3xl p-16 text-center">
+                        <div className="w-16 h-16 bg-[#d4af35]/10 rounded-2xl border border-[#d4af35]/20 flex items-center justify-center mx-auto mb-4">
+                            <CheckCircle2 className="w-8 h-8 text-[#d4af35]/40" />
                         </div>
-                    ) : (
+                        <h3 className="text-lg font-black text-white mb-1">All Caught Up!</h3>
+                        <p className="text-[#d4af35]/30 font-medium text-sm">No pending KYC applications.</p>
+                    </div>
+                ) : (
+                    <div className="bg-[#080808] border border-[#d4af35]/15 rounded-3xl overflow-hidden shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
                         <div className="overflow-x-auto">
-                            <table className="w-full text-left border-collapse">
-                                <thead className="bg-[#121212]/5 border-b border-white/5 text-slate-500 text-xs uppercase tracking-wider">
+                            <table className="w-full text-left whitespace-nowrap">
+                                <thead className="bg-[#d4af35]/5 border-b border-[#d4af35]/10">
                                     <tr>
-                                        <th className="px-6 py-4 font-bold">Applicant</th>
-                                        <th className="px-6 py-4 font-bold">ID Numbers</th>
-                                        <th className="px-6 py-4 font-bold">Occupation</th>
-                                        <th className="px-6 py-4 font-bold text-right">Action</th>
+                                        {['Applicant', 'ID Numbers', 'Occupation & Income', 'Action'].map((h, i) => (
+                                            <th key={h} className={`px-5 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/50 ${i === 3 ? 'text-right' : ''}`}>{h}</th>
+                                        ))}
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-50">
+                                <tbody className="divide-y divide-[#d4af35]/5">
                                     {filteredUsers.map(user => (
-                                        <motion.tr initial={{ opacity: 0 }} animate={{ opacity: 1 }} key={user._id}
-                                            className="hover:bg-[#121212]/5/70 transition-colors">
-                                            <td className="px-6 py-4">
+                                        <motion.tr key={user._id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                                            className="hover:bg-[#d4af35]/3 transition-colors">
+                                            <td className="px-5 py-4">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-9 h-9 rounded-xl flex items-center justify-center text-sm font-black flex-shrink-0"
-                                                        style={{ background: 'rgba(57,255,20,0.12)', color: '#0B1120' }}>
+                                                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#d4af35]/20 to-[#d4af35]/5 border border-[#d4af35]/20 flex items-center justify-center text-[#d4af35] font-black text-sm shrink-0">
                                                         {(user.firstName?.[0] || user.name?.[0] || '?').toUpperCase()}
                                                     </div>
                                                     <div>
                                                         <div className="font-bold text-white text-sm">{user.firstName} {user.lastName}</div>
-                                                        <div className="text-xs text-slate-300 font-medium">{user.email}</div>
+                                                        <div className="text-[10px] text-[#d4af35]/40 font-medium">{user.email}</div>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="px-6 py-4">
-                                                <div className="text-xs font-bold text-slate-500">PAN: <span className="text-white uppercase tracking-widest">{user.panNumber || '—'}</span></div>
-                                                <div className="text-xs font-bold text-slate-500 mt-1">Aadhaar: <span className="text-white">{user.aadhaarNumber || '—'}</span></div>
+                                            <td className="px-5 py-4">
+                                                <div className="text-xs font-bold text-[#d4af35]/50">PAN: <span className="text-white uppercase tracking-widest">{user.panNumber || '—'}</span></div>
+                                                <div className="text-xs font-bold text-[#d4af35]/50 mt-1">Aadhar: <span className="text-white">{user.aadhaarNumber || '—'}</span></div>
                                             </td>
-                                            <td className="px-6 py-4">
+                                            <td className="px-5 py-4">
                                                 <div className="text-sm font-bold text-white">{user.occupation || '—'}</div>
-                                                <div className="text-xs text-slate-300 mt-0.5">{user.incomeRange}</div>
+                                                <div className="text-xs text-[#d4af35]/40 mt-0.5">{user.incomeRange || ''}</div>
                                             </td>
-                                            <td className="px-6 py-4 text-right">
+                                            <td className="px-5 py-4 text-right">
                                                 <button onClick={() => setSelectedUser(user)}
-                                                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-black border border-[#d4af35]/30 text-white hover:bg-[#d4af35] transition-all"
-                                                    style={{ background: 'rgba(57,255,20,0.08)' }}>
-                                                    <Eye className="w-3.5 h-3.5" /> View Profile
+                                                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-black border border-[#d4af35]/20 text-[#d4af35] hover:bg-[#d4af35]/10 hover:border-[#d4af35]/40 transition-all">
+                                                    <Eye className="w-3.5 h-3.5" /> Review Profile
                                                 </button>
                                             </td>
                                         </motion.tr>
@@ -295,11 +327,10 @@ export default function AdminKYCPage() {
                                 </tbody>
                             </table>
                         </div>
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
 
-            {/* Detail slide-over */}
             {selectedUser && (
                 <KYCDetailPanel
                     user={selectedUser}

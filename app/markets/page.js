@@ -57,9 +57,9 @@ export default function MarketsPage() {
 
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <div className="reveal-text inline-flex items-center space-x-2 bg-[#121212] border border-white/10 py-2 px-4 rounded-full mb-8 shadow-sm">
-                        <Activity className="w-4 h-4 text-neon animate-pulse" />
-                        <span className="text-sm font-bold text-slate-200 uppercase tracking-widest">Live Global Markets</span>
+                    <div className="reveal-text inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4af35]/20 bg-[#d4af35]/5 mb-8">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse" />
+                        <span className="text-sm font-medium text-[#d4af35] uppercase tracking-widest">Live Global Markets</span>
                     </div>
                     <h1 className="reveal-text text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white leading-none">
                         Top Cryptocurrency <br className="hidden md:block" /> <span className="text-[#d4af35]">Markets</span>
@@ -70,10 +70,10 @@ export default function MarketsPage() {
                 </div>
 
                 {/* Data Table / List */}
-                <div className="reveal-text bg-[#121212] border border-white/10 rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden">
+                <div className="reveal-text bg-[#0A0A0A] border border-white/5 rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.5)] overflow-hidden">
 
                     {/* Table Header */}
-                    <div className="hidden md:grid grid-cols-12 gap-4 px-8 py-5 bg-[#121212]/5/80 border-b border-white/5 text-xs font-bold text-slate-300 uppercase tracking-wider">
+                    <div className="hidden md:grid grid-cols-12 gap-4 px-8 py-5 bg-[#121212]/80 border-b border-white/5 text-xs font-bold text-slate-500 uppercase tracking-wider">
                         <div className="col-span-1">Rank</div>
                         <div className="col-span-4">Asset</div>
                         <div className="col-span-3 text-right">Price</div>
@@ -84,8 +84,8 @@ export default function MarketsPage() {
                     {/* Loading State */}
                     {isLoading && (
                         <div className="py-32 flex flex-col items-center justify-center space-y-4">
-                            <div className="w-12 h-12 border-4 border-white/5 border-t-neon rounded-full animate-spin"></div>
-                            <p className="text-slate-300 font-bold uppercase tracking-widest text-sm animate-pulse">Establishing Secure Connection...</p>
+                            <div className="w-12 h-12 border border-white/5 border-t-[#d4af35] rounded-full animate-spin"></div>
+                            <p className="text-slate-500 font-bold uppercase tracking-widest text-sm animate-pulse">Establishing Secure Connection...</p>
                         </div>
                     )}
 
@@ -99,7 +99,7 @@ export default function MarketsPage() {
 
                     {/* Market Data */}
                     {cryptoData && Array.isArray(cryptoData) && (
-                        <div className="divide-y divide-slate-100">
+                        <div className="divide-y divide-white/[0.03]">
                             {cryptoData.map((coin, index) => {
                                 // LiveCoinWatch delta.day represents the 24h multiplier (e.g. 1.05 = +5%, 0.95 = -5%)
                                 const rawChange = coin.delta?.day;
@@ -120,19 +120,19 @@ export default function MarketsPage() {
                                 };
 
                                 return (
-                                    <div key={coin.code} className="market-row opacity-0 group flex flex-col md:grid md:grid-cols-12 gap-4 md:items-center px-4 md:px-8 py-5 hover:bg-[#121212]/5/50 transition-colors duration-300">
+                                    <div key={coin.code} className="market-row opacity-0 group flex flex-col md:grid md:grid-cols-12 gap-4 md:items-center px-4 md:px-8 py-5 hover:bg-[#121212]/80 transition-colors duration-300 border-l-2 border-transparent hover:border-[#d4af35]/30">
 
                                         {/* Mobile: Top Row */}
                                         <div className="flex justify-between items-center md:hidden mb-2">
                                             <div className="flex items-center space-x-3">
-                                                <span className="text-xs font-bold text-slate-300 bg-slate-100 w-6 h-6 rounded-full flex items-center justify-center">
+                                                <span className="text-xs font-bold text-slate-500 bg-white/5 w-6 h-6 rounded-full flex items-center justify-center">
                                                     {index + 1}
                                                 </span>
-                                                <div className="relative w-8 h-8 rounded-full overflow-hidden bg-slate-100 border border-white/10">
+                                                <div className="relative w-8 h-8 rounded-full overflow-hidden bg-[#121212] border border-white/10">
                                                     {coin.png32 && <Image src={coin.png32} alt={coin.name || coin.code} fill className="object-cover" />}
                                                 </div>
                                                 <span className="font-bold text-white">{coin.name || coin.code}</span>
-                                                <span className="text-xs font-bold text-slate-300 px-2 py-0.5 bg-slate-100 rounded-md">{coin.code}</span>
+                                                <span className="text-xs font-bold text-slate-500 px-2 py-0.5 bg-white/5 border border-white/5 rounded-md">{coin.code}</span>
                                             </div>
                                             <div className="flex flex-col items-end">
                                                 <span className="font-black text-white">{formatPrice(coin.rate)}</span>
@@ -149,13 +149,13 @@ export default function MarketsPage() {
                                         </div>
 
                                         <div className="hidden md:flex col-span-4 items-center space-x-4">
-                                            <div className="relative w-10 h-10 rounded-full overflow-hidden bg-slate-100 border border-white/10 group-hover:scale-110 transition-transform duration-300">
+                                            <div className="relative w-10 h-10 rounded-full overflow-hidden bg-[#121212] border border-white/10 group-hover:scale-110 transition-transform duration-300">
                                                 {coin.png32 && <Image src={coin.png32} alt={coin.name || coin.code} fill className="object-cover p-1" />}
                                             </div>
                                             <div>
-                                                <div className="font-bold text-white text-lg group-hover:text-neon transition-colors">{coin.name || coin.code}</div>
+                                                <div className="font-bold text-white text-lg group-hover:text-[#d4af35] transition-colors duration-300">{coin.name || coin.code}</div>
                                             </div>
-                                            <div className="text-xs font-bold text-slate-500 px-2 py-1 bg-slate-100 rounded-md">{coin.code}</div>
+                                            <div className="text-xs font-bold text-slate-500 px-2 py-1 bg-white/5 border border-white/5 rounded-md">{coin.code}</div>
                                         </div>
 
                                         <div className="hidden md:flex col-span-3 items-center justify-end">
@@ -163,7 +163,7 @@ export default function MarketsPage() {
                                         </div>
 
                                         <div className={`hidden md:flex col-span-2 items-center justify-end`}>
-                                            <div className={`flex items-center space-x-1 font-bold ${isPositive ? 'text-emerald-500 bg-emerald-50' : 'text-rose-500 bg-rose-50'} px-3 py-1.5 rounded-lg`}>
+                                            <div className={`flex items-center space-x-1 font-bold ${isPositive ? 'text-emerald-400 bg-emerald-500/10 border border-emerald-500/20' : 'text-rose-400 bg-rose-500/10 border border-rose-500/20'} px-3 py-1.5 rounded-lg`}>
                                                 {isPositive ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
                                                 <span>{Math.abs(changePct).toFixed(2)}%</span>
                                             </div>

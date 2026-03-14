@@ -23,32 +23,33 @@ export async function GET(req) {
         // Total users excluding admins
         const totalUsers = await User.countDocuments({ role: 'user' });
 
-        // Total capital in INR (Active & Completed Investments)
+        // Total capital locked (Active + Completed Investments)
         const investments = await Investment.find({ status: { $in: ['active', 'completed'] } });
         const totalCapitalLocked = investments.reduce((acc, inv) => acc + inv.amount, 0);
 
-        // Total Platform Liability (Sum of all user usdtBalances)
-        const allUsers = await User.find({ role: 'user' }, 'usdtBalance');
-        const totalUsdtLiability = allUsers.reduce((acc, user) => acc + (user.usdtBalance || 0), 0);
+        // ── Split wallet balances (USD, INR, Referral) across all regular users ──
+        const allUsers = await User.find({ role: 'user' }, 'usdWallet inrWallet referralWallet');
+        const totalUsdWallet = allUsers.reduce((acc, u) => acc + (u.usdWallet || 0), 0);
+        const totalInrWallet = allUsers.reduce((acc, u) => acc + (u.inrWallet || 0), 0);
+        const totalReferralWallet = allUsers.reduce((acc, u) => acc + (u.referralWallet || 0), 0);
+        // Legacy combined (kept for backward compat with anything reading it)
+        const totalUsdtLiability = totalUsdWallet + totalReferralWallet;
 
         // Total Withdrawals Paid
         const paidWithdrawals = await Withdrawal.find({ status: 'approved' });
         const totalWithdrawalsPaid = paidWithdrawals.reduce((acc, w) => acc + w.amount, 0);
 
-        // Total Fiat Deposited (Approved) — INR direct + USDT converted to INR
+        // Total Fiat Deposited (Approved) — INR direct + USDT converted
         const approvedDeposits = await Deposit.find({ status: 'approved' });
-        const usdtRate = await getExchangeRate(); // INR per USDT, e.g. 85
+        const usdtRate = await getExchangeRate();
         const totalDepositsINR = approvedDeposits.reduce((acc, d) => {
-            if (d.paymentMethod === 'usdt') {
-                // USDT deposit: convert amount (USD) to INR
-                return acc + (d.amount || 0) * usdtRate;
-            }
-            // INR deposit (bank transfer): use directly
+            if (d.paymentMethod === 'usdt') return acc + (d.amount || 0) * usdtRate;
             return acc + (d.amount || 0);
         }, 0);
 
         // Recent 5 investments with user details
-        const recentInvestments = await Investment.find().sort({ createdAt: -1 }).limit(5).populate('userId', 'name email');
+        const recentInvestments = await Investment.find()
+            .sort({ createdAt: -1 }).limit(5).populate('userId', 'name email');
 
         // Top 5 Investors (by total invested capital)
         const topInvestorsData = await Investment.aggregate([
@@ -57,38 +58,33 @@ export async function GET(req) {
             { $sort: { totalInvested: -1 } },
             { $limit: 5 }
         ]);
-
         const populatedTopInvestors = await User.populate(topInvestorsData, { path: '_id', select: 'name email avatar' });
-        const topInvestors = populatedTopInvestors.map(inv => ({
-            user: inv._id,
-            totalInvested: inv.totalInvested
-        })).filter(inv => inv.user); // Remove if user was deleted
+        const topInvestors = populatedTopInvestors
+            .map(inv => ({ user: inv._id, totalInvested: inv.totalInvested }))
+            .filter(inv => inv.user);
 
-        // Top 5 Referrals (by count of referred users)
+        // Top 5 Referrers (by count of referred users)
         const topReferralsData = await User.aggregate([
             { $match: { referredBy: { $ne: null, $ne: '' } } },
             { $group: { _id: '$referredBy', count: { $sum: 1 } } },
             { $sort: { count: -1 } },
             { $limit: 5 }
         ]);
-
-        // Resolve referredBy codes to actual users
         const topReferrals = await Promise.all(topReferralsData.map(async (ref) => {
             let referrer = await User.findOne({ referralCode: ref._id }).select('name email');
-            if (!referrer && ref._id.length === 24) { // Fallback if referredBy is an ObjectId string in some old records
+            if (!referrer && ref._id.length === 24) {
                 try { referrer = await User.findById(ref._id).select('name email'); } catch (e) { }
             }
-            return {
-                referrerCode: ref._id,
-                user: referrer,
-                count: ref.count
-            };
+            return { referrerCode: ref._id, user: referrer, count: ref.count };
         }));
 
         return NextResponse.json({
             totalUsers,
             totalCapitalLocked,
-            totalUsdtLiability,
+            totalUsdtLiability,   // legacy — kept in case anything reads it
+            totalUsdWallet,
+            totalInrWallet,
+            totalReferralWallet,
             totalWithdrawalsPaid,
             totalDepositsINR,
             usdtRate,

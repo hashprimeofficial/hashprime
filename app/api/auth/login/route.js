@@ -40,7 +40,7 @@ export async function POST(req) {
         if (user.role === 'admin') {
             const response = NextResponse.json({
                 message: 'Admin login successful',
-                user: { id: user._id, name: user.name, email: user.email, role: user.role, usdtBalance: user.usdtBalance, referredBy: user.referredBy },
+                user: { id: user._id, name: user.name, email: user.email, role: user.role, referredBy: user.referredBy },
             });
 
             response.cookies.set({
@@ -63,7 +63,6 @@ export async function POST(req) {
                 name: user.name,
                 email: user.email,
                 role: user.role,
-                usdtBalance: user.usdtBalance,
                 referredBy: user.referredBy,
             },
         });

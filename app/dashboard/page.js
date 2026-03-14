@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import useSWR from 'swr';
 import { motion } from 'framer-motion';
-import { DollarSign, Clock, ArrowUpRight, Copy, CheckCircle2, Wallet, IndianRupee, Coins, ShieldCheck, Fingerprint, Landmark, AlertCircle, PiggyBank } from 'lucide-react';
+import { DollarSign, Clock, ArrowUpRight, Copy, CheckCircle2, Wallet, IndianRupee, Coins, ShieldCheck, Fingerprint, Landmark, AlertCircle, PiggyBank, Users } from 'lucide-react';
 import Link from 'next/link';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -34,14 +34,19 @@ export default function DashboardOverview() {
         { title: 'Link Bank Account', check: isBankComplete, icon: Landmark, link: '/dashboard/bank' }
     ];
 
-    const totalInvested = investments.reduce((acc, inv) => acc + inv.amount, 0);
-    const totalExpectedReturnUsdt = investments
-        .filter(inv => inv.status === 'active' || inv.status === 'completed')
-        .reduce((acc, inv) => acc + inv.usdtReward, 0);
-    const totalExpectedReturnInr = totalExpectedReturnUsdt * usdtToInr;
+    const totalInvestedUSD = investments.filter(i => i.currency === 'USD').reduce((acc, inv) => acc + inv.amount, 0);
+    const totalInvestedINR = investments.filter(i => i.currency === 'INR').reduce((acc, inv) => acc + inv.amount, 0);
 
-    // USDT balance in INR
-    const usdtBalanceInr = (user.usdtBalance || 0) * usdtToInr;
+    const expectedUSD = investments.filter(i => i.currency === 'USD' && (i.status === 'active' || i.status === 'completed'))
+        .reduce((acc, inv) => acc + (inv.usdtReward || 0), 0);
+    const expectedINR = investments.filter(i => i.currency === 'INR' && (i.status === 'active' || i.status === 'completed'))
+        .reduce((acc, inv) => acc + (inv.usdtReward || 0), 0);
+
+    const usdWallet = user.usdWallet || 0;
+    const inrWallet = user.inrWallet || 0;
+    const refWallet = user.referralWallet || 0;
+
+    const totalPortfolioValueINR = inrWallet + (usdWallet * usdtToInr) + totalInvestedINR + (totalInvestedUSD * usdtToInr);
 
     const copyRefLink = () => {
         let origin = '';
@@ -69,26 +74,26 @@ export default function DashboardOverview() {
             </div>
 
             {!isProfileFullyComplete && (
-                <div className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-6 shadow-sm overflow-hidden relative">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af35]/10 rounded-full blur-2xl flex items-center justify-center -mr-10 -mt-10 pointer-events-none" />
-                    <div className="flex items-start gap-4">
+                <div className="bg-[#0A0A0A] border border-amber-500/30 rounded-2xl p-6 shadow-lg overflow-hidden relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl flex items-center justify-center -mr-10 -mt-10 pointer-events-none" />
+                    <div className="flex items-start gap-4 z-10 relative">
                         <div className="pt-1">
                             <AlertCircle className="w-8 h-8 text-amber-500" />
                         </div>
                         <div className="flex-1">
-                            <h2 className="text-xl font-black text-amber-900 mb-2">Complete Your Profile</h2>
-                            <p className="text-sm font-medium text-#d4af35/10 mb-5">
+                            <h2 className="text-xl font-black text-white mb-2 tracking-tight">Complete Your Profile</h2>
+                            <p className="text-sm font-medium text-amber-500/70 mb-5">
                                 Essential security and verification steps are missing. Completing these unlocks full access to deposits, investments, and fast withdrawals.
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {completionItems.map((item, idx) => {
                                     const Icon = item.icon;
                                     return (
-                                        <Link href={item.link} key={idx} className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${item.check ? 'bg-[#121212]/50 border-amber-100 opacity-60' : 'bg-[#121212] border-amber-300 hover:border-amber-400 hover:shadow-md cursor-pointer'}`}>
-                                            <div className={`p-2 rounded-lg ${item.check ? 'bg-green-100 text-green-600' : 'bg-slate-100 text-slate-300'}`}>
+                                        <Link href={item.link} key={idx} className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${item.check ? 'bg-[#121212]/50 border-[#32e512]/20 opacity-60' : 'bg-[#121212] border-amber-500/30 hover:border-amber-500/60 hover:bg-amber-500/5 cursor-pointer shadow-inner'}`}>
+                                            <div className={`p-2 rounded-lg ${item.check ? 'bg-[#32e512]/10 text-[#32e512]' : 'bg-[#d4af35]/10 text-[#d4af35]'}`}>
                                                 {item.check ? <CheckCircle2 className="w-5 h-5" /> : <Icon className="w-5 h-5" />}
                                             </div>
-                                            <span className={`text-sm font-bold ${item.check ? 'text-amber-900 line-through decoration-amber-300' : 'text-white'}`}>{item.title}</span>
+                                            <span className={`text-sm font-bold tracking-wide ${item.check ? 'text-slate-500 line-through decoration-slate-600' : 'text-white'}`}>{item.title}</span>
                                         </Link>
                                     );
                                 })}
@@ -98,31 +103,52 @@ export default function DashboardOverview() {
                 </div>
             )}
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0 }} className="bg-[#121212]/5 border border-white/10 p-6 rounded-2xl shadow-sm">
-                    <div className="flex items-center gap-3 mb-4 text-white"><Wallet className="w-5 h-5 text-neon" /> <h3 className="font-bold">Total Capital</h3></div>
-                    <div className="text-4xl font-black text-white mb-1 leading-tight">₹{(user.walletBalance || 0).toLocaleString('en-IN')}</div>
-                    <div className="flex items-center gap-2 mt-4 pt-4 border-t border-white/10">
-                        <div className="bg-green-50 text-green-700 px-2 py-1 rounded text-[10px] font-black uppercase tracking-wider border border-green-200">Trading Profits</div>
-                        <div className="text-lg font-black text-white">
-                            ₹{usdtBalanceInr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
-                            <span className="text-xs text-slate-300 font-bold ml-1">({(user.usdtBalance || 0).toFixed(2)} USDT)</span>
+            {/* Wallets & Portfolio */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }} className="bg-[#0A0A0A] border border-[#d4af35]/30 hover:border-[#d4af35]/60 transition-colors p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af35]/10 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500" />
+                    <div className="flex items-center gap-2 mb-3 text-[#d4af35]"><Wallet className="w-5 h-5 text-[#d4af35]" /> <h3 className="font-bold text-sm tracking-wide uppercase">USD Wallet</h3></div>
+                    <div className="text-4xl font-black text-white mb-1 leading-tight drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]">${usdWallet.toLocaleString('en-US', { minimumFractionDigits: 2 })}</div>
+                    <p className="text-xs text-[#d4af35]/60 font-medium mt-1">Available Capital</p>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.1 }} className="bg-[#0A0A0A] border border-[#d4af35]/20 hover:border-[#d4af35]/50 transition-colors p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af35]/5 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500" />
+                    <div className="flex items-center gap-2 mb-3 text-white"><IndianRupee className="w-5 h-5 text-amber-500" /> <h3 className="font-bold text-sm tracking-wide uppercase text-amber-500/80">INR Wallet</h3></div>
+                    <div className="text-4xl font-black text-white mb-1 leading-tight drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]">₹{inrWallet.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
+                    <p className="text-xs text-slate-400 font-medium mt-1">Available Capital</p>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.2 }} className="bg-[#0A0A0A] border border-[#d4af35]/20 hover:border-[#d4af35]/50 transition-colors p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
+                    <div className="flex items-center gap-2 mb-3 text-[#d4af35]"><Clock className="w-5 h-5 text-[#d4af35]" /> <h3 className="font-bold text-sm tracking-wide uppercase">Active Investments</h3></div>
+                    <div className="flex flex-col gap-2 mt-4">
+                        <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
+                            <span className="text-slate-400 font-medium">USD Schemes:</span>
+                            <span className="font-black text-white drop-shadow-[0_0_5px_rgba(212,175,53,0.3)]">${totalInvestedUSD.toLocaleString('en-US')}</span>
+                        </div>
+                        <div className="flex justify-between items-center text-sm pt-1">
+                            <span className="text-slate-400 font-medium">INR Schemes:</span>
+                            <span className="font-black text-white">₹{totalInvestedINR.toLocaleString('en-IN')}</span>
                         </div>
                     </div>
                 </motion.div>
 
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.1 }} className="bg-[#121212]/5 border border-white/10 p-6 rounded-2xl shadow-sm">
-                    <div className="flex items-center gap-3 mb-4 text-white"><Clock className="w-5 h-5 text-blue-500" /> <h3 className="font-bold">Total Invested</h3></div>
-                    <div className="text-4xl font-black text-white mb-1">₹{totalInvested.toLocaleString('en-IN')}</div>
-                    <p className="text-sm text-slate-500 mt-4 font-medium">Across {investments.length} active scheme(s)</p>
-                </motion.div>
-
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.2 }} className="bg-[#121212]/5 border border-white/10 p-6 rounded-2xl shadow-sm">
-                    <div className="flex items-center gap-3 mb-4 text-white"><ArrowUpRight className="w-5 h-5 text-amber-500" /> <h3 className="font-bold">Expected Return</h3></div>
-                    <div className="text-4xl font-black text-white mb-1">₹{totalExpectedReturnInr.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
-                    <p className="text-xs text-slate-300 mt-1 font-medium">≈ {totalExpectedReturnUsdt.toFixed(2)} USDT @ ₹{usdtToInr.toFixed(2)}/USDT</p>
-                    <p className="text-sm text-slate-500 mt-3 font-medium">Total protocol maturity yield</p>
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.3 }} className="bg-[#0A0A0A] border border-[#d4af35]/20 hover:border-[#d4af35]/50 transition-all duration-300 p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#32e512]/5 rounded-full blur-2xl flex items-center justify-center -mr-8 -mt-8 pointer-events-none group-hover:bg-[#32e512]/10 transition-colors" />
+                    <div className="flex items-center gap-2 mb-3 z-10 relative">
+                        <div className="p-1.5 bg-[#32e512]/10 rounded-lg"><ArrowUpRight className="w-4 h-4 text-[#32e512]" /></div>
+                        <h3 className="font-bold text-sm tracking-wide uppercase text-[#32e512]/90">Expected Returns</h3>
+                    </div>
+                    <div className="flex flex-col gap-2 mt-4 z-10 relative">
+                        <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
+                            <span className="text-white/60 font-bold uppercase tracking-widest text-[10px]">USD Yield</span>
+                            <span className="font-black text-[#32e512] drop-shadow-[0_0_5px_rgba(50,229,18,0.3)] text-lg">+${expectedUSD.toLocaleString('en-US')}</span>
+                        </div>
+                        <div className="flex justify-between items-center text-sm pt-1">
+                            <span className="text-white/60 font-bold uppercase tracking-widest text-[10px]">INR Yield</span>
+                            <span className="font-black text-[#32e512] drop-shadow-[0_0_5px_rgba(50,229,18,0.3)] text-lg">+₹{expectedINR.toLocaleString('en-IN')}</span>
+                        </div>
+                    </div>
                 </motion.div>
             </div>
 
@@ -133,51 +159,54 @@ export default function DashboardOverview() {
                         <h2 className="text-xl font-black text-white">Recent Investments</h2>
                         <Link href="/dashboard/invest" className="text-sm font-bold text-white underline decoration-neon decoration-2 hover:text-white transition-colors">New Investment &rarr;</Link>
                     </div>
-                    <div className="bg-[#121212] border border-white/10 rounded-2xl shadow-sm overflow-hidden">
+                    <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-2xl shadow-lg overflow-hidden">
                         {investments.length === 0 ? (
-                            <div className="p-8 text-center text-slate-500 font-medium bg-[#121212]/5/50">No active investments yet. Start generating wealth today.</div>
+                            <div className="p-8 text-center text-slate-500 font-medium border-t border-[#d4af35]/10">No active investments yet. Start generating wealth today.</div>
                         ) : (
-                            <table className="w-full text-left">
-                                <thead className="bg-[#121212]/5 text-slate-500 text-sm border-b border-white/10">
-                                    <tr>
-                                        <th className="px-6 py-4 font-bold">Scheme</th>
-                                        <th className="px-6 py-4 font-bold">Amount</th>
-                                        <th className="px-6 py-4 font-bold">Yield</th>
-                                        <th className="px-6 py-4 font-bold">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-slate-100">
-                                    {investments.slice(0, 5).map(inv => (
-                                        <tr key={inv._id} className="hover:bg-[#121212]/5 transition-colors border-b border-slate-50 last:border-0">
-                                            <td className="px-6 py-5">
-                                                <span className="bg-slate-100 text-slate-500 px-2 py-1 rounded text-[10px] font-black uppercase tracking-wider">{inv.schemeType} Plan</span>
-                                            </td>
-                                            <td className="px-6 py-5 font-black text-white text-lg">₹{inv.amount.toLocaleString('en-IN')}</td>
-                                            <td className="px-6 py-5 text-green-600 font-extrabold">
-                                                +₹{(inv.usdtReward * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
-                                                <span className="text-[10px] text-slate-300 ml-1">({inv.usdtReward.toFixed(2)} USDT)</span>
-                                            </td>
-                                            <td className="px-6 py-5">
-                                                {inv.status === 'pending' && (
-                                                    <span className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 border border-amber-200 px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter">
-                                                        <Clock className="w-3 h-3" /> Requested
-                                                    </span>
-                                                )}
-                                                {inv.status === 'active' && (
-                                                    <span className="inline-flex items-center gap-1.5 bg-green-50 text-green-700 border border-green-200 px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter">
-                                                        <ShieldCheck className="w-3 h-3" /> Active
-                                                    </span>
-                                                )}
-                                                {inv.status === 'completed' && (
-                                                    <span className="inline-flex items-center gap-1.5 bg-slate-100 text-slate-200 border border-white/10 px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter">
-                                                        <CheckCircle2 className="w-3 h-3" /> Completed
-                                                    </span>
-                                                )}
-                                            </td>
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left min-w-[600px]">
+                                    <thead className="bg-[#d4af35]/5 text-[#d4af35]/80 text-xs uppercase tracking-wider border-b border-[#d4af35]/20">
+                                        <tr>
+                                            <th className="px-6 py-4 font-black text-[#d4af35]">Scheme</th>
+                                            <th className="px-6 py-4 font-black text-[#d4af35]">Amount</th>
+                                            <th className="px-6 py-4 font-black text-[#d4af35]">Yield</th>
+                                            <th className="px-6 py-4 font-black text-[#d4af35]">Status</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody className="divide-y divide-white/5">
+                                        {investments.slice(0, 5).map(inv => (
+                                            <tr key={inv._id} className="hover:bg-[#d4af35]/5 transition-colors">
+                                                <td className="px-6 py-5 whitespace-nowrap">
+                                                    <span className="bg-[#d4af35]/10 text-[#d4af35] border border-[#d4af35]/20 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider shadow-inner">{inv.schemeType} Plan</span>
+                                                </td>
+                                                <td className="px-6 py-5 font-black text-white text-lg drop-shadow-[0_0_5px_rgba(255,255,255,0.2)] whitespace-nowrap">
+                                                    {inv.currency === 'USD' ? '$' : '₹'}{inv.amount.toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN')}
+                                                </td>
+                                                <td className="px-6 py-5 text-[#32e512] font-extrabold drop-shadow-[0_0_8px_rgba(50,229,18,0.2)] whitespace-nowrap">
+                                                    +{inv.currency === 'USD' ? '$' : '₹'}{(inv.usdtReward || 0).toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN', { maximumFractionDigits: 0 })}
+                                                </td>
+                                                <td className="px-6 py-5 whitespace-nowrap">
+                                                    {inv.status === 'pending' && (
+                                                        <span className="inline-flex items-center gap-1.5 bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">
+                                                            <Clock className="w-3.5 h-3.5" /> Requested
+                                                        </span>
+                                                    )}
+                                                    {inv.status === 'active' && (
+                                                        <span className="inline-flex items-center gap-1.5 bg-[#d4af35]/10 text-[#d4af35] border border-[#d4af35]/20 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">
+                                                            <ShieldCheck className="w-3.5 h-3.5" /> Active
+                                                        </span>
+                                                    )}
+                                                    {inv.status === 'completed' && (
+                                                        <span className="inline-flex items-center gap-1.5 bg-slate-500/10 text-slate-300 border border-slate-500/20 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">
+                                                            <CheckCircle2 className="w-3.5 h-3.5" /> Completed
+                                                        </span>
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -187,13 +216,24 @@ export default function DashboardOverview() {
                     {/* Referral Link Card */}
                     <div>
                         <h2 className="text-xl font-black text-white mb-4">Invite &amp; Earn 5% Instant</h2>
-                        <div className="bg-[#d4af35] border border-slate-800 p-6 rounded-2xl shadow-lg relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-neon/20 blur-[50px] rounded-full"></div>
-                            <h3 className="text-lg font-bold text-white mb-2">Your Referral Link</h3>
-                            <p className="text-sm text-slate-300 mb-4 font-medium">Earn 5% of capital invested by your referrals, paid in INR.</p>
-                            <div className="flex bg-[#121212]/10 border border-white/20 rounded-lg overflow-hidden backdrop-blur-sm shadow-inner">
-                                <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user.referralCode || user._id}` : ''} className="flex-1 bg-transparent text-white text-white px-4 py-3 text-sm text-white font-medium outline-none" />
-                                <button onClick={copyRefLink} className="bg-neon hover:bg-[#32e512] px-4 py-3 text-white font-bold transition-colors flex items-center gap-2">
+                        <div className="bg-gradient-to-br from-[#0A0A0A] to-[#121212] border border-[#d4af35]/40 p-6 rounded-2xl shadow-[0_8px_32px_rgba(212,175,53,0.1)] relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af35]/10 blur-[40px] rounded-full group-hover:bg-[#d4af35]/20 transition-colors"></div>
+                            <h3 className="text-lg font-bold text-white mb-2 relative z-10 flex items-center gap-2">
+                                Your Referral Link <div className="p-1 bg-[#d4af35]/20 rounded"><Users className="w-4 h-4 text-[#d4af35]" /></div>
+                            </h3>
+                            <p className="text-sm text-white/60 mb-4 font-medium relative z-10">Earn 5% of capital invested by your referrals, paid into your Referral Wallet.</p>
+                            <div className="mb-4 bg-[#0A0A0A]/50 p-4 rounded-xl border border-[#d4af35]/20 flex justify-between items-center relative z-10 shadow-inner">
+                                <div>
+                                    <p className="text-[10px] text-[#d4af35]/80 font-bold uppercase tracking-widest mb-1">Referral Balance</p>
+                                    <p className="text-3xl font-black text-white drop-shadow-[0_0_5px_rgba(212,175,53,0.2)]">₹{refWallet.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</p>
+                                </div>
+                                <Link href="/dashboard/withdraw" className="bg-[#121212] border border-[#d4af35]/50 text-[#d4af35] text-xs font-bold px-5 py-2.5 rounded-lg hover:bg-[#d4af35] hover:text-[#0A0A0A] transition-colors shadow-lg">
+                                    Withdraw
+                                </Link>
+                            </div>
+                            <div className="flex bg-[#0A0A0A] border border-[#d4af35]/30 rounded-lg overflow-hidden shadow-inner relative z-10 focus-within:border-[#d4af35] focus-within:ring-1 focus-within:ring-[#d4af35] transition-all">
+                                <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user.referralCode || user._id}` : ''} className="flex-1 bg-transparent text-white px-4 py-3 text-sm font-medium outline-none" />
+                                <button onClick={copyRefLink} className="bg-[#d4af35]/10 hover:bg-[#d4af35]/20 px-5 py-3 text-[#d4af35] font-bold transition-colors flex items-center gap-2 border-l border-[#d4af35]/30">
                                     {copied ? <CheckCircle2 className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                                     <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy'}</span>
                                 </button>
@@ -205,33 +245,33 @@ export default function DashboardOverview() {
                     <div>
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-xl font-black text-white">Recent Deposits</h2>
-                            <Link href="/dashboard/deposit" className="text-sm font-bold text-white underline decoration-neon decoration-2 hover:text-white transition-colors">+ New Deposit</Link>
+                            <Link href="/dashboard/deposit" className="text-sm font-bold text-[#d4af35] underline decoration-[#d4af35]/50 decoration-2 hover:text-white transition-colors">+ New Deposit</Link>
                         </div>
-                        <div className="bg-[#121212] border border-white/10 rounded-2xl shadow-sm overflow-hidden p-2">
+                        <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden p-3">
                             {recentDeposits.length === 0 ? (
-                                <div className="p-6 text-center text-sm font-medium text-slate-500 bg-[#121212]/5/50 rounded-xl m-2">No deposits yet.</div>
+                                <div className="p-6 text-center text-xs font-bold uppercase tracking-widest text-[#d4af35]/60 m-2 border border-dashed border-[#d4af35]/20 rounded-xl">No deposits yet.</div>
                             ) : (
-                                <ul className="divide-y divide-slate-100">
+                                <ul className="divide-y divide-[#d4af35]/10">
                                     {recentDeposits.map(dep => {
                                         const isUsdt = dep.paymentMethod === 'usdt';
                                         const displayAmount = isUsdt
                                             ? `₹${(dep.amount * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })} (≈$${dep.amount})`
                                             : `₹${dep.amount.toLocaleString('en-IN')}`;
                                         return (
-                                            <li key={dep._id} className="p-4 flex justify-between items-center hover:bg-[#121212]/5 rounded-xl transition-colors">
-                                                <div className="flex items-center gap-3">
-                                                    <div className="w-9 h-9 rounded-full bg-[#121212]/5 flex items-center justify-center border border-white/5 shadow-inner">
-                                                        {isUsdt ? <Coins className="w-4 h-4 text-blue-500" /> : <IndianRupee className="w-4 h-4 text-slate-300" />}
+                                            <li key={dep._id} className="p-4 flex justify-between items-center hover:bg-[#d4af35]/5 rounded-xl transition-colors group">
+                                                <div className="flex items-center gap-4">
+                                                    <div className="w-10 h-10 rounded-full bg-[#121212] flex items-center justify-center border border-[#d4af35]/30 shadow-inner group-hover:scale-110 transition-transform">
+                                                        {isUsdt ? <Coins className="w-5 h-5 text-[#d4af35]" /> : <IndianRupee className="w-5 h-5 text-[#d4af35]" />}
                                                     </div>
                                                     <div>
-                                                        <p className="text-white font-bold text-sm">{displayAmount}</p>
-                                                        <p className="text-slate-500 text-[10px] mt-0.5 font-medium">{new Date(dep.createdAt).toLocaleDateString()} · {isUsdt ? 'USDC BEP20' : 'Bank Transfer'}</p>
+                                                        <p className="text-white font-black tracking-wide group-hover:text-[#d4af35] transition-colors">{displayAmount}</p>
+                                                        <p className="text-[#d4af35]/60 text-[10px] mt-0.5 font-bold uppercase tracking-wider">{new Date(dep.createdAt).toLocaleDateString()} · <span className="text-white/40">{isUsdt ? 'USDT Crypto' : 'Bank Transfer'}</span></p>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    {dep.status === 'approved' && <span className="text-[10px] font-black text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-100">Approved</span>}
-                                                    {dep.status === 'pending' && <span className="text-[10px] font-black text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-100">Pending</span>}
-                                                    {dep.status === 'rejected' && <span className="text-[10px] font-black text-red-700 bg-red-50 px-2 py-0.5 rounded border border-red-100">Rejected</span>}
+                                                    {dep.status === 'approved' && <span className="text-[10px] font-black text-[#32e512] bg-[#32e512]/10 px-3 py-1.5 rounded-lg border border-[#32e512]/20 uppercase tracking-widest shadow-inner">Approved</span>}
+                                                    {dep.status === 'pending' && <span className="text-[10px] font-black text-amber-500 bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20 uppercase tracking-widest shadow-inner">Pending</span>}
+                                                    {dep.status === 'rejected' && <span className="text-[10px] font-black text-red-500 bg-red-500/10 px-3 py-1.5 rounded-lg border border-red-500/20 uppercase tracking-widest shadow-inner">Rejected</span>}
                                                 </div>
                                             </li>
                                         );
@@ -244,33 +284,33 @@ export default function DashboardOverview() {
                     {/* Recent Transactions */}
                     <div>
                         <h2 className="text-xl font-black text-white mb-4">Recent Transactions</h2>
-                        <div className="bg-[#121212] border border-white/10 rounded-2xl shadow-sm overflow-hidden p-2">
+                        <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden p-3 mb-10">
                             {transactions.length === 0 ? (
-                                <div className="p-6 text-center text-sm font-medium text-slate-500 bg-[#121212]/5/50 rounded-xl m-2">No transactions recorded.</div>
+                                <div className="p-6 text-center text-xs font-bold uppercase tracking-widest text-[#d4af35]/60 m-2 border border-dashed border-[#d4af35]/20 rounded-xl">No transactions recorded.</div>
                             ) : (
-                                <ul className="divide-y divide-slate-100">
+                                <ul className="divide-y divide-[#d4af35]/10">
                                     {transactions.slice(0, 5).map(tx => (
-                                        <li key={tx._id} className="p-4 flex justify-between items-center hover:bg-[#121212]/5 rounded-xl transition-colors">
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-full bg-[#121212]/5 flex items-center justify-center border border-white/5 shadow-inner">
-                                                    {tx.currency === 'USDC' || tx.currency === 'USDT' ? (
-                                                        <Coins className="w-5 h-5 text-blue-500" />
+                                        <li key={tx._id} className="p-4 flex justify-between items-center hover:bg-[#d4af35]/5 rounded-xl transition-colors group">
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-10 h-10 rounded-full bg-[#121212] flex items-center justify-center border border-[#d4af35]/30 shadow-inner group-hover:scale-110 transition-transform">
+                                                    {tx.currency === 'USDT' || tx.currency === 'USD' ? (
+                                                        <Coins className="w-5 h-5 text-[#d4af35]" />
                                                     ) : (
-                                                        <IndianRupee className="w-5 h-5 text-slate-300" />
+                                                        <IndianRupee className="w-5 h-5 text-[#d4af35]" />
                                                     )}
                                                 </div>
                                                 <div>
-                                                    <p className="text-white font-bold capitalize flex items-center gap-2">
+                                                    <p className="text-white font-bold capitalize flex items-center gap-2 group-hover:text-[#d4af35] transition-colors">
                                                         {tx.type.replace('_', ' ')}
-                                                        {(tx.type === 'referral_bonus' || tx.type === 'deposit') && <span className="bg-green-100 text-green-700 text-[10px] px-2 py-0.5 rounded font-bold border border-green-200">Credit</span>}
+                                                        {(tx.type === 'referral_bonus' || tx.type === 'deposit') && <span className="bg-[#32e512]/10 text-[#32e512] border border-[#32e512]/20 text-[10px] px-2 py-0.5 rounded font-black tracking-widest uppercase ml-2">Credit</span>}
                                                     </p>
-                                                    <p className="text-slate-500 text-[10px] mt-0.5 font-medium">{new Date(tx.createdAt).toLocaleDateString()}</p>
+                                                    <p className="text-[#d4af35]/60 text-[10px] mt-0.5 font-bold uppercase tracking-wider">{new Date(tx.createdAt).toLocaleDateString()}</p>
                                                 </div>
                                             </div>
-                                            <div className={`font-black ${(tx.type === 'referral_bonus' || tx.type === 'deposit') ? 'text-green-600' : 'text-white'}`}>
+                                            <div className={`font-black text-right ${(tx.type === 'referral_bonus' || tx.type === 'deposit') ? 'text-[#32e512]' : 'text-white'}`}>
                                                 {(tx.type === 'referral_bonus' || tx.type === 'deposit') ? '+' : ''}{formatTxAmount(tx)}
-                                                {(tx.currency === 'USDT' || tx.currency === 'USDC') && (
-                                                    <div className="text-[10px] text-slate-300 font-normal text-right">{tx.amount.toFixed(2)} USDT</div>
+                                                {(tx.currency === 'USDT' || tx.currency === 'USD') && (
+                                                    <div className="text-[10px] text-white/50 font-bold uppercase tracking-wider">{tx.amount.toFixed(2)} USD{tx.currency === 'USDT' ? 'T' : ''}</div>
                                                 )}
                                             </div>
                                         </li>

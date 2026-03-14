@@ -111,10 +111,10 @@ export default function SalientFeatures() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af35] opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af35]"></span>
                             </span>
-                            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#d4af35]">The Ultimate Advantage</span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">The Ultimate Advantage</span>
                         </div>
 
-                        <h2 className="sf-header-animate text-5xl md:text-7xl font-semibold text-white tracking-tight leading-[1] mb-8">
+                        <h2 className="sf-header-animate text-5xl md:text-7xl font-black text-white tracking-tight leading-[1] mb-8">
                             Engineered for<br />
                             <span className="text-[#d4af35]">Excellence</span>
                         </h2>
@@ -161,7 +161,7 @@ export default function SalientFeatures() {
                                 {/* Content */}
                                 <div className="mt-auto relative z-10">
                                     <div className="flex items-center justify-between mb-6">
-                                        <span className="text-4xl font-semibold text-slate-100 group-hover:text-white/5 transition-colors duration-500">
+                                        <span className="text-4xl font-black text-slate-100 group-hover:text-white/5 transition-colors duration-500">
                                             {feature.num}
                                         </span>
                                         <div className="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 bg-[#d4af35] p-2 rounded-full">
@@ -169,7 +169,7 @@ export default function SalientFeatures() {
                                         </div>
                                     </div>
 
-                                    <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">
+                                    <h3 className="text-2xl font-black text-white mb-4 tracking-tight">
                                         {feature.title}
                                     </h3>
 

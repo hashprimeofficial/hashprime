@@ -11,6 +11,12 @@ const DepositSchema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        currency: {
+            type: String,
+            enum: ['USD', 'INR'],
+            required: true,
+            default: 'INR'
+        },
         paymentMethod: {
             type: String,
             enum: ['cash', 'usdt', 'bank'],

@@ -100,7 +100,7 @@ export default function SecurityPage() {
                     </div>
                     <h1 className="reveal-text text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white leading-none">
                         Uncompromising <br />
-                        <span className="text-[#d4af35]
+                        <span className="text-[#d4af35]">Security</span>
                     </h1>
                     <p className="reveal-text text-xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
                         Your capital and your data are protected by the same standards used by global financial institutions. Here's exactly how.

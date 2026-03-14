@@ -7,11 +7,17 @@ import { verifyToken } from '@/lib/auth';
 import { getExchangeRate } from '@/lib/exchangeRate';
 import speakeasy from 'speakeasy';
 
-const SCHEMES = {
-    '3m': { minAmounts: [50000, 100000, 300000, 500000], returnRate: 0.18, durationMonths: 3 },
-    '6m': { minAmounts: [100000, 300000, 500000], returnRate: 0.38, durationMonths: 6 },
-    '1y': { minAmount: 500000, maxAmount: Infinity, returnRate: 0.80, durationMonths: 12 },
-    '5y': { minAmount: 1000000, maxAmount: 1500000, returnRate: 5.00, durationMonths: 60 },
+const INR_SCHEMES = {
+    '3m_inr': { minAmounts: [50000, 100000, 300000, 500000], returnRate: 0.18, durationMonths: 3 },
+    '6m_inr': { minAmounts: [100000, 300000, 500000], returnRate: 0.38, durationMonths: 6 },
+    '1y_inr': { minAmount: 500000, maxAmount: Infinity, returnRate: 0.80, durationMonths: 12 },
+    '5y_inr': { minAmount: 1000000, maxAmount: 1500000, returnRate: 5.00, durationMonths: 60 },
+};
+const USD_SCHEMES = {
+    '3m_usd': { minAmounts: [500, 1000, 1500, 2000], returnRate: 0.18, durationMonths: 3 },
+    '6m_usd': { minAmounts: [1000, 1500, 2000], returnRate: 0.38, durationMonths: 6 },
+    '1y_usd': { minAmount: 2000, maxAmount: Infinity, returnRate: 0.80, durationMonths: 12 },
+    '5y_usd': { minAmount: 5000, maxAmount: Infinity, returnRate: 5.00, durationMonths: 60 },
 };
 
 export async function POST(req) {
@@ -32,9 +38,10 @@ export async function POST(req) {
             return NextResponse.json({ error: 'KYC not approved. Please complete KYC verification first.' }, { status: 403 });
         }
 
-        const { amount, schemeType, otpToken } = await req.json();
+        const { amount, schemeType, currency, otpToken } = await req.json();
 
-        if (!amount || !schemeType || !SCHEMES[schemeType]) {
+        const activeSchemes = currency === 'USD' ? USD_SCHEMES : INR_SCHEMES;
+        if (!amount || !schemeType || !currency || !activeSchemes[schemeType]) {
             return NextResponse.json({ error: 'Invalid investment data' }, { status: 400 });
         }
 
@@ -69,10 +76,10 @@ export async function POST(req) {
             await user.save();
         }
 
-        const scheme = SCHEMES[schemeType];
+        const scheme = activeSchemes[schemeType];
 
         // Validate amount
-        if (schemeType === '3m' || schemeType === '6m') {
+        if (schemeType.startsWith('3m') || schemeType.startsWith('6m')) {
             if (!scheme.minAmounts.includes(amount)) {
                 return NextResponse.json({ error: `Invalid amount for ${schemeType} scheme. Allowed: ${scheme.minAmounts.join(', ')}` }, { status: 400 });
             }
@@ -83,7 +90,8 @@ export async function POST(req) {
         }
 
         // Check wallet balance (ensure they have funds NOW, but DO NOT deduct yet)
-        if ((user.walletBalance || 0) < amount) {
+        const walletBalance = currency === 'USD' ? (user.usdWallet || 0) : (user.inrWallet || 0);
+        if (walletBalance < amount) {
             return NextResponse.json({ error: 'Insufficient wallet balance to cover this investment request.' }, { status: 400 });
         }
 
@@ -92,7 +100,9 @@ export async function POST(req) {
         maturesAt.setMonth(maturesAt.getMonth() + scheme.durationMonths);
 
         const liveRate = await getExchangeRate();
-        const usdtReward = Math.round(((amount * scheme.returnRate) / liveRate) * 100) / 100;
+        const usdtReward = currency === 'USD'
+            ? Math.round((amount * scheme.returnRate) * 100) / 100
+            : Math.round(((amount * scheme.returnRate) / liveRate) * 100) / 100;
 
         // **CRITICAL CHANGE: Do NOT deduct walletBalance here.**
         // **CRITICAL CHANGE: Do NOT create a Transaction ledger yet.**
@@ -102,6 +112,7 @@ export async function POST(req) {
             userId: user._id,
             amount,
             schemeType,
+            currency,
             usdtReward,
             maturesAt,
             status: 'pending' // User investments start as pending, requiring admin approval/activation

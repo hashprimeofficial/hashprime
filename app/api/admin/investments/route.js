@@ -6,11 +6,17 @@ import Transaction from '@/models/Transaction';
 import { verifyToken } from '@/lib/auth';
 import { getExchangeRate } from '@/lib/exchangeRate';
 
-const SCHEMES = {
-    '3m': { returnRate: 0.18, durationMonths: 3 },
-    '6m': { returnRate: 0.38, durationMonths: 6 },
-    '1y': { returnRate: 0.80, durationMonths: 12 },
-    '5y': { returnRate: 5.00, durationMonths: 60 },
+const INR_SCHEMES = {
+    '3m_inr': { returnRate: 0.18, durationMonths: 3 },
+    '6m_inr': { returnRate: 0.38, durationMonths: 6 },
+    '1y_inr': { returnRate: 0.80, durationMonths: 12 },
+    '5y_inr': { returnRate: 5.00, durationMonths: 60 },
+};
+const USD_SCHEMES = {
+    '3m_usd': { returnRate: 0.18, durationMonths: 3 },
+    '6m_usd': { returnRate: 0.38, durationMonths: 6 },
+    '1y_usd': { returnRate: 0.80, durationMonths: 12 },
+    '5y_usd': { returnRate: 5.00, durationMonths: 60 },
 };
 
 export async function GET(req) {
@@ -39,9 +45,10 @@ export async function POST(req) {
 
         await connectToDatabase();
 
-        const { userEmail, amount, schemeType } = await req.json();
+        const { userEmail, amount, schemeType, currency } = await req.json();
 
-        if (!userEmail || !amount || Number(amount) <= 0 || !SCHEMES[schemeType]) {
+        const activeSchemes = currency === 'USD' ? USD_SCHEMES : INR_SCHEMES;
+        if (!userEmail || !amount || Number(amount) <= 0 || !currency || !activeSchemes[schemeType]) {
             return NextResponse.json({ error: 'Invalid data provided' }, { status: 400 });
         }
 
@@ -55,22 +62,26 @@ export async function POST(req) {
         }
 
         // Check if user has enough wallet balance
-        if ((user.walletBalance || 0) < Number(amount)) {
+        const activeWalletBalance = currency === 'USD' ? (user.usdWallet || 0) : (user.inrWallet || 0);
+        if (activeWalletBalance < Number(amount)) {
             return NextResponse.json({ error: 'User does not have enough wallet balance' }, { status: 400 });
         }
 
-        const scheme = SCHEMES[schemeType];
+        const scheme = activeSchemes[schemeType];
 
         // Calculate Maturity date & USDT rewards
         const maturesAt = new Date();
         maturesAt.setMonth(maturesAt.getMonth() + scheme.durationMonths);
 
         const liveRate = await getExchangeRate();
-        const usdtReward = Math.round(((Number(amount) * scheme.returnRate) / liveRate) * 100) / 100;
+        const usdtReward = currency === 'USD'
+            ? Math.round((Number(amount) * scheme.returnRate) * 100) / 100
+            : Math.round(((Number(amount) * scheme.returnRate) / liveRate) * 100) / 100;
 
         // Deduct Wallet Balance
+        const updateField = currency === 'USD' ? 'usdWallet' : 'inrWallet';
         await User.findByIdAndUpdate(user._id, {
-            $inc: { walletBalance: -Number(amount) }
+            $inc: { [updateField]: -Number(amount) }
         });
 
         // 1. Create the Active Investment
@@ -78,6 +89,7 @@ export async function POST(req) {
             userId: user._id,
             amount: Number(amount),
             schemeType,
+            currency,
             usdtReward,
             maturesAt,
             status: 'active' // Directly active when created by admin
@@ -87,8 +99,8 @@ export async function POST(req) {
         await Transaction.create({
             userId: user._id,
             type: 'investment',
-            amount: -Number(amount), // Negative to show deduction from wallet
-            currency: 'INR',
+            amount: -Number(amount),
+            currency: currency === 'USD' ? 'USD' : 'INR',
             description: `Admin created ${schemeType} investment package`
         });
 
@@ -100,14 +112,14 @@ export async function POST(req) {
                 const bonusUsdt = Math.round(((Number(amount) * 0.05) / liveRate) * 100) / 100;
 
                 await User.findByIdAndUpdate(referrer._id, {
-                    $inc: { usdtBalance: bonusUsdt }
+                    $inc: { referralWallet: bonusUsdt }
                 });
 
                 await Transaction.create({
                     userId: referrer._id,
                     type: 'referral_bonus',
                     amount: bonusUsdt,
-                    currency: 'USDT',
+                    currency: 'USD',
                     description: `5% Referral bonus from ${user.name}'s investment`
                 });
             }

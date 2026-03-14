@@ -15,8 +15,14 @@ export async function PATCH(req, { params }) {
         const { id } = await params;
         const body = await req.json();
 
-        // Prepare updates
-        const updates = { ...body };
+        // ── Whitelist of fields that admin can update ─────────────────────────
+        // Explicitly excluding: role, _id, createdAt, totp*, referralCode, etc.
+        const ALLOWED_FIELDS = ['name', 'email', 'phone', 'password', 'kycStatus',
+            'usdWallet', 'inrWallet', 'referralWallet'];
+        const updates = {};
+        for (const key of ALLOWED_FIELDS) {
+            if (body[key] !== undefined) updates[key] = body[key];
+        }
 
         // Handle Email Uniqueness
         if (updates.email) {
@@ -28,10 +34,9 @@ export async function PATCH(req, { params }) {
 
         // Handle Password Hashing
         if (updates.password && updates.password.trim() !== '') {
-            const bcrypt = require('bcryptjs'); // Inline require since it's only needed for this specific admin action
+            const bcrypt = require('bcryptjs');
             updates.password = await bcrypt.hash(updates.password, 10);
         } else {
-            // Remove password from updates if it's empty to prevent accidental overwrites
             delete updates.password;
         }
 

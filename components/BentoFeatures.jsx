@@ -114,7 +114,7 @@ export default function BentoFeatures() {
                         <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse"></span>
                         <span className="text-xs uppercase tracking-[0.2em] font-medium text-[#d4af35]">Core Infrastructure</span>
                     </div>
-                    <h2 className="bento-header-element text-4xl md:text-6xl font-semibold text-white mb-6 tracking-tight leading-tight drop-shadow-lg">
+                    <h2 className="bento-header-element text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight drop-shadow-lg">
                         Engineered for{" "}
                         <span className="text-[#d4af35]">
                             Excellence
@@ -142,7 +142,7 @@ export default function BentoFeatures() {
                                 </div>
 
                                 <div className={`relative z-20 ${f.large ? "md:w-[60%]" : ""}`}>
-                                    <h3 className={`font-semibold text-white mb-3 tracking-tight group-hover:text-[#d4af35] transition-colors duration-300 ${f.compact ? "text-xl" : "text-3xl"}`}>
+                                    <h3 className={`font-black text-white mb-3 tracking-tight group-hover:text-[#d4af35] transition-colors duration-300 ${f.compact ? "text-xl" : "text-3xl"}`}>
                                         {f.title}
                                     </h3>
                                     <p className={`text-slate-400 font-normal leading-relaxed group-hover:text-slate-300 transition-colors duration-300 ${f.compact ? "text-[15px]" : "text-lg"}`}>
