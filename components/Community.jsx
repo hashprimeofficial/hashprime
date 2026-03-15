@@ -49,7 +49,7 @@ export default function Community() {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="py-24 md:py-40 relative overflow-hidden bg-[#050505] border-t border-white/[0.02]" id="community">
+        <section ref={containerRef} className="py-8 md:py-12 relative overflow-hidden bg-[#050505] border-t border-white/[0.02]" id="community">
 
             {/* Premium Minimal Background Aura */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#d4af35] opacity-[0.03] rounded-full blur-[150px] pointer-events-none" />

@@ -77,7 +77,7 @@ export default function HowToStart() {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="py-32 bg-transparent relative overflow-hidden" id="how-to-start">
+        <section ref={containerRef} className="py-8 md:py-12 bg-transparent relative overflow-hidden" id="how-to-start">
             <div className="absolute top-1/2 left-0 w-[800px] h-[800px] bg-[#d4af35] opacity-[0.03] rounded-full blur-[150px] pointer-events-none -translate-y-1/2 -translate-x-1/2 z-0"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

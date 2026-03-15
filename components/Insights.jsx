@@ -73,7 +73,7 @@ export default function Insights() {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="py-24 bg-gray-50 border-t border-gray-100" id="insights">
+        <section ref={containerRef} className="py-8 md:py-12 bg-gray-50 border-t border-gray-100" id="insights">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="insight-header flex flex-col md:flex-row md:items-end justify-between mb-16 opacity-0">
                     <div className="max-w-2xl">

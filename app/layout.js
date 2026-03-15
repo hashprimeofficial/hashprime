@@ -19,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata = {
   metadataBase: new URL('https://hashprime.com'),
-  title: 'Hashprime | Let\'s Save Money For The Future',
+  title: 'Hashprime | Intelligent Asset Management for the Modern Investor',
   description: 'Experience next-generation speed, uncompromised security, and deep liquidity. Invest in Bitcoin, Ethereum, Solana and 100+ cryptocurrencies on Hashprime.',
   keywords: ['crypto investments', 'bitcoin exchange', 'buy ethereum', 'solana investments', 'cryptocurrency platform', 'secure crypto wallet', 'Hashprime', 'crypto investment'],
   authors: [{ name: 'Hashprime' }],
@@ -31,7 +31,7 @@ export const metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'Hashprime | Premium Cryptocurrency Exchange',
+    title: 'Hashprime | Intelligent Asset Management for the Modern Investor',
     description: 'The elite platform for professional crypto investors. Secure, fast, and feature-rich.',
     url: 'https://hashprime.com',
     siteName: 'Hashprime',
@@ -48,7 +48,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hashprime | LET\'S SAVE MONEY FOR THE FUTURE',
+    title: 'Hashprime | Intelligent Asset Management for the Modern Investor',
     description: 'Elite cryptocurrency investment platform with advanced analytics, deep liquidity, and institutional-grade security.',
     images: ['/logo.png'], // Fallback
   },

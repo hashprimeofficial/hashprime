@@ -15,10 +15,10 @@ const INR_SCHEMES = [
     { id: '5y_inr', name: '5-Year Vision (INR)', currency: 'INR', rate: '500%', desc: 'Wealth generation', min: 1000000, max: 1500000 },
 ];
 const USD_SCHEMES = [
-    { id: '3m_usd', name: '3-Month Plan (USD)', currency: 'USD', rate: '18%', desc: 'Short-term liquidity', amounts: [500, 1000, 1500, 2000] },
-    { id: '6m_usd', name: '6-Month Plan (USD)', currency: 'USD', rate: '38%', desc: 'Balanced growth', amounts: [1000, 1500, 2000] },
-    { id: '1y_usd', name: '1-Year FD (USD)', currency: 'USD', rate: '80%', desc: 'High yield USD', min: 2000 },
-    { id: '5y_usd', name: '5-Year Vision (USD)', currency: 'USD', rate: '500%', desc: 'Massive wealth USD', min: 5000 },
+    { id: '3m_usd', name: '3-Month Plan (USDT)', currency: 'USD', rate: '18%', desc: 'Short-term liquidity', amounts: [500, 1000, 1500, 2000] },
+    { id: '6m_usd', name: '6-Month Plan (USDT)', currency: 'USD', rate: '38%', desc: 'Balanced growth', amounts: [1000, 1500, 2000] },
+    { id: '1y_usd', name: '1-Year FD (USDT)', currency: 'USD', rate: '80%', desc: 'High yield USD', min: 2000 },
+    { id: '5y_usd', name: '5-Year Vision (USDT)', currency: 'USD', rate: '500%', desc: 'Massive wealth USD', min: 5000 },
 ];
 
 export default function InvestPage() {
@@ -176,7 +176,7 @@ export default function InvestPage() {
                     onClick={() => handleCurrencySwitch('USD')}
                     className={`flex-1 py-2.5 rounded-lg font-bold text-sm transition-all uppercase tracking-wider ${investmentCurrency === 'USD' ? 'bg-[#d4af35]/10 border border-[#d4af35]/30 text-[#d4af35] shadow-inner' : 'text-white/40 hover:text-[#d4af35]'}`}
                 >
-                    USD Investment
+                    USDT Investment
                 </button>
             </div>
 

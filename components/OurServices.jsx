@@ -54,7 +54,7 @@ export default function OurServices() {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="relative bg-[#d4af35] py-24 md:py-40 overflow-hidden text-white">
+        <section ref={sectionRef} className="relative bg-[#d4af35] py-8 md:py-12 overflow-hidden text-white">
 
             {/* High Impact Background Elements */}
             <div className="absolute inset-0 z-0 pointer-events-none opacity-40">

@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import {
     TrendingUp, PieChart, DollarSign, Briefcase, Globe2, ArrowRight
 } from 'lucide-react';
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -40,7 +41,7 @@ export default function OurProjects() {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="relative bg-transparent py-20 md:py-32 overflow-hidden border-t border-white/[0.02]">
+        <section ref={sectionRef} className="relative bg-transparent py-8 md:py-12 overflow-hidden border-t border-white/[0.02]">
 
             {/* Soft Ambient Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
@@ -51,18 +52,30 @@ export default function OurProjects() {
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* ── Header ───────────────────────── */}
-                <div className="op-header-content flex flex-col items-center text-center mb-24">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4af35]/20 bg-[#d4af35]/5 mb-6">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse"></span>
-                        <span className="text-xs uppercase tracking-[0.2em] font-medium text-[#d4af35]">Strategic Verticals</span>
+                <div className="op-header-content flex flex-col lg:flex-row items-center justify-between gap-16 mb-24">
+                    <div className="flex flex-col items-start text-left lg:max-w-2xl">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4af35]/20 bg-[#d4af35]/5 mb-6">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse"></span>
+                            <span className="text-xs uppercase tracking-[0.2em] font-medium text-[#d4af35]">Strategic Verticals</span>
+                        </div>
+                        <h2 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tight mb-6 mt-4">
+                            WHERE YOUR<br />
+                            <span className="text-[#d4af35]">MONEY WORKS</span>
+                        </h2>
+                        <p className="text-slate-500 text-lg font-medium max-w-xl leading-relaxed">
+                            Five specialized investment verticals engineered to capture alpha across global markets.
+                        </p>
                     </div>
-                    <h2 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tight mb-6 mt-4">
-                        WHERE YOUR<br />
-                        <span className="text-[#d4af35]">MONEY WORKS</span>
-                    </h2>
-                    <p className="text-slate-500 text-lg font-medium max-w-xl leading-relaxed">
-                        Five specialized investment verticals engineered to capture alpha across global markets.
-                    </p>
+
+                    <div className="flex-shrink-0 w-full max-w-[320px] lg:max-w-none lg:w-[450px] aspect-square relative mx-auto lg:mx-0">
+                        <div className="absolute inset-0 bg-[#d4af35]/5 rounded-full blur-[80px] animate-pulse" />
+                        <DotLottieReact
+                            src="https://lottie.host/8cdd7866-124a-49a2-841f-3774cb1686fb/Wa3EzgZqx3.lottie"
+                            autoplay
+                            loop
+                            style={{ width: '100%', height: '100%' }}
+                        />
+                    </div>
                 </div>
 
                 {/* ── Showcase Rows ─────── */}

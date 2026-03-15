@@ -161,7 +161,7 @@ export default function DepositPage() {
                                             <div className="w-12 h-12 rounded-full bg-[#d4af35]/10 flex items-center justify-center border border-[#d4af35]/20 group-hover:scale-110 transition-transform">
                                                 <Coins className="w-6 h-6 text-[#d4af35]" />
                                             </div>
-                                            <span className="font-black text-white text-lg">USD Wallet</span>
+                                            <span className="font-black text-white text-lg">USDT Wallet</span>
                                             <span className="text-xs text-[#d4af35]/70 font-bold uppercase tracking-widest">Via USDT / Crypto</span>
                                         </button>
                                         <button

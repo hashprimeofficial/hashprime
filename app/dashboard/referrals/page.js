@@ -158,7 +158,7 @@ export default function ReferralsPage() {
                                 </div>
                                 <div className="text-left sm:text-right bg-[#0A0A0A] sm:bg-transparent p-4 sm:p-0 rounded-xl sm:rounded-none border border-white/5 sm:border-transparent mt-2 sm:mt-0">
                                     <div className="font-black text-[#32e512] text-xl drop-shadow-[0_0_8px_rgba(50,229,18,0.2)]">+₹{(tx.amount * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
-                                    <div className="text-[10px] text-white/50 font-black uppercase tracking-widest mt-1">~ {tx.amount.toFixed(2)} USDT</div>
+                                    <div className="text-[10px] text-white/50 font-black uppercase tracking-widest mt-1">~ {tx.amount.toFixed(2)} USDTT</div>
                                 </div>
                             </li>
                         ))}

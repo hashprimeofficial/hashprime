@@ -107,7 +107,7 @@ export default function DashboardOverview() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }} className="bg-[#0A0A0A] border border-[#d4af35]/30 hover:border-[#d4af35]/60 transition-colors p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af35]/10 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500" />
-                    <div className="flex items-center gap-2 mb-3 text-[#d4af35]"><Wallet className="w-5 h-5 text-[#d4af35]" /> <h3 className="font-bold text-sm tracking-wide uppercase">USD Wallet</h3></div>
+                    <div className="flex items-center gap-2 mb-3 text-[#d4af35]"><Wallet className="w-5 h-5 text-[#d4af35]" /> <h3 className="font-bold text-sm tracking-wide uppercase">USDT Wallet</h3></div>
                     <div className="text-4xl font-black text-white mb-1 leading-tight drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]">${usdWallet.toLocaleString('en-US', { minimumFractionDigits: 2 })}</div>
                     <p className="text-xs text-[#d4af35]/60 font-medium mt-1">Available Capital</p>
                 </motion.div>
@@ -310,7 +310,7 @@ export default function DashboardOverview() {
                                             <div className={`font-black text-right ${(tx.type === 'referral_bonus' || tx.type === 'deposit') ? 'text-[#32e512]' : 'text-white'}`}>
                                                 {(tx.type === 'referral_bonus' || tx.type === 'deposit') ? '+' : ''}{formatTxAmount(tx)}
                                                 {(tx.currency === 'USDT' || tx.currency === 'USD') && (
-                                                    <div className="text-[10px] text-white/50 font-bold uppercase tracking-wider">{tx.amount.toFixed(2)} USD{tx.currency === 'USDT' ? 'T' : ''}</div>
+                                                    <div className="text-[10px] text-white/50 font-bold uppercase tracking-wider">{tx.amount.toFixed(2)} USDT{tx.currency === 'USDT' ? 'T' : ''}</div>
                                                 )}
                                             </div>
                                         </li>

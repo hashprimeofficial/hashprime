@@ -4,53 +4,40 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TrendingUp, ArrowRight, ShieldCheck } from "lucide-react";
+import { TrendingUp, ArrowRight, ShieldCheck, Clock, Layers, Globe2 } from "lucide-react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const schemes = [
     {
-        id: "three-month",
+        id: "short-term",
+        title: "Short-Term Income",
+        desc: "Focused short-term plan offering time-bound returns with lower risk strategies.",
+        icon: Clock
+    },
+    {
+        id: "balanced",
         title: "Balanced Growth",
-        period: "3 Month Scheme",
-        duration: "90 Days",
-        benefit: "18%",
-        benefitCurrency: "USD",
-        investments: ["50K", "1L", "3L", "5L"],
+        desc: "Moderate plan aimed at consistent, balanced returns through diversified portfolios.",
+        icon: Layers
     },
     {
-        id: "six-month",
-        title: "Elite Performance",
-        period: "6 Month Scheme",
-        duration: "180 Days",
-        benefit: "38%",
-        benefitCurrency: "USD",
-        investments: ["1L", "3L", "5L"],
-    },
-    {
-        id: "one-year",
-        title: "Pro Capitalist",
-        period: "1 Year Scheme",
-        duration: "365 Days",
-        benefit: "80%",
-        benefitCurrency: "USD",
-        investments: ["Min 5L"],
+        id: "long-term",
+        title: "Long-Term Wealth",
+        desc: "Growth-oriented plan designed for multi-year horizons emphasizing disciplined compounding.",
+        icon: TrendingUp,
         featured: true
     },
     {
-        id: "five-year",
-        title: "Legacy Wealth",
-        period: "5 Year Scheme",
-        duration: "5 Years",
-        benefit: "500%",
-        benefitCurrency: "USD",
-        investments: ["10L to 50L"],
+        id: "global",
+        title: "Global Exposure",
+        desc: "Diversified plan providing access to international markets and global currencies.",
+        icon: Globe2
     }
 ];
 
 export default function InvestmentSchemes() {
     const sectionRef = useRef(null);
-    const [hoveredTier, setHoveredTier] = useState(null);
 
     useGSAP(() => {
         gsap.fromTo(".is-header-animate",
@@ -86,71 +73,50 @@ export default function InvestmentSchemes() {
                     </div>
 
                     <h2 className="is-header-animate text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.9] mb-8">
-                        INVESTMENT<br />
-                        <span className="text-[#d4af35]">SCHEMES</span>
+                        SMART INVESTMENT<br />
+                        <span className="text-[#d4af35]">PLANS FOR YOUR WEALTH</span>
                     </h2>
 
-                    <p className="is-header-animate text-xl text-slate-500 font-medium max-w-2xl leading-relaxed">
-                        Fixed-term alpha strategies designed for high-conviction capital allocation. Institutional yields, democratized.
-                    </p>
                 </div>
 
                 {/* Grid */}
                 <div className="is-grid-premium grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
-                    {schemes.map((scheme) => (
-                        <div key={scheme.id} className={`is-card-premium group relative bg-[#121212] border rounded-[3rem] p-10 md:p-14 
+                    {schemes.map((scheme) => {
+                        const Icon = scheme.icon;
+                        return (
+                            <div key={scheme.id} className={`is-card-premium group relative bg-[#121212] border rounded-[3rem] p-10 md:p-14 
                                                         hover:border-[#d4af35]/40 hover:shadow-[0_30px_60px_rgba(0,0,0,0.05)] transition-all duration-500 flex flex-col h-full overflow-hidden
                                                         ${scheme.featured ? 'border-[#d4af35]/40 shadow-lg' : 'border-white/10/60'}`}>
 
-                            {/* Glassmorphic Accent */}
-                            <div className="absolute top-0 right-0 w-48 h-48 bg-[#d4af35]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-[#d4af35]/20 transition-all duration-700" />
+                                {/* Glassmorphic Accent */}
+                                <div className="absolute top-0 right-0 w-48 h-48 bg-[#d4af35]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-[#d4af35]/20 transition-all duration-700" />
 
-                            <div className="relative z-10 flex-grow flex flex-col">
-                                {/* Header Row */}
-                                <div className="flex justify-between items-start mb-14">
-                                    <div className="flex flex-col gap-2">
-                                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#121212]/5 border border-white/5">
-                                            <ShieldCheck className="w-3.5 h-3.5 text-[#d4af35]" />
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-[#d4af35]/70">{scheme.duration} Lock</span>
+                                <div className="relative z-10 flex-grow flex flex-col">
+                                    {/* Header Row */}
+                                    <div className="flex justify-between items-start mb-8">
+                                        <div className="w-16 h-16 rounded-2xl bg-[#121212] border border-white/5 flex items-center justify-center shadow-sm group-hover:bg-[#d4af35] group-hover:border-[#d4af35] transition-all duration-500">
+                                            <Icon className="w-8 h-8 text-white group-hover:text-[#0A0A0A] transition-colors duration-500" strokeWidth={1.5} />
                                         </div>
-                                        <h3 className="text-4xl font-black text-white tracking-tight">{scheme.title}</h3>
-                                        <span className="text-sm font-bold text-slate-300 uppercase tracking-widest">{scheme.period}</span>
+                                        <div className="w-12 h-12 rounded-full bg-[#121212]/5 flex items-center justify-center group-hover:bg-[#d4af35] transition-all duration-500">
+                                            <ArrowRight className="w-5 h-5 text-slate-300 group-hover:text-[#0A0A0A] -rotate-45 group-hover:rotate-0 transition-all duration-500" />
+                                        </div>
                                     </div>
-                                    <div className="w-14 h-14 rounded-full bg-[#121212]/5 flex items-center justify-center group-hover:bg-[#d4af35] transition-all duration-500">
-                                        <ArrowRight className="w-6 h-6 text-slate-300 group-hover:text-white -rotate-45 group-hover:rotate-0 transition-all duration-500" />
-                                    </div>
-                                </div>
 
-                                {/* Yield Section */}
-                                <div className="mb-14 border-l-4 border-[#d4af35] pl-8">
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-8xl font-black text-white leading-none tracking-tighter">{scheme.benefit}</span>
-                                        <span className="text-2xl font-black text-slate-300 mb-2">ROI</span>
-                                    </div>
-                                    <p className="text-slate-300 font-bold uppercase tracking-widest mt-2">Target Returns / {scheme.benefitCurrency}</p>
-                                </div>
+                                    <h3 className="text-3xl font-black text-white tracking-tight mb-4 group-hover:text-[#d4af35] transition-colors">{scheme.title}</h3>
 
-                                {/* Tiers */}
-                                <div className="mt-auto">
-                                    <h4 className="text-[11px] font-black text-slate-300 uppercase tracking-[0.3em] mb-6">Investment Thresholds</h4>
-                                    <div className="flex flex-wrap gap-4">
-                                        {scheme.investments.map((inv, idx) => {
-                                            const uid = `${scheme.id}-${idx}`;
-                                            return (
-                                                <div
-                                                    key={idx}
-                                                    onMouseEnter={() => setHoveredTier(uid)}
-                                                    onMouseLeave={() => setHoveredTier(null)}
-                                                    className={`py-4 px-8 rounded-2xl border font-black text-xl transition-all duration-500 cursor-default
-                                                    ${hoveredTier === uid ? 'border-[#d4af35] bg-[#d4af35] text-[#0A0A0A] shadow-[0_8px_20px_rgba(212,175,53,0.3)] -translate-y-1' : 'border-white/10 bg-[#121212] text-slate-300'}`}
-                                                >{inv}</div>
-                                            );
-                                        })}
-                                    </div>
+                                    <p className="text-slate-400 font-normal leading-relaxed text-lg group-hover:text-slate-300 transition-colors">
+                                        {scheme.desc}
+                                    </p>
+
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    })}
+                </div>
+
+                {/* Note */}
+                <div className="mt-16 text-center text-slate-500 text-sm max-w-3xl mx-auto is-header-animate italic border-t border-white/5 pt-8">
+                    Note: Plan terms, durations, and fixed returns are subject to conditions. Investors should read plan documentation carefully before investing.
                 </div>
             </div>
         </section>

@@ -138,7 +138,7 @@ export default function Navbar() {
                         ) : (
                             <>
                                 <Link href="/login" className="hidden md:block text-xs uppercase tracking-widest font-bold text-slate-400 hover:text-white transition-colors">
-                                    Log In
+                                    Client Login
                                 </Link>
                                 <div ref={ctaRef} className="hidden md:inline-block p-2 -m-2">
                                     <Link
@@ -203,8 +203,8 @@ export default function Navbar() {
                         </Link>
                     ) : (
                         <>
-                            <Link href="/login" className="w-full text-center py-4 rounded-xl text-sm uppercase tracking-widest font-bold text-white bg-[#121212] border border-white/10 hover:border-[#d4af35]/50 transition-colors mb-2" onClick={() => setIsMobileMenuOpen(false)}>Log In</Link>
-                            <Link href="/register" className="w-full text-center py-4 rounded-xl text-sm uppercase tracking-widest font-black text-[#0A0A0A] bg-[#d4af35] shadow-[0_0_30px_rgba(212,175,53,0.2)]" onClick={() => setIsMobileMenuOpen(false)}>Open Account</Link>
+                            <Link href="/login" className="w-full text-center py-4 rounded-xl text-sm uppercase tracking-widest font-bold text-white bg-[#121212] border border-white/10 hover:border-[#d4af35]/50 transition-colors mb-2" onClick={() => setIsMobileMenuOpen(false)}>Client Login</Link>
+                            <Link href="/register" className="w-full text-center py-4 rounded-xl text-sm uppercase tracking-widest font-black text-[#0A0A0A] bg-[#d4af35] shadow-[0_0_30px_rgba(212,175,53,0.2)]" onClick={() => setIsMobileMenuOpen(false)}>Get Started</Link>
                         </>
                     )}
                 </div>

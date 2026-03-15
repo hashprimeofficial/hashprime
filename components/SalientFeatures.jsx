@@ -90,7 +90,7 @@ export default function SalientFeatures() {
         <section
             ref={sectionRef}
             onMouseMove={handleMouseMove}
-            className="relative bg-[#121212] py-32 md:py-48 overflow-hidden"
+            className="relative bg-[#121212] py-8 md:py-12 overflow-hidden"
             id="features"
         >
             {/* Background Decorative Elements */}

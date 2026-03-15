@@ -1,9 +1,10 @@
 import Hero from '@/components/Hero';
 import HowToStart from '@/components/HowToStart';
 import BentoFeatures from '@/components/BentoFeatures';
-import SalientFeatures from '@/components/SalientFeatures';
+import AboutHashPrime from '@/components/AboutHashPrime';
 import Community from '@/components/Community';
 import OurProjects from '@/components/OurProjects';
+import InvestmentSchemes from '@/components/InvestmentSchemes';
 
 export const metadata = {
   alternates: {
@@ -29,6 +30,7 @@ export default function Home() {
       />
 
       <div className="relative z-20"><Hero /></div>
+      <div className="relative z-20"><AboutHashPrime /></div>
 
       {/* Transition Orb 1 */}
       <div className="absolute top-[800px] left-[-10%] w-[800px] h-[800px] bg-[#d4af35] opacity-[0.03] rounded-full blur-[150px] pointer-events-none z-0"></div>
@@ -46,7 +48,7 @@ export default function Home() {
       {/* Transition Orb 4 */}
       <div className="absolute bottom-[800px] left-1/2 w-[1200px] h-[600px] bg-[#d4af35] opacity-[0.02] rounded-[100%] blur-[150px] pointer-events-none -translate-x-1/2 z-0"></div>
 
-      <div className="relative z-20"><SalientFeatures /></div>
+      <div className="relative z-20"><InvestmentSchemes /></div>
       <div className="relative z-20"><Community /></div>
     </div>
   );

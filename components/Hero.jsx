@@ -52,42 +52,32 @@ export default function Hero() {
 
                 {/* Left side content */}
                 <div className="lg:col-span-7 flex flex-col items-start z-20">
-                    <div className="mb-8 [perspective:1000px]">
-                        <div className="overflow-hidden">
-                            <h1 className="hero-title-line font-black text-6xl md:text-[5.5rem] leading-[0.9] tracking-tighter text-white drop-shadow-sm mb-2">
-                                Smart Assets
-                            </h1>
-                        </div>
-                        <div className="overflow-hidden flex items-center gap-4">
-                            <h1 className="hero-title-line font-black text-6xl md:text-[5.5rem] leading-[0.9] tracking-tighter text-[#d4af35] mb-2">
-                                Prime
-                            </h1>
-                            <h1 className="hero-title-line font-black text-5xl md:text-7xl  tracking-tighter text-white/50">
-                                Growth
-                            </h1>
-                        </div>
-
+                    <div className="mb-6">
+                        <h1 className="hero-title-line font-black text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-white drop-shadow-sm mb-4">
+                            Intelligent <span className="text-[#d4af35]">Asset Management</span><br />
+                            <span className="text-white/80 text-3xl md:text-4xl lg:text-5xl mt-2 block">for the Modern Investor</span>
+                        </h1>
                     </div>
 
-                    <p className="hero-desc text-slate-300 text-lg md:text-xl font-medium max-w-xl mb-12 leading-relaxed">
-                        Execute strategies with precision. We combine deep liquidity, algorithmic trading access, and vault-grade security into a single, seamless terminal.
+                    <p className="hero-desc text-slate-300 text-base md:text-lg font-medium max-w-xl mb-10 leading-relaxed">
+                        Grow your wealth with diversified strategies in global equities, funds, commodities, and fixed-return investment portfolios.
                     </p>
 
                     <div className="hero-actions flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto">
                         <Link href="/register"
                             className="group relative flex items-center justify-center gap-3 w-full sm:w-auto bg-[#d4af35] text-[#0A0A0A] px-10 py-5 rounded-full font-black text-sm uppercase tracking-wider overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,53,0.3)]">
                             <span className="relative z-10 flex items-center gap-2">
-                                Open Account <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                Start Investing <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                             </span>
                             <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
                         </Link>
 
-                        <button className="group flex items-center justify-center gap-3 w-full sm:w-auto text-white px-8 py-5 rounded-full font-bold text-sm bg-[#121212] border border-white/5 hover:border-[#d4af35]/50 transition-all hover:bg-[#d4af35]/5">
+                        <Link href="/schemes" className="group flex items-center justify-center gap-3 w-full sm:w-auto text-white px-8 py-5 rounded-full font-bold text-sm bg-[#121212] border border-white/5 hover:border-[#d4af35]/50 transition-all hover:bg-[#d4af35]/5">
                             <div className="w-8 h-8 rounded-full bg-[#d4af35]/10 flex items-center justify-center group-hover:bg-[#d4af35] transition-colors">
                                 <Play size={14} className="text-[#d4af35] group-hover:text-[#0A0A0A] ml-1 transition-colors" />
                             </div>
-                            How It Works
-                        </button>
+                            View Plans
+                        </Link>
                     </div>
                 </div>
 

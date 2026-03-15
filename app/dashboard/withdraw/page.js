@@ -13,7 +13,7 @@ const fetcher = (url) => fetch(url).then(r => r.json());
 
 // ── Helpers ────────────────────────────────────────────────────────────
 const WALLET_META = {
-    USD: { label: 'USD Wallet', symbol: '$', color: 'text-blue-400', border: 'border-blue-500/20', bg: 'bg-blue-500/10', icon: DollarSign },
+    USD: { label: 'USDT Wallet', symbol: '$', color: 'text-blue-400', border: 'border-blue-500/20', bg: 'bg-blue-500/10', icon: DollarSign },
     INR: { label: 'INR Wallet', symbol: '₹', color: 'text-emerald-400', border: 'border-emerald-500/20', bg: 'bg-emerald-500/10', icon: IndianRupee },
     Referral: { label: 'Referral Wallet', symbol: '$', color: 'text-purple-400', border: 'border-purple-500/20', bg: 'bg-purple-500/10', icon: Gift },
 };

@@ -1,5 +1,5 @@
 import OurProjects from '@/components/OurProjects';
-import InvestmentSchemes from '@/components/InvestmentSchemes';
+import DetailedSchemes from '@/components/DetailedSchemes';
 
 export const metadata = {
     title: 'Services | Hashprime',
@@ -10,7 +10,7 @@ export default function ServicesPage() {
     return (
         <main className="bg-[#121212] min-h-screen pt-20">
             <OurProjects />
-            <InvestmentSchemes />
+            <DetailedSchemes />
         </main>
     );
 }
