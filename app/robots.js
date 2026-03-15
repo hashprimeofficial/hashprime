@@ -5,6 +5,6 @@ export default function robots() {
             allow: '/',
             disallow: ['/admin', '/dashboard', '/api'],
         },
-        sitemap: 'https://hashprime.com/sitemap.xml',
+        sitemap: 'https://hashprime.in/sitemap.xml',
     };
 }

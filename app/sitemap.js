@@ -1,4 +1,4 @@
-const BASE_URL = 'https://hashprime.com';
+const BASE_URL = 'https://hashprime.in';
 
 export default function sitemap() {
     const lastModified = new Date('2026-03-15');
