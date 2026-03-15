@@ -17,7 +17,7 @@ const features = [
 const stats = [
     { value: "7+", label: "Years of Experience", desc: "Manage investor wealth", icon: Award },
     { value: "₹500M+", label: "AUM", desc: "Assets Under Management", icon: BarChart },
-    { value: "1000+", label: "Investors", desc: "Trusted by many", icon: Users }
+    { value: "5000+", label: "Investors", desc: "Trusted by many", icon: Users }
 ];
 
 export default function AboutHashPrime() {
