@@ -123,7 +123,7 @@ export default function DashboardOverview() {
                     <div className="flex items-center gap-2 mb-3 text-[#d4af35]"><Clock className="w-5 h-5 text-[#d4af35]" /> <h3 className="font-bold text-sm tracking-wide uppercase">Active Investments</h3></div>
                     <div className="flex flex-col gap-2 mt-4">
                         <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
-                            <span className="text-slate-400 font-medium">USD Schemes:</span>
+                            <span className="text-slate-400 font-medium">USDT Schemes:</span>
                             <span className="font-black text-white drop-shadow-[0_0_5px_rgba(212,175,53,0.3)]">${totalInvestedUSD.toLocaleString('en-US')}</span>
                         </div>
                         <div className="flex justify-between items-center text-sm pt-1">
@@ -141,7 +141,7 @@ export default function DashboardOverview() {
                     </div>
                     <div className="flex flex-col gap-2 mt-4 z-10 relative">
                         <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
-                            <span className="text-white/60 font-bold uppercase tracking-widest text-[10px]">USD Yield</span>
+                            <span className="text-white/60 font-bold uppercase tracking-widest text-[10px]">USDT Yield</span>
                             <span className="font-black text-[#32e512] drop-shadow-[0_0_5px_rgba(50,229,18,0.3)] text-lg">+${expectedUSD.toLocaleString('en-US')}</span>
                         </div>
                         <div className="flex justify-between items-center text-sm pt-1">
