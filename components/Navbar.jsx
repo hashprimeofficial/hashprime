@@ -138,7 +138,7 @@ export default function Navbar() {
                         ) : (
                             <>
                                 <Link href="/login" className="hidden md:block text-xs uppercase tracking-widest font-bold text-slate-400 hover:text-white transition-colors">
-                                    Client Login
+                                    Login
                                 </Link>
                                 <div ref={ctaRef} className="hidden md:inline-block p-2 -m-2">
                                     <Link
