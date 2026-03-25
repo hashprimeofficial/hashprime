@@ -117,15 +117,19 @@ export default function Footer() {
                         <div className="space-y-4 text-slate-400 text-sm">
                             <div className="flex items-center gap-3 hover:text-white transition-colors cursor-pointer group">
                                 <MapPin className="w-4 h-4 text-[#d4af35]" />
-                                <span className="group-hover:translate-x-1 transition-transform">120 Financial District, Global Hub</span>
+                                <span className="group-hover:translate-x-1 transition-transform">www.hashprime.in</span>
                             </div>
                             <div className="flex items-center gap-3 hover:text-white transition-colors cursor-pointer group">
                                 <Phone className="w-4 h-4 text-[#d4af35]" />
-                                <span className="group-hover:translate-x-1 transition-transform">+1 (800) 555-0199</span>
+                                <span className="group-hover:translate-x-1 transition-transform">+91 86102 90782, +91 90039 99202</span>
                             </div>
                             <div className="flex items-center gap-3 hover:text-white transition-colors cursor-pointer group">
                                 <Mail className="w-4 h-4 text-[#d4af35]" />
-                                <span className="group-hover:translate-x-1 transition-transform">premium@hashprime.com</span>
+                                <span className="group-hover:translate-x-1 transition-transform">support@hashprime.in</span>
+                            </div>
+                            <div className="flex items-center gap-3 hover:text-white transition-colors cursor-pointer group">
+                                <span className="text-[#d4af35] font-bold">@</span>
+                                <span className="group-hover:translate-x-1 transition-transform">hashprimeindia</span>
                             </div>
                         </div>
                     </div>
@@ -162,9 +166,9 @@ export default function Footer() {
                     <div className="foo-anim lg:col-span-2 lg:col-start-10">
                         <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Company</h3>
                         <ul className="space-y-4">
-                            {['About Us', 'Leadership', 'Careers', 'Contact Details'].map((item) => (
+                            {[['About Us', '/company'], ['Leadership', '/company'], ['Careers', '/careers'], ['Contact Details', '#']].map(([item, href]) => (
                                 <li key={item}>
-                                    <Link href="#" className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
+                                    <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
                                         <ChevronRight className="w-3 h-3 text-[#d4af35] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all mr-2" />
                                         <span className="group-hover:translate-x-1 transition-transform">{item}</span>
                                     </Link>

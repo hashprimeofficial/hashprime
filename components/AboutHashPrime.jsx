@@ -76,7 +76,6 @@ export default function AboutHashPrime() {
                             </span>
                             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">About Us</span>
                         </div>
-
                         <h2 className="ah-header-animate text-5xl md:text-7xl font-black text-white tracking-tight leading-[1] mb-8">
                             About<br />
                             <span className="text-[#d4af35]">HashPrime</span>
@@ -85,7 +84,6 @@ export default function AboutHashPrime() {
                         <p className="ah-header-animate text-lg md:text-xl text-slate-400 font-normal max-w-xl leading-relaxed mb-10">
                             HashPrime is an asset management company focused on diversified portfolios for long-term growth investors seeking long-term financial markets opportunity.
                         </p>
-
                         <div className="ah-header-animate flex flex-col gap-4">
                             {features.map((feature, i) => {
                                 const Icon = feature.icon;
@@ -100,7 +98,6 @@ export default function AboutHashPrime() {
                             })}
                         </div>
                     </div>
-
                     <div className="ah-header-animate flex-shrink-0 w-full lg:max-w-[500px] relative mx-auto lg:mx-0">
                         {/* Stats Grid right side */}
                         <div className="ah-grid-premium grid grid-cols-1 gap-6">
@@ -123,7 +120,6 @@ export default function AboutHashPrime() {
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     );

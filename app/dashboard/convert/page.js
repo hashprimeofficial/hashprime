@@ -65,7 +65,7 @@ export default function ConvertPage() {
 
             if (!res.ok) throw new Error(data.error || 'Conversion failed');
 
-            setMessage({ type: 'success', text: `Successfully converted ${fromCurrency === 'USD' ? '$' : '₹'}${parseFloat(amount).toLocaleString()} to ${toCurrency === 'USD' ? '$' : '₹'}${data.convertedAmount.toLocaleString()}` });
+            setMessage({ type: 'success', text: `Successfully converted ${fromCurrency === 'USD' ? 'USDT $' : '₹'}${parseFloat(amount).toLocaleString()} to ${toCurrency === 'USD' ? 'USDT $' : '₹'}${data.convertedAmount.toLocaleString()}` });
             setAmount('');
             mutateAuth(); // refresh balances
 
@@ -109,7 +109,7 @@ export default function ConvertPage() {
 
                 <div className="flex gap-4">
                     <div className="bg-[#0A0A0A] border border-[#d4af35]/30 rounded-2xl p-4 shadow-inner min-w-[140px]">
-                        <p className="text-[10px] uppercase font-black tracking-widest text-[#d4af35]/60 mb-1">USD Balance</p>
+                        <p className="text-[10px] uppercase font-black tracking-widest text-[#d4af35]/60 mb-1">USDT Balance</p>
                         <p className="text-xl font-black text-white flex items-center gap-1.5"><Coins className="w-4 h-4 text-[#d4af35]" /> ${user.usdWallet?.toLocaleString('en-US') || '0.00'}</p>
                     </div>
                     <div className="bg-[#0A0A0A] border border-[#d4af35]/30 rounded-2xl p-4 shadow-inner min-w-[140px]">
@@ -141,13 +141,13 @@ export default function ConvertPage() {
                         <div className="flex justify-between items-center mb-4">
                             <label className="text-xs font-black text-[#d4af35]/80 uppercase tracking-widest">Convert From</label>
                             <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest bg-white/5 px-2 py-1 rounded-md">
-                                Available: {fromCurrency} {maxBalance?.toLocaleString(fromCurrency === 'USD' ? 'en-US' : 'en-IN')}
+                                Available: {fromCurrency === 'USD' ? 'USDT' : fromCurrency} {maxBalance?.toLocaleString(fromCurrency === 'USD' ? 'en-US' : 'en-IN')}
                             </span>
                         </div>
                         <div className="flex items-center gap-4">
                             <div className="bg-[#0A0A0A] border border-[#d4af35]/30 rounded-xl px-4 py-3 flex items-center gap-3 w-1/3 shadow-inner">
                                 {fromCurrency === 'USD' ? <Coins className="w-5 h-5 text-[#d4af35]" /> : <IndianRupee className="w-5 h-5 text-[#d4af35]" />}
-                                <span className="font-black text-white text-lg tracking-wide">{fromCurrency}</span>
+                                <span className="font-black text-white text-lg tracking-wide">{fromCurrency === 'USD' ? 'USDT' : fromCurrency}</span>
                             </div>
                             <div className="relative flex-1">
                                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#d4af35] font-black text-xl">
@@ -191,13 +191,13 @@ export default function ConvertPage() {
                         <div className="flex justify-between items-center mb-4">
                             <label className="text-xs font-black text-[#d4af35]/80 uppercase tracking-widest">Convert To</label>
                             <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest bg-white/5 px-2 py-1 rounded-md">
-                                Current: {toCurrency} {(toCurrency === 'USD' ? user.usdWallet : user.inrWallet)?.toLocaleString(toCurrency === 'USD' ? 'en-US' : 'en-IN')}
+                                Current: {toCurrency === 'USD' ? 'USDT' : toCurrency} {(toCurrency === 'USD' ? user.usdWallet : user.inrWallet)?.toLocaleString(toCurrency === 'USD' ? 'en-US' : 'en-IN')}
                             </span>
                         </div>
                         <div className="flex items-center gap-4">
                             <div className="bg-[#0A0A0A] border border-[#d4af35]/30 rounded-xl px-4 py-3 flex items-center gap-3 w-1/3 shadow-inner">
                                 {toCurrency === 'USD' ? <Coins className="w-5 h-5 text-[#d4af35]" /> : <IndianRupee className="w-5 h-5 text-[#d4af35]" />}
-                                <span className="font-black text-white text-lg tracking-wide">{toCurrency}</span>
+                                <span className="font-black text-white text-lg tracking-wide">{toCurrency === 'USD' ? 'USDT' : toCurrency}</span>
                             </div>
                             <div className="relative flex-1 text-right">
                                 <span className="text-3xl md:text-4xl text-white font-black truncate max-w-full block">

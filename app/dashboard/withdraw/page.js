@@ -13,7 +13,7 @@ const fetcher = (url) => fetch(url).then(r => r.json());
 
 // ── Helpers ────────────────────────────────────────────────────────────
 const WALLET_META = {
-    USD: { label: 'USDT Wallet', symbol: '$', color: 'text-blue-400', border: 'border-blue-500/20', bg: 'bg-blue-500/10', icon: DollarSign },
+    USDT: { label: 'USDT Wallet', symbol: '$', color: 'text-blue-400', border: 'border-blue-500/20', bg: 'bg-blue-500/10', icon: DollarSign },
     INR: { label: 'INR Wallet', symbol: '₹', color: 'text-emerald-400', border: 'border-emerald-500/20', bg: 'bg-emerald-500/10', icon: IndianRupee },
     Referral: { label: 'Referral Wallet', symbol: '$', color: 'text-purple-400', border: 'border-purple-500/20', bg: 'bg-purple-500/10', icon: Gift },
 };
@@ -52,7 +52,7 @@ export default function WithdrawPage() {
     const { data: withdrawData, isLoading: isWithdrawLoading, mutate: mutateWithdraws } = useSWR('/api/withdraw', fetcher);
     const { data: bankData, isLoading: isBankLoading } = useSWR('/api/bank-accounts', fetcher);
 
-    const [sourceWallet, setSourceWallet] = useState('USD');
+    const [sourceWallet, setSourceWallet] = useState('USDT');
     const [amount, setAmount] = useState('');
     const [walletAddress, setWalletAddress] = useState('');
     const [selectedBankId, setSelectedBankId] = useState(null);
@@ -66,7 +66,7 @@ export default function WithdrawPage() {
     const bankAccounts = bankData?.bankAccounts || [];
 
     const meta = WALLET_META[sourceWallet];
-    const availableBalance = sourceWallet === 'USD' ? (user.usdWallet || 0)
+    const availableBalance = sourceWallet === 'USDT' ? (user.usdWallet || 0)
         : sourceWallet === 'INR' ? (user.inrWallet || 0)
             : (user.referralWallet || 0);
 
@@ -79,7 +79,7 @@ export default function WithdrawPage() {
         if (isNaN(num) || num <= 0) { setError('Please enter a valid amount.'); return; }
         if (num > availableBalance) { setError('Insufficient balance in selected wallet.'); return; }
         if (sourceWallet === 'INR' && !selectedBank) { router.push('/dashboard/bank'); return; }
-        if ((sourceWallet === 'USD' || sourceWallet === 'Referral') && !walletAddress.trim()) {
+        if ((sourceWallet === 'USDT' || sourceWallet === 'Referral') && !walletAddress.trim()) {
             setError('Please enter your BEP20 wallet address.'); return;
         }
         if (sourceWallet === 'Referral') { setShowReferralWarning(true); return; }
@@ -174,7 +174,7 @@ export default function WithdrawPage() {
                             {/* Wallet Selector */}
                             <div className="grid grid-cols-3 gap-2">
                                 {Object.entries(WALLET_META).map(([key, m]) => {
-                                    const bal = key === 'USD' ? (user.usdWallet || 0) : key === 'INR' ? (user.inrWallet || 0) : (user.referralWallet || 0);
+                                    const bal = key === 'USDT' ? (user.usdWallet || 0) : key === 'INR' ? (user.inrWallet || 0) : (user.referralWallet || 0);
                                     const Icon = m.icon;
                                     return (
                                         <button key={key} type="button" onClick={() => { setSourceWallet(key); setError(''); setAmount(''); }}
@@ -206,7 +206,7 @@ export default function WithdrawPage() {
                                 </div>
 
                                 {/* Payout Details */}
-                                {(sourceWallet === 'USD' || sourceWallet === 'Referral') && (
+                                {(sourceWallet === 'USDT' || sourceWallet === 'Referral') && (
                                     <div>
                                         <label className="text-xs font-black uppercase tracking-widest text-[#d4af35]/60 mb-1.5 block">
                                             USDT Receiving Address <span className="normal-case font-normal text-white/20">(BEP20)</span>
@@ -282,7 +282,7 @@ export default function WithdrawPage() {
                                 ) : (
                                     <div className="divide-y divide-[#d4af35]/5">
                                         {withdrawals.map(w => {
-                                            const wm = WALLET_META[w.sourceWallet] || WALLET_META.USD;
+                                            const wm = WALLET_META[w.sourceWallet] || WALLET_META.USDT;
                                             return (
                                                 <div key={w._id} className="p-4 hover:bg-[#d4af35]/3 transition-colors">
                                                     <div className="flex items-center justify-between mb-1">

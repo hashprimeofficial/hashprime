@@ -40,6 +40,7 @@ export default function InvestPage() {
     const [showOtpPrompt, setShowOtpPrompt] = useState(false);
     const [otpToken, setOtpToken] = useState('');
     const [isOtpSending, setIsOtpSending] = useState(false);
+    const [showDeclaration, setShowDeclaration] = useState(false);
     const user = profileData?.user || {};
 
     const handleSchemeSelect = (scheme) => {
@@ -75,7 +76,8 @@ export default function InvestPage() {
         return (usdt * liveRate).toLocaleString('en-IN', { maximumFractionDigits: 0 });
     };
 
-    const initiateInvestment = async () => {
+    const proceedWithInvestment = async () => {
+        setShowDeclaration(false);
         // If 2FA is active, just show the prompt
         if (user.isTwoFactorEnabled) {
             setShowOtpPrompt(true);
@@ -95,6 +97,10 @@ export default function InvestPage() {
         } finally {
             setIsOtpSending(false);
         }
+    };
+
+    const initiateInvestment = () => {
+        setShowDeclaration(true);
     };
 
     const handleInvest = async () => {
@@ -145,6 +151,32 @@ export default function InvestPage() {
 
     return (
         <div className="max-w-4xl mx-auto space-y-8 relative">
+            {/* Declaration Modal */}
+            {showDeclaration && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A0A0A]/80 backdrop-blur-sm p-4">
+                    <div className="bg-[#121212] border border-[#d4af35]/30 rounded-2xl p-6 max-w-md w-full shadow-2xl">
+                        <h3 className="text-xl font-black text-white mb-2">Fund Declaration</h3>
+                        <p className="text-white/70 text-sm mb-6 leading-relaxed">
+                            By proceeding, you agree to create this investment plan. Please note that the invested money is <span className="text-[#d4af35] font-bold">non-refundable</span> until the end of the timeline.
+                        </p>
+                        <div className="flex gap-3">
+                            <button
+                                onClick={() => setShowDeclaration(false)}
+                                className="flex-1 py-3 bg-[#0A0A0A] text-white/60 font-bold uppercase tracking-wider rounded-lg border border-white/10 hover:bg-white/5 transition-colors text-xs"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={proceedWithInvestment}
+                                className="flex-1 py-3 bg-[#d4af35] text-[#0A0A0A] font-black uppercase tracking-wider rounded-lg hover:bg-[#f8d76d] transition-colors shadow-[0_0_15px_rgba(212,175,53,0.3)] text-xs"
+                            >
+                                OK, Proceed
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 relative z-10">
                 <div>
