@@ -18,7 +18,10 @@ export default function Navbar() {
     const containerRef = useRef(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const pathname = usePathname();
+
+    useEffect(() => { setMounted(true); }, []);
 
     // Lightweight auth check for showing Dashboard button
     const { data: authData } = useSWR('/api/auth/me', fetcher, {
@@ -108,7 +111,7 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    <nav className="hidden md:flex space-x-10">
+                    <nav className="hidden md:flex items-center space-x-8">
                         {navLinks.map(({ href, label }) => (
                             <Link
                                 key={href}
@@ -121,6 +124,17 @@ export default function Navbar() {
                                     }`} />
                             </Link>
                         ))}
+                        {/* Highlighted Hash Prime Groups pill */}
+                        <Link
+                            href="/hash-prime-groups"
+                            className={`relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 border ${mounted && pathname === '/hash-prime-groups'
+                                ? 'bg-[#d4af35]/20 border-[#d4af35]/60 text-[#d4af35] shadow-[0_0_14px_rgba(212,175,53,0.25)]'
+                                : 'bg-[#d4af35]/8 border-[#d4af35]/20 text-[#d4af35]/70 hover:bg-[#d4af35]/15 hover:border-[#d4af35]/50 hover:text-[#d4af35]'
+                                }`}
+                        >
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse" />
+                            HP Groups
+                        </Link>
                     </nav>
 
                     <div className="flex items-center space-x-6">
@@ -194,6 +208,15 @@ export default function Navbar() {
                             {label}
                         </Link>
                     ))}
+                    {/* Highlighted Hash Prime Groups */}
+                    <Link
+                        href="/hash-prime-groups"
+                        className="offcanvas-link inline-flex items-center gap-3 self-start px-6 py-3 rounded-full bg-[#d4af35]/10 border border-[#d4af35]/30 text-[#d4af35] text-xl font-black uppercase tracking-widest hover:bg-[#d4af35]/20 transition-all duration-300"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                        <span className="w-2 h-2 rounded-full bg-[#d4af35] animate-pulse" />
+                        Hash Prime Groups
+                    </Link>
                 </div>
 
                 <div className="p-8 mt-auto border-t border-white/5 flex flex-col space-y-4 bg-[#121212]/50 relative z-10">

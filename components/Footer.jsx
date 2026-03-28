@@ -6,7 +6,7 @@ import { useState, useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowUp, CheckCircle2, ChevronRight, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowUp, CheckCircle2, ChevronRight, Mail, Phone, MapPin, Instagram } from 'lucide-react';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -127,10 +127,17 @@ export default function Footer() {
                                 <Mail className="w-4 h-4 text-[#d4af35]" />
                                 <span className="group-hover:translate-x-1 transition-transform">support@hashprime.in</span>
                             </div>
-                            <div className="flex items-center gap-3 hover:text-white transition-colors cursor-pointer group">
-                                <span className="text-[#d4af35] font-bold">@</span>
+                            <a href="https://www.instagram.com/hashprimegroups" target="_blank" rel="noopener noreferrer"
+                                className="flex items-center gap-3 hover:text-white transition-colors group">
+                                <Instagram className="w-4 h-4 text-[#d4af35] shrink-0" />
                                 <span className="group-hover:translate-x-1 transition-transform">hashprimeindia</span>
-                            </div>
+                            </a>
+                            {/* Highlighted @hashprimegroups pill */}
+                            <a href="https://www.instagram.com/hashprimegroups" target="_blank" rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#d4af35]/15 to-[#d4af35]/5 border border-[#d4af35]/30 text-[#d4af35] text-[11px] font-black uppercase tracking-[0.2em] hover:border-[#d4af35]/60 hover:bg-[#d4af35]/20 transition-all duration-300 group w-max">
+                                <Instagram className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-300" />
+                                @hashprimegroups
+                            </a>
                         </div>
                     </div>
 
@@ -166,6 +173,13 @@ export default function Footer() {
                     <div className="foo-anim lg:col-span-2 lg:col-start-10">
                         <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Company</h3>
                         <ul className="space-y-4">
+                            {/* Highlighted Hash Prime Groups entry */}
+                            <li>
+                                <Link href="/hash-prime-groups" className="group inline-flex items-center gap-2 px-3 py-1.5 -ml-3 rounded-full bg-[#d4af35]/10 border border-[#d4af35]/25 text-[#d4af35] text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#d4af35]/20 hover:border-[#d4af35]/50 transition-all duration-300">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse shrink-0" />
+                                    Hash Prime Groups
+                                </Link>
+                            </li>
                             {[['About Us', '/company'], ['Leadership', '/company'], ['Careers', '/careers'], ['Contact Details', '#']].map(([item, href]) => (
                                 <li key={item}>
                                     <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">

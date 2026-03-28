@@ -7,6 +7,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const OPEN_ROLES = [
+    { id: 'front_office_executive', title: 'Front Office Executive', dept: 'Hash Prime Groups', type: 'Full-time', location: 'Tamil Nadu, India' },
+    { id: 'district_coordinator_sales', title: 'District Coordinator (Sales)', dept: 'Hash Prime Groups', type: 'Full-time', location: 'Tamil Nadu, India' },
     { id: 'investment_analyst', title: 'Investment Analyst', dept: 'Finance', type: 'Full-time', location: 'Mumbai / Remote' },
     { id: 'backend_engineer', title: 'Backend Engineer', dept: 'Technology', type: 'Full-time', location: 'Bangalore / Remote' },
     { id: 'frontend_engineer', title: 'Frontend Engineer', dept: 'Technology', type: 'Full-time', location: 'Remote' },

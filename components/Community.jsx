@@ -33,7 +33,7 @@ const SOCIALS = [
     { icon: Facebook, href: 'https://facebook.com', label: 'Facebook' },
     { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
     { icon: Linkedin, href: 'https://linkedin.com/company/hashprimeindia', label: 'LinkedIn' },
-    { icon: Instagram, href: 'https://instagram.com/hashprimeindia', label: 'Instagram' },
+    { icon: Instagram, href: 'https://www.instagram.com/hashprimegroups', label: 'Instagram' },
 ];
 
 export default function ContactSection() {
@@ -197,7 +197,7 @@ export default function ContactSection() {
                     </div>
 
                     {/* Social Icons */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 flex-wrap">
                         <span className="text-white/40 text-sm font-bold">Follow Us:</span>
                         {SOCIALS.map(({ icon: Icon, href, label }) => (
                             <a
@@ -211,6 +211,16 @@ export default function ContactSection() {
                                 <Icon className="w-4 h-4" />
                             </a>
                         ))}
+                        {/* Highlighted @hashprimegroups IG pill */}
+                        <a
+                            href="https://www.instagram.com/hashprimegroups"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#d4af35]/15 to-[#d4af35]/5 border border-[#d4af35]/30 text-[#d4af35] text-[11px] font-black uppercase tracking-[0.2em] hover:border-[#d4af35]/70 hover:bg-[#d4af35]/20 transition-all duration-300 group"
+                        >
+                            <Instagram className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-300" />
+                            @hashprimegroups
+                        </a>
                     </div>
                 </div>
             </div>

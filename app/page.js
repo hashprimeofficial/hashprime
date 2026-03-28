@@ -5,6 +5,7 @@ import AboutHashPrime from '@/components/AboutHashPrime';
 import Community from '@/components/Community';
 import OurProjects from '@/components/OurProjects';
 import InvestmentSchemes from '@/components/InvestmentSchemes';
+import GlowingPortal from '@/components/GlowingPortal';
 
 export const metadata = {
   alternates: {
@@ -50,6 +51,7 @@ export default function Home() {
 
       <div className="relative z-20"><InvestmentSchemes /></div>
       <div className="relative z-20"><Community /></div>
+      <div className="relative z-20"><GlowingPortal /></div>
     </div>
   );
 }
