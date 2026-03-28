@@ -24,8 +24,8 @@ const CONTACT_INFO = [
     {
         icon: MapPin,
         label: 'Visit Us',
-        lines: ['Prestige Towers, 5th Floor,', 'MG Road, Bengaluru, India'],
-        href: 'https://maps.google.com',
+        lines: ['No.4/21, Ananthakudi Road, Anna Salai,', 'Mappadukai, Mayiladuthurai,', 'Nagapattinam, Tamil Nadu – 609003'],
+        href: 'https://maps.google.com/?q=Mappadukai,Mayiladuthurai,Nagapattinam,TamilNadu',
     },
 ];
 

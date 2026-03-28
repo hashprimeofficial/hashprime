@@ -115,9 +115,9 @@ export default function Footer() {
                         </p>
 
                         <div className="space-y-4 text-slate-400 text-sm">
-                            <div className="flex items-center gap-3 hover:text-white transition-colors cursor-pointer group">
-                                <MapPin className="w-4 h-4 text-[#d4af35]" />
-                                <span className="group-hover:translate-x-1 transition-transform">www.hashprime.in</span>
+                            <div className="flex items-start gap-3 hover:text-white transition-colors cursor-pointer group">
+                                <MapPin className="w-4 h-4 text-[#d4af35] mt-0.5 shrink-0" />
+                                <span className="group-hover:translate-x-1 transition-transform leading-relaxed">No.4/21, Ananthakudi Road, Anna Salai,<br />Mappadukai, Mayiladuthurai,<br />Nagapattinam, Tamil Nadu – 609003</span>
                             </div>
                             <div className="flex items-center gap-3 hover:text-white transition-colors cursor-pointer group">
                                 <Phone className="w-4 h-4 text-[#d4af35]" />
