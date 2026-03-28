@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export const dynamic = 'force-dynamic';
-
-export default function BusinessEnquiryPage() {
+// ── Inner component uses useSearchParams — must live inside <Suspense> ─────────
+function EnquiryForm() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const defaultField = searchParams.get('field') || '';
@@ -36,7 +35,6 @@ export default function BusinessEnquiryPage() {
         e.preventDefault();
         setLoading(true);
         setError('');
-
         try {
             const res = await fetch('/api/business-enquiry', {
                 method: 'POST',
@@ -49,7 +47,7 @@ export default function BusinessEnquiryPage() {
             } else {
                 setError(data.message || 'Error submitting form.');
             }
-        } catch (err) {
+        } catch {
             setError('Network error, please try again.');
         } finally {
             setLoading(false);
@@ -58,7 +56,7 @@ export default function BusinessEnquiryPage() {
 
     return (
         <main className="min-h-screen bg-[#020202] text-[#e0e0e0] font-sans selection:bg-[#d4af35]/30 flex flex-col items-center justify-center py-20 px-4 relative">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(212,175,53,0.1),transparent_70%)] pointer-events-none z-0"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(212,175,53,0.1),transparent_70%)] pointer-events-none z-0" />
 
             <div className="relative z-10 w-full max-w-xl bg-[#0a0a0a] border border-[#d4af35]/30 rounded-[2rem] p-10 shadow-[0_0_50px_rgba(212,175,53,0.1)]">
                 <h1 className="text-3xl md:text-5xl font-black uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#d4af35] to-[#f7d66a] mb-6 tracking-tight text-center">
@@ -66,15 +64,15 @@ export default function BusinessEnquiryPage() {
                 </h1>
 
                 {success ? (
-                    <div className="text-center py-10 animate-fade-in">
+                    <div className="text-center py-10">
                         <div className="w-16 h-16 bg-[#d4af35]/20 rounded-full flex items-center justify-center mx-auto mb-6">
                             <svg className="w-8 h-8 text-[#d4af35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                             </svg>
                         </div>
                         <h2 className="text-2xl font-bold text-white mb-4">Request Submitted</h2>
                         <p className="text-[#a3a3a3] mb-8">
-                            Our team will review your inquiry and contact you at the scheduled date & time.
+                            Our team will review your inquiry and contact you at the scheduled date &amp; time.
                         </p>
                         <button
                             onClick={() => router.push('/hash-prime-groups')}
@@ -94,7 +92,7 @@ export default function BusinessEnquiryPage() {
 
                         <div className="flex flex-col gap-1">
                             <label className="text-sm font-bold text-[#d4af35] uppercase tracking-wider">Phone number</label>
-                            <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} className="bg-[#111] border border-[#333] focus:border-[#d4af35] rounded-xl px-4 py-3 text-white outline-none transition-colors" placeholder="+1 (555) 000-0000" />
+                            <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} className="bg-[#111] border border-[#333] focus:border-[#d4af35] rounded-xl px-4 py-3 text-white outline-none transition-colors" placeholder="+91 98765 43210" />
                         </div>
 
                         <div className="flex flex-col gap-1">
@@ -108,7 +106,7 @@ export default function BusinessEnquiryPage() {
                         </div>
 
                         <div className="flex flex-col gap-1">
-                            <label className="text-sm font-bold text-[#d4af35] uppercase tracking-wider">Contact us: Date & Time</label>
+                            <label className="text-sm font-bold text-[#d4af35] uppercase tracking-wider">Contact us: Date &amp; Time</label>
                             <input required type="datetime-local" name="contactDateTime" value={formData.contactDateTime} onChange={handleChange} className="bg-[#111] border border-[#333] focus:border-[#d4af35] rounded-xl px-4 py-3 text-white outline-none transition-colors" />
                         </div>
 
@@ -123,5 +121,18 @@ export default function BusinessEnquiryPage() {
                 )}
             </div>
         </main>
+    );
+}
+
+// ── Suspense boundary required by Next.js for useSearchParams at page level ────
+export default function BusinessEnquiryPage() {
+    return (
+        <Suspense fallback={
+            <main className="min-h-screen bg-[#020202] flex items-center justify-center">
+                <div className="w-8 h-8 border-2 border-[#d4af35]/30 border-t-[#d4af35] rounded-full animate-spin" />
+            </main>
+        }>
+            <EnquiryForm />
+        </Suspense>
     );
 }
