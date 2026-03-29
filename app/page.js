@@ -5,7 +5,7 @@ import AboutHashPrime from '@/components/AboutHashPrime';
 import Community from '@/components/Community';
 import OurProjects from '@/components/OurProjects';
 import InvestmentSchemes from '@/components/InvestmentSchemes';
-import GlowingPortal from '@/components/GlowingPortal';
+import CryptoMarquee from '@/components/CryptoMarquee';
 
 export const metadata = {
   alternates: {
@@ -31,6 +31,7 @@ export default function Home() {
       />
 
       <div className="relative z-20"><Hero /></div>
+      <div className="relative z-30"><CryptoMarquee /></div>
       <div className="relative z-20"><AboutHashPrime /></div>
 
       {/* Transition Orb 1 */}

@@ -140,7 +140,7 @@ export default function Footer() {
                     <div className="foo-anim lg:col-span-2 lg:col-start-6">
                         <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Platform</h3>
                         <ul className="space-y-4">
-                            {[['Markets', '/markets'], ['Features', '/features'], ['Schemes', '/schemes'], ['Security', '/security']].map(([label, href]) => (
+                            {[['Features', '/features'], ['Schemes', '/schemes'], ['Security', '/security']].map(([label, href]) => (
                                 <li key={label}>
                                     <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
                                         <ChevronRight className="w-3 h-3 text-[#d4af35] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all mr-2" />

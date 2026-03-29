@@ -31,7 +31,6 @@ export default function Navbar() {
     const isLoggedIn = !!authData?.user;
 
     const navLinks = [
-        { href: '/markets', label: 'Markets' },
         { href: '/features', label: 'Features' },
         { href: '/schemes', label: 'Schemes' },
         { href: '/hash-prime-groups', label: 'Our Business' },

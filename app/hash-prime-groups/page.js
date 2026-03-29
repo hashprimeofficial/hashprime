@@ -187,15 +187,10 @@ export default function HashPrimeGroupsPage() {
                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">Hash Prime Groups — Est. 2018</span>
                 </div>
 
-                {/* Headline — clipped, cinematic */}
-                <div className="overflow-hidden mb-2">
-                    <h1 className="hpg-h1-line1 text-[15vw] md:text-[11vw] lg:text-[9vw] font-black tracking-tighter uppercase leading-[0.85] text-white">
-                        Hash Prime
-                    </h1>
-                </div>
+
                 <div className="overflow-hidden mb-10">
                     <h1 className="hpg-h1-line2 text-[15vw] md:text-[11vw] lg:text-[9vw] font-black tracking-tighter uppercase leading-[0.85] text-shine">
-                        Groups
+                        Hash Prime
                     </h1>
                 </div>
 
@@ -211,11 +206,7 @@ export default function HashPrimeGroupsPage() {
 
                 </div>
 
-                {/* Scroll indicator */}
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-30">
-                    <div className="w-px h-14 bg-gradient-to-b from-[#d4af35] to-transparent" />
-                    <span className="text-[9px] uppercase tracking-widest text-[#d4af35]">Scroll</span>
-                </div>
+
             </section>
 
             {/* Transition orb */}
@@ -433,16 +424,7 @@ export default function HashPrimeGroupsPage() {
                                         {/* Gold shimmer line top */}
                                         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#d4af35]/30 to-transparent" />
 
-                                        {/* ── Mobile name overlay (always visible, hidden on desktop) ── */}
-                                        <div className="md:hidden absolute inset-x-0 bottom-0 px-4 pb-4">
-                                            <div className="h-px w-8 bg-[#d4af35]/50 mb-2.5" />
-                                            <p className="text-[13px] font-black text-white leading-tight">
-                                                {member.name.replace(/^(Mr\.?|Mrs\.?|Miss\.?)\s*/i, '')}
-                                            </p>
-                                            <p className="text-[9px] text-[#d4af35]/70 font-bold uppercase tracking-wider mt-1">
-                                                {member.title}
-                                            </p>
-                                        </div>
+
                                     </div>
 
                                     {/* ── BACK ── */}
