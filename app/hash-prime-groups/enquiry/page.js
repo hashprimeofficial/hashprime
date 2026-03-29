@@ -28,7 +28,31 @@ function EnquiryForm() {
     }, [defaultField]);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        if (name === 'contactDateTime' && value) {
+            // Clamp time to 09:00–18:00
+            const [datePart, timePart] = value.split('T');
+            if (timePart) {
+                const [h, m] = timePart.split(':').map(Number);
+                const totalMins = h * 60 + m;
+                if (totalMins < 9 * 60) {
+                    setFormData(prev => ({ ...prev, contactDateTime: `${datePart}T09:00` }));
+                    return;
+                }
+                if (totalMins > 18 * 60) {
+                    setFormData(prev => ({ ...prev, contactDateTime: `${datePart}T18:00` }));
+                    return;
+                }
+            }
+        }
+        setFormData({ ...formData, [name]: value });
+    };
+
+    // Min = today at 09:00
+    const getMinDateTime = () => {
+        const now = new Date();
+        const pad = (n) => String(n).padStart(2, '0');
+        return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T09:00`;
     };
 
     const handleSubmit = async (e) => {
@@ -107,7 +131,17 @@ function EnquiryForm() {
 
                         <div className="flex flex-col gap-1">
                             <label className="text-sm font-bold text-[#d4af35] uppercase tracking-wider">Contact us: Date &amp; Time</label>
-                            <input required type="datetime-local" name="contactDateTime" value={formData.contactDateTime} onChange={handleChange} className="bg-[#111] border border-[#333] focus:border-[#d4af35] rounded-xl px-4 py-3 text-white outline-none transition-colors" />
+                            <input
+                                required
+                                type="datetime-local"
+                                name="contactDateTime"
+                                value={formData.contactDateTime}
+                                onChange={handleChange}
+                                min={getMinDateTime()}
+                                step="1800"
+                                className="bg-[#111] border border-[#333] focus:border-[#d4af35] rounded-xl px-4 py-3 text-white outline-none transition-colors"
+                            />
+                            <p className="text-[11px] text-[#d4af35]/50 mt-1 tracking-wide">Available: Mon – Sat &nbsp;·&nbsp; 9:00 AM – 6:00 PM</p>
                         </div>
 
                         <button

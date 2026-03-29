@@ -51,7 +51,6 @@ export default function Home() {
 
       <div className="relative z-20"><InvestmentSchemes /></div>
       <div className="relative z-20"><Community /></div>
-      <div className="relative z-20"><GlowingPortal /></div>
     </div>
   );
 }

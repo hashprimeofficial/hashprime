@@ -130,14 +130,9 @@ export default function Footer() {
                             <a href="https://www.instagram.com/hashprimegroups" target="_blank" rel="noopener noreferrer"
                                 className="flex items-center gap-3 hover:text-white transition-colors group">
                                 <Instagram className="w-4 h-4 text-[#d4af35] shrink-0" />
-                                <span className="group-hover:translate-x-1 transition-transform">hashprimeindia</span>
+                                <span className="group-hover:translate-x-1 transition-transform">hashprimegroups</span>
                             </a>
-                            {/* Highlighted @hashprimegroups pill */}
-                            <a href="https://www.instagram.com/hashprimegroups" target="_blank" rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#d4af35]/15 to-[#d4af35]/5 border border-[#d4af35]/30 text-[#d4af35] text-[11px] font-black uppercase tracking-[0.2em] hover:border-[#d4af35]/60 hover:bg-[#d4af35]/20 transition-all duration-300 group w-max">
-                                <Instagram className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-300" />
-                                @hashprimegroups
-                            </a>
+
                         </div>
                     </div>
 
@@ -145,11 +140,11 @@ export default function Footer() {
                     <div className="foo-anim lg:col-span-2 lg:col-start-6">
                         <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Platform</h3>
                         <ul className="space-y-4">
-                            {['Live Markets', 'Investment Plans', 'Referral Program', 'Security Engine'].map((item) => (
-                                <li key={item}>
-                                    <Link href="#" className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
+                            {[['Markets', '/markets'], ['Features', '/features'], ['Schemes', '/schemes'], ['Security', '/security']].map(([label, href]) => (
+                                <li key={label}>
+                                    <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
                                         <ChevronRight className="w-3 h-3 text-[#d4af35] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all mr-2" />
-                                        <span className="group-hover:translate-x-1 transition-transform">{item}</span>
+                                        <span className="group-hover:translate-x-1 transition-transform">{label}</span>
                                     </Link>
                                 </li>
                             ))}
@@ -159,11 +154,11 @@ export default function Footer() {
                     <div className="foo-anim lg:col-span-2">
                         <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Account</h3>
                         <ul className="space-y-4">
-                            {['Client Login', 'Get Started', 'My Portfolio', 'Settings & Privacy'].map((item) => (
-                                <li key={item}>
-                                    <Link href="#" className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
+                            {[['Client Login', '/login'], ['Get Started', '/register'], ['My Portfolio', '/dashboard'], ['Security Settings', '/dashboard/security']].map(([label, href]) => (
+                                <li key={label}>
+                                    <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
                                         <ChevronRight className="w-3 h-3 text-[#d4af35] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all mr-2" />
-                                        <span className="group-hover:translate-x-1 transition-transform">{item}</span>
+                                        <span className="group-hover:translate-x-1 transition-transform">{label}</span>
                                     </Link>
                                 </li>
                             ))}
@@ -174,7 +169,7 @@ export default function Footer() {
                         <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Company</h3>
                         <ul className="space-y-4">
 
-                            {[['About Us', '/company'], ['Leadership', '/company'], ['Careers', '/careers'], ['Contact Details', '#'], ['Hash Prime Groups', '/hash-prime-groups']].map(([item, href]) => (
+                            {[['Hash Prime Groups', '/hash-prime-groups'], ['About Us', '/company'], ['Careers', '/careers']].map(([item, href]) => (
                                 <li key={item}>
                                     <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
                                         <ChevronRight className="w-3 h-3 text-[#d4af35] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all mr-2" />

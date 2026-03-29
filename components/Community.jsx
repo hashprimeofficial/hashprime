@@ -66,7 +66,7 @@ export default function ContactSection() {
         <section
             ref={containerRef}
             id="contact"
-            className="relative bg-[#050505] overflow-hidden border-t border-white/[0.03]"
+            className="relative bg-[#050505] overflow-hidden border-t border-white/[0.03] py-2"
         >
             {/* Background glow */}
             <div className="absolute inset-0 pointer-events-none">
@@ -86,7 +86,7 @@ export default function ContactSection() {
             </div>
 
             {/* ── Main Grid ── */}
-            <div className="relative z-10 max-w-6xl mx-auto px-6 pb-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div className="relative z-10 max-w-6xl mx-auto px-6 pb-0 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start py-2">
 
                 {/* Left — Contact Info */}
                 <div className="contact-reveal space-y-0 divide-y divide-white/[0.05]">
@@ -112,7 +112,7 @@ export default function ContactSection() {
                 </div>
 
                 {/* Right — Form */}
-                <div className="contact-reveal bg-[#0A0A0A] border border-[#d4af35]/15 rounded-3xl p-7 shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
+                <div className="contact-reveal bg-[#0A0A0A] border border-[#d4af35]/15 rounded-3xl  p-7 shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
                     <h3 className="text-xl font-black text-[#d4af35] mb-6">Get in Touch</h3>
 
                     {sent ? (
@@ -159,31 +159,9 @@ export default function ContactSection() {
             </div>
 
             {/* ── Map Strip ── */}
-            <div className="relative z-10 mt-14 h-[180px] bg-[#080808] overflow-hidden border-t border-white/[0.04]">
-                {/* Stylized dark map via iframe */}
-                <iframe
-                    title="HashPrime Office Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.985509669604!2d77.6093!3d12.9716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae168d7c8f2d3b%3A0x98fdf5c1d2f15c71!2sMG%20Road%2C%20Bengaluru!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                    width="100%"
-                    height="180"
-                    style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) saturate(0.3) brightness(0.5)', opacity: 0.7 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                />
-                {/* Office pin overlay */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full z-20 flex flex-col items-center">
-                    <div className="flex items-center gap-2 bg-[#0A0A0A]/90 border border-[#d4af35]/30 backdrop-blur-md px-4 py-2 rounded-full shadow-lg">
-                        <MapPin className="w-3.5 h-3.5 text-[#d4af35]" />
-                        <span className="text-[#d4af35] font-black text-xs">Our Office</span>
-                    </div>
-                    <div className="w-px h-4 bg-[#d4af35]/60" />
-                    <div className="w-2 h-2 rounded-full bg-[#d4af35]" />
-                </div>
-            </div>
 
             {/* ── Footer Bar ── */}
-            <div className="contact-reveal relative z-10 border-t border-white/[0.05] bg-[#050505]">
+            <div className="contact-reveal relative z-10 border-t border-white/[0.05] bg-[#050505] ">
                 <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-6">
                     {/* Working Hours */}
                     <div className="flex items-center gap-4">
@@ -192,35 +170,8 @@ export default function ContactSection() {
                         </div>
                         <div>
                             <p className="text-[#d4af35] font-black text-sm">Working Hours</p>
-                            <p className="text-white/50 text-xs font-medium">Mon – Fri: 9:00 AM – 6:00 PM</p>
+                            <p className="text-white/50 text-xs font-medium">Mon – Sat: 9:00 AM – 6:00 PM</p>
                         </div>
-                    </div>
-
-                    {/* Social Icons */}
-                    <div className="flex items-center gap-4 flex-wrap">
-                        <span className="text-white/40 text-sm font-bold">Follow Us:</span>
-                        {SOCIALS.map(({ icon: Icon, href, label }) => (
-                            <a
-                                key={label}
-                                href={href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={label}
-                                className="w-9 h-9 rounded-full bg-[#0A0A0A] border border-white/10 flex items-center justify-center text-white/40 hover:text-[#d4af35] hover:border-[#d4af35]/40 hover:bg-[#d4af35]/10 transition-all"
-                            >
-                                <Icon className="w-4 h-4" />
-                            </a>
-                        ))}
-                        {/* Highlighted @hashprimegroups IG pill */}
-                        <a
-                            href="https://www.instagram.com/hashprimegroups"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#d4af35]/15 to-[#d4af35]/5 border border-[#d4af35]/30 text-[#d4af35] text-[11px] font-black uppercase tracking-[0.2em] hover:border-[#d4af35]/70 hover:bg-[#d4af35]/20 transition-all duration-300 group"
-                        >
-                            <Instagram className="w-3.5 h-3.5 group-hover:scale-110 transition-transform duration-300" />
-                            @hashprimegroups
-                        </a>
                     </div>
                 </div>
             </div>

@@ -34,7 +34,7 @@ export default function Navbar() {
         { href: '/markets', label: 'Markets' },
         { href: '/features', label: 'Features' },
         { href: '/schemes', label: 'Schemes' },
-        { href: '/hash-prime-groups', label: 'Hash Prime Groups' },
+        { href: '/hash-prime-groups', label: 'Our Business' },
     ];
 
     useEffect(() => {

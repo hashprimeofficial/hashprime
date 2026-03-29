@@ -205,26 +205,10 @@ export default function HashPrimeGroupsPage() {
                         <p className="hpg-sub text-lg md:text-xl text-slate-400 leading-relaxed mb-8">
                             We operate across <span className="text-white font-semibold">10 distinct industries</span> — delivering infrastructure, technology & telecoms excellence across India.
                         </p>
-                        <div className="hpg-ctas flex flex-wrap gap-4">
-                            <Link href="/hash-prime-groups/enquiry"
-                                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#d4af35] text-black font-black uppercase tracking-[0.15em] text-sm rounded-full overflow-hidden hover:shadow-[0_0_40px_rgba(212,175,53,0.4)] hover:scale-105 transition-all duration-500">
-                                <div className="absolute inset-0 -translate-x-full skew-x-[-20deg] bg-white/30 group-hover:animate-shimmer" />
-                                <span className="relative z-10">Initiate Enquiry</span>
-                                <ArrowUpRight className="w-4 h-4 relative z-10 group-hover:rotate-45 transition-transform duration-300" />
-                            </Link>
-                            <a href="#divisions"
-                                className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border border-white/10 text-slate-400 font-bold uppercase tracking-[0.15em] text-sm rounded-full hover:border-[#d4af35]/40 hover:text-white transition-all duration-500">
-                                View Divisions <ChevronRight className="w-4 h-4" />
-                            </a>
-                        </div>
+
                     </div>
 
-                    {/* Keyword marquee strip */}
-                    <div className="hpg-stats flex flex-wrap gap-x-8 gap-y-3 lg:ml-auto lg:justify-end pt-2">
-                        {['Telecom', 'Real Estate', 'Legal', 'Construction', 'Fibre Optical', 'Trading', 'Generator'].map((kw) => (
-                            <span key={kw} className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-600 hover:text-[#d4af35] transition-colors duration-300 cursor-default">{kw}</span>
-                        ))}
-                    </div>
+
                 </div>
 
                 {/* Scroll indicator */}
