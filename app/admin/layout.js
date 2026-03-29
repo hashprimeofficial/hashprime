@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
     LayoutDashboard, Users, Wallet, LogOut, Loader2,
-    Menu, X, ShieldCheck, Ticket, TrendingUp, ChevronRight, ArrowUpRight
+    Menu, X, ShieldCheck, Ticket, TrendingUp, ChevronRight, ArrowUpRight, MessageSquare
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useSWR from 'swr';
@@ -21,6 +21,7 @@ const NAV_ITEMS = [
     { name: 'Withdrawals', href: '/admin/withdrawals', icon: ArrowUpRight },
     { name: 'KYC Approvals', href: '/admin/kyc', icon: ShieldCheck },
     { name: 'Support', href: '/admin/tickets', icon: Ticket },
+    { name: 'Enquiries', href: '/admin/enquiries', icon: MessageSquare },
 ];
 
 // ── Notification badge fetcher — polls every 15 s ──────────────────
@@ -31,17 +32,19 @@ function useAdminBadges() {
         '/admin/tickets': 0,
         '/admin/investments': 0,
         '/admin/withdrawals': 0,
+        '/admin/enquiries': 0,
     });
 
     useEffect(() => {
         const load = async () => {
             try {
-                const [deposits, kyc, tickets, investments, withdrawals] = await Promise.all([
+                const [deposits, kyc, tickets, investments, withdrawals, enquiries] = await Promise.all([
                     fetch('/api/admin/deposits').then(r => r.json()).catch(() => ({})),
                     fetch('/api/kyc').then(r => r.json()).catch(() => ({})),
                     fetch('/api/tickets').then(r => r.json()).catch(() => ({})),
                     fetch('/api/admin/investments').then(r => r.json()).catch(() => ({})),
                     fetch('/api/admin/withdrawals').then(r => r.json()).catch(() => ({})),
+                    fetch('/api/admin/enquiries').then(r => r.json()).catch(() => ({})),
                 ]);
                 setBadges({
                     '/admin/deposits': (deposits.deposits || []).filter(d => d.status === 'pending').length,
@@ -49,6 +52,7 @@ function useAdminBadges() {
                     '/admin/tickets': (tickets.tickets || []).filter(t => t.status === 'open').length,
                     '/admin/investments': (investments.investments || []).filter(i => i.status === 'pending').length,
                     '/admin/withdrawals': (withdrawals.withdrawals || []).filter(w => w.status === 'pending').length,
+                    '/admin/enquiries': (enquiries.enquiries || []).filter(e => e.status === 'pending').length,
                 });
             } catch { /* silently fail */ }
         };
@@ -172,9 +176,14 @@ export default function AdminLayout({ children }) {
                     <AdminAvatarBlock />
 
                     <div className="text-[9px] font-black text-white/20 uppercase tracking-[0.2em] px-1 mb-3">Navigation</div>
-
                     {/* Nav */}
-                    <nav className="space-y-1 flex-1 overflow-y-auto scrollbar-thin">
+                    <nav className="space-y-1 flex-1 overflow-y-auto overflow-x-hidden pr-2 -mr-2
+                        [&::-webkit-scrollbar]:w-[3px] 
+                        [&::-webkit-scrollbar-track]:bg-transparent 
+                        [&::-webkit-scrollbar-thumb]:rounded-full 
+                        [&::-webkit-scrollbar-thumb]:bg-white/5 
+                        hover:[&::-webkit-scrollbar-thumb]:bg-[#d4af35]/20 
+                        transition-all duration-300">
                         {NAV_ITEMS.map(item => (
                             <NavLink key={item.href} item={item} pathname={pathname} badges={badges} />
                         ))}

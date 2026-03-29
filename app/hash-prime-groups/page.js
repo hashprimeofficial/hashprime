@@ -208,7 +208,7 @@ export default function HashPrimeGroupsPage() {
             {/* ══════════════════════════════════════════════════════════════════
                 C. THE 10 DIVISIONS — Premium line-by-line list
             ══════════════════════════════════════════════════════════════════ */}
-            <section id="divisions" className="relative z-10 px-6 md:px-16">
+            <section id="divisions" className="relative z-10 py-4 px-6 md:px-16">
 
                 {/* Section header */}
                 <div className="reveal-up max-w-[90rem] mx-auto mb-16">
@@ -294,57 +294,7 @@ export default function HashPrimeGroupsPage() {
             </section>
 
             {/* Transition orb */}
-            <div className="absolute top-[310vh] right-[-10%] w-[900px] h-[900px] bg-[#d4af35] opacity-[0.02] rounded-full blur-[150px] pointer-events-none z-0" />
 
-            {/* ══════════════════════════════════════════════════════════════════
-                D. CAREERS TEASER — full-bleed glass card
-            ══════════════════════════════════════════════════════════════════ */}
-            {/* <section className="relative z-10 py-32 px-6 md:px-16">
-                <div className="max-w-[90rem] mx-auto">
-                    <div className="hpg-careers-card relative rounded-[2.5rem] bg-[#0E0E0E] border border-white/5
-                        hover:border-[#d4af35]/25 transition-all duration-700 p-12 md:p-20 overflow-hidden group">
-
-                        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#d4af35]/8 rounded-full blur-[100px] pointer-events-none" />
-                        <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-[#d4af35]/5 rounded-full blur-[80px] pointer-events-none" />
-
-                        <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-14">
-                            <div className="flex-1">
-                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-[#d4af35]/20 mb-8">
-                                    <span className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af35] opacity-75" />
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af35]" />
-                                    </span>
-                                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">We&apos;re Hiring</span>
-                                </div>
-                                <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-[0.95] mb-6">
-                                    Join <span className="text-[#d4af35]">Hash Prime</span><br />Groups
-                                </h2>
-                                <p className="text-slate-400 text-lg leading-relaxed max-w-lg mb-10">
-                                    We have <span className="text-white font-semibold">2 active openings</span> in Tamil Nadu — apply on our dedicated careers page.
-                                </p>
-                                <div className="flex flex-wrap gap-3">
-                                    {['Front Office Executive', 'District Coordinator (Sales)'].map((r) => (
-                                        <span key={r} className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-widest bg-[#d4af35]/10 border border-[#d4af35]/20 text-[#d4af35] px-5 py-2.5 rounded-full">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse shrink-0" />
-                                            {r}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                            <Link href="/careers"
-                                className="group/btn relative shrink-0 inline-flex items-center gap-4 px-12 py-6 bg-[#d4af35] text-black font-black uppercase tracking-[0.15em] text-sm rounded-full overflow-hidden
-                                    hover:shadow-[0_0_50px_rgba(212,175,53,0.4)] hover:scale-105 transition-all duration-500 whitespace-nowrap">
-                                <div className="absolute inset-0 -translate-x-full skew-x-[-20deg] bg-white/30 group-hover/btn:animate-shimmer" />
-                                <span className="relative z-10">View All Roles</span>
-                                <ArrowUpRight className="w-5 h-5 relative z-10 group-hover/btn:rotate-45 transition-transform duration-300" />
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </section> */}
-
-            {/* Transition orb bottom */}
-            <div className="absolute bottom-[35vh] left-1/2 -translate-x-1/2 w-[1200px] h-[500px] bg-[#d4af35] opacity-[0.02] rounded-[100%] blur-[150px] pointer-events-none z-0" />
 
             {/* ══════════════════════════════════════════════════════════════════
                 E-PRE. EXECUTIVE DIRECTORS — responsive 3D flip cards
@@ -469,16 +419,16 @@ export default function HashPrimeGroupsPage() {
             {/* ══════════════════════════════════════════════════════════════════
                 E. MONOLITHIC CONTACT FOOTER
             ══════════════════════════════════════════════════════════════════ */}
-            <section className="relative z-10 py-40 px-6 flex flex-col items-center text-center">
-                <div className="reveal-up mb-20 max-w-2xl mx-auto">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-[#d4af35]/20 mb-6">
+            <section className="relative z-10 py-12 md:py-16 px-6 flex flex-col items-center text-center">
+                <div className="reveal-up mb-6 max-w-2xl mx-auto">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-[#d4af35]/20 mb-2">
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af35] opacity-75" />
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af35]" />
                         </span>
                         <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">Get In Touch</span>
                     </div>
-                    <p className="text-slate-400 text-xl leading-relaxed">
+                    <p className="text-slate-400 text-lg md:text-xl leading-relaxed">
                         Ready to partner? Connect with the Hash Prime team — we respond within 24 hours.
                     </p>
                 </div>
@@ -494,7 +444,7 @@ export default function HashPrimeGroupsPage() {
                     </h2>
                     <div className="absolute inset-x-[10%] top-1/2 h-px bg-gradient-to-r from-transparent via-[#d4af35]/40 to-transparent
                         scale-x-0 group-hover:scale-x-100 transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                    <p className="mt-10 text-sm text-[#d4af35] uppercase tracking-[0.4em] font-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-300">
+                    <p className="mt-4 text-sm text-[#d4af35] uppercase tracking-[0.4em] font-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-300">
                         Initialize Contact →
                     </p>
                 </Link>

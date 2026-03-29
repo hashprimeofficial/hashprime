@@ -6,6 +6,7 @@ const businessEnquirySchema = new mongoose.Schema({
     email: { type: String, required: true },
     fieldOfInquiry: { type: String, required: true },
     contactDateTime: { type: String, required: true },
+    status: { type: String, enum: ['pending', 'contacted', 'closed'], default: 'pending' },
 }, {
     timestamps: true,
 });
