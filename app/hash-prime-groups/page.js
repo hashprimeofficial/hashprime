@@ -171,34 +171,34 @@ export default function HashPrimeGroupsPage() {
             {/* ══════════════════════════════════════════════════════════════════
                 A. HERO — full-viewport, cinematic
             ══════════════════════════════════════════════════════════════════ */}
-            <section className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-28 pt-36 pb-24 overflow-hidden">
+            <section className="relative z-10 py-36 px-6 flex flex-col items-center text-center overflow-hidden">
 
-                {/* Left ambient orb */}
-                <div className="absolute -left-40 top-1/4 w-[700px] h-[700px] bg-[#d4af35] rounded-full blur-[200px] opacity-[0.07] pointer-events-none" />
-                {/* Right ambient orb */}
-                <div className="absolute right-0 bottom-0 w-[500px] h-[500px] bg-[#d4af35] rounded-full blur-[180px] opacity-[0.04] pointer-events-none" />
+                {/* Ambient depth layers */}
+                <div className="absolute -left-40 top-0 w-[600px] h-[600px] bg-[#d4af35] rounded-full blur-[200px] opacity-[0.05] pointer-events-none" />
+                <div className="absolute -right-40 bottom-0 w-[500px] h-[500px] bg-[#d4af35] rounded-full blur-[180px] opacity-[0.03] pointer-events-none" />
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(212,175,53,0.02)_0%,transparent_50%,rgba(212,175,53,0.01)_100%)] pointer-events-none" />
+                <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
+                    style={{ backgroundImage: 'radial-gradient(circle, #d4af35 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-
-
-
-                <div className="overflow-hidden mb-10">
-                    <h1 className="hpg-h1-line2 text-[15vw] md:text-[11vw] lg:text-[9vw] font-black tracking-tighter uppercase leading-[0.85] text-shine">
+                {/* Headline */}
+                <div className="relative overflow-hidden leading-none">
+                    <h1 className="hpg-h1-line2 text-[15vw] md:text-[10vw] lg:text-[8vw] font-black tracking-[-0.03em] uppercase leading-[0.9] text-shine">
                         Hash Prime
                     </h1>
                 </div>
 
-                {/* Sub + CTAs in a flex row on desktop */}
-                <div className="flex flex-col lg:flex-row lg:items-end gap-10 lg:gap-24">
-                    <div className="max-w-xl">
-                        <p className="hpg-sub text-lg md:text-xl text-slate-400 leading-relaxed mb-8">
-                            We operate <span className="text-white font-semibold">10+ Business Modules</span> in all over India.
-                        </p>
+                {/* Gold hairline — centered */}
+                <div className="hpg-sub my-6 h-px w-20 bg-gradient-to-r from-transparent via-[#d4af35] to-transparent mx-auto" />
 
-                    </div>
-
-
-                </div>
-
+                {/* Subtitle */}
+                <p className="hpg-sub text-base md:text-lg text-slate-400 leading-relaxed max-w-lg mx-auto">
+                    We operate{" "}
+                    <span className="text-white font-semibold relative inline-block">
+                        10+ Business Modules
+                        <span className="absolute -bottom-px left-0 right-0 h-px bg-[#d4af35]/60" />
+                    </span>
+                    {" "}across Tamil Nadu.
+                </p>
 
             </section>
 
@@ -208,7 +208,7 @@ export default function HashPrimeGroupsPage() {
             {/* ══════════════════════════════════════════════════════════════════
                 C. THE 10 DIVISIONS — Premium line-by-line list
             ══════════════════════════════════════════════════════════════════ */}
-            <section id="divisions" className="relative z-10 py-32 px-6 md:px-16">
+            <section id="divisions" className="relative z-10 px-6 md:px-16">
 
                 {/* Section header */}
                 <div className="reveal-up max-w-[90rem] mx-auto mb-16">
