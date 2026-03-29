@@ -178,14 +178,7 @@ export default function HashPrimeGroupsPage() {
                 {/* Right ambient orb */}
                 <div className="absolute right-0 bottom-0 w-[500px] h-[500px] bg-[#d4af35] rounded-full blur-[180px] opacity-[0.04] pointer-events-none" />
 
-                {/* Badge */}
-                <div className="hpg-badge inline-flex items-center self-start gap-2.5 px-4 py-2 rounded-full bg-[#121212] border border-[#d4af35]/20 mb-10">
-                    <span className="relative flex h-2 w-2">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af35] opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af35]" />
-                    </span>
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">Hash Prime Groups — Est. 2018</span>
-                </div>
+
 
 
                 <div className="overflow-hidden mb-10">
@@ -198,7 +191,7 @@ export default function HashPrimeGroupsPage() {
                 <div className="flex flex-col lg:flex-row lg:items-end gap-10 lg:gap-24">
                     <div className="max-w-xl">
                         <p className="hpg-sub text-lg md:text-xl text-slate-400 leading-relaxed mb-8">
-                            We operate across <span className="text-white font-semibold">10 distinct industries</span> — delivering infrastructure, technology & telecoms excellence across India.
+                            We operates <span className="text-white font-semibold">10+ Business Modules</span> in all over India.
                         </p>
 
                     </div>
