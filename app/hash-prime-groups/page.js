@@ -197,7 +197,7 @@ export default function HashPrimeGroupsPage() {
                         10+ Business Modules
                         <span className="absolute -bottom-px left-0 right-0 h-px bg-[#d4af35]/60" />
                     </span>
-                    {" "}across Tamil Nadu.
+                    {" "}all over Tamil Nadu.
                 </p>
 
             </section>
