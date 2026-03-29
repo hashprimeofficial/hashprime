@@ -191,7 +191,7 @@ export default function HashPrimeGroupsPage() {
                 <div className="flex flex-col lg:flex-row lg:items-end gap-10 lg:gap-24">
                     <div className="max-w-xl">
                         <p className="hpg-sub text-lg md:text-xl text-slate-400 leading-relaxed mb-8">
-                            We operates <span className="text-white font-semibold">10+ Business Modules</span> in all over India.
+                            We operate <span className="text-white font-semibold">10+ Business Modules</span> in all over India.
                         </p>
 
                     </div>
@@ -237,6 +237,8 @@ export default function HashPrimeGroupsPage() {
                         const Icon = biz.icon;
                         return (
                             <Link
+
+
                                 key={idx}
                                 href={`/hash-prime-groups/enquiry?field=${encodeURIComponent(biz.sub)}`}
                                 className="hpg-biz group relative flex items-center gap-6 md:gap-10 px-4 md:px-8 py-6 md:py-7
