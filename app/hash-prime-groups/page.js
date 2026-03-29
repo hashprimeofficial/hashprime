@@ -18,7 +18,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const team = [
     { name: "Mr. Vijayabharathi Veerasamy", title: "Founder & Managing Director", img: "/Mr. VIJAYABHARATHI VEERASAMY.jpeg" },
     { name: "Mr. Naveenkumar Mayavan", title: "Co-Founder & CEO", img: "/NAVEENKUMAR MAYAVAN.jpeg" },
-    { name: "Miss. Maheshwari Asokan", title: "General Manager", img: "/Miss. MAHESHWARI ASOKAN.jpeg" },
+    { name: "Mrs. Maheshwari Santhosh", title: "General Manager", img: "/Miss. MAHESHWARI ASOKAN.jpeg" },
     { name: "Mrs. Hemalatha Kannan", title: "HR Manager", img: "/HEMALATHA KANNAN.jpeg" },
     { name: "Mr. Kannan Thangavel", title: "Accounts Manager", img: "/Mr.KANNAN THANGAVEL.jpeg" },
 ];
@@ -238,52 +238,12 @@ export default function HashPrimeGroupsPage() {
             <div className="absolute top-[85vh] right-[-12%] w-[700px] h-[700px] bg-[#d4af35] opacity-[0.03] rounded-full blur-[150px] pointer-events-none z-0" />
 
             {/* ══════════════════════════════════════════════════════════════════
-                B. EXECUTIVE TEAM
-            ══════════════════════════════════════════════════════════════════ */}
-            <section className="relative z-10 py-32 px-6 md:px-16">
-                {/* Label */}
-                <div className="reveal-up max-w-[90rem] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
-                    <div>
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-[#d4af35]/20 mb-6">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af35] opacity-75" />
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af35]" />
-                            </span>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">Our People</span>
-                        </div>
-                        <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-[0.95]">
-                            Executive<br /><span className="text-[#d4af35]">Directors</span>
-                        </h2>
-                    </div>
-                    <p className="text-slate-500 text-base max-w-sm leading-relaxed md:text-right">
-                        The visionaries steering Hash Prime Groups across every vertical.
-                    </p>
-                </div>
-
-                {/* 3-2 centered big card grid */}
-                <div className="hpg-team-grid max-w-[80rem] mx-auto">
-
-                    {/* 2-col on mobile → 3-col on lg for top row */}
-                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
-                        {team.slice(0, 3).map((member, idx) => <TeamCard key={idx} member={member} idx={idx} />)}
-                    </div>
-                    {/* Bottom 2 — 2-col always, centered on desktop */}
-                    <div className="grid grid-cols-2 gap-4 md:gap-6 md:max-w-[calc(66.666%+0.75rem)] md:mx-auto">
-                        {team.slice(3).map((member, idx) => <TeamCard key={idx + 3} member={member} idx={idx + 3} />)}
-                    </div>
-                </div>
-            </section>
-
-            {/* Transition orb */}
-            <div className="absolute top-[190vh] left-[-10%] w-[800px] h-[800px] bg-[#d4af35] opacity-[0.025] rounded-full blur-[150px] pointer-events-none z-0" />
-
-            {/* ══════════════════════════════════════════════════════════════════
-                C. THE 10 DIVISIONS — Premium interactive exploration grid
+                C. THE 10 DIVISIONS — Premium line-by-line list
             ══════════════════════════════════════════════════════════════════ */}
             <section id="divisions" className="relative z-10 py-32 px-6 md:px-16">
 
                 {/* Section header */}
-                <div className="reveal-up max-w-[90rem] mx-auto mb-20">
+                <div className="reveal-up max-w-[90rem] mx-auto mb-16">
                     <div className="flex flex-col md:flex-row md:items-end gap-8 justify-between">
                         <div>
                             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-[#d4af35]/20 mb-6">
@@ -298,63 +258,64 @@ export default function HashPrimeGroupsPage() {
                             </h2>
                         </div>
                         <p className="text-slate-500 text-base max-w-sm leading-relaxed md:text-right">
-                            Click any card to open the enquiry form pre-filled for that division.
+                            Click any row to open the enquiry form pre-filled for that division.
                         </p>
                     </div>
                 </div>
 
-                {/* Grid — 2-col on tablet, 3 on desktop, 4 on xl, 5 on 2xl */}
-                <div className="hpg-biz-grid max-w-[90rem] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5">
+                {/* Line-by-line list */}
+                <div className="hpg-biz-grid max-w-[90rem] mx-auto">
                     {businesses.map((biz, idx) => {
                         const Icon = biz.icon;
                         return (
                             <Link
                                 key={idx}
                                 href={`/hash-prime-groups/enquiry?field=${encodeURIComponent(biz.sub)}`}
-                                className="hpg-biz group relative flex flex-col overflow-hidden rounded-3xl bg-[#0E0E0E] border border-white/[0.06]
-                                    hover:border-[#d4af35]/40 hover:shadow-[0_20px_60px_rgba(212,175,53,0.12)]
-                                    transition-all duration-700 ease-out hover:-translate-y-3 cursor-pointer"
+                                className="hpg-biz group relative flex items-center gap-6 md:gap-10 px-4 md:px-8 py-6 md:py-7
+                                    border-b border-white/[0.06] last:border-b-0
+                                    hover:bg-[#0E0E0E] hover:border-b-[#d4af35]/20
+                                    transition-all duration-500 ease-out cursor-pointer overflow-hidden"
                             >
-                                {/* Image */}
-                                <div className="relative h-52 shrink-0 overflow-hidden rounded-t-3xl">
-                                    <div className="absolute inset-0 bg-cover bg-center grayscale-[50%] brightness-[0.55]
-                                        group-hover:grayscale-0 group-hover:brightness-75 group-hover:scale-110
-                                        transition-all duration-[1.6s] ease-out"
-                                        style={{ backgroundImage: `url(${biz.img})` }} />
-                                    {/* Image → card gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] via-[#0E0E0E]/30 to-transparent" />
-                                    {/* Hover gold sweep across image */}
-                                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-[#d4af35]/10 to-transparent
-                                        group-hover:translate-x-full transition-transform duration-[1.5s] ease-out pointer-events-none" />
-                                    {/* Icon chip */}
-                                    <div className="absolute bottom-4 left-4 w-11 h-11 rounded-xl bg-[#0A0A0A]/90 backdrop-blur-sm border border-white/5
-                                        flex items-center justify-center
-                                        group-hover:bg-[#d4af35] group-hover:border-[#d4af35] transition-all duration-500">
-                                        <Icon className="w-5 h-5 text-[#d4af35] group-hover:text-black transition-colors duration-500" />
-                                    </div>
-                                    {/* Index number */}
-                                    <span className="absolute top-4 right-4 text-[10px] font-black text-white/20 tabular-nums tracking-widest">
-                                        {String(idx + 1).padStart(2, '0')}
-                                    </span>
+                                {/* Gold sweep on hover */}
+                                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-[#d4af35]/[0.04] via-[#d4af35]/[0.02] to-transparent
+                                    group-hover:translate-x-0 transition-transform duration-700 ease-out pointer-events-none" />
+
+                                {/* Index */}
+                                <span className="shrink-0 text-[11px] md:text-xs font-black tabular-nums tracking-[0.18em]
+                                    text-white/20 group-hover:text-[#d4af35]/50 transition-colors duration-400 w-6 text-right select-none">
+                                    {String(idx + 1).padStart(2, '0')}
+                                </span>
+
+                                {/* Icon */}
+                                <div className="shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#121212] border border-white/[0.06]
+                                    flex items-center justify-center
+                                    group-hover:bg-[#d4af35] group-hover:border-[#d4af35]
+                                    transition-all duration-500 ease-out">
+                                    <Icon className="w-5 h-5 text-[#d4af35] group-hover:text-black transition-colors duration-500" />
                                 </div>
 
-                                {/* Body */}
-                                <div className="relative flex flex-col flex-1 p-6">
-                                    {/* Gold sweep bg on hover */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-[#d4af35]/[0.04] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-3xl pointer-events-none" />
+                                {/* Title */}
+                                <p className="flex-1 text-base md:text-xl lg:text-2xl font-black text-white/80 tracking-tight
+                                    group-hover:text-white transition-colors duration-400 leading-snug">
+                                    {biz.sub}
+                                </p>
 
-                                    <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#d4af35]/70 mb-2 line-clamp-1 group-hover:text-[#d4af35] transition-colors duration-300">{biz.sub}</p>
-                                    <h3 className="text-xl font-black text-white tracking-tight leading-tight mb-3">{biz.title}</h3>
-                                    <p className="text-slate-500 text-sm leading-relaxed mb-6 flex-1 line-clamp-2 group-hover:text-slate-400 transition-colors duration-300">{biz.desc}</p>
+                                {/* Divider line — expands on hover */}
+                                <div className="hidden md:block h-px flex-1 max-w-[160px] bg-white/[0.04]
+                                    group-hover:bg-[#d4af35]/30 transition-colors duration-500" />
 
-                                    {/* CTA row */}
-                                    <div className="flex items-center justify-between mt-auto pt-5 border-t border-white/5 group-hover:border-[#d4af35]/20 transition-colors duration-500">
-                                        <span className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-600 group-hover:text-[#d4af35] transition-colors duration-500">For Enquiry</span>
-                                        <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center
-                                            group-hover:bg-[#d4af35] group-hover:border-[#d4af35] transition-all duration-500">
-                                            <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-black group-hover:rotate-45 transition-all duration-300" />
-                                        </div>
-                                    </div>
+                                {/* Enquiry label — desktop only */}
+                                <span className="hidden md:block shrink-0 text-[10px] font-black uppercase tracking-[0.25em]
+                                    text-slate-700 group-hover:text-[#d4af35] transition-colors duration-500">
+                                    Enquiry
+                                </span>
+
+                                {/* Arrow */}
+                                <div className="shrink-0 w-9 h-9 md:w-10 md:h-10 rounded-full border border-white/[0.08]
+                                    flex items-center justify-center
+                                    group-hover:bg-[#d4af35] group-hover:border-[#d4af35]
+                                    transition-all duration-500 ease-out">
+                                    <ArrowUpRight className="w-4 h-4 text-slate-600 group-hover:text-black group-hover:rotate-45 transition-all duration-300" />
                                 </div>
                             </Link>
                         );
@@ -368,14 +329,12 @@ export default function HashPrimeGroupsPage() {
             {/* ══════════════════════════════════════════════════════════════════
                 D. CAREERS TEASER — full-bleed glass card
             ══════════════════════════════════════════════════════════════════ */}
-            <section className="relative z-10 py-32 px-6 md:px-16">
+            {/* <section className="relative z-10 py-32 px-6 md:px-16">
                 <div className="max-w-[90rem] mx-auto">
                     <div className="hpg-careers-card relative rounded-[2.5rem] bg-[#0E0E0E] border border-white/5
                         hover:border-[#d4af35]/25 transition-all duration-700 p-12 md:p-20 overflow-hidden group">
 
-                        {/* Radial glow corner */}
                         <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#d4af35]/8 rounded-full blur-[100px] pointer-events-none" />
-                        {/* Bottom left accent */}
                         <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-[#d4af35]/5 rounded-full blur-[80px] pointer-events-none" />
 
                         <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-14">
@@ -412,10 +371,139 @@ export default function HashPrimeGroupsPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Transition orb bottom */}
             <div className="absolute bottom-[35vh] left-1/2 -translate-x-1/2 w-[1200px] h-[500px] bg-[#d4af35] opacity-[0.02] rounded-[100%] blur-[150px] pointer-events-none z-0" />
+
+            {/* ══════════════════════════════════════════════════════════════════
+                E-PRE. EXECUTIVE DIRECTORS — responsive 3D flip cards
+            ══════════════════════════════════════════════════════════════════ */}
+            <section className="relative z-10 py-24 px-6 md:px-16">
+                <div className="reveal-up max-w-[90rem] mx-auto">
+
+                    {/* Section header */}
+                    <div className="flex items-center gap-5 mb-14">
+                        <div className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse" />
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]/60">Executive Directors</span>
+                        </div>
+                        <div className="flex-1 h-px bg-gradient-to-r from-[#d4af35]/20 to-transparent" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-700">Hash Prime Groups</span>
+                    </div>
+
+                    {/* Cards — 2-col mobile / 3-col sm / 5-col lg */}
+                    <div className="hpg-team-grid flex flex-wrap justify-center gap-3 sm:gap-4 lg:gap-5">
+                        {team.map((member, idx) => (
+                            <div
+                                key={idx}
+                                className="hpg-card"
+                                style={{
+                                    perspective: '1400px',
+                                    flexBasis: 'calc(50% - 6px)',
+                                    maxWidth: 'calc(50% - 6px)',
+                                    aspectRatio: '3/4',
+                                }}
+                                onMouseEnter={e => {
+                                    const inner = e.currentTarget.querySelector('.flip-inner');
+                                    if (inner) inner.style.transform = 'rotateY(180deg)';
+                                }}
+                                onMouseLeave={e => {
+                                    const inner = e.currentTarget.querySelector('.flip-inner');
+                                    if (inner) inner.style.transform = 'rotateY(0deg)';
+                                }}
+                            >
+                                {/* Responsive overrides via inline style — sm: 33%, lg: 200px fixed */}
+                                <style>{`
+                                    @media (min-width: 640px) {
+                                        .hpg-card { flex-basis: calc(33.333% - 11px) !important; max-width: calc(33.333% - 11px) !important; }
+                                    }
+                                    @media (min-width: 1024px) {
+                                        .hpg-card { flex-basis: 200px !important; max-width: 200px !important; }
+                                    }
+                                `}</style>
+
+                                {/* Flip inner */}
+                                <div
+                                    className="flip-inner relative w-full h-full transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                                    style={{ transformStyle: 'preserve-3d' }}
+                                >
+                                    {/* ── FRONT ── */}
+                                    <div
+                                        className="absolute inset-0 rounded-2xl overflow-hidden border border-white/[0.07] shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+                                        style={{ backfaceVisibility: 'hidden' }}
+                                    >
+                                        <img
+                                            src={member.img}
+                                            alt={member.name}
+                                            className="w-full h-full object-cover object-top"
+                                        />
+                                        {/* Bottom vignette */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/10" />
+                                        {/* Subtle gold top-right glow */}
+                                        <div className="absolute top-0 right-0 w-24 h-24 bg-[#d4af35]/10 blur-[40px] rounded-full" />
+                                        {/* Index badge */}
+                                        <span className="absolute top-3 left-3 text-[9px] font-black text-white/30 tabular-nums tracking-widest">
+                                            {String(idx + 1).padStart(2, '0')}
+                                        </span>
+                                        {/* Gold shimmer line top */}
+                                        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#d4af35]/30 to-transparent" />
+
+                                        {/* ── Mobile name overlay (always visible, hidden on desktop) ── */}
+                                        <div className="md:hidden absolute inset-x-0 bottom-0 px-4 pb-4">
+                                            <div className="h-px w-8 bg-[#d4af35]/50 mb-2.5" />
+                                            <p className="text-[13px] font-black text-white leading-tight">
+                                                {member.name.replace(/^(Mr\.?|Mrs\.?|Miss\.?)\s*/i, '')}
+                                            </p>
+                                            <p className="text-[9px] text-[#d4af35]/70 font-bold uppercase tracking-wider mt-1">
+                                                {member.title}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* ── BACK ── */}
+                                    <div
+                                        className="absolute inset-0 rounded-2xl bg-[#0A0A0A] border border-[#d4af35]/30
+                                            flex flex-col items-center justify-center gap-4 px-5
+                                            [box-shadow:inset_0_0_60px_rgba(212,175,53,0.06),0_4px_40px_rgba(0,0,0,0.6)]"
+                                        style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                                    >
+                                        {/* Corner brackets */}
+                                        <div className="absolute top-3 left-3 w-5 h-5 border-t border-l border-[#d4af35]/40" />
+                                        <div className="absolute top-3 right-3 w-5 h-5 border-t border-r border-[#d4af35]/40" />
+                                        <div className="absolute bottom-3 left-3 w-5 h-5 border-b border-l border-[#d4af35]/40" />
+                                        <div className="absolute bottom-3 right-3 w-5 h-5 border-b border-r border-[#d4af35]/40" />
+
+                                        {/* Circular photo thumbnail */}
+                                        <div className="w-[72px] h-[72px] rounded-full overflow-hidden border-2 border-[#d4af35]/40 shrink-0
+                                            shadow-[0_0_20px_rgba(212,175,53,0.2)]">
+                                            <img
+                                                src={member.img}
+                                                alt={member.name}
+                                                className="w-full h-full object-cover object-top"
+                                            />
+                                        </div>
+
+                                        {/* Info */}
+                                        <div className="text-center">
+                                            <p className="text-[13px] font-black text-white leading-snug tracking-tight mb-2.5">
+                                                {member.name}
+                                            </p>
+                                            <div className="w-10 h-px bg-[#d4af35]/50 mx-auto mb-2.5" />
+                                            <p className="text-[9.5px] font-bold text-[#d4af35] uppercase tracking-wider leading-snug">
+                                                {member.title}
+                                            </p>
+                                        </div>
+
+                                        {/* Pulsing dot */}
+                                        <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse" />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
             {/* ══════════════════════════════════════════════════════════════════
                 E. MONOLITHIC CONTACT FOOTER

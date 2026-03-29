@@ -173,14 +173,8 @@ export default function Footer() {
                     <div className="foo-anim lg:col-span-2 lg:col-start-10">
                         <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Company</h3>
                         <ul className="space-y-4">
-                            {/* Highlighted Hash Prime Groups entry */}
-                            <li>
-                                <Link href="/hash-prime-groups" className="group inline-flex items-center gap-2 px-3 py-1.5 -ml-3 rounded-full bg-[#d4af35]/10 border border-[#d4af35]/25 text-[#d4af35] text-[11px] font-black uppercase tracking-[0.2em] hover:bg-[#d4af35]/20 hover:border-[#d4af35]/50 transition-all duration-300">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse shrink-0" />
-                                    Hash Prime Groups
-                                </Link>
-                            </li>
-                            {[['About Us', '/company'], ['Leadership', '/company'], ['Careers', '/careers'], ['Contact Details', '#']].map(([item, href]) => (
+
+                            {[['About Us', '/company'], ['Leadership', '/company'], ['Careers', '/careers'], ['Contact Details', '#'], ['Hash Prime Groups', '/hash-prime-groups']].map(([item, href]) => (
                                 <li key={item}>
                                     <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
                                         <ChevronRight className="w-3 h-3 text-[#d4af35] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all mr-2" />
