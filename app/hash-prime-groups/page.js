@@ -363,9 +363,7 @@ export default function HashPrimeGroupsPage() {
                                         {/* Subtle gold top-right glow */}
                                         <div className="absolute top-0 right-0 w-24 h-24 bg-[#d4af35]/10 blur-[40px] rounded-full" />
                                         {/* Index badge */}
-                                        <span className="absolute top-3 left-3 text-[9px] font-black text-white/30 tabular-nums tracking-widest">
-                                            {String(idx + 1).padStart(2, '0')}
-                                        </span>
+
                                         {/* Gold shimmer line top */}
                                         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#d4af35]/30 to-transparent" />
 
