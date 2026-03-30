@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
-import { MessageSquare, Phone, Mail, Clock, ShieldCheck, Search, Check, FileText } from 'lucide-react';
+import { MessageSquare, Phone, Mail, Clock, ShieldCheck, Search, Check, FileText, Download } from 'lucide-react';
+import * as XLSX from 'xlsx';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -20,6 +21,38 @@ export default function AdminEnquiriesPage() {
         (req.email || '').toLowerCase().includes(search.toLowerCase()) ||
         (req.phone || '').includes(search)
     );
+
+    const handleExport = () => {
+        if (!filtered || filtered.length === 0) return;
+
+        const exportData = filtered.map(enq => ({
+            Name: enq.name,
+            'Field Of Inquiry': enq.fieldOfInquiry,
+            Email: enq.email,
+            Phone: enq.phone,
+            'Requested Date & Time': new Date(enq.contactDateTime).toLocaleString(),
+            Status: enq.status,
+            'Submitted At': new Date(enq.createdAt).toLocaleString(),
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(exportData);
+
+        // Auto-fit columns
+        const colWidths = [
+            { wch: 20 }, // Name
+            { wch: 30 }, // Field of Inquiry
+            { wch: 30 }, // Email
+            { wch: 20 }, // Phone
+            { wch: 25 }, // Requested Date
+            { wch: 15 }, // Status
+            { wch: 25 }, // Submitted
+        ];
+        worksheet['!cols'] = colWidths;
+
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Enquiries');
+        XLSX.writeFile(workbook, 'Business_Enquiries.xlsx');
+    };
 
     const updateStatus = async (id, newStatus) => {
         setUpdatingParams(id);
@@ -72,8 +105,8 @@ export default function AdminEnquiriesPage() {
             </div>
 
             {/* Filters */}
-            <div className="flex items-center gap-4">
-                <div className="relative flex-1 max-w-md">
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+                <div className="relative flex-1 w-full max-w-md">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#a3a3a3]" />
                     <input
                         type="text"
@@ -83,6 +116,13 @@ export default function AdminEnquiriesPage() {
                         className="w-full bg-[#111] border border-[#333] focus:border-[#d4af35]/50 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-[#666] outline-none transition-colors"
                     />
                 </div>
+                <button
+                    onClick={handleExport}
+                    className="flex items-center gap-2 px-6 py-2.5 bg-[#d4af35]/10 hover:bg-[#d4af35]/20 text-[#d4af35] border border-[#d4af35]/30 rounded-xl transition-all font-bold text-sm tracking-widest uppercase w-full sm:w-auto justify-center whitespace-nowrap"
+                >
+                    <Download className="w-4 h-4" />
+                    Export Excel
+                </button>
             </div>
 
             {/* Data list */}
