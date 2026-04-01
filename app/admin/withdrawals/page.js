@@ -2,8 +2,9 @@
 
 import useSWR from 'swr';
 import { useState } from 'react';
-import { ArrowUpRight, Copy, CheckCircle2, XCircle, Loader2, AlertCircle, Search, DollarSign, IndianRupee, Gift, Wallet, Eye, X, Landmark } from 'lucide-react';
+import { ArrowUpRight, Copy, CheckCircle2, XCircle, Loader2, AlertCircle, Search, DollarSign, IndianRupee, Gift, Wallet, Eye, X, Landmark, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import * as XLSX from 'xlsx';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -76,6 +77,27 @@ export default function AdminWithdrawalsPage() {
         finally { setProcessingId(null); }
     };
 
+    const handleExport = () => {
+        if (!filtered || filtered.length === 0) return;
+
+        const exportData = filtered.map(w => ({
+            User: w.userId?.name || 'Unknown',
+            Email: w.userId?.email || 'N/A',
+            Amount: w.amount,
+            SourceWallet: w.sourceWallet || 'N/A',
+            PayoutMethod: w.payoutMethod || 'N/A',
+            Destination: w.payoutMethod === 'Bank' || w.walletAddress?.startsWith('Bank:') ? (w.bankAccountId ? w.bankAccountId.accountNumber : w.walletAddress) : w.walletAddress,
+            Status: w.status,
+            AdminNote: w.adminNote || '',
+            Date: new Date(w.createdAt).toLocaleString(),
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(exportData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Withdrawals');
+        XLSX.writeFile(workbook, 'Withdrawals_Export.xlsx');
+    };
+
     const copyToClipboard = (text, id) => {
         navigator.clipboard.writeText(text);
         setCopied(id);
@@ -115,6 +137,9 @@ export default function AdminWithdrawalsPage() {
                             {f} <span className="opacity-60">({counts[f]})</span>
                         </button>
                     ))}
+                    <button onClick={handleExport} className="ml-auto flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-xs font-black capitalize border transition-all bg-[#080808] border-[#d4af35]/15 text-[#d4af35] hover:border-[#d4af35]/40 hover:bg-[#d4af35]/10">
+                        <Download className="w-3.5 h-3.5" /> Export
+                    </button>
                 </div>
 
                 {/* Table */}

@@ -5,8 +5,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Users as UsersIcon, ShieldAlert, Trash2, Edit2, Loader2, X,
-    Search, DollarSign, IndianRupee, Gift, ShieldCheck, RefreshCw
+    Search, DollarSign, IndianRupee, Gift, ShieldCheck, RefreshCw, Download
 } from 'lucide-react';
+import * as XLSX from 'xlsx';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -56,6 +57,27 @@ export default function AdminUsersPage() {
             u.referralCode?.toLowerCase().includes(t)
         );
     }
+
+    const handleExport = () => {
+        if (!users || users.length === 0) return;
+
+        const exportData = users.map(user => ({
+            Name: user.name,
+            Email: user.email,
+            Role: user.role,
+            ReferralCode: user.referralCode || '',
+            USDWallet: user.usdWallet || user.usdtBalance || 0,
+            INRWallet: user.inrWallet || user.walletBalance || 0,
+            ReferralWallet: user.referralWallet || 0,
+            KYCStatus: user.kycStatus || 'unsubmitted',
+            Registered: new Date(user.createdAt).toLocaleString(),
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(exportData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Users');
+        XLSX.writeFile(workbook, 'Users_Export.xlsx');
+    };
 
     const handleDelete = async (id) => {
         if (!confirm('Permanently delete this user and all their investments?')) return;
@@ -147,15 +169,20 @@ export default function AdminUsersPage() {
                     </h1>
                     <p className="text-[#d4af35]/40 text-sm font-medium mt-1 ml-12">{(data?.users || []).length} registered investors</p>
                 </div>
-                <div className="relative w-full md:w-64">
-                    <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#d4af35]/40" />
-                    <input
-                        type="text"
-                        placeholder="Search name, email, ref code…"
-                        value={searchTerm}
-                        onChange={e => setSearchTerm(e.target.value)}
-                        className="w-full bg-[#080808] border border-[#d4af35]/15 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#d4af35]/40 transition-all"
-                    />
+                <div className="relative w-full md:w-64 flex gap-2">
+                    <div className="relative flex-1">
+                        <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#d4af35]/40" />
+                        <input
+                            type="text"
+                            placeholder="Search name, email, ref code…"
+                            value={searchTerm}
+                            onChange={e => setSearchTerm(e.target.value)}
+                            className="w-full bg-[#080808] border border-[#d4af35]/15 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#d4af35]/40 transition-all"
+                        />
+                    </div>
+                    <button onClick={handleExport} className="px-4 py-2.5 bg-[#d4af35]/10 hover:bg-[#d4af35]/20 text-[#d4af35] border border-[#d4af35]/30 rounded-xl transition-all font-bold flex items-center gap-2" title="Export Users">
+                        <Download className="w-4 h-4" />
+                    </button>
                 </div>
             </div>
 

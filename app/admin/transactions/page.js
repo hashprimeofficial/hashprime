@@ -2,7 +2,8 @@
 
 import useSWR from 'swr';
 import { useState } from 'react';
-import { Activity, ArrowDownRight, ArrowUpRight, Gift, Coins, Filter, AlertCircle, RefreshCcw } from 'lucide-react';
+import { Activity, ArrowDownRight, ArrowUpRight, Gift, Coins, Filter, AlertCircle, RefreshCcw, Download } from 'lucide-react';
+import * as XLSX from 'xlsx';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -19,6 +20,26 @@ export default function AdminTransactionsPage() {
         if (filterType === 'all') return true;
         return tx.type === filterType;
     });
+
+    const handleExport = () => {
+        if (!filteredTransactions || filteredTransactions.length === 0) return;
+
+        const exportData = filteredTransactions.map(tx => ({
+            TransactionID: tx._id,
+            User: tx.userId?.name || 'System / Unknown',
+            Email: tx.userId?.email || 'N/A',
+            Type: tx.type,
+            Amount: tx.amount,
+            Currency: tx.currency,
+            Description: tx.description,
+            Date: new Date(tx.createdAt).toLocaleString(),
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(exportData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Transactions');
+        XLSX.writeFile(workbook, 'Transactions_Export.xlsx');
+    };
 
     const getIcon = (type, amount) => {
         if (type === 'deposit') return <ArrowDownRight className="w-4 h-4 text-amber-500" />;
@@ -48,6 +69,9 @@ export default function AdminTransactionsPage() {
                     <button onClick={() => setFilterType('referral_bonus')} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${filterType === 'referral_bonus' ? 'bg-[#121212] shadow-sm text-purple-600' : 'text-slate-500 hover:text-white'}`}>Referrals</button>
                     <button onClick={() => mutate()} className="ml-auto p-2 text-slate-300 hover:text-white hover:bg-[#121212] rounded-lg transition-all" title="Refresh Ledger">
                         <RefreshCcw className="w-4 h-4" />
+                    </button>
+                    <button onClick={handleExport} className="p-2 text-slate-300 hover:text-white hover:bg-[#121212] rounded-lg transition-all" title="Export to Excel">
+                        <Download className="w-4 h-4" />
                     </button>
                 </div>
             </div>

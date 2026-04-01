@@ -5,8 +5,9 @@ import useSWR from 'swr';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     MessageSquare, CheckCircle2, Clock, Loader2, Send, Filter,
-    Image as ImageIcon, User, AlertCircle, X, ExternalLink
+    Image as ImageIcon, User, AlertCircle, X, ExternalLink, Download
 } from 'lucide-react';
+import * as XLSX from 'xlsx';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -68,6 +69,28 @@ export default function AdminTicketsPage() {
     const openCount = allTickets.filter(t => t.status === 'open').length;
     const resolvedCount = allTickets.filter(t => t.status === 'resolved').length;
 
+    const handleExport = () => {
+        if (!filteredTickets || filteredTickets.length === 0) return;
+
+        const exportData = filteredTickets.map(t => ({
+            Subject: t.subject,
+            User: t.user?.name || 'Unknown',
+            Email: t.user?.email || 'N/A',
+            Category: t.category,
+            SubCategory: t.subCategory || '',
+            Description: t.description,
+            Status: t.status,
+            AdminReply: t.adminReply || '',
+            CreatedAt: new Date(t.createdAt).toLocaleString(),
+            ResolvedAt: t.status === 'resolved' ? new Date(t.updatedAt).toLocaleString() : '',
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(exportData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Tickets');
+        XLSX.writeFile(workbook, 'Tickets_Export.xlsx');
+    };
+
     return (
         <div className="space-y-6">
             {/* Header */}
@@ -93,12 +116,15 @@ export default function AdminTicketsPage() {
                     ].map(({ key, label }) => (
                         <button key={key} onClick={() => setFilter(key)}
                             className={`px-4 py-2 text-xs font-black uppercase tracking-widest rounded-xl transition-all ${filter === key
-                                    ? 'bg-[#d4af35] text-black shadow-[0_0_12px_rgba(212,175,53,0.25)]'
-                                    : 'text-[#d4af35]/50 hover:text-[#d4af35]'
+                                ? 'bg-[#d4af35] text-black shadow-[0_0_12px_rgba(212,175,53,0.25)]'
+                                : 'text-[#d4af35]/50 hover:text-[#d4af35]'
                                 }`}>
                             {label}
                         </button>
                     ))}
+                    <button onClick={handleExport} className="px-4 py-2 text-xs font-black uppercase tracking-widest rounded-xl transition-all text-[#d4af35] bg-[#d4af35]/10 border border-[#d4af35]/30 ml-2 flex items-center gap-1">
+                        <Download className="w-3.5 h-3.5" /> Export
+                    </button>
                 </div>
             </div>
 
@@ -133,8 +159,8 @@ export default function AdminTicketsPage() {
                                     >
                                         {/* Avatar */}
                                         <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border font-black text-sm ${isOpen
-                                                ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
-                                                : 'bg-[#d4af35]/10 border-[#d4af35]/20 text-[#d4af35]'
+                                            ? 'bg-amber-500/10 border-amber-500/20 text-amber-400'
+                                            : 'bg-[#d4af35]/10 border-[#d4af35]/20 text-[#d4af35]'
                                             }`}>
                                             {ticket.user?.name?.charAt(0)?.toUpperCase() || <User className="w-4 h-4" />}
                                         </div>

@@ -21,6 +21,7 @@ const team = [
     { name: "Mrs. Maheshwari Santhosh", title: "General Manager", img: "/Miss. MAHESHWARI ASOKAN.jpeg" },
     { name: "Mrs. Hemalatha Kannan", title: "HR Manager", img: "/HEMALATHA KANNAN.jpeg" },
     { name: "Mr. Kannan Thangavel", title: "Accounts Manager", img: "/Mr.KANNAN THANGAVEL.jpeg" },
+    { name: "Mr. Murugaraj Elangovan", title: "Mayiladuthurai District Zonal Manager", img: "/MURUGARAJ ELANGOVAN.jpeg" },
 ];
 
 const businesses = [

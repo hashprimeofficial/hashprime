@@ -5,8 +5,9 @@ import useSWR from 'swr';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Loader2, CheckCircle2, XCircle, Clock, Search, AlertCircle,
-    FileText, IndianRupee, Coins, ArrowDownCircle, Filter, Eye
+    FileText, IndianRupee, Coins, ArrowDownCircle, Filter, Eye, Download
 } from 'lucide-react';
+import * as XLSX from 'xlsx';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -79,6 +80,27 @@ export default function AdminDepositsPage() {
         deposits = deposits.filter(d => d.userId?.name?.toLowerCase().includes(t) || d.userId?.email?.toLowerCase().includes(t));
     }
 
+    const handleExport = () => {
+        if (!deposits || deposits.length === 0) return;
+
+        const exportData = deposits.map(deposit => ({
+            User: deposit.userId?.name || 'Unknown',
+            Email: deposit.userId?.email || 'N/A',
+            Amount: deposit.amount,
+            Currency: deposit.paymentMethod === 'usdt' ? 'USD' : 'INR',
+            OriginalAmount: deposit.paymentMethod === 'usdt' ? deposit.amount * (deposit.exchangeRate || 85) : deposit.amount,
+            Method: deposit.paymentMethod === 'usdt' ? 'USD Wallet' : 'INR Wallet',
+            Date: new Date(deposit.createdAt).toLocaleString(),
+            Status: deposit.status,
+            AdminNote: deposit.adminNote || '',
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(exportData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Deposits');
+        XLSX.writeFile(workbook, 'Deposits_Export.xlsx');
+    };
+
     return (
         <div className="space-y-6">
             {/* Header */}
@@ -100,8 +122,8 @@ export default function AdminDepositsPage() {
                             <button key={s}
                                 onClick={() => setFilterStatus(s)}
                                 className={`px-3 py-1.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${filterStatus === s
-                                        ? 'bg-[#d4af35] text-black shadow-[0_0_12px_rgba(212,175,53,0.3)]'
-                                        : 'bg-white/5 text-white/40 hover:bg-white/10 border border-white/10'
+                                    ? 'bg-[#d4af35] text-black shadow-[0_0_12px_rgba(212,175,53,0.3)]'
+                                    : 'bg-white/5 text-white/40 hover:bg-white/10 border border-white/10'
                                     }`}
                             >
                                 {s} {count > 0 && <span>({count})</span>}
@@ -126,6 +148,9 @@ export default function AdminDepositsPage() {
                     </div>
                     <div className="flex items-center gap-2 text-[#d4af35]/40 text-xs font-black uppercase tracking-widest">
                         <Filter className="w-3.5 h-3.5" /> {deposits.length} results
+                        <button onClick={handleExport} className="ml-2 flex items-center gap-2 px-3 py-1.5 bg-[#d4af35]/10 hover:bg-[#d4af35]/20 text-[#d4af35] border border-[#d4af35]/30 rounded-lg transition-all font-bold">
+                            <Download className="w-3.5 h-3.5" /> Export
+                        </button>
                     </div>
                 </div>
 
@@ -296,8 +321,8 @@ export default function AdminDepositsPage() {
                                 </button>
                                 <button onClick={handleActionSubmit} disabled={isSubmitting}
                                     className={`px-5 py-2.5 rounded-xl font-black text-white flex items-center gap-2 transition-all shadow-lg disabled:opacity-50 ${actionType === 'approved'
-                                            ? 'bg-[#32e512] text-black hover:opacity-90 shadow-[#32e512]/20'
-                                            : 'bg-red-500 hover:bg-red-600 shadow-red-500/20'
+                                        ? 'bg-[#32e512] text-black hover:opacity-90 shadow-[#32e512]/20'
+                                        : 'bg-red-500 hover:bg-red-600 shadow-red-500/20'
                                         }`}>
                                     {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Confirm'}
                                 </button>

@@ -1,7 +1,8 @@
 'use client';
 
 import useSWR from 'swr';
-import { ShieldAlert, Trash2, Edit2, Loader2, X, PlusCircle, TrendingUp, CheckCircle2, Clock, XCircle, RefreshCw } from 'lucide-react';
+import { ShieldAlert, Trash2, Edit2, Loader2, X, PlusCircle, TrendingUp, CheckCircle2, Clock, XCircle, RefreshCw, Download } from 'lucide-react';
+import * as XLSX from 'xlsx';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -151,6 +152,27 @@ export default function AdminInvestmentsPage() {
         finally { setIsProcessing(false); }
     };
 
+    const handleExport = () => {
+        if (!filteredInvestments || filteredInvestments.length === 0) return;
+
+        const exportData = filteredInvestments.map(inv => ({
+            Investor: inv.userId?.name || 'Unknown',
+            Email: inv.userId?.email || String(inv.userId),
+            Amount: inv.amount,
+            Currency: inv.currency,
+            Yield: inv.usdtReward || 0,
+            Scheme: inv.schemeType,
+            Maturity: inv.maturesAt ? new Date(inv.maturesAt).toLocaleString() : 'N/A',
+            Status: inv.status,
+            Date: new Date(inv.createdAt).toLocaleString(),
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(exportData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Investments');
+        XLSX.writeFile(workbook, 'Investments_Export.xlsx');
+    };
+
     const counts = {
         all: investments.length,
         pending: investments.filter(i => i.status === 'pending').length,
@@ -175,6 +197,13 @@ export default function AdminInvestmentsPage() {
                     </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                    <button
+                        onClick={handleExport}
+                        className="bg-[#0A0A0A] hover:bg-[#121212] text-[#d4af35] font-bold py-3 px-5 rounded-xl flex items-center justify-center gap-2 transition-colors border border-[#d4af35]/30 hover:border-[#d4af35]/60 text-sm"
+                    >
+                        <Download className="w-4 h-4" />
+                        Export
+                    </button>
                     <button
                         onClick={handleProcessMatured}
                         disabled={isProcessing}

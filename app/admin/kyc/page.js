@@ -6,8 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     CheckCircle2, XCircle, Loader2, ShieldCheck, Search, Eye,
     User as UserIcon, MapPin, Briefcase, FileText, X, AlertTriangle,
-    ExternalLink, Mail
+    ExternalLink, Mail, Download
 } from 'lucide-react';
+import * as XLSX from 'xlsx';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -250,6 +251,35 @@ export default function AdminKYCPage() {
         u.panNumber?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const handleExport = () => {
+        if (!filteredUsers || filteredUsers.length === 0) return;
+
+        const exportData = filteredUsers.map(u => ({
+            FirstName: u.firstName,
+            LastName: u.lastName,
+            AccountName: u.name,
+            Email: u.email,
+            Phone: u.phone,
+            Address: u.address,
+            City: u.city,
+            State: u.state,
+            Pincode: u.pincode,
+            Country: u.country,
+            Occupation: u.occupation,
+            IncomeRange: u.incomeRange,
+            SourceOfIncome: u.sourceOfIncome,
+            PanNumber: u.panNumber,
+            AadhaarNumber: u.aadhaarNumber,
+            Status: u.kycStatus,
+            RegisteredAt: new Date(u.createdAt).toLocaleString(),
+        }));
+
+        const worksheet = XLSX.utils.json_to_sheet(exportData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'KYC');
+        XLSX.writeFile(workbook, 'KYC_Export.xlsx');
+    };
+
     return (
         <>
             <div className="space-y-6">
@@ -266,11 +296,16 @@ export default function AdminKYCPage() {
                             <span className="text-amber-400 font-black">{pendingUsers.length}</span> pending verification{pendingUsers.length !== 1 ? 's' : ''}
                         </p>
                     </div>
-                    <div className="relative w-full md:w-64">
-                        <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#d4af35]/40" />
-                        <input type="text" placeholder="Search name, email, PAN…" value={searchTerm}
-                            onChange={e => setSearchTerm(e.target.value)}
-                            className="w-full bg-[#080808] border border-[#d4af35]/15 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#d4af35]/40 transition-all" />
+                    <div className="relative w-full md:w-64 flex gap-2">
+                        <div className="relative flex-1">
+                            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[#d4af35]/40" />
+                            <input type="text" placeholder="Search name, email, PAN…" value={searchTerm}
+                                onChange={e => setSearchTerm(e.target.value)}
+                                className="w-full bg-[#080808] border border-[#d4af35]/15 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-[#d4af35]/40 transition-all" />
+                        </div>
+                        <button onClick={handleExport} className="px-4 py-2.5 bg-[#d4af35]/10 hover:bg-[#d4af35]/20 text-[#d4af35] border border-[#d4af35]/30 rounded-xl transition-all font-bold flex items-center gap-2">
+                            <Download className="w-4 h-4" />
+                        </button>
                     </div>
                 </div>
 
