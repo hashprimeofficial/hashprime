@@ -218,7 +218,7 @@ export default function AdminUsersPage() {
                                     </td>
                                     <td className="px-5 py-4">
                                         <div className="font-black text-blue-400">${(user.usdWallet || user.usdtBalance || 0).toFixed(2)}</div>
-                                        <div className="text-[10px] text-[#d4af35]/30 font-bold uppercase tracking-widest">USD</div>
+                                        <div className="text-[10px] text-[#d4af35]/30 font-bold uppercase tracking-widest">USDT</div>
                                     </td>
                                     <td className="px-5 py-4">
                                         <div className="font-black text-[#d4af35]">₹{(user.inrWallet || user.walletBalance || 0).toLocaleString('en-IN')}</div>
@@ -281,7 +281,7 @@ export default function AdminUsersPage() {
                                 <div className="text-[10px] font-black uppercase tracking-widest text-[#d4af35]/40 pt-2 border-t border-[#d4af35]/10">Wallet Balances</div>
                                 <div className="grid grid-cols-3 gap-3">
                                     <div>
-                                        <label className={labelCls}><DollarSign className="w-3 h-3 inline mr-1 text-blue-400" />USD</label>
+                                        <label className={labelCls}><DollarSign className="w-3 h-3 inline mr-1 text-blue-400" />USDT</label>
                                         <input name="usdWallet" type="number" step="0.01" defaultValue={editingUser.usdWallet ?? editingUser.usdtBalance ?? 0} className={inputCls} />
                                     </div>
                                     <div>
@@ -355,7 +355,7 @@ export default function AdminUsersPage() {
                             {/* Current balances */}
                             <div className="grid grid-cols-3 gap-3 px-6 py-4 border-b border-[#d4af35]/10">
                                 <div className="bg-blue-500/5 border border-blue-500/15 rounded-xl p-3 text-center">
-                                    <div className="text-[9px] font-black uppercase tracking-widest text-blue-400/60 mb-1">USD Wallet</div>
+                                    <div className="text-[9px] font-black uppercase tracking-widest text-blue-400/60 mb-1">USDT Wallet</div>
                                     <div className="font-black text-blue-400">${(transactionUser.usdWallet ?? transactionUser.usdtBalance ?? 0).toFixed(2)}</div>
                                 </div>
                                 <div className="bg-[#d4af35]/5 border border-[#d4af35]/15 rounded-xl p-3 text-center">
@@ -378,7 +378,7 @@ export default function AdminUsersPage() {
                                     <label className={labelCls}>Target Wallet</label>
                                     <select name="account" className={inputCls + ' cursor-pointer'}>
                                         <option value="inrWallet">INR Wallet (₹)</option>
-                                        <option value="usdWallet">USD Wallet ($)</option>
+                                        <option value="usdWallet">USDT Wallet ($)</option>
                                         <option value="referralWallet">Referral Wallet ($)</option>
                                     </select>
                                 </div>

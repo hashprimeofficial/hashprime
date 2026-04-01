@@ -15,7 +15,7 @@ const schemes = [
         period: "3 Month Scheme",
         duration: "90 Days",
         benefit: "18%",
-        benefitCurrency: "USD",
+        benefitCurrency: "USDT",
         investments: ["50K", "1L", "3L", "5L"],
     },
     {
@@ -24,7 +24,7 @@ const schemes = [
         period: "6 Month Scheme",
         duration: "180 Days",
         benefit: "38%",
-        benefitCurrency: "USD",
+        benefitCurrency: "USDT",
         investments: ["1L", "3L", "5L"],
     },
     {
@@ -33,7 +33,7 @@ const schemes = [
         period: "1 Year Scheme",
         duration: "365 Days",
         benefit: "80%",
-        benefitCurrency: "USD",
+        benefitCurrency: "USDT",
         investments: ["Min 5L"],
         featured: true
     },
@@ -43,7 +43,7 @@ const schemes = [
         period: "5 Year Scheme",
         duration: "5 Years",
         benefit: "500%",
-        benefitCurrency: "USD",
+        benefitCurrency: "USDT",
         investments: ["10L to 50L"],
     }
 ];
