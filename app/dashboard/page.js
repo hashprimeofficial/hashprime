@@ -37,10 +37,26 @@ export default function DashboardOverview() {
     const totalInvestedUSD = investments.filter(i => i.currency === 'USD').reduce((acc, inv) => acc + inv.amount, 0);
     const totalInvestedINR = investments.filter(i => i.currency === 'INR').reduce((acc, inv) => acc + inv.amount, 0);
 
+    const SCHEME_RATES = {
+        '3m_inr': 0.18,
+        '6m_inr': 0.38,
+        '1y_inr': 0.80,
+        '5y_inr': 5.00,
+        '3m_usd': 0.18,
+        '6m_usd': 0.38,
+        '1y_usd': 0.80,
+        '5y_usd': 5.00,
+    };
+
+    const getInrYield = (inv) => {
+        if (inv.inrReward !== undefined && inv.inrReward !== null) return inv.inrReward;
+        return Math.round(inv.amount * (SCHEME_RATES[inv.schemeType] || 0));
+    };
+
     const expectedUSD = investments.filter(i => i.currency === 'USD' && (i.status === 'active' || i.status === 'completed'))
         .reduce((acc, inv) => acc + (inv.usdtReward || 0), 0);
     const expectedINR = investments.filter(i => i.currency === 'INR' && (i.status === 'active' || i.status === 'completed'))
-        .reduce((acc, inv) => acc + (inv.usdtReward || 0), 0);
+        .reduce((acc, inv) => acc + getInrYield(inv), 0);
 
     const usdWallet = user.usdWallet || 0;
     const inrWallet = user.inrWallet || 0;
@@ -183,7 +199,7 @@ export default function DashboardOverview() {
                                                     {inv.currency === 'USD' ? '$' : '₹'}{inv.amount.toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN')}
                                                 </td>
                                                 <td className="px-6 py-5 text-[#32e512] font-extrabold drop-shadow-[0_0_8px_rgba(50,229,18,0.2)] whitespace-nowrap">
-                                                    +{inv.currency === 'USD' ? '$' : '₹'}{(inv.usdtReward || 0).toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN', { maximumFractionDigits: 0 })}
+                                                    +{inv.currency === 'USD' ? '$' : '₹'}{(inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv)).toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN', { maximumFractionDigits: 0 })}
                                                 </td>
                                                 <td className="px-6 py-5 whitespace-nowrap">
                                                     {inv.status === 'pending' && (

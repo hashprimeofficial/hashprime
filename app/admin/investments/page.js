@@ -34,6 +34,24 @@ function StatusBadge({ status }) {
 
 export default function AdminInvestmentsPage() {
     const { data, error, isLoading, mutate } = useSWR('/api/admin/investments', fetcher);
+    const { data: rateData } = useSWR('/api/exchange-rate', fetcher);
+    const liveRate = rateData?.rate || 85;
+
+    const SCHEME_RATES = {
+        '3m_inr': 0.18,
+        '6m_inr': 0.38,
+        '1y_inr': 0.80,
+        '5y_inr': 5.00,
+        '3m_usd': 0.18,
+        '6m_usd': 0.38,
+        '1y_usd': 0.80,
+        '5y_usd': 5.00,
+    };
+
+    const getInrYield = (inv) => {
+        if (inv.inrReward !== undefined && inv.inrReward !== null) return inv.inrReward;
+        return Math.round(inv.amount * (SCHEME_RATES[inv.schemeType] || 0));
+    };
 
     const [editingInvestment, setEditingInvestment] = useState(null);
     const [isSaving, setIsSaving] = useState(false);
@@ -160,7 +178,7 @@ export default function AdminInvestmentsPage() {
             Email: inv.userId?.email || String(inv.userId),
             Amount: inv.amount,
             Currency: inv.currency,
-            Yield: inv.usdtReward || 0,
+            Yield: inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv),
             Scheme: inv.schemeType,
             Maturity: inv.maturesAt ? new Date(inv.maturesAt).toLocaleString() : 'N/A',
             Status: inv.status,
@@ -285,7 +303,7 @@ export default function AdminInvestmentsPage() {
                                             <div className="text-[10px] text-[#d4af35]/50 font-black uppercase tracking-widest">{inv.currency}</div>
                                         </td>
                                         <td className="px-6 py-4 font-black text-[#32e512]">
-                                            +{curSymbol}{(inv.usdtReward || 0).toLocaleString(locale, { maximumFractionDigits: 2 })}
+                                            +{curSymbol}{(inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv)).toLocaleString(locale, { maximumFractionDigits: 2 })}
                                         </td>
                                         <td className="px-6 py-4">
                                             <span className="bg-[#d4af35]/10 text-[#d4af35] border border-[#d4af35]/20 px-2.5 py-1 rounded-lg text-[10px] uppercase font-black tracking-wider shadow-inner">{inv.schemeType}</span>

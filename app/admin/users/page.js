@@ -66,8 +66,10 @@ export default function AdminUsersPage() {
             Email: user.email,
             Role: user.role,
             ReferralCode: user.referralCode || '',
-            USDWallet: user.usdWallet || user.usdtBalance || 0,
-            INRWallet: user.inrWallet || user.walletBalance || 0,
+            USDWallet: user.usdWallet || 0,
+            INRWallet: user.inrWallet || 0,
+            InvestedUSD: user.totalInvestedUSD || 0,
+            InvestedINR: user.totalInvestedINR || 0,
             ReferralWallet: user.referralWallet || 0,
             KYCStatus: user.kycStatus || 'unsubmitted',
             Registered: new Date(user.createdAt).toLocaleString(),
@@ -191,7 +193,7 @@ export default function AdminUsersPage() {
                     <table className="w-full text-left whitespace-nowrap">
                         <thead className="bg-[#d4af35]/5 border-b border-[#d4af35]/10">
                             <tr>
-                                {['User', 'Email / Ref', 'USD Wallet', 'INR Wallet', 'Referral', 'KYC', 'Actions'].map(h => (
+                                {['User', 'Email / Ref', 'USD Wallet / Invested', 'INR Wallet / Invested', 'Referral', 'KYC', 'Actions'].map(h => (
                                     <th key={h} className="px-5 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/50">{h}</th>
                                 ))}
                             </tr>
@@ -217,12 +219,28 @@ export default function AdminUsersPage() {
                                         {user.referralCode && <div className="text-[10px] font-black text-[#d4af35]/40 mt-0.5 tracking-widest">REF: {user.referralCode}</div>}
                                     </td>
                                     <td className="px-5 py-4">
-                                        <div className="font-black text-blue-400">${(user.usdWallet || user.usdtBalance || 0).toFixed(2)}</div>
-                                        <div className="text-[10px] text-[#d4af35]/30 font-bold uppercase tracking-widest">USDT</div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <div className="font-black text-blue-400 min-w-[60px]">${(user.usdWallet || 0).toFixed(2)}</div>
+                                            <div className="text-[9px] text-[#d4af35]/30 font-bold uppercase tracking-widest bg-blue-500/10 px-1.5 py-0.5 rounded border border-blue-500/10">Wallet</div>
+                                        </div>
+                                        {user.totalInvestedUSD > 0 && (
+                                            <div className="flex items-center gap-2">
+                                                <div className="font-bold text-blue-400/60 text-xs min-w-[60px]">${(user.totalInvestedUSD || 0).toFixed(2)}</div>
+                                                <div className="text-[9px] text-[#d4af35]/30 font-bold uppercase tracking-widest bg-blue-500/5 px-1.5 py-0.5 rounded border border-blue-500/10">Invested</div>
+                                            </div>
+                                        )}
                                     </td>
                                     <td className="px-5 py-4">
-                                        <div className="font-black text-[#d4af35]">₹{(user.inrWallet || user.walletBalance || 0).toLocaleString('en-IN')}</div>
-                                        <div className="text-[10px] text-[#d4af35]/30 font-bold uppercase tracking-widest">INR</div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <div className="font-black text-[#d4af35] min-w-[60px]">₹{(user.inrWallet || 0).toLocaleString('en-IN')}</div>
+                                            <div className="text-[9px] text-[#d4af35]/30 font-bold uppercase tracking-widest bg-[#d4af35]/10 px-1.5 py-0.5 rounded border border-[#d4af35]/10">Wallet</div>
+                                        </div>
+                                        {user.totalInvestedINR > 0 && (
+                                            <div className="flex items-center gap-2">
+                                                <div className="font-bold text-[#d4af35]/60 text-xs min-w-[60px]">₹{(user.totalInvestedINR || 0).toLocaleString('en-IN')}</div>
+                                                <div className="text-[9px] text-[#d4af35]/30 font-bold uppercase tracking-widest bg-[#d4af35]/5 px-1.5 py-0.5 rounded border border-[#d4af35]/10">Invested</div>
+                                            </div>
+                                        )}
                                     </td>
                                     <td className="px-5 py-4">
                                         <div className="font-black text-[#32e512]">${(user.referralWallet || 0).toFixed(2)}</div>
@@ -282,15 +300,15 @@ export default function AdminUsersPage() {
                                 <div className="grid grid-cols-3 gap-3">
                                     <div>
                                         <label className={labelCls}><DollarSign className="w-3 h-3 inline mr-1 text-blue-400" />USDT</label>
-                                        <input name="usdWallet" type="number" step="0.01" defaultValue={editingUser.usdWallet ?? editingUser.usdtBalance ?? 0} className={inputCls} />
+                                        <input name="usdWallet" type="number" step="0.01" defaultValue={editingUser.usdWallet || 0} className={inputCls} />
                                     </div>
                                     <div>
                                         <label className={labelCls}><IndianRupee className="w-3 h-3 inline mr-1 text-[#d4af35]" />INR</label>
-                                        <input name="inrWallet" type="number" step="1" defaultValue={editingUser.inrWallet ?? editingUser.walletBalance ?? 0} className={inputCls} />
+                                        <input name="inrWallet" type="number" step="1" defaultValue={editingUser.inrWallet || 0} className={inputCls} />
                                     </div>
                                     <div>
                                         <label className={labelCls}><Gift className="w-3 h-3 inline mr-1 text-[#32e512]" />Referral</label>
-                                        <input name="referralWallet" type="number" step="0.01" defaultValue={editingUser.referralWallet ?? 0} className={inputCls} />
+                                        <input name="referralWallet" type="number" step="0.01" defaultValue={editingUser.referralWallet || 0} className={inputCls} />
                                     </div>
                                 </div>
 
@@ -356,15 +374,15 @@ export default function AdminUsersPage() {
                             <div className="grid grid-cols-3 gap-3 px-6 py-4 border-b border-[#d4af35]/10">
                                 <div className="bg-blue-500/5 border border-blue-500/15 rounded-xl p-3 text-center">
                                     <div className="text-[9px] font-black uppercase tracking-widest text-blue-400/60 mb-1">USDT Wallet</div>
-                                    <div className="font-black text-blue-400">${(transactionUser.usdWallet ?? transactionUser.usdtBalance ?? 0).toFixed(2)}</div>
+                                    <div className="font-black text-blue-400">${(transactionUser.usdWallet || 0).toFixed(2)}</div>
                                 </div>
                                 <div className="bg-[#d4af35]/5 border border-[#d4af35]/15 rounded-xl p-3 text-center">
                                     <div className="text-[9px] font-black uppercase tracking-widest text-[#d4af35]/60 mb-1">INR Wallet</div>
-                                    <div className="font-black text-[#d4af35]">₹{(transactionUser.inrWallet ?? transactionUser.walletBalance ?? 0).toLocaleString('en-IN')}</div>
+                                    <div className="font-black text-[#d4af35]">₹{(transactionUser.inrWallet || 0).toLocaleString('en-IN')}</div>
                                 </div>
                                 <div className="bg-[#32e512]/5 border border-[#32e512]/15 rounded-xl p-3 text-center">
                                     <div className="text-[9px] font-black uppercase tracking-widest text-[#32e512]/60 mb-1">Referral</div>
-                                    <div className="font-black text-[#32e512]">${(transactionUser.referralWallet ?? 0).toFixed(2)}</div>
+                                    <div className="font-black text-[#32e512]">${(transactionUser.referralWallet || 0).toFixed(2)}</div>
                                 </div>
                             </div>
 

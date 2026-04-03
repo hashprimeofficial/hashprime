@@ -94,7 +94,7 @@ export default function DashboardLayout({ children }) {
         <div className="min-h-screen bg-[#0A0A0A] text-white flex flex-col md:flex-row font-sans">
 
             {/* ── Desktop Sidebar ─────────────────────────────────────────── */}
-            <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-[#d4af35]/20 bg-[#0A0A0A] p-6 flex-col justify-between hidden md:flex h-screen sticky top-0 relative overflow-hidden">
+            <div className="w-full md:w-64 border-b md:border-b-0 md:border-r border-[#d4af35]/20 bg-[#0A0A0A] p-6 flex-col justify-between hidden md:flex h-screen sticky top-0 relative overflow-y-auto overflow-x-hidden custom-scrollbar pb-10">
                 {/* Background glow effect */}
                 <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#d4af35]/10 to-transparent pointer-events-none" />
 
@@ -163,7 +163,7 @@ export default function DashboardLayout({ children }) {
             </div>
 
             {/* ── Main content ─────────────────────────────────────────────── */}
-            <div className="flex-1 overflow-y-auto w-full relative min-h-screen bg-[#0A0A0A]">
+            <div className="flex-1 overflow-y-auto custom-scrollbar w-full relative min-h-screen bg-[#0A0A0A]">
                 {/* Subtle global gradient background to match homepage */}
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#d4af35]/5 via-[#0A0A0A] to-[#0A0A0A] pointer-events-none" />
 
@@ -216,7 +216,7 @@ export default function DashboardLayout({ children }) {
                 </div>
 
                 {/* Nav links — big, like homepage offcanvas */}
-                <div className="flex-grow overflow-y-auto px-8 py-10 space-y-2">
+                <div className="flex-grow overflow-y-auto custom-scrollbar px-8 py-10 space-y-2">
                     {NAV_ITEMS.map(({ name, href, icon: Icon }) => {
                         const isActive = pathname === href;
                         return (

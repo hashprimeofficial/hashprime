@@ -27,6 +27,15 @@ export default function AdminOverview() {
         topReferrals = []
     } = data || {};
 
+    const SCHEME_RATES = {
+        '3m_inr': 0.18, '6m_inr': 0.38, '1y_inr': 0.80, '5y_inr': 5.00,
+        '3m_usd': 0.18, '6m_usd': 0.38, '1y_usd': 0.80, '5y_usd': 5.00,
+    };
+    const getInrYield = (inv) => {
+        if (inv.inrReward !== undefined && inv.inrReward !== null) return inv.inrReward;
+        return Math.round(inv.amount * (SCHEME_RATES[inv.schemeType] || 0));
+    };
+
     const recentDeposits = (depositsResp?.deposits || []).slice(0, 5);
 
 
@@ -278,6 +287,7 @@ export default function AdminOverview() {
                             <tr>
                                 <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">User</th>
                                 <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Amount</th>
+                                <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Yield</th>
                                 <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Scheme</th>
                                 <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Status</th>
                                 <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Date</th>
@@ -296,6 +306,9 @@ export default function AdminOverview() {
                                         <td className="px-6 py-4">
                                             <div className="font-black text-white">{curSymbol}{inv.amount.toLocaleString(locale)}</div>
                                             <div className="text-[10px] text-[#d4af35]/40 font-black uppercase tracking-widest">{inv.currency}</div>
+                                        </td>
+                                        <td className="px-6 py-4 font-black flex items-center justify-start h-full pt-[22px] text-[#32e512]">
+                                            +{curSymbol}{(inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv)).toLocaleString(locale, { maximumFractionDigits: 2 })}
                                         </td>
                                         <td className="px-6 py-4">
                                             <span className="bg-[#d4af35]/10 text-[#d4af35] border border-[#d4af35]/20 px-2.5 py-1 rounded-lg text-[10px] uppercase font-black tracking-wider">{inv.schemeType}</span>

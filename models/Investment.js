@@ -24,7 +24,11 @@ const InvestmentSchema = new mongoose.Schema(
         },
         usdtReward: {
             type: Number,
-            required: true,
+            required: false,
+        },
+        inrReward: {
+            type: Number,
+            required: false,
         },
         status: {
             type: String,

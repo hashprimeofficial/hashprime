@@ -100,9 +100,14 @@ export async function POST(req) {
         maturesAt.setMonth(maturesAt.getMonth() + scheme.durationMonths);
 
         const liveRate = await getExchangeRate();
-        const usdtReward = currency === 'USD'
-            ? Math.round((amount * scheme.returnRate) * 100) / 100
-            : Math.round(((amount * scheme.returnRate) / liveRate) * 100) / 100;
+        let usdtReward = 0;
+        let inrReward = 0;
+        if (currency === 'USD') {
+            usdtReward = Math.round((amount * scheme.returnRate) * 100) / 100;
+        } else {
+            inrReward = Math.round(amount * scheme.returnRate);
+            usdtReward = Math.round((inrReward / liveRate) * 100) / 100; // Keep roughly accurate usdtReward for legacy purposes if needed
+        }
 
         // **CRITICAL CHANGE: Do NOT deduct walletBalance here.**
         // **CRITICAL CHANGE: Do NOT create a Transaction ledger yet.**
@@ -114,6 +119,7 @@ export async function POST(req) {
             schemeType,
             currency,
             usdtReward,
+            inrReward,
             maturesAt,
             status: 'pending' // User investments start as pending, requiring admin approval/activation
         });

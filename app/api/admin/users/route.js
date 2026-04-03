@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/db';
 import User from '@/models/User';
+import Investment from '@/models/Investment';
 import { verifyToken } from '@/lib/auth';
 
 export async function GET(req) {
@@ -20,11 +21,22 @@ export async function GET(req) {
             .select('-password')
             .sort({ createdAt: -1 })
             .skip(skip)
-            .limit(limit);
+            .limit(limit)
+            .lean();
+
+        const userIds = users.map(u => u._id);
+        const userInvestments = await Investment.find({ userId: { $in: userIds }, status: { $in: ['active', 'completed', 'pending'] } });
+
+        const enrichedUsers = users.map(user => {
+            const myInvs = userInvestments.filter(i => i.userId.toString() === user._id.toString());
+            const totalInvestedUSD = myInvs.filter(i => i.currency === 'USD').reduce((a, b) => a + b.amount, 0);
+            const totalInvestedINR = myInvs.filter(i => i.currency === 'INR').reduce((a, b) => a + b.amount, 0);
+            return { ...user, totalInvestedUSD, totalInvestedINR };
+        });
 
         const totalUsers = await User.countDocuments({ role: 'user' });
 
-        return NextResponse.json({ users, totalUsers, page, limit }, { status: 200 });
+        return NextResponse.json({ users: enrichedUsers, totalUsers, page, limit }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }

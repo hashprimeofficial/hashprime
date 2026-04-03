@@ -74,9 +74,14 @@ export async function POST(req) {
         maturesAt.setMonth(maturesAt.getMonth() + scheme.durationMonths);
 
         const liveRate = await getExchangeRate();
-        const usdtReward = currency === 'USD'
-            ? Math.round((Number(amount) * scheme.returnRate) * 100) / 100
-            : Math.round(((Number(amount) * scheme.returnRate) / liveRate) * 100) / 100;
+        let usdtReward = 0;
+        let inrReward = 0;
+        if (currency === 'USD') {
+            usdtReward = Math.round((Number(amount) * scheme.returnRate) * 100) / 100;
+        } else {
+            inrReward = Math.round(Number(amount) * scheme.returnRate);
+            usdtReward = Math.round((inrReward / liveRate) * 100) / 100;
+        }
 
         // Deduct Wallet Balance
         const updateField = currency === 'USD' ? 'usdWallet' : 'inrWallet';
@@ -91,6 +96,7 @@ export async function POST(req) {
             schemeType,
             currency,
             usdtReward,
+            inrReward,
             maturesAt,
             status: 'active' // Directly active when created by admin
         });

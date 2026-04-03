@@ -35,7 +35,7 @@ export async function POST(req) {
             const liveRate = await getExchangeRate();
             const totalToCredit = investment.currency === 'USD'
                 ? principal + investment.usdtReward
-                : principal + Math.round(investment.usdtReward * liveRate);
+                : principal + (investment.inrReward !== undefined && investment.inrReward !== null ? investment.inrReward : Math.round(investment.usdtReward * liveRate));
 
             const updateField = investment.currency === 'USD' ? 'usdWallet' : 'inrWallet';
 
