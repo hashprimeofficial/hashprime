@@ -360,7 +360,7 @@ function SecurityTab() {
                                     <Image src={setup.qrCodeDataUrl} alt="2FA QR Code" width={160} height={160} className="rounded-xl" />
                                 </div>
                                 <div className="space-y-4 text-center sm:text-left">
-                                    <p className="text-base font-black text-white tracking-tight">Can't scan the QR?</p>
+                                    <p className="text-base font-black text-white tracking-tight">Can&apos;t scan the QR?</p>
                                     <p className="text-sm text-[#d4af35]/70 font-bold">Enter this setup key manually in your app:</p>
                                     <div className="flex items-center justify-center sm:justify-start gap-3">
                                         <code className="bg-[#121212] border border-[#d4af35]/30 rounded-xl px-4 py-3 text-sm font-mono font-bold text-[#d4af35] tracking-wider shadow-inner">{setup.secret}</code>

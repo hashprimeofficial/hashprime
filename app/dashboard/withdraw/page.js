@@ -155,7 +155,7 @@ export default function WithdrawPage() {
                             <h2 className="text-xl font-black text-white">Withdrawal Request Submitted!</h2>
                             <p className="text-white/40 font-medium text-sm max-w-md mx-auto">
                                 Your funds are now in escrow and will be processed within <span className="text-[#d4af35] font-black">48 hours</span>.
-                                You'll receive confirmation once the admin approves the payout. No action needed from your side.
+                                You&apos;ll receive confirmation once the admin approves the payout. No action needed from your side.
                             </p>
                             <button onClick={() => setSuccess(false)}
                                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl border border-[#d4af35]/20 text-[#d4af35] font-black text-sm hover:bg-[#d4af35]/10 transition-all">

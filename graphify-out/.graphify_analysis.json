@@ -1,6 +1,31 @@
 {
   "communities": {
     "0": [
+      "app_api_admin_enquiries_id_route_js_id_route",
+      "app_api_admin_enquiries_id_route_js_id_route_patch",
+      "business_enquiry_route",
+      "business_enquiry_route_post",
+      "code_route",
+      "code_route_get",
+      "dumpusers_route",
+      "dumpusers_route_get",
+      "enquiries_route",
+      "enquiries_route_get",
+      "lib_db",
+      "lib_db_connecttodatabase",
+      "make_admin_route",
+      "make_admin_route_post",
+      "migraterewards_route",
+      "migraterewards_route_get",
+      "reset_password_route",
+      "reset_password_route_post",
+      "setup_route",
+      "setup_route_get",
+      "setup_route_post",
+      "verify_route",
+      "verify_route_post"
+    ],
+    "1": [
       "profile_page",
       "profile_page_accountcard",
       "profile_page_banktab",
@@ -21,28 +46,16 @@
       "profile_page_skeleton",
       "profile_page_toast"
     ],
-    "1": [
-      "app_api_admin_enquiries_id_route_js_id_route",
-      "app_api_admin_enquiries_id_route_js_id_route_patch",
-      "dumpusers_route",
-      "dumpusers_route_get",
-      "enquiries_route",
-      "enquiries_route_get",
-      "kyc_route",
-      "kyc_route_get",
-      "kyc_route_put",
-      "lib_db",
-      "lib_db_connecttodatabase",
-      "migraterewards_route",
-      "migraterewards_route_get",
-      "reset_password_route",
-      "reset_password_route_post",
-      "verify_route",
-      "verify_route_post"
-    ],
     "2": [
       "app_api_admin_deposits_route_js_deposits_route",
       "app_api_admin_deposits_route_js_deposits_route_get",
+      "app_api_admin_withdrawals_id_route_js_id_route",
+      "app_api_admin_withdrawals_id_route_js_id_route_patch",
+      "app_api_dashboard_stats_route_js_stats_route",
+      "app_api_dashboard_stats_route_js_stats_route_get",
+      "bank_accounts_route",
+      "bank_accounts_route_get",
+      "bank_accounts_route_post",
       "deposits_route_put",
       "lib_auth_verifytoken",
       "me_route",
@@ -51,11 +64,7 @@
       "nominee_route",
       "nominee_route_get",
       "nominee_route_post",
-      "nominee_route_put",
-      "users_route",
-      "users_route_get",
-      "withdrawals_route",
-      "withdrawals_route_get"
+      "nominee_route_put"
     ],
     "3": [
       "email_otp_route",
@@ -85,9 +94,15 @@
       "lib_cloudinary_uploadtocloudinary",
       "profile_route",
       "profile_route_get",
-      "profile_route_put"
+      "profile_route_put",
+      "tickets_route",
+      "tickets_route_get",
+      "tickets_route_post"
     ],
     "5": [
+      "app_api_admin_investments_id_route_js_id_route",
+      "app_api_admin_investments_id_route_js_id_route_delete",
+      "app_api_admin_investments_id_route_js_id_route_patch",
       "app_api_admin_stats_route_js_stats_route",
       "app_api_admin_stats_route_js_stats_route_get",
       "convert_route",
@@ -259,59 +274,61 @@
       "components_community_socials"
     ],
     "28": [
+      "components_ourprojects",
+      "components_ourprojects_ourprojects",
+      "components_ourprojects_premiumtechnetwork",
+      "components_ourprojects_projects"
+    ],
+    "29": [
+      "components_salientfeatures",
+      "components_salientfeatures_features",
+      "components_salientfeatures_premiumtechnetwork",
+      "components_salientfeatures_salientfeatures"
+    ],
+    "30": [
       "deposits_page",
       "deposits_page_admindepositspage",
       "deposits_page_fetcher",
       "deposits_page_statusbadge"
     ],
-    "29": [
+    "31": [
       "invest_route",
       "invest_route_inr_schemes",
       "invest_route_post",
       "invest_route_usd_schemes"
     ],
-    "30": [
+    "32": [
       "middleware",
       "middleware_config",
       "middleware_key",
       "middleware_middleware"
     ],
-    "31": [
+    "33": [
       "referrals_page",
       "referrals_page_fetcher",
       "referrals_page_referralspage",
       "referrals_page_referralsskeleton"
     ],
-    "32": [
+    "34": [
       "users_page",
       "users_page_adminuserspage",
       "users_page_fetcher",
       "users_page_kycbadge"
     ],
-    "33": [
+    "35": [
       "admin_page",
       "admin_page_adminoverview",
       "admin_page_fetcher"
     ],
-    "34": [
-      "app_api_admin_investments_id_route_js_id_route",
-      "app_api_admin_investments_id_route_js_id_route_delete",
-      "app_api_admin_investments_id_route_js_id_route_patch"
-    ],
-    "35": [
+    "36": [
       "app_api_admin_users_id_route_js_id_route",
       "app_api_admin_users_id_route_js_id_route_delete",
       "app_api_admin_users_id_route_js_id_route_patch"
     ],
-    "36": [
+    "37": [
       "app_page",
       "app_page_home",
       "app_page_metadata"
-    ],
-    "37": [
-      "bank_accounts_route",
-      "bank_accounts_route_get",
-      "bank_accounts_route_post"
     ],
     "38": [
       "careers_page",
@@ -324,54 +341,54 @@
       "components_detailedschemes_schemes"
     ],
     "40": [
+      "components_hero",
+      "components_hero_goldencryptoglobe",
+      "components_hero_hero"
+    ],
+    "41": [
       "components_investmentschemes",
       "components_investmentschemes_investmentschemes",
       "components_investmentschemes_schemes"
     ],
-    "41": [
+    "42": [
       "components_livemarketticker",
       "components_livemarketticker_fetcher",
       "components_livemarketticker_livemarketticker"
     ],
-    "42": [
-      "components_ourprojects",
-      "components_ourprojects_ourprojects",
-      "components_ourprojects_projects"
-    ],
     "43": [
-      "components_salientfeatures",
-      "components_salientfeatures_features",
-      "components_salientfeatures_salientfeatures"
-    ],
-    "44": [
       "convert_page",
       "convert_page_convertpage",
       "convert_page_fetcher"
     ],
-    "45": [
+    "44": [
       "dashboard_page",
       "dashboard_page_dashboardoverview",
       "dashboard_page_fetcher"
     ],
-    "46": [
+    "45": [
       "deposit_page",
       "deposit_page_depositpage",
       "deposit_page_fetcher"
     ],
-    "47": [
+    "46": [
       "enquiries_page",
       "enquiries_page_adminenquiriespage",
       "enquiries_page_fetcher"
     ],
-    "48": [
+    "47": [
       "enquiry_page",
       "enquiry_page_businessenquirypage",
       "enquiry_page_enquiryform"
     ],
-    "49": [
+    "48": [
       "forgot_password_page",
       "forgot_password_page_forgotpasswordpage",
       "forgot_password_page_neonstyle"
+    ],
+    "49": [
+      "kyc_route",
+      "kyc_route_get",
+      "kyc_route_put"
     ],
     "50": [
       "markets_page",
@@ -399,177 +416,151 @@
       "schemes_page_servicespage"
     ],
     "55": [
-      "setup_route",
-      "setup_route_get",
-      "setup_route_post"
-    ],
-    "56": [
-      "tickets_route",
-      "tickets_route_get",
-      "tickets_route_post"
-    ],
-    "57": [
       "transactions_page",
       "transactions_page_admintransactionspage",
       "transactions_page_fetcher"
     ],
-    "58": [
+    "56": [
       "withdraw_route",
       "withdraw_route_get",
       "withdraw_route_post"
     ],
-    "59": [
-      "app_api_admin_withdrawals_id_route_js_id_route",
-      "app_api_admin_withdrawals_id_route_js_id_route_patch"
-    ],
-    "60": [
-      "app_api_dashboard_stats_route_js_stats_route",
-      "app_api_dashboard_stats_route_js_stats_route_get"
-    ],
-    "61": [
+    "57": [
       "app_api_tickets_id_route_js_id_route",
       "id_route_put"
     ],
-    "62": [
+    "58": [
       "app_dashboard_security_page_js_security_page",
       "security_page_securityredirectpage"
     ],
-    "63": [
+    "59": [
       "app_robots",
       "app_robots_robots"
     ],
-    "64": [
+    "60": [
       "app_sitemap",
       "app_sitemap_sitemap"
     ],
-    "65": [
+    "61": [
       "auth_layout",
       "auth_layout_authlayout"
     ],
-    "66": [
+    "62": [
       "bank_page",
       "bank_page_bankredirectpage"
     ],
-    "67": [
-      "business_enquiry_route",
-      "business_enquiry_route_post"
-    ],
-    "68": [
-      "code_route",
-      "code_route_get"
-    ],
-    "69": [
+    "63": [
       "company_page",
       "company_page_companypage"
     ],
-    "70": [
+    "64": [
       "components_glowingportal",
       "components_glowingportal_glowingportal"
     ],
-    "71": [
-      "components_hero",
-      "components_hero_hero"
-    ],
-    "72": [
+    "65": [
       "components_howtostart",
       "components_howtostart_howtostart"
     ],
-    "73": [
+    "66": [
       "components_insights",
       "components_insights_insights"
     ],
-    "74": [
+    "67": [
       "disable_route",
       "disable_route_post"
     ],
-    "75": [
+    "68": [
       "eslint_config",
       "eslint_config_eslintconfig"
     ],
-    "76": [
+    "69": [
       "features_page",
       "features_page_featurespage"
     ],
-    "77": [
+    "70": [
       "hello_route",
       "hello_route_get"
     ],
-    "78": [
+    "71": [
       "login_page",
       "login_page_loginpage"
     ],
-    "79": [
+    "72": [
       "logout_route",
       "logout_route_post"
     ],
-    "80": [
-      "make_admin_route",
-      "make_admin_route_post"
-    ],
-    "81": [
+    "73": [
       "market_route",
       "market_route_get"
     ],
-    "82": [
+    "74": [
       "models_bankaccount",
       "models_bankaccount_bankaccountschema"
     ],
-    "83": [
+    "75": [
       "models_businessenquiry",
       "models_businessenquiry_businessenquiryschema"
     ],
-    "84": [
+    "76": [
       "models_deposit",
       "models_deposit_depositschema"
     ],
-    "85": [
+    "77": [
       "models_investment",
       "models_investment_investmentschema"
     ],
-    "86": [
+    "78": [
       "models_jobapplication",
       "models_jobapplication_jobapplicationschema"
     ],
-    "87": [
+    "79": [
       "models_nominee",
       "models_nominee_nomineeschema"
     ],
-    "88": [
+    "80": [
       "models_ticket",
       "models_ticket_ticketschema"
     ],
-    "89": [
+    "81": [
       "models_user",
       "models_user_userschema"
     ],
-    "90": [
+    "82": [
       "next_config",
       "next_config_nextconfig"
     ],
-    "91": [
+    "83": [
       "postcss_config",
       "postcss_config_config"
     ],
-    "92": [
+    "84": [
       "referrals_route",
       "referrals_route_get"
     ],
-    "93": [
+    "85": [
       "transaction_route",
       "transaction_route_post"
     ],
-    "94": [
+    "86": [
       "transactions_route",
       "transactions_route_get"
+    ],
+    "87": [
+      "users_route",
+      "users_route_get"
+    ],
+    "88": [
+      "withdrawals_route",
+      "withdrawals_route_get"
     ]
   },
   "cohesion": {
-    "0": 0.10526315789473684,
-    "1": 0.125,
-    "2": 0.17142857142857143,
+    "0": 0.09090909090909091,
+    "1": 0.10526315789473684,
+    "2": 0.1437908496732026,
     "3": 0.1619047619047619,
-    "4": 0.18181818181818182,
-    "5": 0.2,
+    "4": 0.14285714285714285,
+    "5": 0.15384615384615385,
     "6": 0.3333333333333333,
     "7": 0.2857142857142857,
     "8": 0.3333333333333333,
@@ -597,8 +588,8 @@
     "30": 0.5,
     "31": 0.5,
     "32": 0.5,
-    "33": 0.6666666666666666,
-    "34": 0.6666666666666666,
+    "33": 0.5,
+    "34": 0.5,
     "35": 0.6666666666666666,
     "36": 0.6666666666666666,
     "37": 0.6666666666666666,
@@ -621,8 +612,8 @@
     "54": 0.6666666666666666,
     "55": 0.6666666666666666,
     "56": 0.6666666666666666,
-    "57": 0.6666666666666666,
-    "58": 0.6666666666666666,
+    "57": 1.0,
+    "58": 1.0,
     "59": 1.0,
     "60": 1.0,
     "61": 1.0,
@@ -652,13 +643,7 @@
     "85": 1.0,
     "86": 1.0,
     "87": 1.0,
-    "88": 1.0,
-    "89": 1.0,
-    "90": 1.0,
-    "91": 1.0,
-    "92": 1.0,
-    "93": 1.0,
-    "94": 1.0
+    "88": 1.0
   },
   "gods": [
     {
@@ -714,39 +699,6 @@
   ],
   "surprises": [
     {
-      "source": "POST()",
-      "target": "connectToDatabase()",
-      "source_files": [
-        "app/api/auth/make-admin/route.js",
-        "lib/db.js"
-      ],
-      "confidence": "INFERRED",
-      "relation": "calls",
-      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; peripheral node `POST()` unexpectedly reaches hub `connectToDatabase()`"
-    },
-    {
-      "source": "GET()",
-      "target": "connectToDatabase()",
-      "source_files": [
-        "app/api/auth/referrer/[code]/route.js",
-        "lib/db.js"
-      ],
-      "confidence": "INFERRED",
-      "relation": "calls",
-      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; peripheral node `GET()` unexpectedly reaches hub `connectToDatabase()`"
-    },
-    {
-      "source": "POST()",
-      "target": "connectToDatabase()",
-      "source_files": [
-        "app/api/business-enquiry/route.js",
-        "lib/db.js"
-      ],
-      "confidence": "INFERRED",
-      "relation": "calls",
-      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; peripheral node `POST()` unexpectedly reaches hub `connectToDatabase()`"
-    },
-    {
       "source": "GET()",
       "target": "connectToDatabase()",
       "source_files": [
@@ -767,6 +719,39 @@
       "confidence": "INFERRED",
       "relation": "calls",
       "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "PUT()",
+      "target": "connectToDatabase()",
+      "source_files": [
+        "app/api/admin/deposits/route.js",
+        "lib/db.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "GET()",
+      "target": "connectToDatabase()",
+      "source_files": [
+        "app/api/admin/dumpusers/route.js",
+        "lib/db.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `GET()` unexpectedly reaches hub `connectToDatabase()`"
+    },
+    {
+      "source": "PATCH()",
+      "target": "connectToDatabase()",
+      "source_files": [
+        "app/api/admin/enquiries/[id]/route.js",
+        "lib/db.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; peripheral node `PATCH()` unexpectedly reaches hub `connectToDatabase()`"
     }
   ],
   "tokens": {

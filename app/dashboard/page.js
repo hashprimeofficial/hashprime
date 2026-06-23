@@ -87,7 +87,7 @@ export default function DashboardOverview() {
         <div className="space-y-8">
             <div>
                 <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Welcome, {user.name}</h1>
-                <p className="text-slate-500 font-medium">Here's an overview of your wealth generation.</p>
+                <p className="text-slate-500 font-medium">Here&apos;s an overview of your wealth generation.</p>
             </div>
 
             {!isProfileFullyComplete && (

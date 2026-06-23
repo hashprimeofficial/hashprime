@@ -84,12 +84,12 @@ export default function CareersPage() {
                     <div className="absolute bottom-[-30%] right-[-10%] w-[500px] h-[500px] bg-[#d4af35] opacity-[0.03] rounded-full blur-[150px]" />
                 </div>
                 <div className="relative z-10 max-w-3xl mx-auto text-center">
-                    <span className="inline-block text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]/70 mb-6 border border-[#d4af35]/20 bg-[#d4af35]/5 px-5 py-2 rounded-full">We're Hiring</span>
+                    <span className="inline-block text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]/70 mb-6 border border-[#d4af35]/20 bg-[#d4af35]/5 px-5 py-2 rounded-full">We&apos;re Hiring</span>
                     <h1 className="text-5xl md:text-6xl font-black tracking-tight mb-6 leading-[1.05]">
                         Build the Future of <span className="text-[#d4af35]">Finance</span>
                     </h1>
                     <p className="text-white/50 text-lg font-medium max-w-xl mx-auto">
-                        Join a team redefining how India invests. We're looking for ambitious people who thrive at the intersection of finance and technology.
+                        Join a team redefining how India invests. We&apos;re looking for ambitious people who thrive at the intersection of finance and technology.
                     </p>
                 </div>
             </section>

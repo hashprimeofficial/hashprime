@@ -62,7 +62,7 @@ export default function ForgotPasswordPage() {
                             <Mail className="w-6 h-6" style={{ color: '#0b1120' }} />
                         </div>
                         <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-1.5">Reset password</h1>
-                        <p className="text-slate-500 text-sm font-medium">Enter your email and we'll send a 6-digit reset code.</p>
+                        <p className="text-slate-500 text-sm font-medium">Enter your email and we&apos;ll send a 6-digit reset code.</p>
                     </div>
 
                     <form onSubmit={handleRequestOTP} className="space-y-5">

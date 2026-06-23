@@ -141,7 +141,7 @@ export default function ReferralsPage() {
 
                 {referralTxs.length === 0 ? (
                     <div className="p-10 text-center font-bold text-[#d4af35]/40 text-sm tracking-wide">
-                        You haven't earned any referral bonuses yet.<br />Share your link to get started!
+                        You haven&apos;t earned any referral bonuses yet.<br />Share your link to get started!
                     </div>
                 ) : (
                     <ul className="divide-y divide-[#d4af35]/10">

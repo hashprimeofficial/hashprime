@@ -103,7 +103,7 @@ export default function SecurityPage() {
                         <span className="text-[#d4af35]">Security</span>
                     </h1>
                     <p className="reveal-text text-xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
-                        Your capital and your data are protected by the same standards used by global financial institutions. Here's exactly how.
+                        Your capital and your data are protected by the same standards used by global financial institutions. Here&apos;s exactly how.
                     </p>
                 </div>
 

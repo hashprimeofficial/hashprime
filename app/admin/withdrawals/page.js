@@ -385,7 +385,7 @@ export default function AdminWithdrawalsPage() {
                             <div className="bg-[#080808] border border-red-500/20 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
                                 <div className="p-6 border-b border-red-500/10">
                                     <h3 className="text-lg font-black text-red-400 flex items-center gap-2"><XCircle className="w-5 h-5" /> Reject Withdrawal</h3>
-                                    <p className="text-sm text-white/30 font-medium mt-1">Funds will be refunded to the user's wallet.</p>
+                                    <p className="text-sm text-white/30 font-medium mt-1">Funds will be refunded to the user&apos;s wallet.</p>
                                 </div>
                                 <div className="p-6 space-y-4">
                                     <textarea rows="3" placeholder="Reason (e.g. Invalid wallet network, please re-submit)."

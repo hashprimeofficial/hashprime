@@ -21,7 +21,10 @@ export default function Navbar() {
     const [mounted, setMounted] = useState(false);
     const pathname = usePathname();
 
-    useEffect(() => { setMounted(true); }, []);
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setMounted(true);
+    }, []);
 
     // Lightweight auth check for showing Dashboard button
     const { data: authData } = useSWR('/api/auth/me', fetcher, {

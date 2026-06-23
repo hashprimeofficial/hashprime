@@ -119,7 +119,7 @@ export default function ContactSection() {
                         <div className="flex flex-col items-center gap-3 py-10 text-center">
                             <CheckCircle2 className="w-10 h-10 text-emerald-400" />
                             <p className="text-white font-black text-lg">Message Sent!</p>
-                            <p className="text-white/40 text-sm">We'll get back to you within 24 hours.</p>
+                            <p className="text-white/40 text-sm">We&apos;ll get back to you within 24 hours.</p>
                         </div>
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-4">

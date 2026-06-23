@@ -294,7 +294,7 @@ export default function AdminDepositsPage() {
                                             {actionDeposit.paymentMethod === 'usdt'
                                                 ? `$${actionDeposit.amount.toFixed(2)} USDT`
                                                 : `₹${actionDeposit.amount.toLocaleString('en-IN')}`}
-                                        </strong> to the user's {actionDeposit.paymentMethod === 'usdt' ? 'USD' : 'INR'} wallet.
+                                        </strong> to the user&apos;s {actionDeposit.paymentMethod === 'usdt' ? 'USD' : 'INR'} wallet.
                                     </p>
                                 )}
 
