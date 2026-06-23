@@ -185,6 +185,7 @@ export default function DashboardOverview() {
                                     <thead className="bg-[#d4af35]/5 text-[#d4af35]/80 text-xs uppercase tracking-wider border-b border-[#d4af35]/20">
                                         <tr>
                                             <th className="px-6 py-4 font-black text-[#d4af35]">Scheme</th>
+                                            <th className="px-6 py-4 font-black text-[#d4af35]">Date</th>
                                             <th className="px-6 py-4 font-black text-[#d4af35]">Amount</th>
                                             <th className="px-6 py-4 font-black text-[#d4af35]">Yield</th>
                                             <th className="px-6 py-4 font-black text-[#d4af35]">Status</th>
@@ -195,6 +196,9 @@ export default function DashboardOverview() {
                                             <tr key={inv._id} className="hover:bg-[#d4af35]/5 transition-colors">
                                                 <td className="px-6 py-5 whitespace-nowrap">
                                                     <span className="bg-[#d4af35]/10 text-[#d4af35] border border-[#d4af35]/20 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider shadow-inner">{inv.schemeType} Plan</span>
+                                                </td>
+                                                <td className="px-6 py-5 text-slate-400 font-bold text-sm whitespace-nowrap">
+                                                    {new Date(inv.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
                                                 </td>
                                                 <td className="px-6 py-5 font-black text-white text-lg drop-shadow-[0_0_5px_rgba(255,255,255,0.2)] whitespace-nowrap">
                                                     {inv.currency === 'USD' ? '$' : '₹'}{inv.amount.toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN')}
@@ -282,7 +286,7 @@ export default function DashboardOverview() {
                                                     </div>
                                                     <div>
                                                         <p className="text-white font-black tracking-wide group-hover:text-[#d4af35] transition-colors">{displayAmount}</p>
-                                                        <p className="text-[#d4af35]/60 text-[10px] mt-0.5 font-bold uppercase tracking-wider">{new Date(dep.createdAt).toLocaleDateString()} · <span className="text-white/40">{isUsdt ? 'USDT Crypto' : 'Bank Transfer'}</span></p>
+                                                        <p className="text-[#d4af35]/60 text-[10px] mt-0.5 font-bold uppercase tracking-wider">{new Date(dep.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })} · <span className="text-white/40">{isUsdt ? 'USDT Crypto' : 'Bank Transfer'}</span></p>
                                                     </div>
                                                 </div>
                                                 <div>
@@ -321,7 +325,7 @@ export default function DashboardOverview() {
                                                         {tx.type.replace('_', ' ')}
                                                         {(tx.type === 'referral_bonus' || tx.type === 'deposit') && <span className="bg-[#32e512]/10 text-[#32e512] border border-[#32e512]/20 text-[10px] px-2 py-0.5 rounded font-black tracking-widest uppercase ml-2">Credit</span>}
                                                     </p>
-                                                    <p className="text-[#d4af35]/60 text-[10px] mt-0.5 font-bold uppercase tracking-wider">{new Date(tx.createdAt).toLocaleDateString()}</p>
+                                                    <p className="text-[#d4af35]/60 text-[10px] mt-0.5 font-bold uppercase tracking-wider">{new Date(tx.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
                                                 </div>
                                             </div>
                                             <div className={`font-black text-right ${(tx.type === 'referral_bonus' || tx.type === 'deposit') ? 'text-[#32e512]' : 'text-white'}`}>

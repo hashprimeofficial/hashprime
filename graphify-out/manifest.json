@@ -30,9 +30,9 @@
     "semantic_hash": "374ea184d4083e39f8751e0bbf20a546"
   },
   "app/admin/investments/page.js": {
-    "mtime": 1782189596.8483253,
-    "ast_hash": "0c9970ab94e2de7f306f69f40ab7ab5e",
-    "semantic_hash": "0c9970ab94e2de7f306f69f40ab7ab5e"
+    "mtime": 1782209694.112469,
+    "ast_hash": "86be449cab5d39c23a299bccd97e6ca9",
+    "semantic_hash": ""
   },
   "app/admin/kyc/page.js": {
     "mtime": 1775236637.0,
@@ -340,8 +340,8 @@
     "semantic_hash": "44abbd8a567e21bd354541b62e4a3f47"
   },
   "app/dashboard/page.js": {
-    "mtime": 1782194394.3236694,
-    "ast_hash": "e52c3bc91de974a26db4d5e0714c7112",
+    "mtime": 1782209733.8103905,
+    "ast_hash": "14573b6094d836c82bfdafde5a320267",
     "semantic_hash": ""
   },
   "app/dashboard/profile/page.js": {
