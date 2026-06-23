@@ -194,151 +194,82 @@ export default function DashboardOverview() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                {/* Recent Investments */}
+                {/* Recent Deposits */}
                 <div>
-                    <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-xl font-black text-white">Recent Investments</h2>
-                        <Link href="/dashboard/invest" className="text-sm font-bold text-white underline decoration-neon decoration-2 hover:text-white transition-colors">New Investment &rarr;</Link>
+                    <div className="flex justify-between items-center mb-4">
+                        <h2 className="text-xl font-black text-white">Recent Deposits</h2>
+                        <Link href="/dashboard/deposit" className="text-sm font-bold text-[#d4af35] underline decoration-[#d4af35]/50 decoration-2 hover:text-white transition-colors">+ New Deposit</Link>
                     </div>
-                    <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-2xl shadow-lg overflow-hidden">
-                        {investments.length === 0 ? (
-                            <div className="p-8 text-center text-slate-500 font-medium border-t border-[#d4af35]/10">No active investments yet. Start generating wealth today.</div>
+                    <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden p-3">
+                        {recentDeposits.length === 0 ? (
+                            <div className="p-6 text-center text-xs font-bold uppercase tracking-widest text-[#d4af35]/60 m-2 border border-dashed border-[#d4af35]/20 rounded-xl">No deposits yet.</div>
                         ) : (
-                            <div className="overflow-x-auto">
-                                <table className="w-full text-left min-w-[650px]">
-                                    <thead className="bg-[#d4af35]/5 text-[#d4af35]/80 text-xs uppercase tracking-wider border-b border-[#d4af35]/20">
-                                        <tr>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Scheme</th>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Date</th>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Amount</th>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Yield</th>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Expiry Date</th>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-white/5">
-                                        {investments.slice(0, 5).map(inv => (
-                                            <tr key={inv._id} className="hover:bg-[#d4af35]/5 transition-colors">
-                                                <td className="px-6 py-5 whitespace-nowrap">
-                                                    <span className="bg-[#d4af35]/10 text-[#d4af35] border border-[#d4af35]/20 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider shadow-inner">{inv.schemeType} Plan</span>
-                                                </td>
-                                                <td className="px-6 py-5 text-slate-400 font-bold text-sm whitespace-nowrap">
-                                                    {new Date(inv.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
-                                                </td>
-                                                <td className="px-6 py-5 font-black text-white text-lg drop-shadow-[0_0_5px_rgba(255,255,255,0.2)] whitespace-nowrap">
-                                                    {inv.currency === 'USD' ? '$' : '₹'}{inv.amount.toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN')}
-                                                </td>
-                                                <td className="px-6 py-5 text-[#32e512] font-extrabold drop-shadow-[0_0_8px_rgba(50,229,18,0.2)] whitespace-nowrap">
-                                                    +{inv.currency === 'USD' ? '$' : '₹'}{(inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv)).toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN', { maximumFractionDigits: 0 })}
-                                                </td>
-                                                <td className="px-6 py-5 text-slate-400 font-bold text-sm whitespace-nowrap">
-                                                    {inv.maturesAt ? new Date(inv.maturesAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—'}
-                                                </td>
-                                                <td className="px-6 py-5 whitespace-nowrap">
-                                                    {inv.status === 'pending' && (
-                                                        <span className="inline-flex items-center gap-1.5 bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">
-                                                            <Clock className="w-3.5 h-3.5" /> Requested
-                                                        </span>
-                                                    )}
-                                                    {inv.status === 'active' && (
-                                                        <span className="inline-flex items-center gap-1.5 bg-[#d4af35]/10 text-[#d4af35] border border-[#d4af35]/20 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">
-                                                            <ShieldCheck className="w-3.5 h-3.5" /> Active
-                                                        </span>
-                                                    )}
-                                                    {inv.status === 'completed' && (
-                                                        <span className="inline-flex items-center gap-1.5 bg-slate-500/10 text-slate-300 border border-slate-500/20 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">
-                                                            <CheckCircle2 className="w-3.5 h-3.5" /> Completed
-                                                        </span>
-                                                    )}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
+                            <ul className="divide-y divide-[#d4af35]/10">
+                                {recentDeposits.map(dep => {
+                                    const isUsdt = dep.paymentMethod === 'usdt';
+                                    const displayAmount = isUsdt
+                                        ? `₹${(dep.amount * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })} (≈$${dep.amount})`
+                                        : `₹${dep.amount.toLocaleString('en-IN')}`;
+                                    return (
+                                        <li key={dep._id} className="p-4 flex justify-between items-center hover:bg-[#d4af35]/5 rounded-xl transition-colors group">
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-10 h-10 rounded-full bg-[#121212] flex items-center justify-center border border-[#d4af35]/30 shadow-inner group-hover:scale-110 transition-transform">
+                                                    {isUsdt ? <Coins className="w-5 h-5 text-[#d4af35]" /> : <IndianRupee className="w-5 h-5 text-[#d4af35]" />}
+                                                </div>
+                                                <div>
+                                                    <p className="text-white font-black tracking-wide group-hover:text-[#d4af35] transition-colors">{displayAmount}</p>
+                                                    <p className="text-[#d4af35]/60 text-[10px] mt-0.5 font-bold uppercase tracking-wider">{new Date(dep.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })} · <span className="text-white/40">{isUsdt ? 'USDT Crypto' : 'Bank Transfer'}</span></p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                {dep.status === 'approved' && <span className="text-[10px] font-black text-[#32e512] bg-[#32e512]/10 px-3 py-1.5 rounded-lg border border-[#32e512]/20 uppercase tracking-widest shadow-inner">Approved</span>}
+                                                {dep.status === 'pending' && <span className="text-[10px] font-black text-amber-500 bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20 uppercase tracking-widest shadow-inner">Pending</span>}
+                                                {dep.status === 'rejected' && <span className="text-[10px] font-black text-red-500 bg-red-500/10 px-3 py-1.5 rounded-lg border border-red-500/20 uppercase tracking-widest shadow-inner">Rejected</span>}
+                                            </div>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
                         )}
                     </div>
                 </div>
 
-                {/* Right column: Transactions + Deposits */}
-                <div className="space-y-6">
-                    {/* Recent Deposits */}
-                    <div>
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-black text-white">Recent Deposits</h2>
-                            <Link href="/dashboard/deposit" className="text-sm font-bold text-[#d4af35] underline decoration-[#d4af35]/50 decoration-2 hover:text-white transition-colors">+ New Deposit</Link>
-                        </div>
-                        <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden p-3">
-                            {recentDeposits.length === 0 ? (
-                                <div className="p-6 text-center text-xs font-bold uppercase tracking-widest text-[#d4af35]/60 m-2 border border-dashed border-[#d4af35]/20 rounded-xl">No deposits yet.</div>
-                            ) : (
-                                <ul className="divide-y divide-[#d4af35]/10">
-                                    {recentDeposits.map(dep => {
-                                        const isUsdt = dep.paymentMethod === 'usdt';
-                                        const displayAmount = isUsdt
-                                            ? `₹${(dep.amount * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })} (≈$${dep.amount})`
-                                            : `₹${dep.amount.toLocaleString('en-IN')}`;
-                                        return (
-                                            <li key={dep._id} className="p-4 flex justify-between items-center hover:bg-[#d4af35]/5 rounded-xl transition-colors group">
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-10 h-10 rounded-full bg-[#121212] flex items-center justify-center border border-[#d4af35]/30 shadow-inner group-hover:scale-110 transition-transform">
-                                                        {isUsdt ? <Coins className="w-5 h-5 text-[#d4af35]" /> : <IndianRupee className="w-5 h-5 text-[#d4af35]" />}
-                                                    </div>
-                                                    <div>
-                                                        <p className="text-white font-black tracking-wide group-hover:text-[#d4af35] transition-colors">{displayAmount}</p>
-                                                        <p className="text-[#d4af35]/60 text-[10px] mt-0.5 font-bold uppercase tracking-wider">{new Date(dep.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })} · <span className="text-white/40">{isUsdt ? 'USDT Crypto' : 'Bank Transfer'}</span></p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    {dep.status === 'approved' && <span className="text-[10px] font-black text-[#32e512] bg-[#32e512]/10 px-3 py-1.5 rounded-lg border border-[#32e512]/20 uppercase tracking-widest shadow-inner">Approved</span>}
-                                                    {dep.status === 'pending' && <span className="text-[10px] font-black text-amber-500 bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20 uppercase tracking-widest shadow-inner">Pending</span>}
-                                                    {dep.status === 'rejected' && <span className="text-[10px] font-black text-red-500 bg-red-500/10 px-3 py-1.5 rounded-lg border border-red-500/20 uppercase tracking-widest shadow-inner">Rejected</span>}
-                                                </div>
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Recent Transactions */}
-                    <div>
-                        <h2 className="text-xl font-black text-white mb-4">Recent Transactions</h2>
-                        <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden p-3 mb-10">
-                            {transactions.length === 0 ? (
-                                <div className="p-6 text-center text-xs font-bold uppercase tracking-widest text-[#d4af35]/60 m-2 border border-dashed border-[#d4af35]/20 rounded-xl">No transactions recorded.</div>
-                            ) : (
-                                <ul className="divide-y divide-[#d4af35]/10">
-                                    {transactions.slice(0, 5).map(tx => (
-                                        <li key={tx._id} className="p-4 flex justify-between items-center hover:bg-[#d4af35]/5 rounded-xl transition-colors group">
-                                            <div className="flex items-center gap-4">
-                                                <div className="w-10 h-10 rounded-full bg-[#121212] flex items-center justify-center border border-[#d4af35]/30 shadow-inner group-hover:scale-110 transition-transform">
-                                                    {tx.currency === 'USDT' || tx.currency === 'USD' ? (
-                                                        <Coins className="w-5 h-5 text-[#d4af35]" />
-                                                    ) : (
-                                                        <IndianRupee className="w-5 h-5 text-[#d4af35]" />
-                                                    )}
-                                                </div>
-                                                <div>
-                                                    <p className="text-white font-bold capitalize flex items-center gap-2 group-hover:text-[#d4af35] transition-colors">
-                                                        {tx.type.replace('_', ' ')}
-                                                        {(tx.type === 'referral_bonus' || tx.type === 'deposit') && <span className="bg-[#32e512]/10 text-[#32e512] border border-[#32e512]/20 text-[10px] px-2 py-0.5 rounded font-black tracking-widest uppercase ml-2">Credit</span>}
-                                                    </p>
-                                                    <p className="text-[#d4af35]/60 text-[10px] mt-0.5 font-bold uppercase tracking-wider">{new Date(tx.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
-                                                </div>
-                                            </div>
-                                            <div className={`font-black text-right ${(tx.type === 'referral_bonus' || tx.type === 'deposit') ? 'text-[#32e512]' : 'text-white'}`}>
-                                                {(tx.type === 'referral_bonus' || tx.type === 'deposit') ? '+' : ''}{formatTxAmount(tx)}
-                                                {(tx.currency === 'USDT' || tx.currency === 'USD') && (
-                                                    <div className="text-[10px] text-white/50 font-bold uppercase tracking-wider">{tx.amount.toFixed(2)} USDT{tx.currency === 'USDT' ? 'T' : ''}</div>
+                {/* Recent Transactions */}
+                <div>
+                    <h2 className="text-xl font-black text-white mb-4">Recent Transactions</h2>
+                    <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden p-3">
+                        {transactions.length === 0 ? (
+                            <div className="p-6 text-center text-xs font-bold uppercase tracking-widest text-[#d4af35]/60 m-2 border border-dashed border-[#d4af35]/20 rounded-xl">No transactions recorded.</div>
+                        ) : (
+                            <ul className="divide-y divide-[#d4af35]/10">
+                                {transactions.slice(0, 5).map(tx => (
+                                    <li key={tx._id} className="p-4 flex justify-between items-center hover:bg-[#d4af35]/5 rounded-xl transition-colors group">
+                                        <div className="flex items-center gap-4">
+                                            <div className="w-10 h-10 rounded-full bg-[#121212] flex items-center justify-center border border-[#d4af35]/30 shadow-inner group-hover:scale-110 transition-transform">
+                                                {tx.currency === 'USDT' || tx.currency === 'USD' ? (
+                                                    <Coins className="w-5 h-5 text-[#d4af35]" />
+                                                ) : (
+                                                    <IndianRupee className="w-5 h-5 text-[#d4af35]" />
                                                 )}
                                             </div>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </div>
+                                            <div>
+                                                <p className="text-white font-bold capitalize flex items-center gap-2 group-hover:text-[#d4af35] transition-colors">
+                                                    {tx.type.replace('_', ' ')}
+                                                    {(tx.type === 'referral_bonus' || tx.type === 'deposit') && <span className="bg-[#32e512]/10 text-[#32e512] border border-[#32e512]/20 text-[10px] px-2 py-0.5 rounded font-black tracking-widest uppercase ml-2">Credit</span>}
+                                                </p>
+                                                <p className="text-[#d4af35]/60 text-[10px] mt-0.5 font-bold uppercase tracking-wider">{new Date(tx.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
+                                            </div>
+                                        </div>
+                                        <div className={`font-black text-right ${(tx.type === 'referral_bonus' || tx.type === 'deposit') ? 'text-[#32e512]' : 'text-white'}`}>
+                                            {(tx.type === 'referral_bonus' || tx.type === 'deposit') ? '+' : ''}{formatTxAmount(tx)}
+                                            {(tx.currency === 'USDT' || tx.currency === 'USD') && (
+                                                <div className="text-[10px] text-white/50 font-bold uppercase tracking-wider">{tx.amount.toFixed(2)} USDT{tx.currency === 'USDT' ? 'T' : ''}</div>
+                                            )}
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                 </div>
             </div>
