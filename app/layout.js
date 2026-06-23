@@ -2,6 +2,7 @@ import './globals.css';
 import { DM_Sans, Space_Grotesk } from 'next/font/google';
 import NavbarWrapper from '@/components/NavbarWrapper';
 import FooterWrapper from '@/components/FooterWrapper';
+import { Analytics } from '@vercel/analytics/next';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -74,6 +75,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <FooterWrapper />
+        <Analytics />
       </body>
     </html>
   );
