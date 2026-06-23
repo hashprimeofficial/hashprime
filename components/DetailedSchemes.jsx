@@ -45,6 +45,17 @@ const schemes = [
         benefit: "500%",
         benefitCurrency: "USDT",
         investments: ["10L to 50L"],
+    },
+    {
+        id: "limited-offer",
+        title: "Limited Offer",
+        period: "6 Month Scheme",
+        duration: "6 Months",
+        benefit: "5%",
+        benefitCurrency: "Monthly ROI",
+        investments: ["Min 5L"],
+        featured: true,
+        fullWidth: true
     }
 ];
 
@@ -100,7 +111,8 @@ export default function DetailedSchemes() {
                     {schemes.map((scheme) => (
                         <div key={scheme.id} className={`is-card-premium group relative bg-[#121212] border rounded-[3rem] p-10 md:p-14 
                                                         hover:border-[#d4af35]/40 hover:shadow-[0_30px_60px_rgba(0,0,0,0.05)] transition-all duration-500 flex flex-col h-full overflow-hidden
-                                                        ${scheme.featured ? 'border-[#d4af35]/40 shadow-lg' : 'border-white/10/60'}`}>
+                                                        ${scheme.featured ? 'border-[#d4af35]/40 shadow-lg' : 'border-white/10/60'}
+                                                        ${scheme.fullWidth ? 'md:col-span-2' : ''}`}>
 
                             {/* Glassmorphic Accent */}
                             <div className="absolute top-0 right-0 w-48 h-48 bg-[#d4af35]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-[#d4af35]/20 transition-all duration-700" />
