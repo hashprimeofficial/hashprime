@@ -340,8 +340,8 @@
     "semantic_hash": "44abbd8a567e21bd354541b62e4a3f47"
   },
   "app/dashboard/page.js": {
-    "mtime": 1782209733.8103905,
-    "ast_hash": "14573b6094d836c82bfdafde5a320267",
+    "mtime": 1782211197.9785705,
+    "ast_hash": "3d76d7cca87daff4b94fbc3a37f75cf1",
     "semantic_hash": ""
   },
   "app/dashboard/profile/page.js": {

@@ -49,6 +49,18 @@ export default function DashboardOverview() {
         '5y_usd': 5.00,
     };
 
+    const SCHEME_NAMES = {
+        '3m_inr': '3-Month INR FD',
+        '6m_inr': '6-Month INR FD',
+        '1y_inr': '1-Year INR FD',
+        '5y_inr': '5-Year INR FD',
+        'limited_inr': 'Limited Offer INR',
+        '3m_usd': '3-Month USD FD',
+        '6m_usd': '6-Month USD FD',
+        '1y_usd': '1-Year USD FD',
+        '5y_usd': '5-Year USD FD',
+    };
+
     const getInrYield = (inv) => {
         if (inv.inrReward !== undefined && inv.inrReward !== null) return inv.inrReward;
         return Math.round(inv.amount * (SCHEME_RATES[inv.schemeType] || 0));
@@ -156,14 +168,26 @@ export default function DashboardOverview() {
                         <div className="p-1.5 bg-[#32e512]/10 rounded-lg"><ArrowUpRight className="w-4 h-4 text-[#32e512]" /></div>
                         <h3 className="font-bold text-sm tracking-wide uppercase text-[#32e512]/90">Expected Returns</h3>
                     </div>
-                    <div className="flex flex-col gap-2 mt-4 z-10 relative">
-                        <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
-                            <span className="text-white/60 font-bold uppercase tracking-widest text-[10px]">USDT Yield</span>
-                            <span className="font-black text-[#32e512] drop-shadow-[0_0_5px_rgba(50,229,18,0.3)] text-lg">+${expectedUSD.toLocaleString('en-US')}</span>
-                        </div>
-                        <div className="flex justify-between items-center text-sm pt-1">
-                            <span className="text-white/60 font-bold uppercase tracking-widest text-[10px]">INR Yield</span>
-                            <span className="font-black text-[#32e512] drop-shadow-[0_0_5px_rgba(50,229,18,0.3)] text-lg">+₹{expectedINR.toLocaleString('en-IN')}</span>
+                    <div className="flex flex-col gap-2 mt-4 z-10 relative max-h-[220px] overflow-y-auto pr-1">
+                        {investments.filter(i => i.status === 'active' || i.status === 'completed').length === 0 ? (
+                            <div className="text-xs text-slate-500 font-medium py-2">No active investments.</div>
+                        ) : (
+                            investments.filter(i => i.status === 'active' || i.status === 'completed').map((inv, idx) => {
+                                const yieldVal = inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv);
+                                const displayYield = inv.currency === 'USD' ? `$${yieldVal.toLocaleString('en-US')}` : `₹${yieldVal.toLocaleString('en-IN')}`;
+                                return (
+                                    <div key={inv._id || idx} className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
+                                        <span className="text-white/60 font-bold uppercase tracking-widest text-[9px]">{SCHEME_NAMES[inv.schemeType] || inv.schemeType.replace('_', ' ').toUpperCase()}</span>
+                                        <span className="font-black text-[#32e512]">+{displayYield}</span>
+                                    </div>
+                                );
+                            })
+                        )}
+                        <div className="flex justify-between items-center text-sm pt-2 font-bold border-t border-[#32e512]/30 mt-1">
+                            <span className="text-white uppercase tracking-widest text-[10px] font-black">Total</span>
+                            <span className="font-black text-[#32e512] drop-shadow-[0_0_8px_rgba(50,229,18,0.4)] text-lg">
+                                ₹{(expectedINR + (expectedUSD * usdtToInr)).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
+                            </span>
                         </div>
                     </div>
                 </motion.div>
@@ -181,13 +205,14 @@ export default function DashboardOverview() {
                             <div className="p-8 text-center text-slate-500 font-medium border-t border-[#d4af35]/10">No active investments yet. Start generating wealth today.</div>
                         ) : (
                             <div className="overflow-x-auto">
-                                <table className="w-full text-left min-w-[600px]">
+                                <table className="w-full text-left min-w-[650px]">
                                     <thead className="bg-[#d4af35]/5 text-[#d4af35]/80 text-xs uppercase tracking-wider border-b border-[#d4af35]/20">
                                         <tr>
                                             <th className="px-6 py-4 font-black text-[#d4af35]">Scheme</th>
                                             <th className="px-6 py-4 font-black text-[#d4af35]">Date</th>
                                             <th className="px-6 py-4 font-black text-[#d4af35]">Amount</th>
                                             <th className="px-6 py-4 font-black text-[#d4af35]">Yield</th>
+                                            <th className="px-6 py-4 font-black text-[#d4af35]">Expiry Date</th>
                                             <th className="px-6 py-4 font-black text-[#d4af35]">Status</th>
                                         </tr>
                                     </thead>
@@ -205,6 +230,9 @@ export default function DashboardOverview() {
                                                 </td>
                                                 <td className="px-6 py-5 text-[#32e512] font-extrabold drop-shadow-[0_0_8px_rgba(50,229,18,0.2)] whitespace-nowrap">
                                                     +{inv.currency === 'USD' ? '$' : '₹'}{(inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv)).toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN', { maximumFractionDigits: 0 })}
+                                                </td>
+                                                <td className="px-6 py-5 text-slate-400 font-bold text-sm whitespace-nowrap">
+                                                    {inv.maturesAt ? new Date(inv.maturesAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—'}
                                                 </td>
                                                 <td className="px-6 py-5 whitespace-nowrap">
                                                     {inv.status === 'pending' && (
@@ -232,36 +260,8 @@ export default function DashboardOverview() {
                     </div>
                 </div>
 
-                {/* Right column: Referral + Transactions + Deposits */}
+                {/* Right column: Transactions + Deposits */}
                 <div className="space-y-6">
-                    {/* Referral Link Card */}
-                    <div>
-                        <h2 className="text-xl font-black text-white mb-4">Invite &amp; Earn 5% Instant</h2>
-                        <div className="bg-gradient-to-br from-[#0A0A0A] to-[#121212] border border-[#d4af35]/40 p-6 rounded-2xl shadow-[0_8px_32px_rgba(212,175,53,0.1)] relative overflow-hidden group">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af35]/10 blur-[40px] rounded-full group-hover:bg-[#d4af35]/20 transition-colors"></div>
-                            <h3 className="text-lg font-bold text-white mb-2 relative z-10 flex items-center gap-2">
-                                Your Referral Link <div className="p-1 bg-[#d4af35]/20 rounded"><Users className="w-4 h-4 text-[#d4af35]" /></div>
-                            </h3>
-                            <p className="text-sm text-white/60 mb-4 font-medium relative z-10">Earn 5% of capital invested by your referrals, paid into your Referral Wallet.</p>
-                            <div className="mb-4 bg-[#0A0A0A]/50 p-4 rounded-xl border border-[#d4af35]/20 flex justify-between items-center relative z-10 shadow-inner">
-                                <div>
-                                    <p className="text-[10px] text-[#d4af35]/80 font-bold uppercase tracking-widest mb-1">Referral Balance</p>
-                                    <p className="text-3xl font-black text-white drop-shadow-[0_0_5px_rgba(212,175,53,0.2)]">₹{refWallet.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</p>
-                                </div>
-                                <Link href="/dashboard/withdraw" className="bg-[#121212] border border-[#d4af35]/50 text-[#d4af35] text-xs font-bold px-5 py-2.5 rounded-lg hover:bg-[#d4af35] hover:text-[#0A0A0A] transition-colors shadow-lg">
-                                    Withdraw
-                                </Link>
-                            </div>
-                            <div className="flex bg-[#0A0A0A] border border-[#d4af35]/30 rounded-lg overflow-hidden shadow-inner relative z-10 focus-within:border-[#d4af35] focus-within:ring-1 focus-within:ring-[#d4af35] transition-all">
-                                <input readOnly value={typeof window !== 'undefined' ? `${window.location.origin}/register?ref=${user.referralCode || user._id}` : ''} className="flex-1 bg-transparent text-white px-4 py-3 text-sm font-medium outline-none" />
-                                <button onClick={copyRefLink} className="bg-[#d4af35]/10 hover:bg-[#d4af35]/20 px-5 py-3 text-[#d4af35] font-bold transition-colors flex items-center gap-2 border-l border-[#d4af35]/30">
-                                    {copied ? <CheckCircle2 className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                                    <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy'}</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Recent Deposits */}
                     <div>
                         <div className="flex justify-between items-center mb-4">
