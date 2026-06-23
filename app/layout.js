@@ -1,5 +1,6 @@
 import './globals.css';
 import { DM_Sans, Space_Grotesk } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import NavbarWrapper from '@/components/NavbarWrapper';
 import FooterWrapper from '@/components/FooterWrapper';
 
@@ -74,6 +75,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <FooterWrapper />
+        <Analytics />
       </body>
     </html>
   );
