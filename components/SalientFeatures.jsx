@@ -5,7 +5,50 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Briefcase, ShieldCheck, PieChart, HeadphonesIcon, ArrowUpRight } from "lucide-react";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+
+function PremiumTechNetwork() {
+    return (
+        <div className="w-full h-full relative flex items-center justify-center">
+            <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_40px_rgba(212,175,53,0.25)]">
+                <defs>
+                    <linearGradient id="netGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#d4af35" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="#a37f1c" stopOpacity="0.2" />
+                    </linearGradient>
+                </defs>
+
+                {/* Connection lines */}
+                <g opacity="0.3" stroke="url(#netGold)" strokeWidth="0.75">
+                    <line x1="100" y1="40" x2="60" y2="90" />
+                    <line x1="100" y1="40" x2="140" y2="90" />
+                    <line x1="60" y1="90" x2="100" y2="140" />
+                    <line x1="140" y1="90" x2="100" y2="140" />
+                    <line x1="60" y1="90" x2="140" y2="90" />
+                    <line x1="100" y1="40" x2="100" y2="140" />
+                    <line x1="100" y1="40" x2="100" y2="90" />
+                    <line x1="100" y1="140" x2="100" y2="90" />
+                </g>
+
+                {/* Outer Ring */}
+                <circle cx="100" cy="90" r="65" fill="none" stroke="#d4af35" strokeWidth="0.5" strokeDasharray="5 5" opacity="0.2" className="animate-spin" style={{ transformOrigin: '100px 90px', animationDuration: '40s' }} />
+
+                {/* Nodes */}
+                <circle cx="100" cy="40" r="5" fill="#d4af35" className="animate-pulse" />
+                <circle cx="100" cy="40" r="10" fill="none" stroke="#d4af35" strokeWidth="0.5" opacity="0.4" className="animate-ping" style={{ animationDuration: '3s' }} />
+
+                <circle cx="60" cy="90" r="5" fill="#ffffff" />
+                <circle cx="140" cy="90" r="5" fill="#ffffff" />
+                
+                <circle cx="100" cy="140" r="5" fill="#d4af35" className="animate-pulse" />
+                <circle cx="100" cy="140" r="10" fill="none" stroke="#d4af35" strokeWidth="0.5" opacity="0.4" className="animate-ping" style={{ animationDuration: '4s' }} />
+
+                {/* Core animated node */}
+                <circle cx="100" cy="90" r="8" fill="#0A0A0A" stroke="#d4af35" strokeWidth="1.5" />
+                <circle cx="100" cy="90" r="3" fill="#ffffff" className="animate-ping" style={{ animationDuration: '1.5s' }} />
+            </svg>
+        </div>
+    );
+}
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -126,12 +169,7 @@ export default function SalientFeatures() {
 
                     <div className="sf-header-animate flex-shrink-0 w-full max-w-[320px] lg:max-w-none lg:w-[450px] aspect-square relative mx-auto lg:mx-0">
                         <div className="absolute inset-0 bg-[#d4af35]/5 rounded-full blur-[80px] animate-pulse" />
-                        <DotLottieReact
-                            src="https://lottie.host/8cdd7866-124a-49a2-841f-3774cb1686fb/Wa3EzgZqx3.lottie"
-                            autoplay
-                            loop
-                            style={{ width: '100%', height: '100%' }}
-                        />
+                        <PremiumTechNetwork />
                     </div>
                 </div>
 

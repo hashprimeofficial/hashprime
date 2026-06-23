@@ -440,9 +440,9 @@
     "semantic_hash": "8238f41d2bec3d38526f9b97f80e3d55"
   },
   "components/DetailedSchemes.jsx": {
-    "mtime": 1775236637.0,
-    "ast_hash": "e5f3df003051f0ad11f266039bfa0dbb",
-    "semantic_hash": "e5f3df003051f0ad11f266039bfa0dbb"
+    "mtime": 1782191177.546807,
+    "ast_hash": "6c7dfe410c814fa9b21f00dc811654e1",
+    "semantic_hash": "6c7dfe410c814fa9b21f00dc811654e1"
   },
   "components/Footer.jsx": {
     "mtime": 1782189659.1366491,
@@ -600,7 +600,7 @@
     "semantic_hash": "2e973ad153e939efcc96ffc0f74ed29b"
   },
   "next.config.mjs": {
-    "mtime": 1775236637.0,
+    "mtime": 1782190608.9456544,
     "ast_hash": "a5dd0abfa524127b82d702f27c851329",
     "semantic_hash": "a5dd0abfa524127b82d702f27c851329"
   },

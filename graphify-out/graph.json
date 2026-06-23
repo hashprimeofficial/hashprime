@@ -2842,39 +2842,6 @@
       "id": "components_cryptomarquee_cryptomarquee"
     },
     {
-      "label": "DetailedSchemes.jsx",
-      "file_type": "code",
-      "source_file": "components/DetailedSchemes.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 39,
-      "norm_label": "detailedschemes.jsx",
-      "community_name": "Community 39",
-      "id": "components_detailedschemes"
-    },
-    {
-      "label": "schemes",
-      "file_type": "code",
-      "source_file": "components/DetailedSchemes.jsx",
-      "source_location": "L11",
-      "_origin": "ast",
-      "community": 39,
-      "norm_label": "schemes",
-      "community_name": "Community 39",
-      "id": "components_detailedschemes_schemes"
-    },
-    {
-      "label": "DetailedSchemes()",
-      "file_type": "code",
-      "source_file": "components/DetailedSchemes.jsx",
-      "source_location": "L51",
-      "_origin": "ast",
-      "community": 39,
-      "norm_label": "detailedschemes()",
-      "community_name": "Community 39",
-      "id": "components_detailedschemes_detailedschemes"
-    },
-    {
       "label": "FooterWrapper.jsx",
       "file_type": "code",
       "source_file": "components/FooterWrapper.jsx",
@@ -3707,8 +3674,8 @@
       "_origin": "ast",
       "community": 78,
       "norm_label": "page.js",
-      "id": "login_page",
-      "community_name": "Community 78"
+      "community_name": "Community 78",
+      "id": "login_page"
     },
     {
       "label": "LoginPage()",
@@ -3718,8 +3685,8 @@
       "_origin": "ast",
       "community": 78,
       "norm_label": "loginpage()",
-      "id": "login_page_loginpage",
-      "community_name": "Community 78"
+      "community_name": "Community 78",
+      "id": "login_page_loginpage"
     },
     {
       "label": "page.js",
@@ -3729,8 +3696,8 @@
       "_origin": "ast",
       "community": 22,
       "norm_label": "page.js",
-      "id": "investments_page",
-      "community_name": "Community 22"
+      "community_name": "Community 22",
+      "id": "investments_page"
     },
     {
       "label": "fetcher()",
@@ -3740,8 +3707,8 @@
       "_origin": "ast",
       "community": 22,
       "norm_label": "fetcher()",
-      "id": "investments_page_fetcher",
-      "community_name": "Community 22"
+      "community_name": "Community 22",
+      "id": "investments_page_fetcher"
     },
     {
       "label": "SCHEME_OPTIONS",
@@ -3751,8 +3718,8 @@
       "_origin": "ast",
       "community": 22,
       "norm_label": "scheme_options",
-      "id": "investments_page_scheme_options",
-      "community_name": "Community 22"
+      "community_name": "Community 22",
+      "id": "investments_page_scheme_options"
     },
     {
       "label": "StatusBadge()",
@@ -3762,8 +3729,8 @@
       "_origin": "ast",
       "community": 22,
       "norm_label": "statusbadge()",
-      "id": "investments_page_statusbadge",
-      "community_name": "Community 22"
+      "community_name": "Community 22",
+      "id": "investments_page_statusbadge"
     },
     {
       "label": "AdminInvestmentsPage()",
@@ -3773,8 +3740,8 @@
       "_origin": "ast",
       "community": 22,
       "norm_label": "admininvestmentspage()",
-      "id": "investments_page_admininvestmentspage",
-      "community_name": "Community 22"
+      "community_name": "Community 22",
+      "id": "investments_page_admininvestmentspage"
     },
     {
       "label": "page.js",
@@ -3784,8 +3751,8 @@
       "_origin": "ast",
       "community": 33,
       "norm_label": "page.js",
-      "id": "admin_page",
-      "community_name": "Community 33"
+      "community_name": "Community 33",
+      "id": "admin_page"
     },
     {
       "label": "fetcher()",
@@ -3795,8 +3762,8 @@
       "_origin": "ast",
       "community": 33,
       "norm_label": "fetcher()",
-      "id": "admin_page_fetcher",
-      "community_name": "Community 33"
+      "community_name": "Community 33",
+      "id": "admin_page_fetcher"
     },
     {
       "label": "AdminOverview()",
@@ -3806,8 +3773,8 @@
       "_origin": "ast",
       "community": 33,
       "norm_label": "adminoverview()",
-      "id": "admin_page_adminoverview",
-      "community_name": "Community 33"
+      "community_name": "Community 33",
+      "id": "admin_page_adminoverview"
     },
     {
       "label": "route.js",
@@ -3817,8 +3784,8 @@
       "_origin": "ast",
       "community": 23,
       "norm_label": "route.js",
-      "id": "investments_route",
-      "community_name": "Community 23"
+      "community_name": "Community 23",
+      "id": "investments_route"
     },
     {
       "label": "INR_SCHEMES",
@@ -3828,8 +3795,8 @@
       "_origin": "ast",
       "community": 23,
       "norm_label": "inr_schemes",
-      "id": "investments_route_inr_schemes",
-      "community_name": "Community 23"
+      "community_name": "Community 23",
+      "id": "investments_route_inr_schemes"
     },
     {
       "label": "USD_SCHEMES",
@@ -3839,8 +3806,8 @@
       "_origin": "ast",
       "community": 23,
       "norm_label": "usd_schemes",
-      "id": "investments_route_usd_schemes",
-      "community_name": "Community 23"
+      "community_name": "Community 23",
+      "id": "investments_route_usd_schemes"
     },
     {
       "label": "GET()",
@@ -3850,8 +3817,8 @@
       "_origin": "ast",
       "community": 23,
       "norm_label": "get()",
-      "id": "investments_route_get",
-      "community_name": "Community 23"
+      "community_name": "Community 23",
+      "id": "investments_route_get"
     },
     {
       "label": "POST()",
@@ -3861,8 +3828,8 @@
       "_origin": "ast",
       "community": 23,
       "norm_label": "post()",
-      "id": "investments_route_post",
-      "community_name": "Community 23"
+      "community_name": "Community 23",
+      "id": "investments_route_post"
     },
     {
       "label": "route.js",
@@ -3872,8 +3839,8 @@
       "_origin": "ast",
       "community": 29,
       "norm_label": "route.js",
-      "id": "invest_route",
-      "community_name": "Community 29"
+      "community_name": "Community 29",
+      "id": "invest_route"
     },
     {
       "label": "INR_SCHEMES",
@@ -3883,8 +3850,8 @@
       "_origin": "ast",
       "community": 29,
       "norm_label": "inr_schemes",
-      "id": "invest_route_inr_schemes",
-      "community_name": "Community 29"
+      "community_name": "Community 29",
+      "id": "invest_route_inr_schemes"
     },
     {
       "label": "USD_SCHEMES",
@@ -3894,8 +3861,8 @@
       "_origin": "ast",
       "community": 29,
       "norm_label": "usd_schemes",
-      "id": "invest_route_usd_schemes",
-      "community_name": "Community 29"
+      "community_name": "Community 29",
+      "id": "invest_route_usd_schemes"
     },
     {
       "label": "POST()",
@@ -3905,8 +3872,8 @@
       "_origin": "ast",
       "community": 29,
       "norm_label": "post()",
-      "id": "invest_route_post",
-      "community_name": "Community 29"
+      "community_name": "Community 29",
+      "id": "invest_route_post"
     },
     {
       "label": "page.js",
@@ -3916,8 +3883,8 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "page.js",
-      "id": "invest_page",
-      "community_name": "Community 21"
+      "community_name": "Community 21",
+      "id": "invest_page"
     },
     {
       "label": "fetcher()",
@@ -3927,8 +3894,8 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "fetcher()",
-      "id": "invest_page_fetcher",
-      "community_name": "Community 21"
+      "community_name": "Community 21",
+      "id": "invest_page_fetcher"
     },
     {
       "label": "INR_SCHEMES",
@@ -3938,8 +3905,8 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "inr_schemes",
-      "id": "invest_page_inr_schemes",
-      "community_name": "Community 21"
+      "community_name": "Community 21",
+      "id": "invest_page_inr_schemes"
     },
     {
       "label": "USD_SCHEMES",
@@ -3949,8 +3916,8 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "usd_schemes",
-      "id": "invest_page_usd_schemes",
-      "community_name": "Community 21"
+      "community_name": "Community 21",
+      "id": "invest_page_usd_schemes"
     },
     {
       "label": "InvestPage()",
@@ -3960,8 +3927,8 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "investpage()",
-      "id": "invest_page_investpage",
-      "community_name": "Community 21"
+      "community_name": "Community 21",
+      "id": "invest_page_investpage"
     },
     {
       "label": "page.js",
@@ -3971,8 +3938,8 @@
       "_origin": "ast",
       "community": 45,
       "norm_label": "page.js",
-      "id": "dashboard_page",
-      "community_name": "Community 45"
+      "community_name": "Community 45",
+      "id": "dashboard_page"
     },
     {
       "label": "fetcher()",
@@ -3982,8 +3949,8 @@
       "_origin": "ast",
       "community": 45,
       "norm_label": "fetcher()",
-      "id": "dashboard_page_fetcher",
-      "community_name": "Community 45"
+      "community_name": "Community 45",
+      "id": "dashboard_page_fetcher"
     },
     {
       "label": "DashboardOverview()",
@@ -3993,8 +3960,8 @@
       "_origin": "ast",
       "community": 45,
       "norm_label": "dashboardoverview()",
-      "id": "dashboard_page_dashboardoverview",
-      "community_name": "Community 45"
+      "community_name": "Community 45",
+      "id": "dashboard_page_dashboardoverview"
     },
     {
       "label": "Community.jsx",
@@ -4004,8 +3971,8 @@
       "_origin": "ast",
       "community": 27,
       "norm_label": "community.jsx",
-      "id": "components_community",
-      "community_name": "Community 27"
+      "community_name": "Community 27",
+      "id": "components_community"
     },
     {
       "label": "CONTACT_INFO",
@@ -4015,8 +3982,8 @@
       "_origin": "ast",
       "community": 27,
       "norm_label": "contact_info",
-      "id": "components_community_contact_info",
-      "community_name": "Community 27"
+      "community_name": "Community 27",
+      "id": "components_community_contact_info"
     },
     {
       "label": "SOCIALS",
@@ -4026,8 +3993,8 @@
       "_origin": "ast",
       "community": 27,
       "norm_label": "socials",
-      "id": "components_community_socials",
-      "community_name": "Community 27"
+      "community_name": "Community 27",
+      "id": "components_community_socials"
     },
     {
       "label": "ContactSection()",
@@ -4037,8 +4004,8 @@
       "_origin": "ast",
       "community": 27,
       "norm_label": "contactsection()",
-      "id": "components_community_contactsection",
-      "community_name": "Community 27"
+      "community_name": "Community 27",
+      "id": "components_community_contactsection"
     },
     {
       "label": "Footer.jsx",
@@ -4048,8 +4015,8 @@
       "_origin": "ast",
       "community": 17,
       "norm_label": "footer.jsx",
-      "id": "components_footer",
-      "community_name": "Community 17"
+      "community_name": "Community 17",
+      "id": "components_footer"
     },
     {
       "label": "BackToTop()",
@@ -4059,8 +4026,8 @@
       "_origin": "ast",
       "community": 17,
       "norm_label": "backtotop()",
-      "id": "components_footer_backtotop",
-      "community_name": "Community 17"
+      "community_name": "Community 17",
+      "id": "components_footer_backtotop"
     },
     {
       "label": "Footer()",
@@ -4070,8 +4037,8 @@
       "_origin": "ast",
       "community": 17,
       "norm_label": "footer()",
-      "id": "components_footer_footer",
-      "community_name": "Community 17"
+      "community_name": "Community 17",
+      "id": "components_footer_footer"
     },
     {
       "label": "Investment.js",
@@ -4081,8 +4048,8 @@
       "_origin": "ast",
       "community": 85,
       "norm_label": "investment.js",
-      "id": "models_investment",
-      "community_name": "Community 85"
+      "community_name": "Community 85",
+      "id": "models_investment"
     },
     {
       "label": "InvestmentSchema",
@@ -4092,8 +4059,41 @@
       "_origin": "ast",
       "community": 85,
       "norm_label": "investmentschema",
-      "id": "models_investment_investmentschema",
-      "community_name": "Community 85"
+      "community_name": "Community 85",
+      "id": "models_investment_investmentschema"
+    },
+    {
+      "label": "DetailedSchemes.jsx",
+      "file_type": "code",
+      "source_file": "components/DetailedSchemes.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 39,
+      "norm_label": "detailedschemes.jsx",
+      "id": "components_detailedschemes",
+      "community_name": "Community 39"
+    },
+    {
+      "label": "schemes",
+      "file_type": "code",
+      "source_file": "components/DetailedSchemes.jsx",
+      "source_location": "L11",
+      "_origin": "ast",
+      "community": 39,
+      "norm_label": "schemes",
+      "id": "components_detailedschemes_schemes",
+      "community_name": "Community 39"
+    },
+    {
+      "label": "DetailedSchemes()",
+      "file_type": "code",
+      "source_file": "components/DetailedSchemes.jsx",
+      "source_location": "L62",
+      "_origin": "ast",
+      "community": 39,
+      "norm_label": "detailedschemes()",
+      "id": "components_detailedschemes_detailedschemes",
+      "community_name": "Community 39"
     }
   ],
   "links": [
@@ -7132,26 +7132,6 @@
       "target": "components_cryptomarquee_formatprice"
     },
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/DetailedSchemes.jsx",
-      "source_location": "L51",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "components_detailedschemes",
-      "target": "components_detailedschemes_detailedschemes"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/DetailedSchemes.jsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "components_detailedschemes",
-      "target": "components_detailedschemes_schemes"
-    },
-    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -7916,7 +7896,28 @@
       "confidence_score": 1.0,
       "source": "models_investment",
       "target": "models_investment_investmentschema"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/DetailedSchemes.jsx",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_detailedschemes",
+      "target": "components_detailedschemes_detailedschemes"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/DetailedSchemes.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_detailedschemes",
+      "target": "components_detailedschemes_schemes"
     }
   ],
-  "hyperedges": []
+  "hyperedges": [],
+  "built_at_commit": "ae1214a6836570c11ca8b1a6003a74dbc9bde8bc"
 }

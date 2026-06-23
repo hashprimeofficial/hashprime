@@ -1,11 +1,60 @@
 "use client";
 
-import { useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import Link from 'next/link';
-import { ArrowUpRight, Play, TrendingUp, ShieldCheck } from 'lucide-react';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ArrowUpRight, Play, TrendingUp, ShieldCheck, ArrowRightLeft } from "lucide-react";
+import Link from "next/link";
+
+function GoldenCryptoGlobe() {
+    return (
+        <div className="w-full h-full relative flex items-center justify-center">
+            <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_50px_rgba(212,175,53,0.35)]">
+                <defs>
+                    <radialGradient id="centralGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="#d4af35" stopOpacity="0.4" />
+                        <stop offset="70%" stopColor="#d4af35" stopOpacity="0.15" />
+                        <stop offset="100%" stopColor="#d4af35" stopOpacity="0" />
+                    </radialGradient>
+                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#f5e0a3" />
+                        <stop offset="50%" stopColor="#d4af35" />
+                        <stop offset="100%" stopColor="#a37f1c" />
+                    </linearGradient>
+                </defs>
+
+                {/* Background Glow */}
+                <circle cx="100" cy="100" r="80" fill="url(#centralGlow)" />
+
+                {/* Nested Orbiting Rings */}
+                <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '20s' }}>
+                    <circle cx="100" cy="100" r="70" fill="none" stroke="url(#goldGrad)" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.3" />
+                    <circle cx="100" cy="30" r="4" fill="#d4af35" className="animate-pulse" />
+                    <circle cx="100" cy="170" r="3" fill="#ffffff" />
+                </g>
+
+                <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '30s', animationDirection: 'reverse' }}>
+                    <ellipse cx="100" cy="100" rx="80" ry="30" fill="none" stroke="#d4af35" strokeWidth="0.75" opacity="0.4" transform="rotate(45 100 100)" />
+                    <circle cx="43" cy="43" r="3" fill="#d4af35" />
+                </g>
+
+                <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '15s' }}>
+                    <ellipse cx="100" cy="100" rx="80" ry="30" fill="none" stroke="#ffffff" strokeWidth="0.5" opacity="0.25" transform="rotate(-45 100 100)" />
+                    <circle cx="157" cy="43" r="3.5" fill="#ffffff" className="animate-pulse" />
+                </g>
+
+                {/* Central Sphere / Core */}
+                <circle cx="100" cy="100" r="28" fill="#0A0A0A" stroke="url(#goldGrad)" strokeWidth="1.5" />
+                <circle cx="100" cy="100" r="22" fill="url(#centralGlow)" />
+                
+                {/* Golden Blockchain Grid inside the core */}
+                <path d="M 88 100 L 112 100 M 100 88 L 100 112 M 91 91 L 109 109 M 91 109 L 109 91" stroke="#d4af35" strokeWidth="0.75" opacity="0.8" />
+                <circle cx="100" cy="100" r="4" fill="#ffffff" className="animate-ping" style={{ animationDuration: '2s' }} />
+                <circle cx="100" cy="100" r="2" fill="#d4af35" />
+            </svg>
+        </div>
+    );
+}
 
 gsap.registerPlugin(useGSAP);
 
@@ -87,12 +136,7 @@ export default function Hero() {
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="absolute w-[300px] h-[300px] bg-[#d4af35] rounded-full blur-[100px] opacity-[0.08] animate-pulse"></div>
                         <div className="w-[120%] h-[120%] relative z-10">
-                            <DotLottieReact
-                                src="https://lottie.host/e61885b3-055e-4e5d-a614-d3cefb60503a/2plPOrpn03.lottie"
-                                autoplay
-                                loop
-                                className="w-full h-full scale-[1.2] drop-shadow-[0_0_20px_rgba(212,175,53,0.2)]"
-                            />
+                            <GoldenCryptoGlobe />
                         </div>
                     </div>
 
