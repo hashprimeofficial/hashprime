@@ -1,0 +1,116 @@
+﻿{
+    "deposits":  [
+                     {
+                         "_id":  "69b03956ec48b82228f95425",
+                         "userId":  "69b035aff75e9817cb0e2bfc",
+                         "amount":  1000,
+                         "paymentMethod":  "usdt",
+                         "screenshotUrl":  "https://res.cloudinary.com/dnjbxjkgt/image/upload/v1773156693/hashprime_deposit_screenshots/69b035aff75e9817cb0e2bfc/c1d5u4ck7kyzfqoqxop2.jpg",
+                         "status":  "rejected",
+                         "adminNote":  "Fake payment",
+                         "createdAt":  "2026-03-10T15:31:34.808Z",
+                         "updatedAt":  "2026-03-10T15:32:45.916Z",
+                         "__v":  0
+                     },
+                     {
+                         "_id":  "69b039c196ec9ffd44be0dbf",
+                         "userId":  "69b035aff75e9817cb0e2bfc",
+                         "amount":  1000,
+                         "paymentMethod":  "usdt",
+                         "screenshotUrl":  "https://res.cloudinary.com/dnjbxjkgt/image/upload/v1773156800/hashprime_deposit_screenshots/69b035aff75e9817cb0e2bfc/rynszbraof4rmkg7dywd.png",
+                         "status":  "approved",
+                         "adminNote":  "",
+                         "createdAt":  "2026-03-10T15:33:21.154Z",
+                         "updatedAt":  "2026-03-10T15:33:45.008Z",
+                         "__v":  0
+                     },
+                     {
+                         "_id":  "69b03c58e0ce5bda76922476",
+                         "userId":  "69b035aff75e9817cb0e2bfc",
+                         "amount":  150000,
+                         "paymentMethod":  "bank",
+                         "screenshotUrl":  "https://res.cloudinary.com/dnjbxjkgt/image/upload/v1773157463/hashprime_deposit_screenshots/69b035aff75e9817cb0e2bfc/o6qd2zrf4l1zflods6kl.png",
+                         "status":  "approved",
+                         "adminNote":  "",
+                         "createdAt":  "2026-03-10T15:44:24.553Z",
+                         "updatedAt":  "2026-03-10T15:44:49.547Z",
+                         "__v":  0
+                     },
+                     {
+                         "_id":  "69b03f298a9687bfe0ce08c6",
+                         "userId":  "69b035aff75e9817cb0e2bfc",
+                         "amount":  7707.92,
+                         "paymentMethod":  "bank",
+                         "screenshotUrl":  "https://res.cloudinary.com/dnjbxjkgt/image/upload/v1773158184/hashprime_deposit_screenshots/69b035aff75e9817cb0e2bfc/ikmtu0qn14npfatptszb.png",
+                         "status":  "approved",
+                         "adminNote":  "",
+                         "createdAt":  "2026-03-10T15:56:25.221Z",
+                         "updatedAt":  "2026-03-10T15:56:44.242Z",
+                         "__v":  0
+                     },
+                     {
+                         "_id":  "69b044e242dd776da7d05fec",
+                         "userId":  "69b0443ea42a038b0f43b84c",
+                         "amount":  3000,
+                         "paymentMethod":  "usdt",
+                         "screenshotUrl":  "https://res.cloudinary.com/dnjbxjkgt/image/upload/v1773159649/hashprime_deposit_screenshots/69b0443ea42a038b0f43b84c/opay1iv7g9zuq3wkltvp.jpg",
+                         "status":  "approved",
+                         "adminNote":  "",
+                         "createdAt":  "2026-03-10T16:20:50.164Z",
+                         "updatedAt":  "2026-03-10T16:21:03.515Z",
+                         "__v":  0
+                     },
+                     {
+                         "_id":  "69b594e13f894aee67d3363a",
+                         "userId":  "69b0443ea42a038b0f43b84c",
+                         "amount":  50000,
+                         "currency":  "INR",
+                         "paymentMethod":  "bank",
+                         "screenshotUrl":  "https://res.cloudinary.com/dnjbxjkgt/image/upload/v1773507815/hashprime_deposit_screenshots/69b0443ea42a038b0f43b84c/lm284bxxylbmyfcgfdwz.jpg",
+                         "status":  "approved",
+                         "adminNote":  "",
+                         "createdAt":  "2026-03-14T17:03:29.620Z",
+                         "updatedAt":  "2026-03-14T17:05:24.912Z",
+                         "__v":  0
+                     },
+                     {
+                         "_id":  "69b594f63f894aee67d33647",
+                         "userId":  "69b0443ea42a038b0f43b84c",
+                         "amount":  5000,
+                         "currency":  "INR",
+                         "paymentMethod":  "usdt",
+                         "screenshotUrl":  "https://res.cloudinary.com/dnjbxjkgt/image/upload/v1773507837/hashprime_deposit_screenshots/69b0443ea42a038b0f43b84c/dgmj2eseuszxz9fzql9l.jpg",
+                         "status":  "approved",
+                         "adminNote":  "",
+                         "createdAt":  "2026-03-14T17:03:50.689Z",
+                         "updatedAt":  "2026-03-14T17:04:49.961Z",
+                         "__v":  0
+                     },
+                     {
+                         "_id":  "69b59da1f740873e9f1cc949",
+                         "userId":  "69b0443ea42a038b0f43b84c",
+                         "amount":  6500,
+                         "currency":  "INR",
+                         "paymentMethod":  "usdt",
+                         "screenshotUrl":  "https://res.cloudinary.com/dnjbxjkgt/image/upload/v1773510055/hashprime_deposit_screenshots/69b0443ea42a038b0f43b84c/yi0k4y9ypkhr3cwtkxer.jpg",
+                         "status":  "approved",
+                         "adminNote":  "",
+                         "createdAt":  "2026-03-14T17:40:49.085Z",
+                         "updatedAt":  "2026-03-14T17:41:08.360Z",
+                         "__v":  0
+                     },
+                     {
+                         "_id":  "69ce7949617c551396717be1",
+                         "userId":  "69ce778af46532ec420784a6",
+                         "amount":  2000000,
+                         "currency":  "INR",
+                         "paymentMethod":  "bank",
+                         "screenshotUrl":  "https://res.cloudinary.com/dnjbxjkgt/image/upload/v1775139144/hashprime_deposit_screenshots/69ce778af46532ec420784a6/kcbzwmmxfcqctyvdangm.png",
+                         "status":  "approved",
+                         "adminNote":  "",
+                         "createdAt":  "2026-04-02T14:12:25.108Z",
+                         "updatedAt":  "2026-04-02T14:12:38.183Z",
+                         "__v":  0
+                     }
+                 ]
+}

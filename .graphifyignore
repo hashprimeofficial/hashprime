@@ -1,0 +1,29 @@
+# Ignore images anywhere in the project
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.svg
+**/*.webp
+**/*.ico
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.webp
+*.ico
+
+# Ignore documentation/papers/text files
+**/*.md
+**/*.pdf
+**/*.xlsx
+**/*.txt
+*.md
+*.pdf
+*.xlsx
+*.txt
+
+# Ignore raw JSON files
+**/*.json
+*.json

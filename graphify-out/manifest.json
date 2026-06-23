@@ -1,0 +1,612 @@
+{
+  "app/(auth)/forgot-password/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "f38c7c949879ee06b3e1608818901221",
+    "semantic_hash": "f38c7c949879ee06b3e1608818901221"
+  },
+  "app/(auth)/layout.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "7ec82a7c87811c27412bed307ef8e08b",
+    "semantic_hash": "7ec82a7c87811c27412bed307ef8e08b"
+  },
+  "app/(auth)/login/page.js": {
+    "mtime": 1782189634.6009133,
+    "ast_hash": "f66bf7dc23e687be3a98f4937b8bdfc2",
+    "semantic_hash": "f66bf7dc23e687be3a98f4937b8bdfc2"
+  },
+  "app/(auth)/register/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "529115a6d30b9de024bcd9afa337f4be",
+    "semantic_hash": "529115a6d30b9de024bcd9afa337f4be"
+  },
+  "app/admin/deposits/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "0df3f6c98773d6fa9a097e7083515a09",
+    "semantic_hash": "0df3f6c98773d6fa9a097e7083515a09"
+  },
+  "app/admin/enquiries/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "374ea184d4083e39f8751e0bbf20a546",
+    "semantic_hash": "374ea184d4083e39f8751e0bbf20a546"
+  },
+  "app/admin/investments/page.js": {
+    "mtime": 1782189596.8483253,
+    "ast_hash": "0c9970ab94e2de7f306f69f40ab7ab5e",
+    "semantic_hash": "0c9970ab94e2de7f306f69f40ab7ab5e"
+  },
+  "app/admin/kyc/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "c40a12e1e63bd9951479efab7a40e0b7",
+    "semantic_hash": "c40a12e1e63bd9951479efab7a40e0b7"
+  },
+  "app/admin/layout.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "2d966286aa61c9a8ecf338a190e5b33d",
+    "semantic_hash": "2d966286aa61c9a8ecf338a190e5b33d"
+  },
+  "app/admin/page.js": {
+    "mtime": 1782189587.9410136,
+    "ast_hash": "32ab43765ed58b3bbf1f8efbf131d561",
+    "semantic_hash": "32ab43765ed58b3bbf1f8efbf131d561"
+  },
+  "app/admin/tickets/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "980d8a60323f6f9674582756ac9a9586",
+    "semantic_hash": "980d8a60323f6f9674582756ac9a9586"
+  },
+  "app/admin/transactions/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "f32d696f01125ac3f4c618f0c5e262ec",
+    "semantic_hash": "f32d696f01125ac3f4c618f0c5e262ec"
+  },
+  "app/admin/users/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "5ac3e9d66bdb23d5708ee5787c1910a5",
+    "semantic_hash": "5ac3e9d66bdb23d5708ee5787c1910a5"
+  },
+  "app/admin/withdrawals/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "82d952c71dcdac673ae72f3023c26606",
+    "semantic_hash": "82d952c71dcdac673ae72f3023c26606"
+  },
+  "app/api/admin/deposits/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "45decc8d6947508b0943da51501e1ce9",
+    "semantic_hash": "45decc8d6947508b0943da51501e1ce9"
+  },
+  "app/api/admin/dumpusers/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "5e4e5ece15bee6218cd4690f721c9e4a",
+    "semantic_hash": "5e4e5ece15bee6218cd4690f721c9e4a"
+  },
+  "app/api/admin/enquiries/[id]/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "5d6d11003be8c036dff58f5589eb74b1",
+    "semantic_hash": "5d6d11003be8c036dff58f5589eb74b1"
+  },
+  "app/api/admin/enquiries/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "eee6b2db3a1b2c3f9ec5c9dd256b0c9c",
+    "semantic_hash": "eee6b2db3a1b2c3f9ec5c9dd256b0c9c"
+  },
+  "app/api/admin/investments/[id]/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "cdadd63f255327965c0d2d2c664ef4c6",
+    "semantic_hash": "cdadd63f255327965c0d2d2c664ef4c6"
+  },
+  "app/api/admin/investments/process/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "50afaa731d313f883ca7dd100acb923b",
+    "semantic_hash": "50afaa731d313f883ca7dd100acb923b"
+  },
+  "app/api/admin/investments/route.js": {
+    "mtime": 1782189579.065804,
+    "ast_hash": "fcf75cdbae6906d5ca65031d022ae8eb",
+    "semantic_hash": "fcf75cdbae6906d5ca65031d022ae8eb"
+  },
+  "app/api/admin/migraterewards/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "eff4c287c4291fc654daa200147af281",
+    "semantic_hash": "eff4c287c4291fc654daa200147af281"
+  },
+  "app/api/admin/stats/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "cc7675201cb39e5f029d3acfa993ef84",
+    "semantic_hash": "cc7675201cb39e5f029d3acfa993ef84"
+  },
+  "app/api/admin/transactions/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "395cb702b65305368f5d7add0c9b6fb9",
+    "semantic_hash": "395cb702b65305368f5d7add0c9b6fb9"
+  },
+  "app/api/admin/users/[id]/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "61688abb7ddc989793bb9559f134452d",
+    "semantic_hash": "61688abb7ddc989793bb9559f134452d"
+  },
+  "app/api/admin/users/[id]/transaction/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "6d37d38a88cd3d9a4cd2503a829ce128",
+    "semantic_hash": "6d37d38a88cd3d9a4cd2503a829ce128"
+  },
+  "app/api/admin/users/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "02a716cf2afb9c358fbb52a40520bb24",
+    "semantic_hash": "02a716cf2afb9c358fbb52a40520bb24"
+  },
+  "app/api/admin/withdrawals/[id]/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "b069f20f9f15fe30f03df7644e36c678",
+    "semantic_hash": "b069f20f9f15fe30f03df7644e36c678"
+  },
+  "app/api/admin/withdrawals/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "5e9dc5b79aaf3bc6a7b40b90a607094e",
+    "semantic_hash": "5e9dc5b79aaf3bc6a7b40b90a607094e"
+  },
+  "app/api/auth/2fa/disable/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "ca0f896aefbf9d0391ba726212aa332a",
+    "semantic_hash": "ca0f896aefbf9d0391ba726212aa332a"
+  },
+  "app/api/auth/2fa/email-otp/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "30f5e7bfcd77a424d21d8ca44697aaee",
+    "semantic_hash": "30f5e7bfcd77a424d21d8ca44697aaee"
+  },
+  "app/api/auth/2fa/setup/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "635d7349c4430a46ab97c5c7b1307f80",
+    "semantic_hash": "635d7349c4430a46ab97c5c7b1307f80"
+  },
+  "app/api/auth/2fa/verify/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "c8c228124d3bd90e3cbb1b8eb4058bda",
+    "semantic_hash": "c8c228124d3bd90e3cbb1b8eb4058bda"
+  },
+  "app/api/auth/forgot-password/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "8aa11d4ba2eedea0fa6db17043384d59",
+    "semantic_hash": "8aa11d4ba2eedea0fa6db17043384d59"
+  },
+  "app/api/auth/login/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "655c48f4b40a5d22addf8e9b4f485831",
+    "semantic_hash": "655c48f4b40a5d22addf8e9b4f485831"
+  },
+  "app/api/auth/logout/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "4b88400fe3faeca3b93f845c4b517cf4",
+    "semantic_hash": "4b88400fe3faeca3b93f845c4b517cf4"
+  },
+  "app/api/auth/make-admin/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "11f58f4997172026501d3e8a90689c64",
+    "semantic_hash": "11f58f4997172026501d3e8a90689c64"
+  },
+  "app/api/auth/me/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "975e2fee9644291f56f71c983318b576",
+    "semantic_hash": "975e2fee9644291f56f71c983318b576"
+  },
+  "app/api/auth/referrer/[code]/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "5f8a856d26547cf4ec63271ff2de78bf",
+    "semantic_hash": "5f8a856d26547cf4ec63271ff2de78bf"
+  },
+  "app/api/auth/register/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "3c79afa1dd9b4c272f5d9f54598f11b5",
+    "semantic_hash": "3c79afa1dd9b4c272f5d9f54598f11b5"
+  },
+  "app/api/auth/reset-password/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "4a51b3bcc98d926a94d87a1f6134b9f0",
+    "semantic_hash": "4a51b3bcc98d926a94d87a1f6134b9f0"
+  },
+  "app/api/auth/send-otp/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "ebd19e089622fb7e6717dfe5bcbfa6f0",
+    "semantic_hash": "ebd19e089622fb7e6717dfe5bcbfa6f0"
+  },
+  "app/api/auth/verify-email/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "aa3fda61187b98732294749461bfdece",
+    "semantic_hash": "aa3fda61187b98732294749461bfdece"
+  },
+  "app/api/bank-accounts/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "5c7908802479b290997539a23e9d390b",
+    "semantic_hash": "5c7908802479b290997539a23e9d390b"
+  },
+  "app/api/business-enquiry/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "200141c55a038d8e830f7353e505e45b",
+    "semantic_hash": "200141c55a038d8e830f7353e505e45b"
+  },
+  "app/api/careers/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "d55cb903213277aa89593247f367ed4a",
+    "semantic_hash": "d55cb903213277aa89593247f367ed4a"
+  },
+  "app/api/dashboard/stats/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "6ddeef7fffebedf265f5bbb46a76b212",
+    "semantic_hash": "6ddeef7fffebedf265f5bbb46a76b212"
+  },
+  "app/api/deposits/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "0a7f052b9913346fcfc1c8959499f3c4",
+    "semantic_hash": "0a7f052b9913346fcfc1c8959499f3c4"
+  },
+  "app/api/exchange-rate/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "afb268920a975c31f803a458f8b508f6",
+    "semantic_hash": "afb268920a975c31f803a458f8b508f6"
+  },
+  "app/api/hello/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "b58632d47c9ad701c4bec73804b26466",
+    "semantic_hash": "b58632d47c9ad701c4bec73804b26466"
+  },
+  "app/api/invest/route.js": {
+    "mtime": 1782189571.8164763,
+    "ast_hash": "7f1276b1d48f9a375ddea5e2f94cd38d",
+    "semantic_hash": "7f1276b1d48f9a375ddea5e2f94cd38d"
+  },
+  "app/api/kyc/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "9ea1fe545b23265c63055f7ec3a2c348",
+    "semantic_hash": "9ea1fe545b23265c63055f7ec3a2c348"
+  },
+  "app/api/market/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "f6c7b81bfeb504c492201bfbd5ee85ef",
+    "semantic_hash": "f6c7b81bfeb504c492201bfbd5ee85ef"
+  },
+  "app/api/nominee/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "0d0764fd8f6285173c59efe4bc7944e1",
+    "semantic_hash": "0d0764fd8f6285173c59efe4bc7944e1"
+  },
+  "app/api/profile/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "c8f44700be22a2ed242a002e7db1a63f",
+    "semantic_hash": "c8f44700be22a2ed242a002e7db1a63f"
+  },
+  "app/api/referrals/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "e26edbf181ea41a9b022aa012acc8c1a",
+    "semantic_hash": "e26edbf181ea41a9b022aa012acc8c1a"
+  },
+  "app/api/tickets/[id]/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "c8f136a09dacdbb261a6ada766a0ae1d",
+    "semantic_hash": "c8f136a09dacdbb261a6ada766a0ae1d"
+  },
+  "app/api/tickets/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "588d42b510df8b8598defaccd1c96144",
+    "semantic_hash": "588d42b510df8b8598defaccd1c96144"
+  },
+  "app/api/wallet/convert/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "e134d6bb3ca739c4db2513bd8373ba1a",
+    "semantic_hash": "e134d6bb3ca739c4db2513bd8373ba1a"
+  },
+  "app/api/withdraw/route.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "ae81e722ea4a5a4d8fe41ef02e2d742b",
+    "semantic_hash": "ae81e722ea4a5a4d8fe41ef02e2d742b"
+  },
+  "app/careers/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "dece3dd7b2ff6c36100271bef32e9fc1",
+    "semantic_hash": "dece3dd7b2ff6c36100271bef32e9fc1"
+  },
+  "app/company/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "3efef2d2da3a46de98b52b7f318fbe74",
+    "semantic_hash": "3efef2d2da3a46de98b52b7f318fbe74"
+  },
+  "app/dashboard/bank/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "923070e04e497b299fcdfd4b7fa1ce3a",
+    "semantic_hash": "923070e04e497b299fcdfd4b7fa1ce3a"
+  },
+  "app/dashboard/convert/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "325e7a364e3b779f9eac40f5b1672e19",
+    "semantic_hash": "325e7a364e3b779f9eac40f5b1672e19"
+  },
+  "app/dashboard/deposit/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "58105ca1be8d2bd89c53ec8dac1bd9b7",
+    "semantic_hash": "58105ca1be8d2bd89c53ec8dac1bd9b7"
+  },
+  "app/dashboard/invest/page.js": {
+    "mtime": 1782189618.7170527,
+    "ast_hash": "dbd0de533b36188ce03a9b2c0d4335f3",
+    "semantic_hash": "dbd0de533b36188ce03a9b2c0d4335f3"
+  },
+  "app/dashboard/layout.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "fd144bd14f9997fbecb906834a4a5f83",
+    "semantic_hash": "fd144bd14f9997fbecb906834a4a5f83"
+  },
+  "app/dashboard/nominee/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "44abbd8a567e21bd354541b62e4a3f47",
+    "semantic_hash": "44abbd8a567e21bd354541b62e4a3f47"
+  },
+  "app/dashboard/page.js": {
+    "mtime": 1782189581.741757,
+    "ast_hash": "6f86237ee6e29ce80a26acd64f382d98",
+    "semantic_hash": "6f86237ee6e29ce80a26acd64f382d98"
+  },
+  "app/dashboard/profile/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "8bd98e00c2e7c49c15e8c2582284e3a7",
+    "semantic_hash": "8bd98e00c2e7c49c15e8c2582284e3a7"
+  },
+  "app/dashboard/referrals/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "53f6764e70c6aee4d62bcbac620dac8b",
+    "semantic_hash": "53f6764e70c6aee4d62bcbac620dac8b"
+  },
+  "app/dashboard/security/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "9d7610af9690757470039bfd840052b8",
+    "semantic_hash": "9d7610af9690757470039bfd840052b8"
+  },
+  "app/dashboard/tickets/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "9575b6ec550b3232684139616f02bf0a",
+    "semantic_hash": "9575b6ec550b3232684139616f02bf0a"
+  },
+  "app/dashboard/withdraw/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "5cac84a7603f94938eacfa59cc88d910",
+    "semantic_hash": "5cac84a7603f94938eacfa59cc88d910"
+  },
+  "app/features/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "d48bc6aa38db56e346c48ef7c9b46b9a",
+    "semantic_hash": "d48bc6aa38db56e346c48ef7c9b46b9a"
+  },
+  "app/hash-prime-groups/enquiry/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "6f0fbe1a0951be34ec108c3edc78db57",
+    "semantic_hash": "6f0fbe1a0951be34ec108c3edc78db57"
+  },
+  "app/hash-prime-groups/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "1c07b03cd95ac6073c52640bc6dc89b9",
+    "semantic_hash": "1c07b03cd95ac6073c52640bc6dc89b9"
+  },
+  "app/layout.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "a94e46a245d4d5eb8e7207b9152e25bf",
+    "semantic_hash": "a94e46a245d4d5eb8e7207b9152e25bf"
+  },
+  "app/markets/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "15b09b606d8cc6f2d493e01592d1782c",
+    "semantic_hash": "15b09b606d8cc6f2d493e01592d1782c"
+  },
+  "app/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "6b1ce9e4d5749f87188ec950afc90b56",
+    "semantic_hash": "6b1ce9e4d5749f87188ec950afc90b56"
+  },
+  "app/robots.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "0dea396aac50349b6772c6c870349849",
+    "semantic_hash": "0dea396aac50349b6772c6c870349849"
+  },
+  "app/schemes/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "981eb5149a2122fba24128e18c94dc6d",
+    "semantic_hash": "981eb5149a2122fba24128e18c94dc6d"
+  },
+  "app/security/page.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "ae1594a5eb6094b9d75e130068a90f11",
+    "semantic_hash": "ae1594a5eb6094b9d75e130068a90f11"
+  },
+  "app/sitemap.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "54482976fad5ace3d39daa821077fb4e",
+    "semantic_hash": "54482976fad5ace3d39daa821077fb4e"
+  },
+  "components/AboutHashPrime.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "ec60c30fe7160ae458de946b0c62353a",
+    "semantic_hash": "ec60c30fe7160ae458de946b0c62353a"
+  },
+  "components/BentoFeatures.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "3ff569639e1bd1b3987966aff4168c0e",
+    "semantic_hash": "3ff569639e1bd1b3987966aff4168c0e"
+  },
+  "components/Community.jsx": {
+    "mtime": 1782189663.7566586,
+    "ast_hash": "775d7894798f0c2e2656098473250337",
+    "semantic_hash": "775d7894798f0c2e2656098473250337"
+  },
+  "components/CryptoMarquee.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "8238f41d2bec3d38526f9b97f80e3d55",
+    "semantic_hash": "8238f41d2bec3d38526f9b97f80e3d55"
+  },
+  "components/DetailedSchemes.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "e5f3df003051f0ad11f266039bfa0dbb",
+    "semantic_hash": "e5f3df003051f0ad11f266039bfa0dbb"
+  },
+  "components/Footer.jsx": {
+    "mtime": 1782189659.1366491,
+    "ast_hash": "2980b60ff6fae92ab5979b03680fb9b5",
+    "semantic_hash": "2980b60ff6fae92ab5979b03680fb9b5"
+  },
+  "components/FooterWrapper.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "b4f6b7d5ad3b10a8d9bf7f4a6df8dfe7",
+    "semantic_hash": "b4f6b7d5ad3b10a8d9bf7f4a6df8dfe7"
+  },
+  "components/GlowingPortal.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "e26748942ae752ecd1ce487ed79784ef",
+    "semantic_hash": "e26748942ae752ecd1ce487ed79784ef"
+  },
+  "components/Hero.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "798a6d50cf4bfb7f9354441f11a6e60d",
+    "semantic_hash": "798a6d50cf4bfb7f9354441f11a6e60d"
+  },
+  "components/HowToStart.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "c935a08b7cca1eb6c580fc9f89909b51",
+    "semantic_hash": "c935a08b7cca1eb6c580fc9f89909b51"
+  },
+  "components/Insights.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "59c8aab97763759b237853c69033a39e",
+    "semantic_hash": "59c8aab97763759b237853c69033a39e"
+  },
+  "components/InvestmentSchemes.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "50578e9e3937b4984b36c5d8389d0641",
+    "semantic_hash": "50578e9e3937b4984b36c5d8389d0641"
+  },
+  "components/LightPillar.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "194b78edba065bc94e808fd000ffcf93",
+    "semantic_hash": "194b78edba065bc94e808fd000ffcf93"
+  },
+  "components/LiveMarketTicker.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "e417fc5b9fe5adc308fa4e5289a798f2",
+    "semantic_hash": "e417fc5b9fe5adc308fa4e5289a798f2"
+  },
+  "components/Navbar.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "b7e51061abd3ef1830ee93a34fb51577",
+    "semantic_hash": "b7e51061abd3ef1830ee93a34fb51577"
+  },
+  "components/NavbarWrapper.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "77ca4591bd36633553733577a3cd51bd",
+    "semantic_hash": "77ca4591bd36633553733577a3cd51bd"
+  },
+  "components/OurProjects.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "425294596f331c29aa7a1b567dbab915",
+    "semantic_hash": "425294596f331c29aa7a1b567dbab915"
+  },
+  "components/OurServices.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "4baae8464855cc2a553ffcf623bda054",
+    "semantic_hash": "4baae8464855cc2a553ffcf623bda054"
+  },
+  "components/SalientFeatures.jsx": {
+    "mtime": 1775236637.0,
+    "ast_hash": "d698d88ac9aa6b21ea29a7d8a58754a1",
+    "semantic_hash": "d698d88ac9aa6b21ea29a7d8a58754a1"
+  },
+  "eslint.config.mjs": {
+    "mtime": 1775236637.0,
+    "ast_hash": "bcb00e240634dd9448e57386fdff1902",
+    "semantic_hash": "bcb00e240634dd9448e57386fdff1902"
+  },
+  "lib/auth.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "e955d1ef0646d073a11c1d00799673fe",
+    "semantic_hash": "e955d1ef0646d073a11c1d00799673fe"
+  },
+  "lib/cloudinary.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "2c3c6433dbae7cbd09493961401c413f",
+    "semantic_hash": "2c3c6433dbae7cbd09493961401c413f"
+  },
+  "lib/db.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "5383ac0b97440e84103087f5a0bf4544",
+    "semantic_hash": "5383ac0b97440e84103087f5a0bf4544"
+  },
+  "lib/email.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "954666f8d8b198cb9da49adfccc07f90",
+    "semantic_hash": "954666f8d8b198cb9da49adfccc07f90"
+  },
+  "lib/exchangeRate.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "9fd47eb926209b5cc7b11e9cabab92bd",
+    "semantic_hash": "9fd47eb926209b5cc7b11e9cabab92bd"
+  },
+  "middleware.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "bc14c40c07ed7582132b3d2fe148010a",
+    "semantic_hash": "bc14c40c07ed7582132b3d2fe148010a"
+  },
+  "models/BankAccount.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "cd5cf2e44c99894a973f3e5e813e2773",
+    "semantic_hash": "cd5cf2e44c99894a973f3e5e813e2773"
+  },
+  "models/BusinessEnquiry.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "6b7f0332ebf594748d585766736e345e",
+    "semantic_hash": "6b7f0332ebf594748d585766736e345e"
+  },
+  "models/Deposit.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "f446ba88c60f6a1ebcf8f403726b2d68",
+    "semantic_hash": "f446ba88c60f6a1ebcf8f403726b2d68"
+  },
+  "models/Investment.js": {
+    "mtime": 1782189567.4462395,
+    "ast_hash": "d3d607ec877c0dff85ee1d4d37c2ec5d",
+    "semantic_hash": "d3d607ec877c0dff85ee1d4d37c2ec5d"
+  },
+  "models/JobApplication.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "0c9956b9ba087c57263686f4ccb14c0b",
+    "semantic_hash": "0c9956b9ba087c57263686f4ccb14c0b"
+  },
+  "models/Nominee.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "1f6afaf165560f484da9367e97701694",
+    "semantic_hash": "1f6afaf165560f484da9367e97701694"
+  },
+  "models/Ticket.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "c44b317a2ca78601a9094943407be2ea",
+    "semantic_hash": "c44b317a2ca78601a9094943407be2ea"
+  },
+  "models/Transaction.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "ec586cc35d488c10410b0afb59b02229",
+    "semantic_hash": "ec586cc35d488c10410b0afb59b02229"
+  },
+  "models/User.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "8d5d9bc9b36a315f4d3d96daf5ea19c9",
+    "semantic_hash": "8d5d9bc9b36a315f4d3d96daf5ea19c9"
+  },
+  "models/Withdrawal.js": {
+    "mtime": 1775236637.0,
+    "ast_hash": "2e973ad153e939efcc96ffc0f74ed29b",
+    "semantic_hash": "2e973ad153e939efcc96ffc0f74ed29b"
+  },
+  "next.config.mjs": {
+    "mtime": 1775236637.0,
+    "ast_hash": "a5dd0abfa524127b82d702f27c851329",
+    "semantic_hash": "a5dd0abfa524127b82d702f27c851329"
+  },
+  "postcss.config.mjs": {
+    "mtime": 1775236637.0,
+    "ast_hash": "239f3ebf717465dc636818a1a619398d",
+    "semantic_hash": "239f3ebf717465dc636818a1a619398d"
+  }
+}
