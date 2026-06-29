@@ -51,7 +51,7 @@ const schemes = [
         title: "Limited Offer",
         period: "6 Month Scheme",
         duration: "6 Months",
-        benefit: "5%",
+        benefit: "4%",
         benefitCurrency: "Monthly ROI",
         investments: ["Min 5L"],
         featured: true,

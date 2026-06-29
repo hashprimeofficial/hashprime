@@ -12,7 +12,7 @@ const INR_SCHEMES = {
     '6m_inr': { minAmounts: [100000, 300000, 500000], returnRate: 0.38, durationMonths: 6 },
     '1y_inr': { minAmount: 500000, maxAmount: Infinity, returnRate: 0.80, durationMonths: 12 },
     '5y_inr': { minAmount: 1000000, maxAmount: 1500000, returnRate: 5.00, durationMonths: 60 },
-    'limited_inr': { minAmount: 500000, maxAmount: Infinity, returnRate: 0.30, durationMonths: 6 },
+    'limited_inr': { minAmount: 500000, maxAmount: Infinity, returnRate: 0.24, durationMonths: 6 },
 };
 const USD_SCHEMES = {
     '3m_usd': { minAmounts: [500, 1000, 1500, 2000], returnRate: 0.18, durationMonths: 3 },

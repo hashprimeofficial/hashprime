@@ -34,7 +34,7 @@ export default function AuthLayout({ children }) {
                     <div className="grid grid-cols-2 gap-4 mt-10">
                         {[
                             { val: '500%', label: 'Max Returns' },
-                            { val: '5%', label: 'Referral Bonus' },
+                            { val: '4%', label: 'Referral Bonus' },
                             { val: '4', label: 'Investment Plans' },
                             { val: 'USDT', label: 'Reward Currency' },
                         ].map(({ val, label }) => (

@@ -34,8 +34,8 @@ export default function LoginPage() {
             style: "border-amber-500/50 bg-gradient-to-r from-amber-500/10 via-[#d4af35]/15 to-amber-500/10 shadow-[0_0_15px_rgba(212,175,53,0.1)]"
         },
         {
-            title: "5% Monthly Returns Plan",
-            desc: "Promote the newly added 5% Monthly Returns Plan (Minimum investment: 5 Lakhs).",
+            title: "4% Monthly Returns Plan",
+            desc: "Promote the newly added 4% Monthly Returns Plan (Minimum investment: 5 Lakhs).",
             style: "border-emerald-500/50 bg-gradient-to-r from-emerald-500/10 via-teal-500/15 to-emerald-500/10 shadow-[0_0_15px_rgba(52,211,153,0.1)]"
         },
         {

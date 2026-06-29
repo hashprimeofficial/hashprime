@@ -13,7 +13,7 @@ const INR_SCHEMES = [
     { id: '6m_inr', name: '6-Month Plan (INR)', currency: 'INR', rate: '38%', desc: 'Balanced growth', amounts: [100000, 300000, 500000] },
     { id: '1y_inr', name: '1-Year FD (INR)', currency: 'INR', rate: '80%', desc: 'High yield', min: 500000 },
     { id: '5y_inr', name: '5-Year Vision (INR)', currency: 'INR', rate: '500%', desc: 'Wealth generation', min: 1000000, max: 1500000 },
-    { id: 'limited_inr', name: 'Limited Offer (INR)', currency: 'INR', rate: '30%', desc: 'Monthly 5% Returns', min: 500000 },
+    { id: 'limited_inr', name: 'Limited Offer (INR)', currency: 'INR', rate: '24%', desc: 'Monthly 4% Returns', min: 500000 },
 ];
 const USD_SCHEMES = [
     { id: '3m_usd', name: '3-Month Plan (USDT)', currency: 'USD', rate: '18%', desc: 'Short-term liquidity', amounts: [500, 1000, 1500, 2000] },
@@ -342,12 +342,12 @@ export default function InvestPage() {
                             {selectedScheme.id === 'limited_inr' && (
                                 <div className="mb-5 space-y-2 bg-[#121212]/50 border border-[#d4af35]/20 p-4 rounded-xl">
                                     <div className="flex justify-between text-xs font-bold text-slate-300">
-                                        <span>Est. Monthly Reward (5%):</span>
-                                        <span className="text-[#d4af35] font-black">₹{Math.round(Number(amount) * 0.05).toLocaleString('en-IN')}</span>
+                                        <span>Est. Monthly Reward (4%):</span>
+                                        <span className="text-[#d4af35] font-black">₹{Math.round(Number(amount) * 0.04).toLocaleString('en-IN')}</span>
                                     </div>
                                     <div className="flex justify-between text-xs font-bold text-slate-300">
-                                        <span>Total Maturity Yield (30%):</span>
-                                        <span className="text-white font-black">₹{Math.round(Number(amount) * 0.30).toLocaleString('en-IN')}</span>
+                                        <span>Total Maturity Yield (24%):</span>
+                                        <span className="text-white font-black">₹{Math.round(Number(amount) * 0.24).toLocaleString('en-IN')}</span>
                                     </div>
                                 </div>
                             )}

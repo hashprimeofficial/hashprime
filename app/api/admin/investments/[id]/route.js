@@ -65,14 +65,14 @@ export async function PATCH(req, { params }) {
                 description: `Invested in ${currentInvestment.schemeType} scheme (Admin Approved)`,
             });
 
-            // 5% Referral Bonus Logic for Referrer
+            // 4% Referral Bonus Logic for Referrer
             if (user.referredBy) {
                 const referrer = await User.findOne({ referralCode: user.referredBy });
                 if (referrer) {
                     const liveRate = await getExchangeRate();
                     const bonusUsd = currentInvestment.currency === 'USD'
-                        ? Math.round((amountNeeded * 0.05) * 100) / 100
-                        : Math.round(((amountNeeded * 0.05) / liveRate) * 100) / 100;
+                        ? Math.round((amountNeeded * 0.04) * 100) / 100
+                        : Math.round(((amountNeeded * 0.04) / liveRate) * 100) / 100;
 
                     await User.findByIdAndUpdate(referrer._id, {
                         $inc: { referralWallet: bonusUsd }
@@ -83,7 +83,7 @@ export async function PATCH(req, { params }) {
                         type: 'referral_bonus',
                         amount: bonusUsd,
                         currency: 'USD',
-                        description: `5% Referral bonus from ${user.name}'s investment approval`
+                        description: `4% Referral bonus from ${user.name}'s investment approval`
                     });
                 }
             }

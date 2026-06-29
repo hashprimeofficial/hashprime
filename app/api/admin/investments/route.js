@@ -11,7 +11,7 @@ const INR_SCHEMES = {
     '6m_inr': { returnRate: 0.38, durationMonths: 6 },
     '1y_inr': { returnRate: 0.80, durationMonths: 12 },
     '5y_inr': { returnRate: 5.00, durationMonths: 60 },
-    'limited_inr': { returnRate: 0.30, durationMonths: 6 },
+    'limited_inr': { returnRate: 0.24, durationMonths: 6 },
 };
 const USD_SCHEMES = {
     '3m_usd': { returnRate: 0.18, durationMonths: 3 },
@@ -115,8 +115,8 @@ export async function POST(req) {
         if (user.referredBy) {
             const referrer = await User.findOne({ referralCode: user.referredBy });
             if (referrer) {
-                // 5% of investment amount as bonus, traditionally awarded in USDT
-                const bonusUsdt = Math.round(((Number(amount) * 0.05) / liveRate) * 100) / 100;
+                // 4% of investment amount as bonus, traditionally awarded in USDT
+                const bonusUsdt = Math.round(((Number(amount) * 0.04) / liveRate) * 100) / 100;
 
                 await User.findByIdAndUpdate(referrer._id, {
                     $inc: { referralWallet: bonusUsdt }
@@ -127,7 +127,7 @@ export async function POST(req) {
                     type: 'referral_bonus',
                     amount: bonusUsdt,
                     currency: 'USD',
-                    description: `5% Referral bonus from ${user.name}'s investment`
+                    description: `4% Referral bonus from ${user.name}'s investment`
                 });
             }
         }
