@@ -82,7 +82,7 @@ function SleekCryptoPrism() {
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const projects = [
-    { num: '01', Icon: TrendingUp, title: 'Stocks & IPL', tag: 'Equity', desc: 'Equities and IPO access — capture growth before the crowd. High-yield potential in emerging markets.' },
+    { num: '01', Icon: TrendingUp, title: 'Stocks & IPO', tag: 'Equity', desc: 'Equities and IPO access — capture growth before the crowd. High-yield potential in emerging markets.' },
     { num: '02', Icon: PieChart, title: 'Mutual Fund & ETF', tag: 'Diversified', desc: 'SIPs, index ETFs, and hybrid funds — managed, lower-risk growth for long-term stability.' },
     { num: '03', Icon: DollarSign, title: 'Currency & Commodity', tag: 'Forex', desc: 'Gold, silver, crude oil and forex pairs — hedge against inflation with global assets.' },
     { num: '04', Icon: Briefcase, title: 'Stock Case', tag: 'Thematic', desc: 'Analyst-curated baskets across tech, healthcare, and green energy. Smart thematic investing.' },

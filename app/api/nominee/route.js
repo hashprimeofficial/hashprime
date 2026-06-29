@@ -29,10 +29,10 @@ export async function POST(req) {
         const payload = await verifyToken(token);
         if (!payload) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-        const { fullName, dob, relationship, mobileNumber } = await req.json();
+        const { fullName, dob, relationship, mobileNumber, idProofUrl, idProofType, consentGivenAt } = await req.json();
 
         if (!fullName || !dob || !relationship || !mobileNumber) {
-            return NextResponse.json({ error: 'All fields are required' }, { status: 400 });
+            return NextResponse.json({ error: 'All required fields must be provided' }, { status: 400 });
         }
 
         await connectToDatabase();
@@ -47,7 +47,10 @@ export async function POST(req) {
             fullName,
             dob,
             relationship,
-            mobileNumber
+            mobileNumber,
+            idProofType: idProofType || 'Aadhaar Card',
+            idProofUrl: idProofUrl || '',
+            consentGivenAt: consentGivenAt ? new Date(consentGivenAt) : new Date()
         });
 
         await nominee.save();
@@ -67,13 +70,23 @@ export async function PUT(req) {
         const payload = await verifyToken(token);
         if (!payload) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
-        const { fullName, dob, relationship, mobileNumber } = await req.json();
+        const { fullName, dob, relationship, mobileNumber, idProofUrl, idProofType, consentGivenAt } = await req.json();
 
         await connectToDatabase();
 
+        const updateData = {
+            fullName,
+            dob,
+            relationship,
+            mobileNumber,
+            consentGivenAt: consentGivenAt ? new Date(consentGivenAt) : new Date()
+        };
+        if (idProofUrl !== undefined) updateData.idProofUrl = idProofUrl;
+        if (idProofType !== undefined) updateData.idProofType = idProofType;
+
         const updatedNominee = await Nominee.findOneAndUpdate(
             { user: payload.userId },
-            { fullName, dob, relationship, mobileNumber },
+            updateData,
             { new: true, runValidators: true }
         );
 

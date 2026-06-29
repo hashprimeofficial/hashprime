@@ -24,6 +24,16 @@ const NomineeSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        idProofType: {
+            type: String,
+            default: 'Aadhaar Card',
+        },
+        idProofUrl: {
+            type: String,
+        },
+        consentGivenAt: {
+            type: Date,
+        },
     },
     { timestamps: true }
 );
