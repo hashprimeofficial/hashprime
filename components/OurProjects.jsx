@@ -8,79 +8,70 @@ import {
     TrendingUp, PieChart, DollarSign, Briefcase, Globe2, ArrowRight
 } from 'lucide-react';
 
-function WealthEngineNexus() {
+function SleekCryptoPrism() {
     return (
-        <div className="w-full h-full relative flex items-center justify-center">
-            <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_50px_rgba(212,175,53,0.3)]">
+        <div className="w-full h-full relative flex items-center justify-center p-4">
+            <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_60px_rgba(212,175,53,0.35)]">
                 <defs>
-                    <radialGradient id="nexusCoreGlow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="#d4af35" stopOpacity="0.45" />
-                        <stop offset="60%" stopColor="#d4af35" stopOpacity="0.15" />
-                        <stop offset="100%" stopColor="#0A0A0A" stopOpacity="0" />
+                    {/* Deep Ambient Gold Glow */}
+                    <radialGradient id="prismGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="#d4af35" stopOpacity="0.4" />
+                        <stop offset="50%" stopColor="#d4af35" stopOpacity="0.12" />
+                        <stop offset="100%" stopColor="#050505" stopOpacity="0" />
                     </radialGradient>
-                    <linearGradient id="goldBeam" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
-                        <stop offset="50%" stopColor="#d4af35" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#a37f1c" stopOpacity="0.1" />
+
+                    {/* Multi-tone Premium Gold-Cyan Linear Gradient */}
+                    <linearGradient id="prismGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#f7e8b5" />
+                        <stop offset="40%" stopColor="#d4af35" />
+                        <stop offset="80%" stopColor="#10b981" />
+                        <stop offset="100%" stopColor="#38bdf8" />
                     </linearGradient>
-                    <linearGradient id="goldMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#f5e0a3" />
+
+                    <linearGradient id="goldPure" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#fff" />
                         <stop offset="50%" stopColor="#d4af35" />
-                        <stop offset="100%" stopColor="#8a6912" />
+                        <stop offset="100%" stopColor="#967518" />
                     </linearGradient>
                 </defs>
 
-                {/* Ambient Deep Core Glow */}
-                <circle cx="100" cy="100" r="85" fill="url(#nexusCoreGlow)" />
+                {/* Ambient Soft Glow Background */}
+                <circle cx="100" cy="100" r="88" fill="url(#prismGlow)" />
 
-                {/* 1. Outer Tech Radar Ring with Notches */}
-                <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '40s' }}>
-                    <circle cx="100" cy="100" r="82" fill="none" stroke="#d4af35" strokeWidth="0.5" strokeDasharray="4 8" opacity="0.35" />
-                    <circle cx="100" cy="100" r="76" fill="none" stroke="url(#goldMetallic)" strokeWidth="0.75" strokeDasharray="40 10 15 10" opacity="0.4" />
-                    <circle cx="100" cy="18" r="3" fill="#d4af35" className="animate-pulse" />
-                    <circle cx="100" cy="182" r="3" fill="#d4af35" className="animate-pulse" />
-                    <circle cx="18" cy="100" r="3" fill="#ffffff" />
-                    <circle cx="182" cy="100" r="3" fill="#ffffff" />
+                {/* 1. Outer Smooth Orbiting Ring */}
+                <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '35s', animationTimingFunction: 'linear' }}>
+                    <circle cx="100" cy="100" r="84" fill="none" stroke="url(#prismGradient)" strokeWidth="0.75" strokeDasharray="6 12" opacity="0.35" />
+                    <circle cx="100" cy="16" r="3.5" fill="#d4af35" className="animate-pulse" />
+                    <circle cx="184" cy="100" r="3.5" fill="#38bdf8" className="animate-pulse" />
+                    <circle cx="100" cy="184" r="3.5" fill="#10b981" className="animate-pulse" />
+                    <circle cx="16" cy="100" r="3.5" fill="#ffffff" className="animate-pulse" />
                 </g>
 
-                {/* 2. Counter-Rotating Geometric Octagon / Diamond Layer */}
-                <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '28s', animationDirection: 'reverse' }}>
-                    <polygon points="100,28 151,49 172,100 151,151 100,172 49,151 28,100 49,49" fill="none" stroke="url(#goldMetallic)" strokeWidth="0.75" strokeDasharray="6 4" opacity="0.45" />
-                    {/* Floating Corner Nodes */}
-                    <polygon points="100,24 104,28 100,32 96,28" fill="#ffffff" />
-                    <polygon points="172,96 176,100 172,104 168,100" fill="#d4af35" />
-                    <polygon points="100,168 104,172 100,176 96,172" fill="#ffffff" />
-                    <polygon points="28,96 32,100 28,104 24,100" fill="#d4af35" />
+                {/* 2. Counter-Rotating Interlocking Wave Ring */}
+                <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '25s', animationDirection: 'reverse', animationTimingFunction: 'linear' }}>
+                    <circle cx="100" cy="100" r="72" fill="none" stroke="url(#goldPure)" strokeWidth="1" strokeDasharray="40 15 20 15" opacity="0.5" />
+                    <circle cx="100" cy="28" r="4" fill="#ffffff" className="drop-shadow-[0_0_8px_#ffffff]" />
+                    <circle cx="172" cy="100" r="4" fill="#d4af35" className="drop-shadow-[0_0_8px_#d4af35]" />
                 </g>
 
-                {/* 3. Inward Laser Energy Conduits / Vectors */}
-                <g opacity="0.6">
-                    <line x1="40" y1="40" x2="80" y2="80" stroke="url(#goldBeam)" strokeWidth="1" strokeDasharray="6 3" />
-                    <line x1="160" y1="40" x2="120" y2="80" stroke="url(#goldBeam)" strokeWidth="1" strokeDasharray="6 3" />
-                    <line x1="40" y1="160" x2="80" y2="120" stroke="url(#goldBeam)" strokeWidth="1" strokeDasharray="6 3" />
-                    <line x1="160" y1="160" x2="120" y2="120" stroke="url(#goldBeam)" strokeWidth="1" strokeDasharray="6 3" />
+                {/* 3. Smooth Dynamic Concentric Polygon Grid */}
+                <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '20s', animationTimingFunction: 'linear' }}>
+                    <polygon points="100,42 142,66 142,114 100,138 58,114 58,66" fill="none" stroke="#d4af35" strokeWidth="0.5" opacity="0.25" />
+                </g>
+                <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '15s', animationDirection: 'reverse', animationTimingFunction: 'linear' }}>
+                    <polygon points="100,48 136,100 100,152 64,100" fill="none" stroke="url(#prismGradient)" strokeWidth="0.75" strokeDasharray="8 4" opacity="0.4" />
                 </g>
 
-                {/* 4. Concentric Rotating Square Rings (45-deg Offset) */}
-                <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '18s' }}>
-                    <rect x="55" y="55" width="90" height="90" fill="none" stroke="#d4af35" strokeWidth="0.75" opacity="0.3" rx="12" />
-                    <circle cx="55" cy="55" r="2.5" fill="#ffffff" />
-                    <circle cx="145" cy="145" r="2.5" fill="#ffffff" />
-                </g>
-                <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '22s', animationDirection: 'reverse' }}>
-                    <rect x="62" y="62" width="76" height="76" fill="none" stroke="url(#goldMetallic)" strokeWidth="1" strokeDasharray="12 6" opacity="0.5" rx="8" transform="rotate(45 100 100)" />
-                </g>
-
-                {/* 5. Central Financial Accelerator Core */}
-                <circle cx="100" cy="100" r="32" fill="#060606" stroke="url(#goldMetallic)" strokeWidth="1.5" className="drop-shadow-[0_0_15px_rgba(212,175,53,0.5)]" />
-                <circle cx="100" cy="100" r="25" fill="url(#nexusCoreGlow)" opacity="0.8" />
+                {/* 4. Central High-End Polished Glass Vault Core */}
+                <circle cx="100" cy="100" r="34" fill="#0A0A0C" stroke="url(#goldPure)" strokeWidth="1.75" className="drop-shadow-[0_0_25px_rgba(212,175,53,0.4)]" />
+                <circle cx="100" cy="100" r="28" fill="url(#prismGlow)" opacity="0.9" />
                 
-                {/* Multi-layered Geometric Inner Core */}
-                <polygon points="100,78 119,100 100,122 81,100" fill="none" stroke="#d4af35" strokeWidth="1" opacity="0.8" />
-                <polygon points="100,84 114,100 100,116 86,100" fill="#d4af35" opacity="0.15" />
+                {/* Sleek Minimalist Crypto Shield Symbol */}
+                <path d="M 100 82 L 115 91 L 115 109 L 100 118 L 85 109 L 85 91 Z" fill="none" stroke="#d4af35" strokeWidth="1.25" opacity="0.85" />
+                <path d="M 100 87 L 111 94 L 111 106 L 100 113 L 89 106 L 89 94 Z" fill="url(#prismGradient)" opacity="0.2" />
                 
-                {/* Central High-Frequency Pulse */}
-                <circle cx="100" cy="100" r="6" fill="#ffffff" className="animate-ping" style={{ animationDuration: '1.8s' }} />
+                {/* Central Breathing Aura */}
+                <circle cx="100" cy="100" r="6" fill="#ffffff" className="animate-ping" style={{ animationDuration: '2.5s' }} />
                 <circle cx="100" cy="100" r="4" fill="#d4af35" />
                 <circle cx="100" cy="100" r="1.5" fill="#ffffff" />
             </svg>
@@ -148,7 +139,7 @@ export default function OurProjects() {
 
                     <div className="flex-shrink-0 w-full max-w-[320px] lg:max-w-none lg:w-[450px] aspect-square relative mx-auto lg:mx-0">
                         <div className="absolute inset-0 bg-[#d4af35]/5 rounded-full blur-[80px] animate-pulse" />
-                        <WealthEngineNexus />
+                        <SleekCryptoPrism />
                     </div>
                 </div>
 

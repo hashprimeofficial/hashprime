@@ -3204,20 +3204,20 @@
       "norm_label": "ourprojects.jsx"
     },
     {
-      "label": "WealthEngineNexus()",
+      "label": "SleekCryptoPrism()",
       "file_type": "code",
       "source_file": "components/OurProjects.jsx",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "components_ourprojects_wealthenginenexus",
+      "id": "components_ourprojects_sleekcryptoprism",
       "community": 28,
-      "norm_label": "wealthenginenexus()"
+      "norm_label": "sleekcryptoprism()"
     },
     {
       "label": "projects",
       "file_type": "code",
       "source_file": "components/OurProjects.jsx",
-      "source_location": "L93",
+      "source_location": "L84",
       "_origin": "ast",
       "id": "components_ourprojects_projects",
       "community": 28,
@@ -3227,7 +3227,7 @@
       "label": "OurProjects()",
       "file_type": "code",
       "source_file": "components/OurProjects.jsx",
-      "source_location": "L101",
+      "source_location": "L92",
       "_origin": "ast",
       "id": "components_ourprojects_ourprojects",
       "community": 28,
@@ -7380,7 +7380,7 @@
       "source_location": "L11",
       "weight": 1.0,
       "source": "components_ourprojects",
-      "target": "components_ourprojects_wealthenginenexus",
+      "target": "components_ourprojects_sleekcryptoprism",
       "confidence_score": 1.0
     },
     {
@@ -7695,5 +7695,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "f7a10713a27fcc3ad6b4e2f911209fa76f0e451d"
+  "built_at_commit": "789431509c7d5e1c37797882706811280b46e421"
 }
