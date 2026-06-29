@@ -3204,20 +3204,20 @@
       "norm_label": "ourprojects.jsx"
     },
     {
-      "label": "PremiumTechNetwork()",
+      "label": "WealthEngineNexus()",
       "file_type": "code",
       "source_file": "components/OurProjects.jsx",
       "source_location": "L11",
       "_origin": "ast",
-      "id": "components_ourprojects_premiumtechnetwork",
+      "id": "components_ourprojects_wealthenginenexus",
       "community": 28,
-      "norm_label": "premiumtechnetwork()"
+      "norm_label": "wealthenginenexus()"
     },
     {
       "label": "projects",
       "file_type": "code",
       "source_file": "components/OurProjects.jsx",
-      "source_location": "L57",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "components_ourprojects_projects",
       "community": 28,
@@ -3227,7 +3227,7 @@
       "label": "OurProjects()",
       "file_type": "code",
       "source_file": "components/OurProjects.jsx",
-      "source_location": "L65",
+      "source_location": "L101",
       "_origin": "ast",
       "id": "components_ourprojects_ourprojects",
       "community": 28,
@@ -7367,21 +7367,21 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "components/OurProjects.jsx",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "components_ourprojects",
-      "target": "components_ourprojects_premiumtechnetwork"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "components/OurProjects.jsx",
       "source_location": "L57",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "components_ourprojects",
       "target": "components_ourprojects_projects"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "components/OurProjects.jsx",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "components_ourprojects",
+      "target": "components_ourprojects_wealthenginenexus",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7695,5 +7695,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "04d623ea7c4777d704294f420921d7e761a91bfd"
+  "built_at_commit": "f7a10713a27fcc3ad6b4e2f911209fa76f0e451d"
 }
