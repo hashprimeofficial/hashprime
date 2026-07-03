@@ -127,7 +127,7 @@
       "label": "RegisterPage()",
       "file_type": "code",
       "source_file": "app/(auth)/register/page.js",
-      "source_location": "L221",
+      "source_location": "L250",
       "_origin": "ast",
       "id": "register_page_registerpage",
       "community": 10,
@@ -347,7 +347,7 @@
       "label": "useAdminBadges()",
       "file_type": "code",
       "source_file": "app/admin/layout.js",
-      "source_location": "L28",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "admin_layout_useadminbadges",
       "community": 6,
@@ -357,7 +357,7 @@
       "label": "AdminAvatarBlock()",
       "file_type": "code",
       "source_file": "app/admin/layout.js",
-      "source_location": "L69",
+      "source_location": "L70",
       "_origin": "ast",
       "id": "admin_layout_adminavatarblock",
       "community": 6,
@@ -367,7 +367,7 @@
       "label": "NavLink()",
       "file_type": "code",
       "source_file": "app/admin/layout.js",
-      "source_location": "L95",
+      "source_location": "L96",
       "_origin": "ast",
       "id": "admin_layout_navlink",
       "community": 6,
@@ -377,7 +377,7 @@
       "label": "AdminLayout()",
       "file_type": "code",
       "source_file": "app/admin/layout.js",
-      "source_location": "L140",
+      "source_location": "L141",
       "_origin": "ast",
       "id": "admin_layout_adminlayout",
       "community": 6,
@@ -412,6 +412,36 @@
       "id": "admin_page_adminoverview",
       "community": 35,
       "norm_label": "adminoverview()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/admin/statements/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_admin_statements_page_js_statements_page",
+      "community": 36,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "fetcher()",
+      "file_type": "code",
+      "source_file": "app/admin/statements/page.js",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "app_admin_statements_page_js_statements_page_fetcher",
+      "community": 36,
+      "norm_label": "fetcher()"
+    },
+    {
+      "label": "AdminStatementsPage()",
+      "file_type": "code",
+      "source_file": "app/admin/statements/page.js",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "statements_page_adminstatementspage",
+      "community": 36,
+      "norm_label": "adminstatementspage()"
     },
     {
       "label": "page.js",
@@ -590,7 +620,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_deposits_route_js_deposits_route",
-      "community": 2,
+      "community": 49,
       "norm_label": "route.js"
     },
     {
@@ -600,7 +630,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "app_api_admin_deposits_route_js_deposits_route_get",
-      "community": 2,
+      "community": 49,
       "norm_label": "get()"
     },
     {
@@ -610,7 +640,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "deposits_route_put",
-      "community": 2,
+      "community": 49,
       "norm_label": "put()"
     },
     {
@@ -697,7 +727,7 @@
       "label": "DELETE()",
       "file_type": "code",
       "source_file": "app/api/admin/investments/[id]/route.js",
-      "source_location": "L133",
+      "source_location": "L136",
       "_origin": "ast",
       "id": "app_api_admin_investments_id_route_js_id_route_delete",
       "community": 2,
@@ -796,6 +826,56 @@
     {
       "label": "route.js",
       "file_type": "code",
+      "source_file": "app/api/admin/statements/[id]/route.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_api_admin_statements_id_route_js_id_route",
+      "community": 2,
+      "norm_label": "route.js"
+    },
+    {
+      "label": "DELETE()",
+      "file_type": "code",
+      "source_file": "app/api/admin/statements/[id]/route.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "app_api_admin_statements_id_route_js_id_route_delete",
+      "community": 2,
+      "norm_label": "delete()"
+    },
+    {
+      "label": "route.js",
+      "file_type": "code",
+      "source_file": "app/api/admin/statements/route.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_api_admin_statements_route_js_statements_route",
+      "community": 4,
+      "norm_label": "route.js"
+    },
+    {
+      "label": "POST()",
+      "file_type": "code",
+      "source_file": "app/api/admin/statements/route.js",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "statements_route_post",
+      "community": 4,
+      "norm_label": "post()"
+    },
+    {
+      "label": "GET()",
+      "file_type": "code",
+      "source_file": "app/api/admin/statements/route.js",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "app_api_admin_statements_route_js_statements_route_get",
+      "community": 4,
+      "norm_label": "get()"
+    },
+    {
+      "label": "route.js",
+      "file_type": "code",
       "source_file": "app/api/admin/stats/route.js",
       "source_location": "L1",
       "_origin": "ast",
@@ -820,7 +900,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "transactions_route",
-      "community": 86,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -830,7 +910,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "transactions_route_get",
-      "community": 86,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -840,7 +920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route",
-      "community": 36,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -850,7 +930,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route_patch",
-      "community": 36,
+      "community": 2,
       "norm_label": "patch()"
     },
     {
@@ -860,7 +940,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route_delete",
-      "community": 36,
+      "community": 2,
       "norm_label": "delete()"
     },
     {
@@ -870,7 +950,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "transaction_route",
-      "community": 85,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -880,7 +960,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "transaction_route_post",
-      "community": 85,
+      "community": 2,
       "norm_label": "post()"
     },
     {
@@ -897,7 +977,7 @@
       "label": "GET()",
       "file_type": "code",
       "source_file": "app/api/admin/users/route.js",
-      "source_location": "L7",
+      "source_location": "L8",
       "_origin": "ast",
       "id": "users_route_get",
       "community": 87,
@@ -930,7 +1010,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "withdrawals_route",
-      "community": 2,
+      "community": 86,
       "norm_label": "route.js"
     },
     {
@@ -940,7 +1020,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "withdrawals_route_get",
-      "community": 2,
+      "community": 86,
       "norm_label": "get()"
     },
     {
@@ -1000,7 +1080,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "setup_route",
-      "community": 2,
+      "community": 77,
       "norm_label": "route.js"
     },
     {
@@ -1010,7 +1090,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "setup_route_get",
-      "community": 2,
+      "community": 77,
       "norm_label": "get()"
     },
     {
@@ -1020,7 +1100,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "setup_route_post",
-      "community": 2,
+      "community": 77,
       "norm_label": "post()"
     },
     {
@@ -1340,7 +1420,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "careers_route",
-      "community": 4,
+      "community": 0,
       "norm_label": "route.js"
     },
     {
@@ -1350,7 +1430,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "careers_route_post",
-      "community": 4,
+      "community": 0,
       "norm_label": "post()"
     },
     {
@@ -1360,7 +1440,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "careers_route_get",
-      "community": 4,
+      "community": 0,
       "norm_label": "get()"
     },
     {
@@ -1390,7 +1470,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_deposits_route_js_deposits_route",
-      "community": 4,
+      "community": 56,
       "norm_label": "route.js"
     },
     {
@@ -1400,7 +1480,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "deposits_route_post",
-      "community": 4,
+      "community": 56,
       "norm_label": "post()"
     },
     {
@@ -1410,7 +1490,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "app_api_deposits_route_js_deposits_route_get",
-      "community": 4,
+      "community": 56,
       "norm_label": "get()"
     },
     {
@@ -1500,7 +1580,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "kyc_route",
-      "community": 49,
+      "community": 3,
       "norm_label": "route.js"
     },
     {
@@ -1510,7 +1590,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "kyc_route_get",
-      "community": 49,
+      "community": 3,
       "norm_label": "get()"
     },
     {
@@ -1520,7 +1600,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "kyc_route_put",
-      "community": 49,
+      "community": 3,
       "norm_label": "put()"
     },
     {
@@ -1550,7 +1630,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "nominee_route",
-      "community": 0,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1560,7 +1640,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "nominee_route_get",
-      "community": 0,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -1570,7 +1650,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "nominee_route_post",
-      "community": 0,
+      "community": 2,
       "norm_label": "post()"
     },
     {
@@ -1580,7 +1660,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "nominee_route_put",
-      "community": 0,
+      "community": 2,
       "norm_label": "put()"
     },
     {
@@ -1590,7 +1670,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "profile_route",
-      "community": 56,
+      "community": 4,
       "norm_label": "route.js"
     },
     {
@@ -1600,7 +1680,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "profile_route_get",
-      "community": 56,
+      "community": 4,
       "norm_label": "get()"
     },
     {
@@ -1610,7 +1690,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "profile_route_put",
-      "community": 56,
+      "community": 4,
       "norm_label": "put()"
     },
     {
@@ -1636,11 +1716,31 @@
     {
       "label": "route.js",
       "file_type": "code",
+      "source_file": "app/api/statements/route.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_api_statements_route_js_statements_route",
+      "community": 81,
+      "norm_label": "route.js"
+    },
+    {
+      "label": "GET()",
+      "file_type": "code",
+      "source_file": "app/api/statements/route.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "app_api_statements_route_js_statements_route_get",
+      "community": 81,
+      "norm_label": "get()"
+    },
+    {
+      "label": "route.js",
+      "file_type": "code",
       "source_file": "app/api/tickets/[id]/route.js",
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_tickets_id_route_js_id_route",
-      "community": 57,
+      "community": 0,
       "norm_label": "route.js"
     },
     {
@@ -1650,7 +1750,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "id_route_put",
-      "community": 57,
+      "community": 0,
       "norm_label": "put()"
     },
     {
@@ -1937,7 +2037,7 @@
       "label": "fetcher()",
       "file_type": "code",
       "source_file": "app/dashboard/layout.js",
-      "source_location": "L26",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "dashboard_layout_fetcher",
       "community": 8,
@@ -1947,7 +2047,7 @@
       "label": "UserAvatarBlock()",
       "file_type": "code",
       "source_file": "app/dashboard/layout.js",
-      "source_location": "L28",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "dashboard_layout_useravatarblock",
       "community": 8,
@@ -1957,7 +2057,7 @@
       "label": "SettingsSubmenu()",
       "file_type": "code",
       "source_file": "app/dashboard/layout.js",
-      "source_location": "L54",
+      "source_location": "L55",
       "_origin": "ast",
       "id": "dashboard_layout_settingssubmenu",
       "community": 8,
@@ -1967,7 +2067,7 @@
       "label": "DashboardLayout()",
       "file_type": "code",
       "source_file": "app/dashboard/layout.js",
-      "source_location": "L81",
+      "source_location": "L82",
       "_origin": "ast",
       "id": "dashboard_layout_dashboardlayout",
       "community": 8,
@@ -2282,6 +2382,36 @@
       "id": "security_page_securityredirectpage",
       "community": 58,
       "norm_label": "securityredirectpage()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/dashboard/statements/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_dashboard_statements_page_js_statements_page",
+      "community": 57,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "fetcher()",
+      "file_type": "code",
+      "source_file": "app/dashboard/statements/page.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "app_dashboard_statements_page_js_statements_page_fetcher",
+      "community": 57,
+      "norm_label": "fetcher()"
+    },
+    {
+      "label": "UserStatementsPage()",
+      "file_type": "code",
+      "source_file": "app/dashboard/statements/page.js",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "statements_page_userstatementspage",
+      "community": 57,
+      "norm_label": "userstatementspage()"
     },
     {
       "label": "page.js",
@@ -3207,7 +3337,7 @@
       "label": "SleekCryptoPrism()",
       "file_type": "code",
       "source_file": "components/OurProjects.jsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "components_ourprojects_sleekcryptoprism",
       "community": 28,
@@ -3217,7 +3347,7 @@
       "label": "projects",
       "file_type": "code",
       "source_file": "components/OurProjects.jsx",
-      "source_location": "L84",
+      "source_location": "L85",
       "_origin": "ast",
       "id": "components_ourprojects_projects",
       "community": 28,
@@ -3227,7 +3357,7 @@
       "label": "OurProjects()",
       "file_type": "code",
       "source_file": "components/OurProjects.jsx",
-      "source_location": "L92",
+      "source_location": "L94",
       "_origin": "ast",
       "id": "components_ourprojects_ourprojects",
       "community": 28,
@@ -3384,13 +3514,53 @@
       "norm_label": "uploadtocloudinary()"
     },
     {
+      "label": "cron.js",
+      "file_type": "code",
+      "source_file": "lib/cron.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lib_cron",
+      "community": 51,
+      "norm_label": "cron.js"
+    },
+    {
+      "label": "monthNames",
+      "file_type": "code",
+      "source_file": "lib/cron.js",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "lib_cron_monthnames",
+      "community": 51,
+      "norm_label": "monthnames"
+    },
+    {
+      "label": "processInterestPayments()",
+      "file_type": "code",
+      "source_file": "lib/cron.js",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "lib_cron_processinterestpayments",
+      "community": 51,
+      "norm_label": "processinterestpayments()"
+    },
+    {
+      "label": "initCron()",
+      "file_type": "code",
+      "source_file": "lib/cron.js",
+      "source_location": "L84",
+      "_origin": "ast",
+      "id": "lib_cron_initcron",
+      "community": 51,
+      "norm_label": "initcron()"
+    },
+    {
       "label": "db.js",
       "file_type": "code",
       "source_file": "lib/db.js",
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_db",
-      "community": 0,
+      "community": 51,
       "norm_label": "db.js"
     },
     {
@@ -3560,7 +3730,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_investment",
-      "community": 77,
+      "community": 51,
       "norm_label": "investment.js"
     },
     {
@@ -3570,7 +3740,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "models_investment_investmentschema",
-      "community": 77,
+      "community": 51,
       "norm_label": "investmentschema"
     },
     {
@@ -3612,6 +3782,26 @@
       "id": "models_nominee_nomineeschema",
       "community": 79,
       "norm_label": "nomineeschema"
+    },
+    {
+      "label": "Statement.js",
+      "file_type": "code",
+      "source_file": "models/Statement.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "models_statement",
+      "community": 85,
+      "norm_label": "statement.js"
+    },
+    {
+      "label": "StatementSchema",
+      "file_type": "code",
+      "source_file": "models/Statement.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "models_statement_statementschema",
+      "community": 85,
+      "norm_label": "statementschema"
     },
     {
       "label": "Ticket.js",
@@ -3670,7 +3860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_user",
-      "community": 81,
+      "community": 51,
       "norm_label": "user.js"
     },
     {
@@ -3680,7 +3870,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "models_user_userschema",
-      "community": 81,
+      "community": 51,
       "norm_label": "userschema"
     },
     {
@@ -4075,6 +4265,26 @@
       "confidence_score": 1.0,
       "source": "admin_page",
       "target": "admin_page_fetcher"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/admin/statements/page.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "app_admin_statements_page_js_statements_page",
+      "target": "app_admin_statements_page_js_statements_page_fetcher",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/admin/statements/page.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "app_admin_statements_page_js_statements_page",
+      "target": "statements_page_adminstatementspage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -4565,6 +4775,113 @@
       "source_location": "L7",
       "weight": 1.0,
       "source": "migraterewards_route_get",
+      "target": "lib_db_connecttodatabase"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/admin/statements/[id]/route.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "app_api_admin_statements_id_route_js_id_route",
+      "target": "app_api_admin_statements_id_route_js_id_route_delete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/admin/statements/[id]/route.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "app_api_admin_statements_id_route_js_id_route_delete",
+      "target": "lib_auth_verifytoken"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/admin/statements/[id]/route.js",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "app_api_admin_statements_id_route_js_id_route_delete",
+      "target": "lib_db_connecttodatabase"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/admin/statements/route.js",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "app_api_admin_statements_route_js_statements_route",
+      "target": "app_api_admin_statements_route_js_statements_route_get",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/admin/statements/route.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_api_admin_statements_route_js_statements_route",
+      "target": "statements_route_post",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/admin/statements/route.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "statements_route_post",
+      "target": "lib_auth_verifytoken"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/admin/statements/route.js",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "statements_route_post",
+      "target": "lib_cloudinary_uploadtocloudinary"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/admin/statements/route.js",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "statements_route_post",
+      "target": "lib_db_connecttodatabase"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/admin/statements/route.js",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "app_api_admin_statements_route_js_statements_route_get",
+      "target": "lib_auth_verifytoken"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/admin/statements/route.js",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "app_api_admin_statements_route_js_statements_route_get",
       "target": "lib_db_connecttodatabase"
     },
     {
@@ -6005,6 +6322,38 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "app/api/statements/route.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "app_api_statements_route_js_statements_route",
+      "target": "app_api_statements_route_js_statements_route_get",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/statements/route.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "app_api_statements_route_js_statements_route_get",
+      "target": "lib_auth_verifytoken"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/statements/route.js",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "app_api_statements_route_js_statements_route_get",
+      "target": "lib_db_connecttodatabase"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "app/api/tickets/[id]/route.js",
       "source_location": "L6",
       "weight": 1.0,
@@ -6645,6 +6994,26 @@
       "confidence_score": 1.0,
       "source": "app_dashboard_security_page_js_security_page",
       "target": "security_page_securityredirectpage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/dashboard/statements/page.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "app_dashboard_statements_page_js_statements_page",
+      "target": "app_dashboard_statements_page_js_statements_page_fetcher",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/dashboard/statements/page.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "app_dashboard_statements_page_js_statements_page",
+      "target": "statements_page_userstatementspage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7486,6 +7855,124 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "lib/cron.js",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "lib_cron",
+      "target": "lib_cron_initcron",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/cron.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "lib_cron",
+      "target": "lib_cron_monthnames",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/cron.js",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "lib_cron",
+      "target": "lib_cron_processinterestpayments",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/cron.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "lib_cron",
+      "target": "lib_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/db.js",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "lib_db_connecttodatabase",
+      "target": "lib_cron",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/cron.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "lib_cron",
+      "target": "models_investment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/cron.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "lib_cron",
+      "target": "models_transaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/cron.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "lib_cron",
+      "target": "models_transaction_transaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/cron.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "lib_cron",
+      "target": "models_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/cron.js",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "lib_cron_initcron",
+      "target": "lib_cron_processinterestpayments",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/cron.js",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "lib_cron_processinterestpayments",
+      "target": "lib_db_connecttodatabase"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "lib/db.js",
       "source_location": "L15",
       "weight": 1.0,
@@ -7616,6 +8103,16 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "models/Statement.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "models_statement",
+      "target": "models_statement_statementschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "models/Ticket.js",
       "source_location": "L3",
       "weight": 1.0,
@@ -7695,5 +8192,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "e47cc146976cffa789e2037efd8ab83d5d711e37"
+  "built_at_commit": "049bf15f921b48f3b9350e31befb93907b97971a"
 }

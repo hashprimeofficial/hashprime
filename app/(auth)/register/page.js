@@ -101,6 +101,25 @@ function RegisterForm() {
     if (requiresOTP) {
         return (
             <motion.div key="otp" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.3 }}>
+                <style jsx>{`
+                    @keyframes blinkHighlight {
+                        0%, 100% { border-color: rgba(212,175,53,0.3); background-color: rgba(212,175,53,0.05); box-shadow: none; }
+                        50% { border-color: #d4af35; background-color: rgba(212,175,53,0.25); box-shadow: 0 0 25px rgba(212,175,53,0.6); }
+                    }
+                    .animate-blink-highlight {
+                        animation: blinkHighlight 1s ease-in-out infinite;
+                    }
+                `}</style>
+                {/* Current Offers Section - Highlighted after registration clicks */}
+                <div className="p-4 rounded-2xl border text-center mb-6 transition-all duration-500 animate-blink-highlight">
+                    <div className="text-[10px] font-black tracking-[0.25em] text-[#d4af35] uppercase mb-1">
+                        🔥 CURRENT PLATFORM OFFERS 🔥
+                    </div>
+                    <p className="text-white text-xs font-bold leading-relaxed px-2">
+                        Limited Offer: 4% Monthly Returns Plan (Minimum ₹5 Lakhs)
+                    </p>
+                </div>
+
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 bg-[#d4af35]/10 border border-[#d4af35]/30">
                     <Mail className="w-7 h-7 text-[#d4af35]" />
                 </div>
@@ -144,6 +163,16 @@ function RegisterForm() {
 
     return (
         <motion.div key="register" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.3 }}>
+            {/* Current Offers Section */}
+            <div className="p-4 rounded-2xl border border-[#d4af35]/30 text-center mb-6 bg-[#0A0A0A]">
+                <div className="text-[10px] font-black tracking-[0.25em] text-[#d4af35] uppercase mb-1">
+                    🔥 CURRENT PLATFORM OFFERS 🔥
+                </div>
+                <p className="text-white text-xs font-bold leading-relaxed px-2">
+                    Limited Offer: 4% Monthly Returns Plan (Minimum ₹5 Lakhs)
+                </p>
+            </div>
+
             <div className="mb-8">
                 <h1 className="text-3xl font-black text-white tracking-tight mb-2">Create your account</h1>
                 <p className="text-slate-400 text-sm font-medium">

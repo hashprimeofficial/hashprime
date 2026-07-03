@@ -264,7 +264,7 @@ function BankTab() {
                                     <p className="text-[10px] font-black text-[#d4af35]/70 uppercase tracking-widest mt-0.5">{acc.accountType}</p>
                                 </div>
                             </div>
-                            <p className="font-mono font-black text-[#d4af35] text-xl tracking-[0.2em] mb-4 drop-shadow-[0_0_8px_rgba(212,175,53,0.3)]">•••• •••• {acc.accountNumber.slice(-4)}</p>
+                            <p className="font-mono font-black text-[#d4af35] text-xl tracking-[0.1em] mb-4 drop-shadow-[0_0_8px_rgba(212,175,53,0.3)]">XXXX-XXXX-XXXX-{acc.accountNumber.slice(-4)}</p>
                             <div className="flex gap-8 border-t border-[#d4af35]/10 pt-4 mt-2">
                                 <div><p className="text-[10px] text-white/40 font-black uppercase tracking-widest mb-1.5">IFSC Code</p><p className="text-sm font-bold text-white uppercase tracking-wide">{acc.ifsc}</p></div>
                                 <div><p className="text-[10px] text-white/40 font-black uppercase tracking-widest mb-1.5">Account Holder</p><p className="text-sm font-bold text-white tracking-wide">{acc.accountHolderName}</p></div>

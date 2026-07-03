@@ -37,7 +37,7 @@ export async function POST(req) {
             }
 
             if (referrer) {
-                validReferrer = referrer.referralCode || referrer._id.toString();
+                validReferrer = referrer.email;
             } else {
                 return NextResponse.json({ error: 'Invalid referral code or email provided.' }, { status: 400 });
             }

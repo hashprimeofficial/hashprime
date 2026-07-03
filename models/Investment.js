@@ -39,6 +39,10 @@ const InvestmentSchema = new mongoose.Schema(
             type: Date,
             required: true,
         },
+        paidMonths: {
+            type: [Number],
+            default: []
+        }
     },
     { timestamps: true }
 );

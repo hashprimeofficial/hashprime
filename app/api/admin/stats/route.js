@@ -71,7 +71,10 @@ export async function GET(req) {
             { $limit: 5 }
         ]);
         const topReferrals = await Promise.all(topReferralsData.map(async (ref) => {
-            let referrer = await User.findOne({ referralCode: ref._id }).select('name email');
+            let referrer = await User.findOne({ email: ref._id }).select('name email');
+            if (!referrer) {
+                referrer = await User.findOne({ referralCode: ref._id }).select('name email');
+            }
             if (!referrer && ref._id.length === 24) {
                 try { referrer = await User.findById(ref._id).select('name email'); } catch (e) { }
             }

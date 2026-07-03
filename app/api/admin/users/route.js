@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/db';
 import User from '@/models/User';
 import Investment from '@/models/Investment';
+import BankAccount from '@/models/BankAccount';
 import { verifyToken } from '@/lib/auth';
 
 export async function GET(req) {
@@ -26,12 +27,25 @@ export async function GET(req) {
 
         const userIds = users.map(u => u._id);
         const userInvestments = await Investment.find({ userId: { $in: userIds }, status: { $in: ['active', 'completed', 'pending'] } });
+        const bankAccounts = await BankAccount.find({ user: { $in: userIds } });
 
         const enrichedUsers = users.map(user => {
             const myInvs = userInvestments.filter(i => i.userId.toString() === user._id.toString());
             const totalInvestedUSD = myInvs.filter(i => i.currency === 'USD').reduce((a, b) => a + b.amount, 0);
             const totalInvestedINR = myInvs.filter(i => i.currency === 'INR').reduce((a, b) => a + b.amount, 0);
-            return { ...user, totalInvestedUSD, totalInvestedINR };
+            
+            const myBank = bankAccounts.find(b => b.user.toString() === user._id.toString());
+            return { 
+                ...user, 
+                totalInvestedUSD, 
+                totalInvestedINR,
+                bankName: myBank?.bankName || '',
+                accountNumber: myBank?.accountNumber || '',
+                ifsc: myBank?.ifsc || '',
+                accountHolderName: myBank?.accountHolderName || '',
+                branch: myBank?.branch || '',
+                accountType: myBank?.accountType || ''
+            };
         });
 
         const totalUsers = await User.countDocuments({ role: 'user' });

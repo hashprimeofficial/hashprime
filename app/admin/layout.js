@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
     LayoutDashboard, Users, Wallet, LogOut, Loader2,
-    Menu, X, ShieldCheck, Ticket, TrendingUp, ChevronRight, ArrowUpRight, MessageSquare
+    Menu, X, ShieldCheck, Ticket, TrendingUp, ChevronRight, ArrowUpRight, MessageSquare, ScrollText
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import useSWR from 'swr';
@@ -17,6 +17,7 @@ const NAV_ITEMS = [
     { name: 'Overview', href: '/admin', icon: LayoutDashboard },
     { name: 'Users', href: '/admin/users', icon: Users },
     { name: 'Investments', href: '/admin/investments', icon: TrendingUp },
+    { name: 'Statements', href: '/admin/statements', icon: ScrollText },
     { name: 'Deposits', href: '/admin/deposits', icon: Wallet },
     { name: 'Withdrawals', href: '/admin/withdrawals', icon: ArrowUpRight },
     { name: 'KYC Approvals', href: '/admin/kyc', icon: ShieldCheck },

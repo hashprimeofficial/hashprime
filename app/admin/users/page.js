@@ -72,6 +72,12 @@ export default function AdminUsersPage() {
             InvestedINR: user.totalInvestedINR || 0,
             ReferralWallet: user.referralWallet || 0,
             KYCStatus: user.kycStatus || 'unsubmitted',
+            BankName: user.bankName || 'N/A',
+            BankAccountNumber: user.accountNumber || 'N/A',
+            IFSC: user.ifsc || 'N/A',
+            AccountHolder: user.accountHolderName || 'N/A',
+            Branch: user.branch || 'N/A',
+            AccountType: user.accountType || 'N/A',
             Registered: new Date(user.createdAt).toLocaleString(),
         }));
 

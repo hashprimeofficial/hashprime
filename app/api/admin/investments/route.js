@@ -113,7 +113,10 @@ export async function POST(req) {
 
         // 3. Referral Bonus Logic
         if (user.referredBy) {
-            const referrer = await User.findOne({ referralCode: user.referredBy });
+            let referrer = await User.findOne({ email: user.referredBy });
+            if (!referrer) {
+                referrer = await User.findOne({ referralCode: user.referredBy });
+            }
             if (referrer) {
                 // 4% of investment amount as bonus, traditionally awarded in USDT
                 const bonusUsdt = Math.round(((Number(amount) * 0.04) / liveRate) * 100) / 100;

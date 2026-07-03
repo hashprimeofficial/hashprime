@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
     LayoutDashboard, Wallet, Users, LogOut, Loader2,
-    Settings2, Menu, X, Headphones, TrendingUp, RefreshCw, ArrowUpRight
+    Settings2, Menu, X, Headphones, TrendingUp, RefreshCw, ArrowUpRight, ScrollText
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import useSWR from 'swr';
@@ -18,6 +18,7 @@ const NAV_ITEMS = [
     { name: 'Withdraw', href: '/dashboard/withdraw', icon: ArrowUpRight },
     { name: 'Conversion', href: '/dashboard/convert', icon: RefreshCw },
     { name: 'Referrals', href: '/dashboard/referrals', icon: Users },
+    { name: 'Statements', href: '/dashboard/statements', icon: ScrollText },
     { name: 'Support', href: '/dashboard/tickets', icon: Headphones },
     { name: 'Nominee', href: '/dashboard/nominee', icon: Users },
     { name: 'Settings', href: '/dashboard/profile', icon: Settings2 },

@@ -40,13 +40,13 @@ export default function ReferralsPage() {
     const copyRefLink = () => {
         let origin = '';
         if (typeof window !== 'undefined') origin = window.location.origin;
-        navigator.clipboard.writeText(`${origin}/register?ref=${data.referralCode || userId}`);
+        navigator.clipboard.writeText(`${origin}/register?ref=${authData?.user?.email || userId}`);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };
 
     const refLink = typeof window !== 'undefined'
-        ? `${window.location.origin}/register?ref=${data.referralCode || userId}`
+        ? `${window.location.origin}/register?ref=${authData?.user?.email || userId}`
         : '';
 
     return (

@@ -18,7 +18,7 @@ export default function DashboardOverview() {
     if (error || !data) return <div className="text-red-500">Failed to load dashboard</div>;
     if (data.error) return <div className="text-red-500">{data.error}</div>;
 
-    const { user, investments = [], transactions = [], bankAccounts = [] } = data;
+    const { user, investments = [], transactions = [], bankAccounts = [], referralCount = 0, referralCommissionEarned = 0 } = data;
 
     // Live exchange rate (INR per USDT), fallback to 85
     const usdtToInr = rateData?.rate || 85;
@@ -80,7 +80,7 @@ export default function DashboardOverview() {
     const copyRefLink = () => {
         let origin = '';
         if (typeof window !== 'undefined') origin = window.location.origin;
-        navigator.clipboard.writeText(`${origin}/register?ref=${user.referralCode || user._id}`);
+        navigator.clipboard.writeText(`${origin}/register?ref=${user.email}`);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     }
@@ -133,7 +133,7 @@ export default function DashboardOverview() {
             )}
 
             {/* Wallets & Portfolio */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }} className="bg-[#0A0A0A] border border-[#d4af35]/30 hover:border-[#d4af35]/60 transition-colors p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af35]/10 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500" />
                     <div className="flex items-center gap-2 mb-3 text-[#d4af35]"><Wallet className="w-5 h-5 text-[#d4af35]" /> <h3 className="font-bold text-sm tracking-wide uppercase">USDT Wallet</h3></div>
@@ -188,6 +188,24 @@ export default function DashboardOverview() {
                             <span className="font-black text-[#32e512] drop-shadow-[0_0_8px_rgba(50,229,18,0.4)] text-lg">
                                 ₹{(expectedINR + (expectedUSD * usdtToInr)).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
                             </span>
+                        </div>
+                    </div>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.4 }} className="bg-[#0A0A0A] border border-[#d4af35]/20 hover:border-[#d4af35]/50 transition-all duration-300 p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#d4af35]/5 rounded-full blur-2xl flex items-center justify-center -mr-8 -mt-8 pointer-events-none group-hover:bg-[#d4af35]/10 transition-colors" />
+                    <div className="flex items-center gap-2 mb-3 text-[#d4af35]">
+                        <Users className="w-5 h-5 text-[#d4af35]" />
+                        <h3 className="font-bold text-sm tracking-wide uppercase">Referral Stats</h3>
+                    </div>
+                    <div className="flex flex-col gap-2 mt-4 z-10 relative">
+                        <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
+                            <span className="text-slate-400 font-medium">Invites:</span>
+                            <span className="font-black text-white">{referralCount}</span>
+                        </div>
+                        <div className="flex justify-between items-center text-sm pt-1">
+                            <span className="text-slate-400 font-medium">Earned (INR):</span>
+                            <span className="font-black text-white">₹{Math.round(referralCommissionEarned * usdtToInr).toLocaleString('en-IN')}</span>
                         </div>
                     </div>
                 </motion.div>

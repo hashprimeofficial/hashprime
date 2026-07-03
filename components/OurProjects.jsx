@@ -1,11 +1,12 @@
 "use client";
 
 import { useRef } from 'react';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import {
-    TrendingUp, PieChart, DollarSign, Briefcase, Globe2, ArrowRight
+    TrendingUp, DollarSign, ArrowRight, Radio, Building2, Wrench, Briefcase
 } from 'lucide-react';
 
 function SleekCryptoPrism() {
@@ -82,11 +83,12 @@ function SleekCryptoPrism() {
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const projects = [
-    { num: '01', Icon: TrendingUp, title: 'Stocks & IPO', tag: 'Equity', desc: 'Equities and IPO access — capture growth before the crowd. High-yield potential in emerging markets.' },
-    { num: '02', Icon: PieChart, title: 'Mutual Fund & ETF', tag: 'Diversified', desc: 'SIPs, index ETFs, and hybrid funds — managed, lower-risk growth for long-term stability.' },
-    { num: '03', Icon: DollarSign, title: 'Currency & Commodity', tag: 'Forex', desc: 'Gold, silver, crude oil and forex pairs — hedge against inflation with global assets.' },
-    { num: '04', Icon: Briefcase, title: 'Stock Case', tag: 'Thematic', desc: 'Analyst-curated baskets across tech, healthcare, and green energy. Smart thematic investing.' },
-    { num: '05', Icon: Globe2, title: 'Global Investing', tag: 'International', desc: 'US, European and Asian exchanges — earn in global currencies and diversify geographically.' },
+    { num: '01', Icon: TrendingUp, title: 'IPO', tag: 'Equity', desc: 'Pre-IPO shares and institutional placements — capture early-stage valuation gains.', href: '#' },
+    { num: '02', Icon: DollarSign, title: 'Currency & Commodity', tag: 'Forex', desc: 'Gold, silver, crude oil and forex pairs — hedge against inflation with global assets.', href: '#' },
+    { num: '03', Icon: Radio, title: 'Telecom Industry', tag: 'Infrastructure', desc: 'Telecom tower operations, fiber networks, and cellular infrastructure assets.', href: '#' },
+    { num: '04', Icon: Building2, title: 'Real Estate', tag: 'Property', desc: 'Premium commercial developments and residential rental yielding holdings.', href: '#' },
+    { num: '05', Icon: Wrench, title: 'Construction', tag: 'Civil', desc: 'Civil development projects, smart cities, and transport utility construction.', href: '#' },
+    { num: '06', Icon: Briefcase, title: 'Various Sector', tag: 'Compounding', desc: 'Click here to access our active structured investment schemes and passive plans.', href: '/dashboard/invest', isAction: true },
 ];
 
 export default function OurProjects() {
@@ -145,51 +147,59 @@ export default function OurProjects() {
 
                 {/* ── Showcase Rows ─────── */}
                 <div className="op-rows grid grid-cols-1 md:grid-cols-1 gap-4">
-                    {projects.map(({ num, Icon, title, tag, desc }) => (
-                        <div
-                            key={num}
-                            className="op-row group relative flex flex-col md:flex-row md:items-center gap-6 p-6 md:p-8 
-                                       bg-[#0A0A0A]/50 backdrop-blur-sm border border-white/5 rounded-[2rem]
-                                       hover:bg-[#121212]/80 hover:border-[#d4af35]/20 hover:shadow-[0_10px_40px_rgba(212,175,53,0.05)]
-                                       transition-all duration-700 cursor-default overflow-hidden"
-                        >
-                            {/* Subtle Radial Gradient Hover Map */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#d4af35]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none" />
+                    {projects.map(({ num, Icon, title, tag, desc, href, isAction }) => {
+                        const isLink = href && href !== '#';
+                        const Container = isLink ? Link : 'div';
+                        return (
+                            <Container
+                                key={num}
+                                href={href || ''}
+                                className={`op-row group relative flex flex-col md:flex-row md:items-center gap-6 p-6 md:p-8 
+                                           bg-[#0A0A0A]/50 backdrop-blur-sm border rounded-[2rem]
+                                           hover:bg-[#121212]/80 hover:shadow-[0_10px_40px_rgba(212,175,53,0.05)]
+                                           transition-all duration-700 overflow-hidden text-left block w-full
+                                           ${isAction 
+                                             ? 'border-[#d4af35]/40 hover:border-[#d4af35]/80 cursor-pointer' 
+                                             : 'border-white/5 hover:border-[#d4af35]/20 cursor-default'}`}
+                            >
+                                {/* Subtle Radial Gradient Hover Map */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-[#d4af35]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none" />
 
-                            {/* Left Line Accent (Clean & Minimal) */}
-                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-0 bg-[#d4af35] opacity-0 group-hover:h-3/4 group-hover:opacity-100 transition-all duration-500 rounded-r-full" />
+                                {/* Left Line Accent (Clean & Minimal) */}
+                                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-0 bg-[#d4af35] opacity-0 group-hover:h-3/4 group-hover:opacity-100 transition-all duration-500 rounded-r-full" />
 
-                            {/* Minimal Icon Bubble */}
-                            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#0A0A0A] border border-white/5 flex items-center justify-center relative z-10
-                                            group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(212,175,53,0.1)] group-hover:border-[#d4af35]/30 transition-all duration-500 overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-b from-[#d4af35]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]"></div>
-                                <Icon size={24} strokeWidth={1.5} className="text-[#d4af35]" />
-                            </div>
-
-                            {/* Center Content */}
-                            <div className="flex-1 min-w-0 relative z-10">
-                                <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-3">
-                                    <span className="text-[11px] font-black text-slate-500 tracking-widest font-display">{num}</span>
-                                    <h3 className="text-2xl font-black text-white tracking-tight group-hover:text-[#d4af35] transition-colors duration-500 font-display">
-                                        {title}
-                                    </h3>
-                                    <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#d4af35]/80 bg-[#d4af35]/5 border border-[#d4af35]/20 px-3 py-1 rounded-full whitespace-nowrap">
-                                        {tag}
-                                    </span>
+                                {/* Minimal Icon Bubble */}
+                                <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-[#0A0A0A] border border-white/5 flex items-center justify-center relative z-10
+                                                group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(212,175,53,0.1)] group-hover:border-[#d4af35]/30 transition-all duration-500 overflow-hidden">
+                                    <div className="absolute inset-0 bg-gradient-to-b from-[#d4af35]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]"></div>
+                                    <Icon size={24} strokeWidth={1.5} className="text-[#d4af35]" />
                                 </div>
-                                <p className="text-slate-400 font-normal text-[15px] leading-relaxed max-w-2xl group-hover:text-slate-300 transition-colors duration-500">{desc}</p>
-                            </div>
 
-                            {/* Right Arrow (Minimal Reveal) */}
-                            <div className="flex items-center gap-4 relative z-10">
-                                <div className="w-12 h-12 rounded-full border border-white/5 flex items-center justify-center text-slate-500 bg-[#0A0A0A]
-                                                group-hover:border-[#d4af35]/40 group-hover:text-[#d4af35] group-hover:bg-[#d4af35]/5
-                                                transition-all duration-500 group-hover:translate-x-1">
-                                    <ArrowRight size={18} strokeWidth={2} />
+                                {/* Center Content */}
+                                <div className="flex-1 min-w-0 relative z-10">
+                                    <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-3">
+                                        <span className="text-[11px] font-black text-slate-500 tracking-widest font-display">{num}</span>
+                                        <h3 className="text-2xl font-black text-white tracking-tight group-hover:text-[#d4af35] transition-colors duration-500 font-display">
+                                            {title}
+                                        </h3>
+                                        <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#d4af35]/80 bg-[#d4af35]/5 border border-[#d4af35]/20 px-3 py-1 rounded-full whitespace-nowrap">
+                                            {tag}
+                                        </span>
+                                    </div>
+                                    <p className="text-slate-400 font-normal text-[15px] leading-relaxed max-w-2xl group-hover:text-slate-300 transition-colors duration-500">{desc}</p>
                                 </div>
-                            </div>
-                        </div>
-                    ))}
+
+                                {/* Right Arrow (Minimal Reveal) */}
+                                <div className="flex items-center gap-4 relative z-10">
+                                    <div className="w-12 h-12 rounded-full border border-white/5 flex items-center justify-center text-slate-500 bg-[#0A0A0A]
+                                                    group-hover:border-[#d4af35]/40 group-hover:text-[#d4af35] group-hover:bg-[#d4af35]/5
+                                                    transition-all duration-500 group-hover:translate-x-1">
+                                        <ArrowRight size={18} strokeWidth={2} />
+                                    </div>
+                                </div>
+                            </Container>
+                        );
+                    })}
                 </div>
 
                 {/* ── Bottom CTA ────────────────────── */}

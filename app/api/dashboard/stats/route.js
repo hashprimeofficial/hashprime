@@ -23,7 +23,19 @@ export async function GET(req) {
         const transactions = await Transaction.find({ userId: user._id }).sort({ createdAt: -1 }).limit(10);
         const bankAccounts = await BankAccount.find({ user: user._id });
 
-        return NextResponse.json({ user, investments, transactions, bankAccounts }, { status: 200 });
+        // Calculate referral stats
+        const referralCount = await User.countDocuments({ referredBy: user.email });
+        const referralTxs = await Transaction.find({ userId: user._id, type: 'referral_bonus' });
+        const referralCommissionEarned = referralTxs.reduce((sum, tx) => sum + tx.amount, 0);
+
+        return NextResponse.json({ 
+            user, 
+            investments, 
+            transactions, 
+            bankAccounts, 
+            referralCount, 
+            referralCommissionEarned 
+        }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }

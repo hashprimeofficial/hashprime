@@ -72,7 +72,8 @@ const UserSchema = new mongoose.Schema(
         otpExpiry: { type: Date, default: null },
 
         // Deposit & Referrals
-        referralCode: { type: String, unique: true, sparse: true, default: null }
+        referralCode: { type: String, unique: true, sparse: true, default: null },
+        limitedRateOverride: { type: Number, default: null }
     },
     { timestamps: true }
 );

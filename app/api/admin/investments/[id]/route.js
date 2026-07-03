@@ -67,7 +67,10 @@ export async function PATCH(req, { params }) {
 
             // 4% Referral Bonus Logic for Referrer
             if (user.referredBy) {
-                const referrer = await User.findOne({ referralCode: user.referredBy });
+                let referrer = await User.findOne({ email: user.referredBy });
+                if (!referrer) {
+                    referrer = await User.findOne({ referralCode: user.referredBy });
+                }
                 if (referrer) {
                     const liveRate = await getExchangeRate();
                     const bonusUsd = currentInvestment.currency === 'USD'

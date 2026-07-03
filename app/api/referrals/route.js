@@ -14,11 +14,11 @@ export async function GET(req) {
 
         await connectToDatabase();
 
-        const user = await User.findById(payload.userId).select('referralCode');
+        const user = await User.findById(payload.userId).select('email referralCode');
         if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 });
 
-        // Find all users who were referred by this user's referral code
-        const referredUsers = await User.find({ referredBy: user.referralCode })
+        // Find all users who were referred by this user's email
+        const referredUsers = await User.find({ referredBy: user.email })
             .select('name email createdAt')
             .sort({ createdAt: -1 });
 
