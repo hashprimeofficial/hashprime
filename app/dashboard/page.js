@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { motion } from 'framer-motion';
-import { DollarSign, Clock, ArrowUpRight, Copy, CheckCircle2, Wallet, IndianRupee, Coins, ShieldCheck, Fingerprint, Landmark, AlertCircle, PiggyBank, Users } from 'lucide-react';
+import { DollarSign, Clock, ArrowUpRight, Copy, CheckCircle2, Wallet, IndianRupee, Coins, ShieldCheck, Fingerprint, Landmark, AlertCircle, PiggyBank, Users, X } from 'lucide-react';
 import Link from 'next/link';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -22,6 +22,13 @@ export default function DashboardOverview() {
 
     // Live exchange rate (INR per USDT), fallback to 85
     const usdtToInr = rateData?.rate || 85;
+
+    const [isProfileDismissed, setIsProfileDismissed] = useState(false);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setIsProfileDismissed(localStorage.getItem('dismiss_profile_complete') === 'true');
+        }
+    }, []);
 
     const isKycComplete = user.kycStatus === 'approved';
     const is2FaComplete = user.isTwoFactorEnabled;
@@ -102,8 +109,18 @@ export default function DashboardOverview() {
                 <p className="text-slate-500 font-medium">Here&apos;s an overview of your wealth generation.</p>
             </div>
 
-            {!isProfileFullyComplete && (
+            {!isProfileFullyComplete && !isProfileDismissed && (
                 <div className="bg-[#0A0A0A] border border-amber-500/30 rounded-2xl p-6 shadow-lg overflow-hidden relative">
+                    <button
+                        onClick={() => {
+                            localStorage.setItem('dismiss_profile_complete', 'true');
+                            setIsProfileDismissed(true);
+                        }}
+                        className="absolute top-4 right-4 text-white/40 hover:text-white p-1 rounded-lg bg-white/5 transition-all z-20"
+                        title="Dismiss notice"
+                    >
+                        <X className="w-4 h-4" />
+                    </button>
                     <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl flex items-center justify-center -mr-10 -mt-10 pointer-events-none" />
                     <div className="flex items-start gap-4 z-10 relative">
                         <div className="pt-1">

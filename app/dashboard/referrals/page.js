@@ -1,8 +1,9 @@
 'use client';
 
 import useSWR from 'swr';
-import { Copy, CheckCircle2, Users, Gift, ArrowUpRight, UserCircle2 } from 'lucide-react';
+import { Copy, CheckCircle2, Users, Gift, ArrowUpRight, UserCircle2, Landmark, Plus, Loader2, AlertCircle } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -23,10 +24,18 @@ function ReferralsSkeleton() {
 }
 
 export default function ReferralsPage() {
-    const { data: authData } = useSWR('/api/auth/me', fetcher);
-    const { data, error, isLoading } = useSWR('/api/referrals', fetcher);
+    const router = useRouter();
+    const { data: authData, mutate: mutateAuth } = useSWR('/api/auth/me', fetcher);
+    const { data, error, isLoading, mutate: mutateReferrals } = useSWR('/api/referrals', fetcher);
     const { data: rateData } = useSWR('/api/exchange-rate', fetcher);
+    const { data: bankData } = useSWR('/api/bank-accounts', fetcher);
+    const { data: claimsData, mutate: mutateClaims } = useSWR('/api/referrals/claim', fetcher);
+
     const [copied, setCopied] = useState(false);
+    const [claimMode, setClaimMode] = useState('Request'); // 'Request', 'Form', 'Submitting', 'Success'
+    const [selectedBankId, setSelectedBankId] = useState('');
+    const [claimAmountInr, setClaimAmountInr] = useState('');
+    const [claimError, setClaimError] = useState('');
 
     const usdtToInr = rateData?.rate || 85;
 
@@ -34,8 +43,12 @@ export default function ReferralsPage() {
     if (error || !data) return <div className="text-red-500">Failed to load referral data</div>;
 
     const { referredUsers = [], referralTxs = [], totalEarned = 0 } = data;
+    const bankAccounts = bankData?.bankAccounts || [];
+    const claims = claimsData?.claims || [];
 
     const userId = authData?.user?._id || '';
+    const referralWalletUsd = authData?.user?.referralWallet || 0;
+    const referralWalletInr = Math.round(referralWalletUsd * usdtToInr);
 
     const copyRefLink = () => {
         let origin = '';
@@ -48,6 +61,69 @@ export default function ReferralsPage() {
     const refLink = typeof window !== 'undefined'
         ? `${window.location.origin}/register?ref=${authData?.user?.email || userId}`
         : '';
+
+    const handleStartClaim = () => {
+        if (bankAccounts.length === 0) {
+            setClaimError('Please add a bank account in Settings to claim referral income.');
+            setClaimMode('Form');
+            return;
+        }
+        setClaimAmountInr(referralWalletInr.toString());
+        setSelectedBankId(bankAccounts[0]?._id || '');
+        setClaimError('');
+        setClaimMode('Form');
+    };
+
+    const handleCancelClaim = () => {
+        setClaimMode('Request');
+        setClaimError('');
+    };
+
+    const handleSubmitClaim = async (e) => {
+        e.preventDefault();
+        setClaimError('');
+
+        const amount = parseFloat(claimAmountInr);
+        if (isNaN(amount) || amount <= 0) {
+            setClaimError('Please enter a valid amount.');
+            return;
+        }
+
+        if (amount > referralWalletInr) {
+            setClaimError(`Maximum claimable amount is ₹${referralWalletInr.toLocaleString('en-IN')}`);
+            return;
+        }
+
+        if (!selectedBankId) {
+            setClaimError('Please select a payout bank account.');
+            return;
+        }
+
+        setClaimMode('Submitting');
+
+        try {
+            const res = await fetch('/api/referrals/claim', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amountInr: amount, bankAccountId: selectedBankId })
+            });
+
+            const result = await res.json();
+            if (res.ok) {
+                setClaimMode('Success');
+                mutateAuth();
+                mutateReferrals();
+                mutateClaims();
+                setTimeout(() => setClaimMode('Request'), 3000);
+            } else {
+                setClaimError(result.error || 'Failed to submit claim.');
+                setClaimMode('Form');
+            }
+        } catch (err) {
+            setClaimError('An unexpected error occurred.');
+            setClaimMode('Form');
+        }
+    };
 
     return (
         <div className="max-w-4xl mx-auto space-y-8 relative pb-20">
@@ -87,16 +163,109 @@ export default function ReferralsPage() {
                     </div>
                 </div>
 
-                {/* Stats Card */}
-                <div className="bg-[#0A0A0A] border border-[#d4af35]/20 p-8 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] relative overflow-hidden flex flex-col justify-center items-center text-center group hover:border-[#d4af35]/40 transition-colors">
+                {/* Claim Referral Card */}
+                <div className="bg-[#0A0A0A] border border-[#d4af35]/20 p-8 rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] relative overflow-hidden flex flex-col justify-between group hover:border-[#d4af35]/40 transition-all duration-300">
                     <div className="absolute bottom-[-20%] left-[-10%] w-48 h-48 bg-[#d4af35]/5 blur-[60px] rounded-full pointer-events-none"></div>
-                    <Gift className="w-10 h-10 text-[#d4af35] mb-4 drop-shadow-[0_0_8px_rgba(212,175,53,0.4)] group-hover:scale-110 transition-transform" />
-                    <p className="text-[#d4af35]/60 text-[10px] font-black uppercase tracking-widest mb-1">Available Referral Balance</p>
-                    <h2 className="text-4xl md:text-5xl font-black text-white relative z-10 tracking-tight">₹{authData?.user?.referralWallet?.toLocaleString('en-IN') || '0.00'}</h2>
-                    <p className="text-[#d4af35] bg-[#d4af35]/10 px-3 py-1 rounded-lg border border-[#d4af35]/20 text-[10px] mt-4 font-black uppercase tracking-widest shadow-sm">
-                        Total Historical Earnings: ₹{(totalEarned * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
-                    </p>
-                    <p className="text-white/40 text-xs mt-3 font-bold">{referredUsers.length} user{referredUsers.length !== 1 ? 's' : ''} referred</p>
+                    
+                    <div className="w-full">
+                        <div className="flex items-center justify-between w-full mb-4">
+                            <Gift className="w-8 h-8 text-[#d4af35] drop-shadow-[0_0_8px_rgba(212,175,53,0.4)]" />
+                            <span className="text-[10px] font-black uppercase tracking-widest text-[#d4af35]/40">Active Wallet</span>
+                        </div>
+                        <p className="text-[#d4af35]/60 text-[10px] font-black uppercase tracking-widest mb-1">Available Referral Balance</p>
+                        <h2 className="text-4xl font-black text-white tracking-tight">₹{referralWalletInr.toLocaleString('en-IN')}</h2>
+                        <div className="text-[10px] text-white/40 mt-1 font-bold">~ ${referralWalletUsd.toFixed(2)} USD</div>
+                    </div>
+
+                    <div className="w-full mt-6 z-10 relative">
+                        {claimMode === 'Request' && (
+                            <button
+                                onClick={handleStartClaim}
+                                disabled={referralWalletInr <= 0}
+                                className="w-full py-4 bg-[#d4af35] text-black font-black uppercase tracking-widest text-xs rounded-xl shadow-[0_4px_20px_rgba(212,175,53,0.2)] hover:bg-[#f8d76d] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                            >
+                                Request Payout
+                            </button>
+                        )}
+
+                        {claimMode === 'Form' && (
+                            <form onSubmit={handleSubmitClaim} className="space-y-4 text-left">
+                                {claimError && (
+                                    <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-xs text-red-400 font-bold flex items-start gap-2">
+                                        <AlertCircle className="w-4 h-4 shrink-0" />
+                                        <span>{claimError}</span>
+                                    </div>
+                                )}
+
+                                {bankAccounts.length > 0 ? (
+                                    <>
+                                        <div className="space-y-1">
+                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Payout Amount (INR)</label>
+                                            <input
+                                                type="number"
+                                                required
+                                                value={claimAmountInr}
+                                                onChange={e => setClaimAmountInr(e.target.value)}
+                                                className="w-full bg-[#080808] border border-white/10 rounded-xl px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-[#d4af35]/40"
+                                            />
+                                        </div>
+
+                                        <div className="space-y-1">
+                                            <label className="text-[9px] font-black text-slate-500 uppercase tracking-widest">Select Payout Bank</label>
+                                            <select
+                                                required
+                                                value={selectedBankId}
+                                                onChange={e => setSelectedBankId(e.target.value)}
+                                                className="w-full bg-[#080808] border border-white/10 rounded-xl px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-[#d4af35]/40"
+                                            >
+                                                {bankAccounts.map(b => (
+                                                    <option key={b._id} value={b._id}>{b.bankName} - ••••{b.accountNumber.slice(-4)}</option>
+                                                ))}
+                                            </select>
+                                        </div>
+
+                                        <div className="flex gap-2 pt-2">
+                                            <button
+                                                type="button"
+                                                onClick={handleCancelClaim}
+                                                className="flex-1 py-3 border border-white/10 text-white/50 text-xs font-black uppercase tracking-wider rounded-xl hover:bg-white/5 transition-colors"
+                                            >
+                                                Cancel
+                                            </button>
+                                            <button
+                                                type="submit"
+                                                className="flex-1 py-3 bg-[#d4af35] text-black text-xs font-black uppercase tracking-widest rounded-xl hover:bg-[#f8d76d] transition-colors"
+                                            >
+                                                Submit
+                                            </button>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <button
+                                        type="button"
+                                        onClick={() => router.push('/dashboard/profile?tab=bank')}
+                                        className="w-full py-3.5 bg-[#d4af35]/10 border border-[#d4af35]/30 text-[#d4af35] text-xs font-black uppercase tracking-widest rounded-xl hover:bg-[#d4af35]/20 transition-all flex items-center justify-center gap-2"
+                                    >
+                                        <Landmark className="w-4 h-4" /> Go Add Bank Account
+                                    </button>
+                                )}
+                            </form>
+                        )}
+
+                        {claimMode === 'Submitting' && (
+                            <div className="flex items-center justify-center py-4 gap-2 text-[#d4af35]">
+                                <Loader2 className="w-5 h-5 animate-spin" />
+                                <span className="text-xs font-black uppercase tracking-widest">Submitting Claim...</span>
+                            </div>
+                        )}
+
+                        {claimMode === 'Success' && (
+                            <div className="flex items-center justify-center py-4 gap-2 text-emerald-400">
+                                <CheckCircle2 className="w-5 h-5" />
+                                <span className="text-xs font-black uppercase tracking-widest">Claim Requested!</span>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
 
@@ -104,7 +273,7 @@ export default function ReferralsPage() {
             <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.5)] relative z-10">
                 <div className="p-6 border-b border-[#d4af35]/10 flex items-center gap-3 bg-[#d4af35]/5">
                     <UserCircle2 className="w-5 h-5 text-[#d4af35]" />
-                    <h3 className="text-xl font-black text-white tracking-tight">Referred Users</h3>
+                    <h3 className="text-xl font-black text-white tracking-tight">Referred Investors</h3>
                     <span className="ml-auto bg-[#d4af35]/10 text-[#d4af35] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg border border-[#d4af35]/30 shadow-inner">{referredUsers.length} total</span>
                 </div>
                 {referredUsers.length === 0 ? (
@@ -112,24 +281,93 @@ export default function ReferralsPage() {
                         No referred users yet.<br />Share your link to get started!
                     </div>
                 ) : (
-                    <ul className="divide-y divide-[#d4af35]/10">
-                        {referredUsers.map((u) => (
-                            <li key={u._id} className="p-5 flex flex-col sm:flex-row justify-between sm:items-center gap-4 hover:bg-[#d4af35]/5 transition-colors group">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-[#d4af35]/10 flex items-center justify-center text-[#d4af35] font-black text-lg border border-[#d4af35]/20 shadow-inner group-hover:scale-110 transition-transform">
-                                        {u.name?.charAt(0).toUpperCase() || '?'}
-                                    </div>
-                                    <div>
-                                        <p className="text-white font-black text-lg tracking-tight">{u.name}</p>
-                                        <p className="text-[#d4af35]/60 text-xs font-bold">{u.email}</p>
-                                    </div>
-                                </div>
-                                <div className="text-left sm:text-right text-[10px] text-white/40 font-black uppercase tracking-widest">
-                                    Joined {new Date(u.createdAt).toLocaleDateString(undefined, { day: '2-digit', month: 'short', year: 'numeric' })}
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left whitespace-nowrap">
+                            <thead className="bg-[#080808] border-b border-[#d4af35]/10">
+                                <tr>
+                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Name &amp; Email</th>
+                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Invested Amount</th>
+                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Commission Rate</th>
+                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Commission Earned</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-[#d4af35]/5">
+                                {referredUsers.map((u) => (
+                                    <tr key={u._id} className="hover:bg-[#d4af35]/3 transition-colors">
+                                        <td className="px-6 py-4">
+                                            <div className="font-bold text-white text-sm">{u.name}</div>
+                                            <div className="text-xs font-semibold text-slate-400 mt-0.5">{u.email}</div>
+                                        </td>
+                                        <td className="px-6 py-4 font-mono font-bold text-white text-sm">
+                                            ₹{u.totalInvested?.toLocaleString('en-IN') || '0'}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <span className="px-2.5 py-1 bg-[#d4af35]/10 border border-[#d4af35]/25 text-[#d4af35] text-[10px] font-black rounded-lg">
+                                                {u.commissionPct || 4}%
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 font-mono font-black text-emerald-400 text-sm">
+                                            ₹{u.commissionAmount?.toLocaleString('en-IN') || '0'}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+            </div>
+
+            {/* Claims History */}
+            <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.5)] relative z-10">
+                <div className="p-6 border-b border-[#d4af35]/10 bg-[#d4af35]/5">
+                    <h3 className="text-xl font-black text-white tracking-tight">Referral Claims History</h3>
+                </div>
+
+                {claims.length === 0 ? (
+                    <div className="p-10 text-center font-bold text-[#d4af35]/40 text-sm tracking-wide">
+                        No payout claims requested yet.
+                    </div>
+                ) : (
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left whitespace-nowrap">
+                            <thead className="bg-[#080808] border-b border-[#d4af35]/10">
+                                <tr>
+                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Date</th>
+                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Bank Account</th>
+                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Amount Requested</th>
+                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-[#d4af35]/5">
+                                {claims.map((cl) => (
+                                    <tr key={cl._id} className="hover:bg-[#d4af35]/3 transition-colors">
+                                        <td className="px-6 py-4 text-xs font-semibold text-slate-400">
+                                            {new Date(cl.createdAt).toLocaleString()}
+                                        </td>
+                                        <td className="px-6 py-4 text-xs text-white font-bold">
+                                            {cl.bankAccountId ? (
+                                                <>
+                                                    {cl.bankAccountId.bankName} - ••••{cl.bankAccountId.accountNumber.slice(-4)}
+                                                </>
+                                            ) : 'Bank details unavailable'}
+                                        </td>
+                                        <td className="px-6 py-4 font-mono font-bold text-white text-sm">
+                                            ₹{cl.amountInr?.toLocaleString('en-IN') || '0'}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            <span className={`px-2.5 py-1 border rounded-lg text-[9px] font-black uppercase tracking-wider ${
+                                                cl.status === 'Approved' 
+                                                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' 
+                                                    : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
+                                            }`}>
+                                                {cl.status}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 )}
             </div>
 
@@ -158,7 +396,7 @@ export default function ReferralsPage() {
                                 </div>
                                 <div className="text-left sm:text-right bg-[#0A0A0A] sm:bg-transparent p-4 sm:p-0 rounded-xl sm:rounded-none border border-white/5 sm:border-transparent mt-2 sm:mt-0">
                                     <div className="font-black text-[#32e512] text-xl drop-shadow-[0_0_8px_rgba(50,229,18,0.2)]">+₹{(tx.amount * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })}</div>
-                                    <div className="text-[10px] text-white/50 font-black uppercase tracking-widest mt-1">~ {tx.amount.toFixed(2)} USDTT</div>
+                                    <div className="text-[10px] text-white/50 font-black uppercase tracking-widest mt-1">~ {tx.amount.toFixed(2)} USDT</div>
                                 </div>
                             </li>
                         ))}

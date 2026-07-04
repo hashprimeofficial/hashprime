@@ -213,16 +213,17 @@ function RegisterForm() {
                     </div>
                 </Field>
 
-                <Field label="Referral Code / Email">
+                <Field label="Referral Code / Email (Required)">
                     <div className="relative">
                         <input type="text" name="referredBy"
                             defaultValue={resolvedReferrer}
                             key={resolvedReferrer}
+                            required
                             className={`${inputClass} pr-24 ${isResolving ? 'animate-pulse' : ''}`}
-                            placeholder="Optional"
+                            placeholder="Enter referral code or email"
                             onFocus={focusGold} onBlur={blurGold} />
-                        <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold bg-[#d4af35]/10 text-[#d4af35] border border-[#d4af35]/20 px-2 py-0.5 rounded-md">
-                            {isResolving ? 'Loading...' : 'Optional'}
+                        <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20 px-2 py-0.5 rounded-md">
+                            {isResolving ? 'Loading...' : 'Required'}
                         </span>
                     </div>
                 </Field>
@@ -238,9 +239,9 @@ function RegisterForm() {
 
                 <p className="text-center text-xs text-slate-500 font-medium pt-1">
                     By signing up you agree to our{' '}
-                    <span className="text-[#d4af35] font-semibold cursor-pointer hover:underline">Terms</span>{' '}
+                    <Link href="/terms" className="text-[#d4af35] font-semibold hover:underline">Terms</Link>{' '}
                     &amp;{' '}
-                    <span className="text-[#d4af35] font-semibold cursor-pointer hover:underline">Privacy Policy</span>
+                    <Link href="/privacy" className="text-[#d4af35] font-semibold hover:underline">Privacy Policy</Link>
                 </p>
             </form>
         </motion.div>

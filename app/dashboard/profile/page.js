@@ -194,11 +194,13 @@ function BankTab() {
         finally { setSaving(false); }
     };
 
+    const canAdd = (data?.bankAccounts?.length || 0) < 5;
+
     return (
         <div className="space-y-5">
             <div className="flex items-center justify-between">
-                <p className="text-xs font-bold text-slate-300 uppercase tracking-widest">Your Accounts</p>
-                {!adding && (
+                <p className="text-xs font-bold text-slate-300 uppercase tracking-widest">Your Accounts (Max 5)</p>
+                {!adding && canAdd && (
                     <button onClick={() => setAdding(true)}
                         className="inline-flex items-center gap-1.5 text-xs font-black text-white bg-[#d4af35]/10 hover:bg-[#d4af35]/20 border border-[#d4af35]/30 px-4 py-2 rounded-xl transition-all">
                         <Plus className="w-3.5 h-3.5" /> Add Account

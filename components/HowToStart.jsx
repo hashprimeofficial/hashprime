@@ -21,7 +21,7 @@ export default function HowToStart() {
         {
             num: "02",
             title: "Fund Your Wallet",
-            desc: "Deposit crypto or fiat easily via bank transfer, credit card, or P2P. Your funds are protected by industry-leading security.",
+            desc: "Deposit funds easily via bank transfer, credit card, or P2P. Your funds are protected by industry-leading security.",
             icon: <Wallet className="w-8 h-8 step-icon" />
         },
         {

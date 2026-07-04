@@ -1,16 +1,16 @@
-# Graph Report - hashprime-main  (2026-07-03)
+# Graph Report - hashprime-main  (2026-07-04)
 
 ## Corpus Check
-- 129 files · ~70,400 words
+- 135 files · ~73,444 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 394 nodes · 410 edges · 89 communities (43 shown, 46 thin omitted)
-- Extraction: 69% EXTRACTED · 31% INFERRED · 0% AMBIGUOUS · INFERRED: 126 edges (avg confidence: 0.8)
+- 408 nodes · 431 edges · 95 communities (45 shown, 50 thin omitted)
+- Extraction: 69% EXTRACTED · 31% INFERRED · 0% AMBIGUOUS · INFERRED: 135 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `049bf15f`
+- Built from commit: `8d33cce9`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -49,12 +49,12 @@
 - [[_COMMUNITY_Community 38|Community 38]]
 - [[_COMMUNITY_Community 39|Community 39]]
 - [[_COMMUNITY_Community 41|Community 41]]
+- [[_COMMUNITY_Community 43|Community 43]]
 - [[_COMMUNITY_Community 48|Community 48]]
 - [[_COMMUNITY_Community 49|Community 49]]
 - [[_COMMUNITY_Community 51|Community 51]]
 - [[_COMMUNITY_Community 52|Community 52]]
 - [[_COMMUNITY_Community 54|Community 54]]
-- [[_COMMUNITY_Community 56|Community 56]]
 - [[_COMMUNITY_Community 67|Community 67]]
 - [[_COMMUNITY_Community 68|Community 68]]
 - [[_COMMUNITY_Community 74|Community 74]]
@@ -64,7 +64,6 @@
 - [[_COMMUNITY_Community 78|Community 78]]
 - [[_COMMUNITY_Community 79|Community 79]]
 - [[_COMMUNITY_Community 80|Community 80]]
-- [[_COMMUNITY_Community 81|Community 81]]
 - [[_COMMUNITY_Community 82|Community 82]]
 - [[_COMMUNITY_Community 83|Community 83]]
 - [[_COMMUNITY_Community 84|Community 84]]
@@ -72,11 +71,16 @@
 - [[_COMMUNITY_Community 86|Community 86]]
 - [[_COMMUNITY_Community 87|Community 87]]
 - [[_COMMUNITY_Community 88|Community 88]]
+- [[_COMMUNITY_Community 89|Community 89]]
+- [[_COMMUNITY_Community 90|Community 90]]
+- [[_COMMUNITY_Community 92|Community 92]]
+- [[_COMMUNITY_Community 93|Community 93]]
+- [[_COMMUNITY_Community 94|Community 94]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `connectToDatabase()` - 64 edges
-2. `verifyToken()` - 47 edges
-3. `getExchangeRate()` - 8 edges
+1. `connectToDatabase()` - 69 edges
+2. `verifyToken()` - 51 edges
+3. `getExchangeRate()` - 11 edges
 4. `uploadToCloudinary()` - 6 edges
 5. `sendEmail()` - 6 edges
 6. `POST()` - 5 edges
@@ -86,41 +90,41 @@
 10. `POST()` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `GET()` --calls--> `verifyToken()`  [INFERRED]
-  app/api/admin/deposits/route.js → lib/auth.js
 - `GET()` --calls--> `connectToDatabase()`  [INFERRED]
   app/api/admin/deposits/route.js → lib/db.js
-- `PUT()` --calls--> `verifyToken()`  [INFERRED]
-  app/api/admin/deposits/route.js → lib/auth.js
 - `PUT()` --calls--> `connectToDatabase()`  [INFERRED]
   app/api/admin/deposits/route.js → lib/db.js
 - `GET()` --calls--> `connectToDatabase()`  [INFERRED]
   app/api/admin/dumpusers/route.js → lib/db.js
+- `PATCH()` --calls--> `connectToDatabase()`  [INFERRED]
+  app/api/admin/enquiries/[id]/route.js → lib/db.js
+- `GET()` --calls--> `connectToDatabase()`  [INFERRED]
+  app/api/admin/enquiries/route.js → lib/db.js
 
 ## Import Cycles
 - 2-file cycle: `lib/cron.js -> lib/db.js -> lib/cron.js`
 
-## Communities (89 total, 46 thin omitted)
+## Communities (95 total, 50 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.09
-Nodes (13): PATCH(), POST(), GET(), POST(), GET(), GET(), GET(), PUT() (+5 more)
+Nodes (13): PATCH(), GET(), POST(), GET(), POST(), GET(), GET(), GET() (+5 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.11
-Nodes (14): DELETE(), PATCH(), DELETE(), DELETE(), PATCH(), PATCH(), verifyToken(), GET() (+6 more)
+Cohesion: 0.13
+Nodes (13): GET(), DELETE(), PATCH(), DELETE(), DELETE(), PATCH(), PATCH(), PUT() (+5 more)
 
 ### Community 3 - "Community 3"
 Cohesion: 0.13
 Nodes (12): POST(), secretKey, generateOTP(), POST(), GET(), PUT(), sendEmail(), transporter (+4 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.18
-Nodes (7): GET(), uploadToCloudinary(), GET(), PUT(), POST(), GET(), POST()
+Cohesion: 0.14
+Nodes (9): GET(), GET(), POST(), uploadToCloudinary(), GET(), PUT(), POST(), GET() (+1 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.11
-Nodes (12): GET(), POST(), GET(), INR_SCHEMES, POST(), USD_SCHEMES, GET(), INR_SCHEMES (+4 more)
+Cohesion: 0.09
+Nodes (16): GET(), POST(), GET(), INR_SCHEMES, POST(), USD_SCHEMES, initCron(), monthNames (+8 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.33
@@ -142,29 +146,29 @@ Nodes (3): dmSans, metadata, spaceGrotesk
 Cohesion: 0.50
 Nodes (3): CoinTile(), FALLBACK_COINS, formatPrice()
 
-### Community 51 - "Community 51"
-Cohesion: 0.20
-Nodes (7): initCron(), monthNames, processInterestPayments(), InvestmentSchema, Transaction, TransactionSchema, UserSchema
+### Community 43 - "Community 43"
+Cohesion: 0.40
+Nodes (4): GET(), INR_SCHEMES, POST(), USD_SCHEMES
 
 ## Knowledge Gaps
-- **60 isolated node(s):** `neonStyle`, `SCHEME_OPTIONS`, `NAV_ITEMS`, `PRIORITY_COLORS`, `STATUS_PILL` (+55 more)
+- **61 isolated node(s):** `neonStyle`, `SCHEME_OPTIONS`, `NAV_ITEMS`, `PRIORITY_COLORS`, `STATUS_PILL` (+56 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **46 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **50 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `connectToDatabase()` connect `Community 0` to `Community 2`, `Community 67`, `Community 4`, `Community 5`, `Community 3`, `Community 7`, `Community 77`, `Community 49`, `Community 81`, `Community 51`, `Community 84`, `Community 87`, `Community 23`, `Community 88`, `Community 86`, `Community 56`, `Community 31`?**
-  _High betweenness centrality (0.091) - this node is a cross-community bridge._
-- **Why does `verifyToken()` connect `Community 2` to `Community 0`, `Community 67`, `Community 4`, `Community 5`, `Community 3`, `Community 7`, `Community 77`, `Community 49`, `Community 81`, `Community 84`, `Community 87`, `Community 23`, `Community 88`, `Community 86`, `Community 56`, `Community 31`?**
-  _High betweenness centrality (0.029) - this node is a cross-community bridge._
+- **Why does `connectToDatabase()` connect `Community 0` to `Community 2`, `Community 3`, `Community 4`, `Community 5`, `Community 7`, `Community 23`, `Community 31`, `Community 43`, `Community 49`, `Community 51`, `Community 67`, `Community 77`, `Community 84`, `Community 86`, `Community 87`, `Community 88`, `Community 89`, `Community 90`, `Community 93`, `Community 94`?**
+  _High betweenness centrality (0.093) - this node is a cross-community bridge._
+- **Why does `verifyToken()` connect `Community 2` to `Community 0`, `Community 3`, `Community 4`, `Community 5`, `Community 7`, `Community 23`, `Community 31`, `Community 43`, `Community 49`, `Community 51`, `Community 67`, `Community 77`, `Community 84`, `Community 86`, `Community 87`, `Community 88`, `Community 89`, `Community 90`, `Community 93`, `Community 94`?**
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
 - **Why does `POST()` connect `Community 5` to `Community 0`, `Community 2`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
-- **Are the 61 inferred relationships involving `connectToDatabase()` (e.g. with `GET()` and `PATCH()`) actually correct?**
-  _`connectToDatabase()` has 61 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 46 inferred relationships involving `verifyToken()` (e.g. with `GET()` and `DELETE()`) actually correct?**
-  _`verifyToken()` has 46 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 7 inferred relationships involving `getExchangeRate()` (e.g. with `PATCH()` and `GET()`) actually correct?**
-  _`getExchangeRate()` has 7 INFERRED edges - model-reasoned connections that need verification._
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **Are the 65 inferred relationships involving `connectToDatabase()` (e.g. with `GET()` and `PATCH()`) actually correct?**
+  _`connectToDatabase()` has 65 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 50 inferred relationships involving `verifyToken()` (e.g. with `GET()` and `DELETE()`) actually correct?**
+  _`verifyToken()` has 50 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 8 inferred relationships involving `getExchangeRate()` (e.g. with `PATCH()` and `GET()`) actually correct?**
+  _`getExchangeRate()` has 8 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 5 inferred relationships involving `uploadToCloudinary()` (e.g. with `POST()` and `POST()`) actually correct?**
   _`uploadToCloudinary()` has 5 INFERRED edges - model-reasoned connections that need verification._

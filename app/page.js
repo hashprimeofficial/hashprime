@@ -20,7 +20,7 @@ export default function Home() {
     name: 'Hashprime',
     url: 'https://hashprime.com',
     logo: 'https://hashprime.com/logo.png',
-    description: 'Elite cryptocurrency investment platform with advanced analytics, deep liquidity, and institutional-grade security.',
+    description: 'Elite asset management platform with advanced analytics and institutional-grade security.',
   };
 
   return (

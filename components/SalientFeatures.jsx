@@ -54,9 +54,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const features = [
     {
-        id: "diversified-crypto-portfolio",
+        id: "diversified-business-portfolio",
         num: "01",
-        title: "Diversified Crypto Portfolio",
+        title: "Diversified Business Portfolio",
         description: "Seamlessly manage stocks, commodities, and global equities in one unified interface. Hashprime simplifies complex investing.",
         icon: Briefcase,
         color: "bg-[#d4af35]/5"

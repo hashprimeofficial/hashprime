@@ -189,8 +189,8 @@ export default function Footer() {
                     </p>
 
                     <div className="flex items-center space-x-8">
-                        <Link href="#" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Privacy Policy</Link>
-                        <Link href="#" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Terms of Service</Link>
+                        <Link href="/privacy" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Privacy Policy</Link>
+                        <Link href="/terms" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Terms of Service</Link>
                         <div className="hidden md:block w-[1px] h-4 bg-white/10"></div>
                         <BackToTop />
                     </div>

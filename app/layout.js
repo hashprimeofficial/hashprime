@@ -20,8 +20,8 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata = {
   metadataBase: new URL('https://hashprime.com'),
   title: 'Hashprime | Intelligent Asset Management for the Modern Investor',
-  description: 'Experience next-generation speed, uncompromised security, and deep liquidity. Invest in Bitcoin, Ethereum, Solana and 100+ cryptocurrencies on Hashprime.',
-  keywords: ['crypto investments', 'bitcoin exchange', 'buy ethereum', 'solana investments', 'cryptocurrency platform', 'secure crypto wallet', 'Hashprime', 'crypto investment'],
+  description: 'Experience next-generation speed and uncompromised security. Invest in stocks, global businesses, and various industries on Hashprime.',
+  keywords: ['business investments', 'stock exchange', 'global business', 'industry investments', 'investment platform', 'secure wallet', 'Hashprime', 'asset management'],
   authors: [{ name: 'Hashprime' }],
   creator: 'Hashprime',
   publisher: 'Hashprime',
@@ -32,7 +32,7 @@ export const metadata = {
   },
   openGraph: {
     title: 'Hashprime | Intelligent Asset Management for the Modern Investor',
-    description: 'The elite platform for professional crypto investors. Secure, fast, and feature-rich.',
+    description: 'The elite platform for professional business and stock investors. Secure, fast, and feature-rich.',
     url: 'https://hashprime.com',
     siteName: 'Hashprime',
     images: [
@@ -49,7 +49,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Hashprime | Intelligent Asset Management for the Modern Investor',
-    description: 'Elite cryptocurrency investment platform with advanced analytics, deep liquidity, and institutional-grade security.',
+    description: 'Elite asset management platform with advanced analytics and institutional-grade security.',
     images: ['/logo.png'], // Fallback
   },
   robots: {

@@ -162,7 +162,7 @@ export default function DepositPage() {
                                                 <Coins className="w-6 h-6 text-[#d4af35]" />
                                             </div>
                                             <span className="font-black text-white text-lg">USDT Wallet</span>
-                                            <span className="text-xs text-[#d4af35]/70 font-bold uppercase tracking-widest">Via USDT / Crypto</span>
+                                            <span className="text-xs text-[#d4af35]/70 font-bold uppercase tracking-widest">Via USDT (BEP20)</span>
                                         </button>
                                         <button
                                             type="button"
@@ -214,7 +214,7 @@ export default function DepositPage() {
                                                 className="w-full bg-[#0A0A0A] border border-[#d4af35]/30 rounded-xl pl-4 pr-10 py-4 text-white font-bold focus:outline-none focus:ring-2 focus:ring-[#d4af35] focus:border-[#d4af35] transition-all shadow-inner appearance-none cursor-pointer"
                                             >
                                                 {targetWallet === 'USD' ? (
-                                                    <option value="usdt">USDT (BEP20) — Pay in Crypto</option>
+                                                    <option value="usdt">USDT (BEP20) — Pay with USDT</option>
                                                 ) : (
                                                     <>
                                                         <option value="bank">Bank Transfer (IMPS/NEFT)</option>

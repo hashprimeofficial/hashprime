@@ -16,8 +16,8 @@ export async function POST(req) {
         await connectToDatabase();
         const { name, email, password, referredBy } = await req.json();
 
-        if (!name || !email || !password) {
-            return NextResponse.json({ error: 'Please provide all required fields' }, { status: 400 });
+        if (!name || !email || !password || !referredBy) {
+            return NextResponse.json({ error: 'Please provide all required fields, including a referral code or email.' }, { status: 400 });
         }
 
         const existingUser = await User.findOne({ email });
@@ -26,21 +26,19 @@ export async function POST(req) {
         }
 
         let validReferrer = '';
-        if (referredBy) {
-            let referrer = null;
-            if (referredBy.includes('@')) {
-                referrer = await User.findOne({ email: referredBy });
-            } else if (mongoose.isValidObjectId(referredBy)) {
-                referrer = await User.findById(referredBy);
-            } else {
-                referrer = await User.findOne({ referralCode: referredBy });
-            }
+        let referrer = null;
+        if (referredBy.includes('@')) {
+            referrer = await User.findOne({ email: referredBy });
+        } else if (mongoose.isValidObjectId(referredBy)) {
+            referrer = await User.findById(referredBy);
+        } else {
+            referrer = await User.findOne({ referralCode: referredBy });
+        }
 
-            if (referrer) {
-                validReferrer = referrer.email;
-            } else {
-                return NextResponse.json({ error: 'Invalid referral code or email provided.' }, { status: 400 });
-            }
+        if (referrer) {
+            validReferrer = referrer.email;
+        } else {
+            return NextResponse.json({ error: 'Invalid referral code or email provided.' }, { status: 400 });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);

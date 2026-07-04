@@ -267,7 +267,7 @@ export default function WithdrawPage() {
                         </div>
 
                         {/* ── Right: History ── */}
-                        <div>
+                        <div className="lg:col-span-1">
                             <h2 className="text-lg font-black text-white flex items-center gap-2 mb-4">
                                 <History className="w-5 h-5 text-[#d4af35]/50" /> Withdrawal History
                             </h2>
@@ -280,28 +280,48 @@ export default function WithdrawPage() {
                                         <p className="text-[#d4af35]/30 font-medium text-sm">No withdrawals yet.</p>
                                     </div>
                                 ) : (
-                                    <div className="divide-y divide-[#d4af35]/5">
-                                        {withdrawals.map(w => {
-                                            const wm = WALLET_META[w.sourceWallet] || WALLET_META.USDT;
-                                            return (
-                                                <div key={w._id} className="p-4 hover:bg-[#d4af35]/3 transition-colors">
-                                                    <div className="flex items-center justify-between mb-1">
-                                                        <div className="flex items-center gap-2">
-                                                            <wm.icon className={`w-4 h-4 ${wm.color}`} />
-                                                            <span className={`font-black text-base ${wm.color}`}>
-                                                                {wm.symbol}{w.amount?.toFixed(2)}
-                                                            </span>
-                                                            <span className="text-[10px] font-black text-[#d4af35]/30 uppercase tracking-widest">{w.sourceWallet}</span>
-                                                        </div>
-                                                        <span className={`px-2.5 py-1 rounded-lg border text-[10px] font-black uppercase tracking-wider ${STATUS_PILL[w.status]}`}>
-                                                            {w.status}
-                                                        </span>
-                                                    </div>
-                                                    <div className="text-[10px] text-[#d4af35]/30 font-medium truncate">{w.walletAddress}</div>
-                                                    <div className="text-[10px] text-white/20 font-medium mt-0.5">{new Date(w.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
-                                                </div>
-                                            );
-                                        })}
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left whitespace-nowrap">
+                                            <thead className="bg-[#d4af35]/5 border-b border-[#d4af35]/10">
+                                                <tr>
+                                                    <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Date &amp; Time</th>
+                                                    <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Payout Account</th>
+                                                    <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Amount</th>
+                                                    <th className="px-4 py-3 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-[#d4af35]/5">
+                                                {withdrawals.map((w) => {
+                                                    const dateObj = new Date(w.createdAt);
+                                                    const dateStr = dateObj.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+                                                    const timeStr = dateObj.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                                                    const wm = WALLET_META[w.sourceWallet] || WALLET_META.USDT;
+
+                                                    return (
+                                                        <tr key={w._id} className="hover:bg-[#d4af35]/3 transition-colors">
+                                                            <td className="px-4 py-4">
+                                                                <div className="text-white font-bold text-xs">{dateStr}</div>
+                                                                <div className="text-white/30 text-[10px] font-semibold mt-0.5">{timeStr}</div>
+                                                            </td>
+                                                            <td className="px-4 py-4 text-xs font-bold text-[#d4af35]/70 max-w-[140px] truncate" title={w.walletAddress}>
+                                                                {w.walletAddress}
+                                                            </td>
+                                                            <td className="px-4 py-4">
+                                                                <div className={`font-black text-sm ${wm.color}`}>
+                                                                    {wm.symbol}{w.amount?.toLocaleString(w.sourceWallet === 'INR' ? 'en-IN' : 'en-US')}
+                                                                </div>
+                                                                <div className="text-white/30 text-[9px] uppercase tracking-widest font-black mt-0.5">{w.sourceWallet}</div>
+                                                            </td>
+                                                            <td className="px-4 py-4">
+                                                                <span className={`px-2 py-0.5 rounded-md border text-[9px] font-black uppercase tracking-wider ${STATUS_PILL[w.status]}`}>
+                                                                    {w.status}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                            </tbody>
+                                        </table>
                                     </div>
                                 )}
                             </div>

@@ -259,7 +259,8 @@ export default function NomineePage() {
                                     value={formData.fullName}
                                     onChange={handleChange}
                                     required
-                                    className={inputClass}
+                                    disabled={!!data?.nominee}
+                                    className={`${inputClass} disabled:opacity-75 disabled:cursor-not-allowed`}
                                     placeholder="Nominee's legal name"
                                 />
                             </div>
@@ -271,7 +272,8 @@ export default function NomineePage() {
                                     value={formData.dob}
                                     onChange={handleChange}
                                     required
-                                    className={`${inputClass} [color-scheme:dark]`}
+                                    disabled={!!data?.nominee}
+                                    className={`${inputClass} [color-scheme:dark] disabled:opacity-75 disabled:cursor-not-allowed`}
                                 />
                             </div>
                             <div>
@@ -281,7 +283,8 @@ export default function NomineePage() {
                                     value={formData.relationship}
                                     onChange={handleChange}
                                     required
-                                    className={`${inputClass} appearance-none bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23d4af35%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[position:right_1rem_center] bg-[size:1.2em] pr-10`}
+                                    disabled={!!data?.nominee}
+                                    className={`${inputClass} appearance-none bg-no-repeat bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23d4af35%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[position:right_1rem_center] bg-[size:1.2em] pr-10 disabled:opacity-75 disabled:cursor-not-allowed`}
                                 >
                                     <option value="" disabled className="text-white/50">Select Relationship</option>
                                     <option value="Spouse">Spouse</option>
@@ -299,7 +302,8 @@ export default function NomineePage() {
                                     value={formData.mobileNumber}
                                     onChange={handleChange}
                                     required
-                                    className={inputClass}
+                                    disabled={!!data?.nominee}
+                                    className={`${inputClass} disabled:opacity-75 disabled:cursor-not-allowed`}
                                     placeholder="With country code (e.g., +91...)"
                                 />
                             </div>
@@ -308,15 +312,27 @@ export default function NomineePage() {
                         {/* ID Proof (Aadhaar Card) Upload Section */}
                         <div className="pt-4 border-t border-[#d4af35]/10">
                             <label className={labelClass}>Nominee ID Proof (Aadhaar Card)</label>
-                            <div className="mt-2 bg-[#121212] border border-dashed border-[#d4af35]/30 rounded-2xl p-6 text-center hover:border-[#d4af35]/60 transition-all">
-                                {formData.idProofUrl ? (
-                                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#0A0A0A] p-4 rounded-xl border border-[#d4af35]/20">
+                            <div className="mt-2 bg-[#121212] border border-dashed border-[#d4af35]/30 rounded-2xl p-6 text-center transition-all">
+                                {data?.nominee ? (
+                                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#0A0A0A] p-4 rounded-xl border border-[#32e512]/20">
                                         <div className="flex items-center gap-3 overflow-hidden">
                                             <div className="w-10 h-10 rounded-lg bg-[#32e512]/10 border border-[#32e512]/30 flex items-center justify-center shrink-0">
                                                 <FileCheck className="w-5 h-5 text-[#32e512]" />
                                             </div>
                                             <div className="text-left truncate">
                                                 <p className="text-sm font-bold text-white truncate">Aadhaar Card ID Proof Uploaded</p>
+                                                <p className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Document Attached & Encrypted</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : formData.idProofUrl ? (
+                                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#0A0A0A] p-4 rounded-xl border border-[#d4af35]/20">
+                                        <div className="flex items-center gap-3 overflow-hidden">
+                                            <div className="w-10 h-10 rounded-lg bg-[#32e512]/10 border border-[#32e512]/30 flex items-center justify-center shrink-0">
+                                                <FileCheck className="w-5 h-5 text-[#32e512]" />
+                                            </div>
+                                            <div className="text-left truncate">
+                                                <p className="text-sm font-bold text-white truncate">Aadhaar Card ID Proof Selected</p>
                                                 <p className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Document Attached & Encrypted</p>
                                             </div>
                                         </div>
@@ -350,16 +366,18 @@ export default function NomineePage() {
                             {uploadError && <p className="text-xs text-red-400 font-bold mt-2">{uploadError}</p>}
                         </div>
 
-                        <div className="pt-6 border-t border-[#d4af35]/10 flex justify-end">
-                            <button
-                                type="submit"
-                                disabled={isSaving}
-                                className="bg-[#d4af35] hover:bg-[#f8d76d] text-[#0A0A0A] font-black text-sm uppercase tracking-widest py-4 px-8 rounded-xl flex items-center gap-2 transition-all shadow-[0_4px_20px_rgba(212,175,53,0.3)] disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5"
-                            >
-                                {isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-                                {data?.nominee ? 'Update Nominee' : 'Save Nominee'}
-                            </button>
-                        </div>
+                        {!data?.nominee && (
+                            <div className="pt-6 border-t border-[#d4af35]/10 flex justify-end">
+                                <button
+                                    type="submit"
+                                    disabled={isSaving}
+                                    className="bg-[#d4af35] hover:bg-[#f8d76d] text-[#0A0A0A] font-black text-sm uppercase tracking-widest py-4 px-8 rounded-xl flex items-center gap-2 transition-all shadow-[0_4px_20px_rgba(212,175,53,0.3)] disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5"
+                                >
+                                    {isSaving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
+                                    Save Nominee
+                                </button>
+                            </div>
+                        )}
                     </form>
                 </div>
             </motion.div>

@@ -118,8 +118,11 @@ export async function POST(req) {
                 referrer = await User.findOne({ referralCode: user.referredBy });
             }
             if (referrer) {
-                // 4% of investment amount as bonus, traditionally awarded in USDT
-                const bonusUsdt = Math.round(((Number(amount) * 0.04) / liveRate) * 100) / 100;
+                // 5% of investment amount as bonus (or referrer override), awarded in USDT
+                const referrerRate = referrer.limitedRateOverride !== undefined && referrer.limitedRateOverride !== null
+                    ? referrer.limitedRateOverride
+                    : 0.05;
+                const bonusUsdt = Math.round(((Number(amount) * referrerRate) / liveRate) * 100) / 100;
 
                 await User.findByIdAndUpdate(referrer._id, {
                     $inc: { referralWallet: bonusUsdt }
@@ -130,7 +133,7 @@ export async function POST(req) {
                     type: 'referral_bonus',
                     amount: bonusUsdt,
                     currency: 'USD',
-                    description: `4% Referral bonus from ${user.name}'s investment`
+                    description: `${referrerRate * 100}% Referral bonus from ${user.name}'s investment`
                 });
             }
         }

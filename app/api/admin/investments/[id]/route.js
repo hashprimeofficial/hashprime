@@ -73,9 +73,12 @@ export async function PATCH(req, { params }) {
                 }
                 if (referrer) {
                     const liveRate = await getExchangeRate();
+                    const referrerRate = referrer.limitedRateOverride !== undefined && referrer.limitedRateOverride !== null
+                        ? referrer.limitedRateOverride
+                        : 0.05;
                     const bonusUsd = currentInvestment.currency === 'USD'
-                        ? Math.round((amountNeeded * 0.04) * 100) / 100
-                        : Math.round(((amountNeeded * 0.04) / liveRate) * 100) / 100;
+                        ? Math.round((amountNeeded * referrerRate) * 100) / 100
+                        : Math.round(((amountNeeded * referrerRate) / liveRate) * 100) / 100;
 
                     await User.findByIdAndUpdate(referrer._id, {
                         $inc: { referralWallet: bonusUsd }
@@ -86,7 +89,7 @@ export async function PATCH(req, { params }) {
                         type: 'referral_bonus',
                         amount: bonusUsd,
                         currency: 'USD',
-                        description: `4% Referral bonus from ${user.name}'s investment approval`
+                        description: `${referrerRate * 100}% Referral bonus from ${user.name}'s investment approval`
                     });
                 }
             }
