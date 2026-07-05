@@ -650,7 +650,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_deposits_route_js_deposits_route",
-      "community": 31,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -660,7 +660,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "app_api_admin_deposits_route_js_deposits_route_get",
-      "community": 31,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -670,7 +670,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "deposits_route_put",
-      "community": 31,
+      "community": 2,
       "norm_label": "put()"
     },
     {
@@ -700,7 +700,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_enquiries_id_route_js_id_route",
-      "community": 0,
+      "community": 67,
       "norm_label": "route.js"
     },
     {
@@ -710,7 +710,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "app_api_admin_enquiries_id_route_js_id_route_patch",
-      "community": 0,
+      "community": 67,
       "norm_label": "patch()"
     },
     {
@@ -860,7 +860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "approve_route",
-      "community": 0,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -870,7 +870,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "approve_route_post",
-      "community": 0,
+      "community": 2,
       "norm_label": "post()"
     },
     {
@@ -880,7 +880,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "referral_claims_route",
-      "community": 2,
+      "community": 95,
       "norm_label": "route.js"
     },
     {
@@ -890,7 +890,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "referral_claims_route_get",
-      "community": 2,
+      "community": 95,
       "norm_label": "get()"
     },
     {
@@ -900,7 +900,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_statements_id_route_js_id_route",
-      "community": 67,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -910,7 +910,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "app_api_admin_statements_id_route_js_id_route_delete",
-      "community": 67,
+      "community": 2,
       "norm_label": "delete()"
     },
     {
@@ -1060,7 +1060,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_withdrawals_id_route_js_id_route",
-      "community": 2,
+      "community": 88,
       "norm_label": "route.js"
     },
     {
@@ -1070,7 +1070,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_api_admin_withdrawals_id_route_js_id_route_patch",
-      "community": 2,
+      "community": 88,
       "norm_label": "patch()"
     },
     {
@@ -1100,7 +1100,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "disable_route",
-      "community": 2,
+      "community": 90,
       "norm_label": "route.js"
     },
     {
@@ -1110,7 +1110,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "disable_route_post",
-      "community": 2,
+      "community": 90,
       "norm_label": "post()"
     },
     {
@@ -1150,7 +1150,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "setup_route",
-      "community": 2,
+      "community": 51,
       "norm_label": "route.js"
     },
     {
@@ -1160,7 +1160,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "setup_route_get",
-      "community": 2,
+      "community": 51,
       "norm_label": "get()"
     },
     {
@@ -1170,7 +1170,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "setup_route_post",
-      "community": 2,
+      "community": 51,
       "norm_label": "post()"
     },
     {
@@ -1490,7 +1490,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "careers_route",
-      "community": 4,
+      "community": 0,
       "norm_label": "route.js"
     },
     {
@@ -1500,7 +1500,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "careers_route_post",
-      "community": 4,
+      "community": 0,
       "norm_label": "post()"
     },
     {
@@ -1510,7 +1510,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "careers_route_get",
-      "community": 4,
+      "community": 0,
       "norm_label": "get()"
     },
     {
@@ -1520,7 +1520,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_dashboard_stats_route_js_stats_route",
-      "community": 2,
+      "community": 0,
       "norm_label": "route.js"
     },
     {
@@ -1530,7 +1530,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "app_api_dashboard_stats_route_js_stats_route_get",
-      "community": 2,
+      "community": 0,
       "norm_label": "get()"
     },
     {
@@ -1740,7 +1740,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "profile_route",
-      "community": 4,
+      "community": 31,
       "norm_label": "route.js"
     },
     {
@@ -1750,7 +1750,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "profile_route_get",
-      "community": 4,
+      "community": 31,
       "norm_label": "get()"
     },
     {
@@ -1760,7 +1760,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "profile_route_put",
-      "community": 4,
+      "community": 31,
       "norm_label": "put()"
     },
     {
@@ -1770,7 +1770,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "claim_route",
-      "community": 51,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1780,7 +1780,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "claim_route_post",
-      "community": 51,
+      "community": 2,
       "norm_label": "post()"
     },
     {
@@ -1790,7 +1790,7 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "claim_route_get",
-      "community": 51,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -1820,7 +1820,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_statements_route_js_statements_route",
-      "community": 90,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1830,7 +1830,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "app_api_statements_route_js_statements_route_get",
-      "community": 90,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -1840,7 +1840,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_tickets_id_route_js_id_route",
-      "community": 2,
+      "community": 89,
       "norm_label": "route.js"
     },
     {
@@ -1850,7 +1850,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "id_route_put",
-      "community": 2,
+      "community": 89,
       "norm_label": "put()"
     },
     {
@@ -1860,7 +1860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tickets_route",
-      "community": 88,
+      "community": 4,
       "norm_label": "route.js"
     },
     {
@@ -1870,7 +1870,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "tickets_route_get",
-      "community": 88,
+      "community": 4,
       "norm_label": "get()"
     },
     {
@@ -1880,7 +1880,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "tickets_route_post",
-      "community": 88,
+      "community": 4,
       "norm_label": "post()"
     },
     {
@@ -3680,7 +3680,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_db",
-      "community": 0,
+      "community": 5,
       "norm_label": "db.js"
     },
     {
@@ -4102,46 +4102,6 @@
       "id": "postcss_config_config",
       "community": 83,
       "norm_label": "config"
-    },
-    {
-      "label": "fix_kuppusamy_transaction.js",
-      "file_type": "code",
-      "source_file": "scratch/fix_kuppusamy_transaction.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "scratch_fix_kuppusamy_transaction",
-      "community": 5,
-      "norm_label": "fix_kuppusamy_transaction.js"
-    },
-    {
-      "label": "run()",
-      "file_type": "code",
-      "source_file": "scratch/fix_kuppusamy_transaction.js",
-      "source_location": "L5",
-      "_origin": "ast",
-      "id": "scratch_fix_kuppusamy_transaction_run",
-      "community": 5,
-      "norm_label": "run()"
-    },
-    {
-      "label": "reset_referral_wallets.js",
-      "file_type": "code",
-      "source_file": "scratch/reset_referral_wallets.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "scratch_reset_referral_wallets",
-      "community": 0,
-      "norm_label": "reset_referral_wallets.js"
-    },
-    {
-      "label": "run()",
-      "file_type": "code",
-      "source_file": "scratch/reset_referral_wallets.js",
-      "source_location": "L4",
-      "_origin": "ast",
-      "id": "scratch_reset_referral_wallets_run",
-      "community": 0,
-      "norm_label": "run()"
     }
   ],
   "links": [
@@ -8427,72 +8387,6 @@
       "target": "lib_db_connecttodatabase"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/fix_kuppusamy_transaction.js",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "scratch_fix_kuppusamy_transaction",
-      "target": "lib_db",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/reset_referral_wallets.js",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scratch_reset_referral_wallets",
-      "target": "lib_db"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/fix_kuppusamy_transaction.js",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "scratch_fix_kuppusamy_transaction",
-      "target": "lib_db_connecttodatabase",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/fix_kuppusamy_transaction.js",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "scratch_fix_kuppusamy_transaction_run",
-      "target": "lib_db_connecttodatabase",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/reset_referral_wallets.js",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scratch_reset_referral_wallets",
-      "target": "lib_db_connecttodatabase"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/reset_referral_wallets.js",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scratch_reset_referral_wallets_run",
-      "target": "lib_db_connecttodatabase"
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "lib/email.js",
@@ -8673,28 +8567,6 @@
       "target": "models_transaction_transactionschema"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/fix_kuppusamy_transaction.js",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "scratch_fix_kuppusamy_transaction",
-      "target": "models_transaction",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/fix_kuppusamy_transaction.js",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "scratch_fix_kuppusamy_transaction",
-      "target": "models_transaction_transaction",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "models/User.js",
@@ -8703,28 +8575,6 @@
       "confidence_score": 1.0,
       "source": "models_user",
       "target": "models_user_userschema"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/fix_kuppusamy_transaction.js",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "scratch_fix_kuppusamy_transaction",
-      "target": "models_user",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/reset_referral_wallets.js",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scratch_reset_referral_wallets",
-      "target": "models_user"
     },
     {
       "relation": "contains",
@@ -8765,28 +8615,8 @@
       "confidence_score": 1.0,
       "source": "postcss_config",
       "target": "postcss_config_config"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/fix_kuppusamy_transaction.js",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "scratch_fix_kuppusamy_transaction",
-      "target": "scratch_fix_kuppusamy_transaction_run",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scratch/reset_referral_wallets.js",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scratch_reset_referral_wallets",
-      "target": "scratch_reset_referral_wallets_run"
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "fef8a02f579eb67e82de9096fc5472cf84442eda"
+  "built_at_commit": "c2c352a44ff47f7b0678013e295dcca02a67fd9c"
 }

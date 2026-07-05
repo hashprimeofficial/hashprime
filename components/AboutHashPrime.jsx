@@ -82,7 +82,7 @@ export default function AboutHashPrime() {
                         </h2>
 
                         <p className="ah-header-animate text-lg md:text-xl text-slate-400 font-normal max-w-xl leading-relaxed mb-10">
-                            {"Hashprime is a multi-service engineering and infrastructure company dedicated to delivering reliable, innovative, and high-quality solutions across the telecom, electrical, construction, real estate, and technology sectors..."}
+                            Hashprime is a multi-service engineering and infrastructure company dedicated to delivering reliable, innovative, and high-quality solutions across the telecom, electrical, construction, real estate, and technology sectors. We are committed to helping businesses and communities grow through professional expertise, technical excellence, and customer-focused service.
                         </p>
 
                         {/* Mission & Vision */}
@@ -90,13 +90,13 @@ export default function AboutHashPrime() {
                             <div>
                                 <h3 className="text-sm font-black uppercase tracking-wider text-[#d4af35] mb-2">Our Mission</h3>
                                 <p className="text-slate-300 leading-relaxed">
-                                    {"To deliver dependable engineering, infrastructure, and technology solutions..."}
+                                    To deliver dependable engineering, infrastructure, and technology solutions that create lasting value for our clients through quality workmanship, innovation, and exceptional customer service.
                                 </p>
                             </div>
                             <div>
                                 <h3 className="text-sm font-black uppercase tracking-wider text-[#d4af35] mb-2">Our Vision</h3>
                                 <p className="text-slate-300 leading-relaxed">
-                                    {"To be recognized as one of India's most trusted engineering and technology companies..."}
+                                    To be recognized as one of India's most trusted engineering and technology companies, driving sustainable growth through excellence, reliability, and continuous innovation.
                                 </p>
                             </div>
                         </div>
