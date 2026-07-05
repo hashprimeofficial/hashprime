@@ -4,20 +4,20 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ShieldCheck, BarChart, FileText, Globe, Users, Award } from "lucide-react";
+import { ShieldCheck, Users, Award, Network, Cpu } from "lucide-react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const features = [
-    { title: "Diversified investment strategy", icon: BarChart },
-    { title: "Disciplined portfolio management", icon: ShieldCheck },
-    { title: "Transparent reporting for investors", icon: FileText }
+    { title: "Telecom & electrical engineering", icon: Network },
+    { title: "Infrastructure & construction solutions", icon: ShieldCheck },
+    { title: "Cutting-edge technology integration", icon: Cpu }
 ];
 
 const stats = [
-    { value: "7+", label: "Years of Experience", desc: "Manage investor wealth", icon: Award },
-    { value: "₹500M+", label: "AUM", desc: "Assets Under Management", icon: BarChart },
-    { value: "5000+", label: "Investors", desc: "Trusted by many", icon: Users }
+    { value: "7+", label: "Years of Experience", desc: "Delivering reliable solutions", icon: Award },
+    { value: "500+", label: "Projects Completed", desc: "Across India", icon: ShieldCheck },
+    { value: "50+", label: "Corporate Clients", desc: "Trusted by industry leaders", icon: Users }
 ];
 
 export default function AboutHashPrime() {
@@ -82,8 +82,24 @@ export default function AboutHashPrime() {
                         </h2>
 
                         <p className="ah-header-animate text-lg md:text-xl text-slate-400 font-normal max-w-xl leading-relaxed mb-10">
-                            HashPrime is an asset management company focused on diversified portfolios for long-term growth investors seeking long-term financial markets opportunity.
+                            {"Hashprime is a multi-service engineering and infrastructure company dedicated to delivering reliable, innovative, and high-quality solutions across the telecom, electrical, construction, real estate, and technology sectors..."}
                         </p>
+
+                        {/* Mission & Vision */}
+                        <div className="ah-header-animate mb-10 space-y-6 max-w-xl">
+                            <div>
+                                <h3 className="text-sm font-black uppercase tracking-wider text-[#d4af35] mb-2">Our Mission</h3>
+                                <p className="text-slate-300 leading-relaxed">
+                                    {"To deliver dependable engineering, infrastructure, and technology solutions..."}
+                                </p>
+                            </div>
+                            <div>
+                                <h3 className="text-sm font-black uppercase tracking-wider text-[#d4af35] mb-2">Our Vision</h3>
+                                <p className="text-slate-300 leading-relaxed">
+                                    {"To be recognized as one of India's most trusted engineering and technology companies..."}
+                                </p>
+                            </div>
+                        </div>
                         <div className="ah-header-animate flex flex-col gap-4">
                             {features.map((feature, i) => {
                                 const Icon = feature.icon;

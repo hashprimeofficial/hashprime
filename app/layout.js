@@ -18,10 +18,10 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://hashprime.com'),
-  title: 'Hashprime | Intelligent Asset Management for the Modern Investor',
-  description: 'Experience next-generation speed and uncompromised security. Invest in stocks, global businesses, and various industries on Hashprime.',
-  keywords: ['business investments', 'stock exchange', 'global business', 'industry investments', 'investment platform', 'secure wallet', 'Hashprime', 'asset management'],
+  metadataBase: new URL('https://hashprime.in'),
+  title: 'Hashprime | Engineering & Infrastructure Solutions',
+  description: 'Hashprime is a multi-service engineering and infrastructure company delivering reliable, innovative, and high-quality solutions across telecom, electrical, construction, real estate, and technology sectors.',
+  keywords: ['telecom infrastructure', 'electrical engineering', 'construction services', 'real estate development', 'technology solutions', 'Hashprime', 'infrastructure company India', 'engineering services'],
   authors: [{ name: 'Hashprime' }],
   creator: 'Hashprime',
   publisher: 'Hashprime',
@@ -30,10 +30,16 @@ export const metadata = {
     address: false,
     telephone: false,
   },
+  alternates: {
+    canonical: './',
+    languages: {
+      'en-IN': './',
+    },
+  },
   openGraph: {
-    title: 'Hashprime | Intelligent Asset Management for the Modern Investor',
-    description: 'The elite platform for professional business and stock investors. Secure, fast, and feature-rich.',
-    url: 'https://hashprime.com',
+    title: 'Hashprime | Engineering & Infrastructure Solutions',
+    description: 'Reliable, innovative, and high-quality solutions across telecom, electrical, construction, real estate, and technology sectors.',
+    url: 'https://hashprime.in',
     siteName: 'Hashprime',
     images: [
       {
@@ -43,13 +49,13 @@ export const metadata = {
         alt: 'Hashprime Logo',
       },
     ],
-    locale: 'en_US',
+    locale: 'en_IN',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hashprime | Intelligent Asset Management for the Modern Investor',
-    description: 'Elite asset management platform with advanced analytics and institutional-grade security.',
+    title: 'Hashprime | Engineering & Infrastructure Solutions',
+    description: 'Reliable, innovative, and high-quality solutions across telecom, electrical, construction, real estate, and technology sectors.',
     images: ['/logo.png'], // Fallback
   },
   robots: {
@@ -62,6 +68,11 @@ export const metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+  },
+  other: {
+    'geo.region': 'IN',
+    'geo.position': '20.593684;78.96288',
+    ICBM: '20.593684, 78.96288',
   },
 };
 

@@ -39,6 +39,10 @@ const UserSchema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
+        referralWalletInr: {
+            type: Number,
+            default: 0,
+        },
         // Profile Fields
         firstName: { type: String, default: '' },
         lastName: { type: String, default: '' },

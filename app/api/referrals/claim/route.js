@@ -18,18 +18,11 @@ export async function POST(req) {
         const user = await User.findById(payload.userId);
         if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 });
 
-        const { amountInr, bankAccountId } = await req.json();
-        const numAmountInr = parseFloat(amountInr);
+        const { amount, currency = 'INR', bankAccountId } = await req.json();
+        const numAmount = parseFloat(amount);
 
-        if (isNaN(numAmountInr) || numAmountInr <= 0 || !bankAccountId) {
+        if (isNaN(numAmount) || numAmount <= 0 || !bankAccountId) {
             return NextResponse.json({ error: 'Please provide valid amount and bank account' }, { status: 400 });
-        }
-
-        const liveRate = await getExchangeRate();
-        const requiredUsd = parseFloat((numAmountInr / liveRate).toFixed(2));
-
-        if ((user.referralWallet || 0) < requiredUsd) {
-            return NextResponse.json({ error: 'Insufficient referral wallet balance' }, { status: 400 });
         }
 
         const bankAccount = await BankAccount.findOne({ _id: bankAccountId, user: user._id });
@@ -37,15 +30,34 @@ export async function POST(req) {
             return NextResponse.json({ error: 'Bank account not found' }, { status: 404 });
         }
 
-        // Deduct from referral wallet
-        user.referralWallet = parseFloat(((user.referralWallet || 0) - requiredUsd).toFixed(2));
+        const liveRate = await getExchangeRate();
+        let claimAmountUsd = 0;
+        let claimAmountInr = 0;
+
+        if (currency === 'USD') {
+            if ((user.referralWallet || 0) < numAmount) {
+                return NextResponse.json({ error: 'Insufficient referral wallet balance (USD)' }, { status: 400 });
+            }
+            claimAmountUsd = numAmount;
+            claimAmountInr = Math.round(numAmount * liveRate);
+            user.referralWallet = parseFloat(((user.referralWallet || 0) - numAmount).toFixed(2));
+        } else {
+            if ((user.referralWalletInr || 0) < numAmount) {
+                return NextResponse.json({ error: 'Insufficient referral wallet balance (INR)' }, { status: 400 });
+            }
+            claimAmountInr = numAmount;
+            claimAmountUsd = parseFloat((numAmount / liveRate).toFixed(2));
+            user.referralWalletInr = (user.referralWalletInr || 0) - numAmount;
+        }
+
         await user.save();
 
         const claim = await ReferralClaim.create({
             userId: user._id,
-            amount: requiredUsd,
-            amountInr: numAmountInr,
+            amount: claimAmountUsd,
+            amountInr: claimAmountInr,
             bankAccountId,
+            currency,
             status: 'Pending'
         });
 

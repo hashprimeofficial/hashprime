@@ -5,6 +5,7 @@ import { verifyToken } from '@/lib/auth';
 import User from '@/models/User';
 import Transaction from '@/models/Transaction';
 import { getExchangeRate } from '@/lib/exchangeRate';
+import { calculateReferralCommission } from '@/lib/referralUtils';
 
 export async function PATCH(req, { params }) {
     try {
@@ -65,30 +66,32 @@ export async function PATCH(req, { params }) {
                 description: `Invested in ${currentInvestment.schemeType} scheme (Admin Approved)`,
             });
 
-            // 4% Referral Bonus Logic for Referrer
+            // 5% Referral Bonus Logic for Referrer
             if (user.referredBy) {
                 let referrer = await User.findOne({ email: user.referredBy });
                 if (!referrer) {
                     referrer = await User.findOne({ referralCode: user.referredBy });
                 }
                 if (referrer) {
-                    const liveRate = await getExchangeRate();
                     const referrerRate = referrer.limitedRateOverride !== undefined && referrer.limitedRateOverride !== null
                         ? referrer.limitedRateOverride
                         : 0.05;
-                    const bonusUsd = currentInvestment.currency === 'USD'
-                        ? Math.round((amountNeeded * referrerRate) * 100) / 100
-                        : Math.round(((amountNeeded * referrerRate) / liveRate) * 100) / 100;
+                    const commissionAmount = referrer.limitedRateOverride !== undefined && referrer.limitedRateOverride !== null
+                        ? Math.round(amountNeeded * referrerRate)
+                        : calculateReferralCommission(amountNeeded);
+
+                    const currency = currentInvestment.currency || 'INR';
+                    const updateField = currency === 'USD' ? 'referralWallet' : 'referralWalletInr';
 
                     await User.findByIdAndUpdate(referrer._id, {
-                        $inc: { referralWallet: bonusUsd }
+                        $inc: { [updateField]: commissionAmount }
                     });
 
                     await Transaction.create({
                         userId: referrer._id,
                         type: 'referral_bonus',
-                        amount: bonusUsd,
-                        currency: 'USD',
+                        amount: commissionAmount,
+                        currency: currency,
                         description: `${referrerRate * 100}% Referral bonus from ${user.name}'s investment approval`
                     });
                 }

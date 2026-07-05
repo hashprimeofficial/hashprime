@@ -27,13 +27,19 @@ export async function POST(req, { params }) {
         claim.status = 'Approved';
         await claim.save();
 
-        // Log transaction for the referrer payout
+        // Log transaction for the referrer payout in correct currency
+        const payoutCurrency = claim.currency || 'INR';
+        const payoutAmount = payoutCurrency === 'USD' ? claim.amount : claim.amountInr;
+        const payoutDescription = payoutCurrency === 'USD'
+            ? `Referral income payout approved & settled offline: $${claim.amount.toLocaleString('en-US')} USD`
+            : `Referral income payout approved & settled offline: ₹${claim.amountInr.toLocaleString('en-IN')}`;
+
         await Transaction.create({
             userId: claim.userId,
             type: 'payout',
-            amount: claim.amount,
-            currency: 'USD',
-            description: `Referral income payout approved & settled offline: ₹${claim.amountInr.toLocaleString('en-IN')}`
+            amount: payoutAmount,
+            currency: payoutCurrency,
+            description: payoutDescription
         });
 
         return NextResponse.json({ message: 'Referral claim approved successfully', claim }, { status: 200 });

@@ -650,7 +650,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_deposits_route_js_deposits_route",
-      "community": 2,
+      "community": 31,
       "norm_label": "route.js"
     },
     {
@@ -660,7 +660,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "app_api_admin_deposits_route_js_deposits_route_get",
-      "community": 2,
+      "community": 31,
       "norm_label": "get()"
     },
     {
@@ -670,7 +670,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "deposits_route_put",
-      "community": 2,
+      "community": 31,
       "norm_label": "put()"
     },
     {
@@ -740,27 +740,27 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_investments_id_route_js_id_route",
-      "community": 2,
+      "community": 23,
       "norm_label": "route.js"
     },
     {
       "label": "PATCH()",
       "file_type": "code",
       "source_file": "app/api/admin/investments/[id]/route.js",
-      "source_location": "L9",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "app_api_admin_investments_id_route_js_id_route_patch",
-      "community": 2,
+      "community": 23,
       "norm_label": "patch()"
     },
     {
       "label": "DELETE()",
       "file_type": "code",
       "source_file": "app/api/admin/investments/[id]/route.js",
-      "source_location": "L139",
+      "source_location": "L142",
       "_origin": "ast",
       "id": "app_api_admin_investments_id_route_js_id_route_delete",
-      "community": 2,
+      "community": 23,
       "norm_label": "delete()"
     },
     {
@@ -790,47 +790,47 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "investments_route",
-      "community": 43,
+      "community": 23,
       "norm_label": "route.js"
     },
     {
       "label": "INR_SCHEMES",
       "file_type": "code",
       "source_file": "app/api/admin/investments/route.js",
-      "source_location": "L9",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "investments_route_inr_schemes",
-      "community": 43,
+      "community": 23,
       "norm_label": "inr_schemes"
     },
     {
       "label": "USD_SCHEMES",
       "file_type": "code",
       "source_file": "app/api/admin/investments/route.js",
-      "source_location": "L16",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "investments_route_usd_schemes",
-      "community": 43,
+      "community": 23,
       "norm_label": "usd_schemes"
     },
     {
       "label": "GET()",
       "file_type": "code",
       "source_file": "app/api/admin/investments/route.js",
-      "source_location": "L23",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "investments_route_get",
-      "community": 43,
+      "community": 23,
       "norm_label": "get()"
     },
     {
       "label": "POST()",
       "file_type": "code",
       "source_file": "app/api/admin/investments/route.js",
-      "source_location": "L41",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "investments_route_post",
-      "community": 43,
+      "community": 23,
       "norm_label": "post()"
     },
     {
@@ -860,7 +860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "approve_route",
-      "community": 90,
+      "community": 0,
       "norm_label": "route.js"
     },
     {
@@ -870,7 +870,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "approve_route_post",
-      "community": 90,
+      "community": 0,
       "norm_label": "post()"
     },
     {
@@ -880,7 +880,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "referral_claims_route",
-      "community": 77,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -890,7 +890,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "referral_claims_route_get",
-      "community": 77,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -900,7 +900,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_statements_id_route_js_id_route",
-      "community": 2,
+      "community": 67,
       "norm_label": "route.js"
     },
     {
@@ -910,7 +910,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "app_api_admin_statements_id_route_js_id_route_delete",
-      "community": 2,
+      "community": 67,
       "norm_label": "delete()"
     },
     {
@@ -990,7 +990,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route",
-      "community": 2,
+      "community": 77,
       "norm_label": "route.js"
     },
     {
@@ -1000,7 +1000,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route_patch",
-      "community": 2,
+      "community": 77,
       "norm_label": "patch()"
     },
     {
@@ -1010,7 +1010,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route_delete",
-      "community": 2,
+      "community": 77,
       "norm_label": "delete()"
     },
     {
@@ -1100,7 +1100,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "disable_route",
-      "community": 67,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1110,7 +1110,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "disable_route_post",
-      "community": 67,
+      "community": 2,
       "norm_label": "post()"
     },
     {
@@ -1150,7 +1150,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "setup_route",
-      "community": 49,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1160,7 +1160,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "setup_route_get",
-      "community": 49,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -1170,7 +1170,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "setup_route_post",
-      "community": 49,
+      "community": 2,
       "norm_label": "post()"
     },
     {
@@ -1290,7 +1290,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "me_route",
-      "community": 31,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1300,7 +1300,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "me_route_get",
-      "community": 31,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -1310,7 +1310,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "me_route_patch",
-      "community": 31,
+      "community": 2,
       "norm_label": "patch()"
     },
     {
@@ -1440,7 +1440,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "bank_accounts_route",
-      "community": 23,
+      "community": 43,
       "norm_label": "route.js"
     },
     {
@@ -1450,7 +1450,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "bank_accounts_route_get",
-      "community": 23,
+      "community": 43,
       "norm_label": "get()"
     },
     {
@@ -1460,7 +1460,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "bank_accounts_route_post",
-      "community": 23,
+      "community": 43,
       "norm_label": "post()"
     },
     {
@@ -1490,7 +1490,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "careers_route",
-      "community": 0,
+      "community": 4,
       "norm_label": "route.js"
     },
     {
@@ -1500,7 +1500,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "careers_route_post",
-      "community": 0,
+      "community": 4,
       "norm_label": "post()"
     },
     {
@@ -1510,7 +1510,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "careers_route_get",
-      "community": 0,
+      "community": 4,
       "norm_label": "get()"
     },
     {
@@ -1520,7 +1520,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_dashboard_stats_route_js_stats_route",
-      "community": 88,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1530,7 +1530,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "app_api_dashboard_stats_route_js_stats_route_get",
-      "community": 88,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -1650,7 +1650,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "kyc_route",
-      "community": 3,
+      "community": 49,
       "norm_label": "route.js"
     },
     {
@@ -1660,7 +1660,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "kyc_route_get",
-      "community": 3,
+      "community": 49,
       "norm_label": "get()"
     },
     {
@@ -1670,7 +1670,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "kyc_route_put",
-      "community": 3,
+      "community": 49,
       "norm_label": "put()"
     },
     {
@@ -1787,7 +1787,7 @@
       "label": "GET()",
       "file_type": "code",
       "source_file": "app/api/referrals/claim/route.js",
-      "source_location": "L59",
+      "source_location": "L71",
       "_origin": "ast",
       "id": "claim_route_get",
       "community": 51,
@@ -1800,17 +1800,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "referrals_route",
-      "community": 89,
+      "community": 23,
       "norm_label": "route.js"
     },
     {
       "label": "GET()",
       "file_type": "code",
       "source_file": "app/api/referrals/route.js",
-      "source_location": "L8",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "referrals_route_get",
-      "community": 89,
+      "community": 23,
       "norm_label": "get()"
     },
     {
@@ -1820,7 +1820,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_statements_route_js_statements_route",
-      "community": 0,
+      "community": 90,
       "norm_label": "route.js"
     },
     {
@@ -1830,7 +1830,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "app_api_statements_route_js_statements_route_get",
-      "community": 0,
+      "community": 90,
       "norm_label": "get()"
     },
     {
@@ -1860,7 +1860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tickets_route",
-      "community": 4,
+      "community": 88,
       "norm_label": "route.js"
     },
     {
@@ -1870,7 +1870,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "tickets_route_get",
-      "community": 4,
+      "community": 88,
       "norm_label": "get()"
     },
     {
@@ -1880,7 +1880,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "tickets_route_post",
-      "community": 4,
+      "community": 88,
       "norm_label": "post()"
     },
     {
@@ -2727,7 +2727,7 @@
       "label": "RootLayout()",
       "file_type": "code",
       "source_file": "app/layout.js",
-      "source_location": "L68",
+      "source_location": "L79",
       "_origin": "ast",
       "id": "app_layout_rootlayout",
       "community": 13,
@@ -3680,7 +3680,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "lib_db",
-      "community": 5,
+      "community": 0,
       "norm_label": "db.js"
     },
     {
@@ -3742,6 +3742,26 @@
       "id": "lib_exchangerate_getexchangerate",
       "community": 5,
       "norm_label": "getexchangerate()"
+    },
+    {
+      "label": "referralUtils.js",
+      "file_type": "code",
+      "source_file": "lib/referralUtils.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lib_referralutils",
+      "community": 23,
+      "norm_label": "referralutils.js"
+    },
+    {
+      "label": "calculateReferralCommission()",
+      "file_type": "code",
+      "source_file": "lib/referralUtils.js",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "lib_referralutils_calculatereferralcommission",
+      "community": 23,
+      "norm_label": "calculatereferralcommission()"
     },
     {
       "label": "middleware.js",
@@ -4082,6 +4102,46 @@
       "id": "postcss_config_config",
       "community": 83,
       "norm_label": "config"
+    },
+    {
+      "label": "fix_kuppusamy_transaction.js",
+      "file_type": "code",
+      "source_file": "scratch/fix_kuppusamy_transaction.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "scratch_fix_kuppusamy_transaction",
+      "community": 5,
+      "norm_label": "fix_kuppusamy_transaction.js"
+    },
+    {
+      "label": "run()",
+      "file_type": "code",
+      "source_file": "scratch/fix_kuppusamy_transaction.js",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "scratch_fix_kuppusamy_transaction_run",
+      "community": 5,
+      "norm_label": "run()"
+    },
+    {
+      "label": "reset_referral_wallets.js",
+      "file_type": "code",
+      "source_file": "scratch/reset_referral_wallets.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "scratch_reset_referral_wallets",
+      "community": 0,
+      "norm_label": "reset_referral_wallets.js"
+    },
+    {
+      "label": "run()",
+      "file_type": "code",
+      "source_file": "scratch/reset_referral_wallets.js",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "scratch_reset_referral_wallets_run",
+      "community": 0,
+      "norm_label": "run()"
     }
   ],
   "links": [
@@ -4762,6 +4822,17 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "app/api/admin/investments/[id]/route.js",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "app_api_admin_investments_id_route_js_id_route_patch",
+      "target": "lib_referralutils_calculatereferralcommission"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/admin/investments/[id]/route.js",
       "source_location": "L136",
       "weight": 1.0,
       "source": "app_api_admin_investments_id_route_js_id_route_delete",
@@ -4915,6 +4986,17 @@
       "weight": 1.0,
       "source": "investments_route_post",
       "target": "lib_exchangerate_getexchangerate"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/admin/investments/route.js",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "investments_route_post",
+      "target": "lib_referralutils_calculatereferralcommission"
     },
     {
       "relation": "contains",
@@ -6619,6 +6701,17 @@
       "target": "lib_db_connecttodatabase"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/api/referrals/route.js",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "referrals_route_get",
+      "target": "lib_referralutils_calculatereferralcommission"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/api/statements/route.js",
@@ -7530,9 +7623,9 @@
       "source_file": "app/privacy/page.js",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "privacy_page",
-      "target": "privacy_page_privacypolicy",
-      "confidence_score": 1.0
+      "target": "privacy_page_privacypolicy"
     },
     {
       "relation": "contains",
@@ -7620,9 +7713,9 @@
       "source_file": "app/terms/page.js",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "terms_page",
-      "target": "terms_page_termsofservice",
-      "confidence_score": 1.0
+      "target": "terms_page_termsofservice"
     },
     {
       "relation": "contains",
@@ -8334,6 +8427,72 @@
       "target": "lib_db_connecttodatabase"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/fix_kuppusamy_transaction.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "scratch_fix_kuppusamy_transaction",
+      "target": "lib_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/reset_referral_wallets.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scratch_reset_referral_wallets",
+      "target": "lib_db"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/fix_kuppusamy_transaction.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "scratch_fix_kuppusamy_transaction",
+      "target": "lib_db_connecttodatabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/fix_kuppusamy_transaction.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "scratch_fix_kuppusamy_transaction_run",
+      "target": "lib_db_connecttodatabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/reset_referral_wallets.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scratch_reset_referral_wallets",
+      "target": "lib_db_connecttodatabase"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/reset_referral_wallets.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scratch_reset_referral_wallets_run",
+      "target": "lib_db_connecttodatabase"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "lib/email.js",
@@ -8362,6 +8521,16 @@
       "confidence_score": 1.0,
       "source": "lib_exchangerate",
       "target": "lib_exchangerate_getexchangerate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "lib/referralUtils.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_referralutils",
+      "target": "lib_referralutils_calculatereferralcommission"
     },
     {
       "relation": "contains",
@@ -8504,6 +8673,28 @@
       "target": "models_transaction_transactionschema"
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/fix_kuppusamy_transaction.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "scratch_fix_kuppusamy_transaction",
+      "target": "models_transaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/fix_kuppusamy_transaction.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "scratch_fix_kuppusamy_transaction",
+      "target": "models_transaction_transaction",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "models/User.js",
@@ -8512,6 +8703,28 @@
       "confidence_score": 1.0,
       "source": "models_user",
       "target": "models_user_userschema"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/fix_kuppusamy_transaction.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "scratch_fix_kuppusamy_transaction",
+      "target": "models_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/reset_referral_wallets.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scratch_reset_referral_wallets",
+      "target": "models_user"
     },
     {
       "relation": "contains",
@@ -8552,8 +8765,28 @@
       "confidence_score": 1.0,
       "source": "postcss_config",
       "target": "postcss_config_config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/fix_kuppusamy_transaction.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "scratch_fix_kuppusamy_transaction",
+      "target": "scratch_fix_kuppusamy_transaction_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scratch/reset_referral_wallets.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scratch_reset_referral_wallets",
+      "target": "scratch_reset_referral_wallets_run"
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "8d33cce97916b18ab1fcb1ba73199421c63eacff"
+  "built_at_commit": "fef8a02f579eb67e82de9096fc5472cf84442eda"
 }

@@ -9,18 +9,29 @@ import CryptoMarquee from '@/components/CryptoMarquee';
 
 export const metadata = {
   alternates: {
-    canonical: 'https://hashprime.com/',
+    canonical: './',
   },
 };
 
 export default function Home() {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'FinancialService',
+    '@type': 'Organization',
     name: 'Hashprime',
-    url: 'https://hashprime.com',
-    logo: 'https://hashprime.com/logo.png',
-    description: 'Elite asset management platform with advanced analytics and institutional-grade security.',
+    url: 'https://hashprime.in',
+    logo: 'https://hashprime.in/logo.png',
+    description: 'Hashprime is a multi-service engineering and infrastructure company dedicated to delivering reliable, innovative, and high-quality solutions.',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: {
+        '@type': 'Country',
+        name: 'India',
+      },
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'India',
+    },
   };
 
   return (

@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# agents runtime directories
+.agents/orchestrator/
+.agents/victory_auditor/
+.agents/teamwork_preview_*/
+scratch/

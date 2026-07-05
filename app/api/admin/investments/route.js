@@ -5,6 +5,7 @@ import User from '@/models/User';
 import Transaction from '@/models/Transaction';
 import { verifyToken } from '@/lib/auth';
 import { getExchangeRate } from '@/lib/exchangeRate';
+import { calculateReferralCommission } from '@/lib/referralUtils';
 
 const INR_SCHEMES = {
     '3m_inr': { returnRate: 0.18, durationMonths: 3 },
@@ -122,17 +123,22 @@ export async function POST(req) {
                 const referrerRate = referrer.limitedRateOverride !== undefined && referrer.limitedRateOverride !== null
                     ? referrer.limitedRateOverride
                     : 0.05;
-                const bonusUsdt = Math.round(((Number(amount) * referrerRate) / liveRate) * 100) / 100;
+                const commissionAmount = referrer.limitedRateOverride !== undefined && referrer.limitedRateOverride !== null
+                    ? Math.round(Number(amount) * referrerRate)
+                    : calculateReferralCommission(Number(amount));
+
+                const invCurrency = currency === 'USD' ? 'USD' : 'INR';
+                const updateField = invCurrency === 'USD' ? 'referralWallet' : 'referralWalletInr';
 
                 await User.findByIdAndUpdate(referrer._id, {
-                    $inc: { referralWallet: bonusUsdt }
+                    $inc: { [updateField]: commissionAmount }
                 });
 
                 await Transaction.create({
                     userId: referrer._id,
                     type: 'referral_bonus',
-                    amount: bonusUsdt,
-                    currency: 'USD',
+                    amount: commissionAmount,
+                    currency: invCurrency,
                     description: `${referrerRate * 100}% Referral bonus from ${user.name}'s investment`
                 });
             }

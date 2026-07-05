@@ -26,7 +26,8 @@ export async function GET(req) {
         // Calculate referral stats
         const referralCount = await User.countDocuments({ referredBy: user.email });
         const referralTxs = await Transaction.find({ userId: user._id, type: 'referral_bonus' });
-        const referralCommissionEarned = referralTxs.reduce((sum, tx) => sum + tx.amount, 0);
+        const referralCommissionEarnedInr = referralTxs.filter(t => t.currency === 'INR').reduce((sum, tx) => sum + tx.amount, 0);
+        const referralCommissionEarnedUsd = referralTxs.filter(t => t.currency === 'USD').reduce((sum, tx) => sum + tx.amount, 0);
 
         return NextResponse.json({ 
             user, 
@@ -34,7 +35,8 @@ export async function GET(req) {
             transactions, 
             bankAccounts, 
             referralCount, 
-            referralCommissionEarned 
+            referralCommissionEarnedInr,
+            referralCommissionEarnedUsd
         }, { status: 200 });
     } catch (error) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });

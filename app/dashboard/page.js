@@ -18,7 +18,7 @@ export default function DashboardOverview() {
     if (error || !data) return <div className="text-red-500">Failed to load dashboard</div>;
     if (data.error) return <div className="text-red-500">{data.error}</div>;
 
-    const { user, investments = [], transactions = [], bankAccounts = [], referralCount = 0, referralCommissionEarned = 0 } = data;
+    const { user, investments = [], transactions = [], bankAccounts = [], referralCount = 0, referralCommissionEarnedInr = 0, referralCommissionEarnedUsd = 0 } = data;
 
     // Live exchange rate (INR per USDT), fallback to 85
     const usdtToInr = rateData?.rate || 85;
@@ -220,10 +220,16 @@ export default function DashboardOverview() {
                             <span className="text-slate-400 font-medium">Invites:</span>
                             <span className="font-black text-white">{referralCount}</span>
                         </div>
-                        <div className="flex justify-between items-center text-sm pt-1">
+                        <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
                             <span className="text-slate-400 font-medium">Earned (INR):</span>
-                            <span className="font-black text-white">₹{Math.round(referralCommissionEarned * usdtToInr).toLocaleString('en-IN')}</span>
+                            <span className="font-black text-white">₹{referralCommissionEarnedInr.toLocaleString('en-IN')}</span>
                         </div>
+                        {referralCommissionEarnedUsd > 0 && (
+                            <div className="flex justify-between items-center text-sm pt-1">
+                                <span className="text-slate-400 font-medium">Earned (USD):</span>
+                                <span className="font-black text-white">${referralCommissionEarnedUsd.toLocaleString('en-US')} USD</span>
+                            </div>
+                        )}
                     </div>
                 </motion.div>
             </div>

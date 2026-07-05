@@ -4,6 +4,7 @@ import User from '@/models/User';
 import Investment from '@/models/Investment';
 import Transaction from '@/models/Transaction';
 import { verifyToken } from '@/lib/auth';
+import { calculateReferralCommission } from '@/lib/referralUtils';
 
 export async function GET(req) {
     try {
@@ -33,14 +34,32 @@ export async function GET(req) {
 
         for (const ru of referredUsers) {
             const investments = await Investment.find({ userId: ru._id, status: { $in: ['active', 'completed'] } });
-            const totalInvested = investments.reduce((sum, inv) => sum + inv.amount, 0);
-            const commissionAmount = Math.round(totalInvested * commissionRate);
+            
+            let totalInvestedInr = 0;
+            let totalInvestedUsd = 0;
+            for (const inv of investments) {
+                if (inv.currency === 'USD') {
+                    totalInvestedUsd += inv.amount;
+                } else {
+                    totalInvestedInr += inv.amount;
+                }
+            }
+
+            const commissionAmountInr = user.limitedRateOverride !== undefined && user.limitedRateOverride !== null
+                ? Math.round(totalInvestedInr * commissionRate)
+                : calculateReferralCommission(totalInvestedInr);
+
+            const commissionAmountUsd = user.limitedRateOverride !== undefined && user.limitedRateOverride !== null
+                ? Math.round((totalInvestedUsd * commissionRate) * 100) / 100
+                : calculateReferralCommission(totalInvestedUsd);
 
             enrichedReferredUsers.push({
                 ...ru,
-                totalInvested,
+                totalInvestedInr,
+                totalInvestedUsd,
                 commissionPct,
-                commissionAmount
+                commissionAmountInr,
+                commissionAmountUsd
             });
         }
 
