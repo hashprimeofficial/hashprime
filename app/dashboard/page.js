@@ -180,7 +180,7 @@ export default function DashboardOverview() {
             {/* main overview grid */}
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
                 {/* Column 1: Wallets */}
-                <div className="lg:col-span-1 flex flex-col gap-4">
+                <div className="lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
                     {/* USDT WALLET */}
                     <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl relative overflow-hidden group">
                         <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-2">USDT WALLET</div>
@@ -197,10 +197,10 @@ export default function DashboardOverview() {
                 </div>
 
                 {/* Column 2: Active Investments (Wide Table Card) */}
-                <div className="lg:col-span-2 bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl flex flex-col">
+                <div className="lg:col-span-2 bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl flex flex-col overflow-hidden">
                     <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-4">ACTIVE INVESTMENTS</div>
-                    <div className="flex-grow overflow-x-auto">
-                        <table className="w-full text-left border-collapse">
+                    <div className="flex-grow -mx-5 overflow-x-auto px-5 scrollbar-none">
+                        <table className="w-full text-left border-collapse min-w-[500px]">
                             <thead>
                                 <tr className="bg-[#d4af35] text-[#0A0A0A] text-[10px] font-black uppercase tracking-wider">
                                     <th className="px-4 py-2.5 rounded-l-lg">Scheme</th>
@@ -234,7 +234,7 @@ export default function DashboardOverview() {
                 </div>
 
                 {/* Column 3: Expected Returns & Referral Stats */}
-                <div className="lg:col-span-1 flex flex-col gap-4">
+                <div className="lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
                     {/* EXPECTED RETURNS */}
                     <Link href="/dashboard/statements" className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl block relative overflow-hidden group hover:border-[#d4af35]/60 transition-colors">
                         <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-2">EXPECTED RETURNS</div>
@@ -265,10 +265,10 @@ export default function DashboardOverview() {
             </div>
 
             {/* Recent Activities Section */}
-            <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl flex flex-col">
+            <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl flex flex-col overflow-hidden">
                 <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-4">RECENT ACTIVITIES</div>
-                <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse">
+                <div className="-mx-5 overflow-x-auto px-5 scrollbar-none">
+                    <table className="w-full text-left border-collapse min-w-[600px]">
                         <thead>
                             <tr className="bg-[#d4af35] text-[#0A0A0A] text-[10px] font-black uppercase tracking-wider">
                                 <th className="px-4 py-2.5 rounded-l-lg">Date</th>
