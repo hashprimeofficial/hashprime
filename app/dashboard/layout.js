@@ -187,7 +187,7 @@ export default function DashboardLayout({ children }) {
                         </div>
 
                         {/* Spacer so content isn't hidden under the pill */}
-                        <div className="h-20" />
+                        <div className="h-28" />
                     </div>
 
                     {/* Page content */}

@@ -180,26 +180,30 @@ export default function DashboardOverview() {
             {/* main overview grid */}
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
                 {/* Column 1: Wallets */}
-                <div className="lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                <div className="lg:col-span-1 grid grid-cols-2 lg:grid-cols-1 gap-4">
                     {/* USDT WALLET */}
-                    <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl relative overflow-hidden group">
-                        <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-2">USDT WALLET</div>
-                        <div className="text-3xl font-black text-white mb-1">${usdWallet.toLocaleString('en-US', { minimumFractionDigits: 2 })}</div>
-                        <p className="text-xs text-slate-500 font-medium">Available Capital</p>
+                    <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-4 sm:p-5 rounded-2xl relative overflow-hidden group flex flex-col justify-between min-h-[140px] sm:min-h-0">
+                        <div>
+                            <div className="text-slate-400 font-bold uppercase tracking-wider text-[9px] sm:text-[10px] mb-2">USDT WALLET</div>
+                            <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-1">${usdWallet.toLocaleString('en-US', { minimumFractionDigits: 2 })}</div>
+                        </div>
+                        <p className="text-[10px] sm:text-xs text-slate-500 font-medium mt-1">Available Capital</p>
                     </div>
 
                     {/* INR WALLET */}
-                    <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl relative overflow-hidden group">
-                        <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-2">INR WALLET</div>
-                        <div className="text-3xl font-black text-white mb-1">₹{inrWallet.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
-                        <p className="text-xs text-slate-500 font-medium">Available Capital</p>
+                    <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-4 sm:p-5 rounded-2xl relative overflow-hidden group flex flex-col justify-between min-h-[140px] sm:min-h-0">
+                        <div>
+                            <div className="text-slate-400 font-bold uppercase tracking-wider text-[9px] sm:text-[10px] mb-2">INR WALLET</div>
+                            <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white mb-1">₹{inrWallet.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
+                        </div>
+                        <p className="text-[10px] sm:text-xs text-slate-500 font-medium mt-1">Available Capital</p>
                     </div>
                 </div>
 
                 {/* Column 2: Active Investments (Wide Table Card) */}
-                <div className="lg:col-span-2 bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl flex flex-col overflow-hidden">
+                <div className="lg:col-span-2 bg-[#0A0A0A] border border-[#d4af35]/30 p-4 sm:p-5 rounded-2xl flex flex-col overflow-hidden">
                     <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-4">ACTIVE INVESTMENTS</div>
-                    <div className="flex-grow -mx-5 overflow-x-auto px-5 scrollbar-none">
+                    <div className="flex-grow -mx-4 sm:-mx-5 overflow-x-auto px-4 sm:px-5 scrollbar-none">
                         <table className="w-full text-left border-collapse min-w-[500px]">
                             <thead>
                                 <tr className="bg-[#d4af35] text-[#0A0A0A] text-[10px] font-black uppercase tracking-wider">
@@ -234,13 +238,15 @@ export default function DashboardOverview() {
                 </div>
 
                 {/* Column 3: Expected Returns & Referral Stats */}
-                <div className="lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                <div className="lg:col-span-1 grid grid-cols-2 lg:grid-cols-1 gap-4">
                     {/* EXPECTED RETURNS */}
-                    <Link href="/dashboard/statements" className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl block relative overflow-hidden group hover:border-[#d4af35]/60 transition-colors">
-                        <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-2">EXPECTED RETURNS</div>
-                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">TOTAL</div>
-                        <div className="flex justify-between items-end mt-1">
-                            <div className="text-3xl font-black text-white leading-none">
+                    <Link href="/dashboard/statements" className="bg-[#0A0A0A] border border-[#d4af35]/30 p-4 sm:p-5 rounded-2xl block relative overflow-hidden group hover:border-[#d4af35]/60 transition-colors flex flex-col justify-between min-h-[140px] sm:min-h-0">
+                        <div>
+                            <div className="text-slate-400 font-bold uppercase tracking-wider text-[9px] sm:text-[10px] mb-2">EXPECTED RETURNS</div>
+                            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">TOTAL</div>
+                        </div>
+                        <div className="flex justify-between items-end mt-2">
+                            <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-none">
                                 ₹{(expectedINR + (expectedUSD * usdtToInr)).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
                             </div>
                             <ArrowRight className="w-5 h-5 text-[#d4af35] transition-transform group-hover:translate-x-1" />
@@ -248,15 +254,15 @@ export default function DashboardOverview() {
                     </Link>
 
                     {/* REFERRAL STATS */}
-                    <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl">
-                        <div className="text-[#d4af35] font-bold uppercase tracking-wider text-[10px] mb-3">REFERRAL STATS</div>
-                        <div className="space-y-1.5 text-xs">
+                    <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-4 sm:p-5 rounded-2xl flex flex-col justify-between min-h-[140px] sm:min-h-0">
+                        <div className="text-[#d4af35] font-bold uppercase tracking-wider text-[9px] sm:text-[10px] mb-3">REFERRAL STATS</div>
+                        <div className="space-y-1.5 text-xs flex-grow flex flex-col justify-center">
                             <div className="flex justify-between items-center">
                                 <span className="text-slate-400 font-medium">Invites:</span>
                                 <span className="font-bold text-white">{referralCount}</span>
                             </div>
                             <div className="flex justify-between items-center">
-                                <span className="text-slate-400 font-medium">Earned (INR):</span>
+                                <span className="text-slate-400 font-medium text-[11px] sm:text-xs">Earned (INR):</span>
                                 <span className="font-bold text-[#d4af35]">₹{referralCommissionEarnedInr.toLocaleString('en-IN')}</span>
                             </div>
                         </div>
