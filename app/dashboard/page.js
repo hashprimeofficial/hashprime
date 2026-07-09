@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { motion } from 'framer-motion';
-import { DollarSign, Clock, ArrowUpRight, Copy, CheckCircle2, Wallet, IndianRupee, Coins, ShieldCheck, Fingerprint, Landmark, AlertCircle, PiggyBank, Users, X } from 'lucide-react';
+import { DollarSign, Clock, ArrowUpRight, Copy, CheckCircle2, Wallet, IndianRupee, Coins, ShieldCheck, Fingerprint, Landmark, AlertCircle, PiggyBank, Users, X, ArrowRight, Edit2, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -94,6 +94,7 @@ export default function DashboardOverview() {
 
     const recentDeposits = depositsData?.deposits?.slice(0, 5) || [];
 
+    
     const formatTxAmount = (tx) => {
         if (tx.currency === 'USDT' || tx.currency === 'USDC') {
             const inr = tx.amount * usdtToInr;
@@ -102,15 +103,39 @@ export default function DashboardOverview() {
         return `₹${tx.amount.toLocaleString('en-IN')}`;
     };
 
+    const recentActivities = [
+        ...investments.map(inv => ({
+            _id: inv._id,
+            date: new Date(inv.createdAt),
+            type: 'Investment',
+            amount: inv.amount,
+            currency: inv.currency,
+            status: inv.status === 'pending' ? 'Processing' : (inv.status === 'active' ? 'Active' : 'Completed'),
+            rawType: 'investment'
+        })),
+        ...(depositsData?.deposits || []).map(dep => ({
+            _id: dep._id,
+            date: new Date(dep.createdAt),
+            type: 'Deposit',
+            amount: dep.amount,
+            currency: dep.paymentMethod === 'usdt' ? 'USDT' : 'INR',
+            status: dep.status === 'pending' ? 'Processing' : 'Completed',
+            rawType: 'deposit'
+        }))
+    ].sort((a, b) => b.date - a.date).slice(0, 5);
+
     return (
         <div className="space-y-8">
+            {/* Header */}
             <div>
-                <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Welcome, {user.name}</h1>
-                <p className="text-slate-500 font-medium">Here&apos;s an overview of your wealth generation.</p>
+                <span className="text-xl font-medium text-slate-400">Welcome,</span>
+                <h1 className="text-4xl md:text-5xl font-serif text-[#d4af35] font-semibold mt-1 tracking-wide">{user.name}</h1>
+                <p className="text-slate-500 text-sm font-medium mt-1">Here&apos;s an overview of your wealth generation.</p>
             </div>
 
+            {/* Profile Warning */}
             {!isProfileFullyComplete && !isProfileDismissed && (
-                <div className="bg-[#0A0A0A] border border-amber-500/30 rounded-2xl p-6 shadow-lg overflow-hidden relative">
+                <div className="bg-[#0A0A0A] border border-[#d4af35]/30 rounded-2xl p-6 shadow-lg relative overflow-hidden">
                     <button
                         onClick={() => {
                             localStorage.setItem('dismiss_profile_complete', 'true');
@@ -121,227 +146,183 @@ export default function DashboardOverview() {
                     >
                         <X className="w-4 h-4" />
                     </button>
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl flex items-center justify-center -mr-10 -mt-10 pointer-events-none" />
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af35]/5 rounded-full blur-2xl flex items-center justify-center -mr-10 -mt-10 pointer-events-none" />
                     <div className="flex items-start gap-4 z-10 relative">
                         <div className="pt-1">
-                            <AlertCircle className="w-8 h-8 text-amber-500" />
+                            <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20 text-amber-500">
+                                <AlertCircle className="w-5 h-5" />
+                            </div>
                         </div>
                         <div className="flex-1">
-                            <h2 className="text-xl font-black text-white mb-2 tracking-tight">Complete Your Profile</h2>
-                            <p className="text-sm font-medium text-amber-500/70 mb-5">
+                            <h2 className="text-lg font-bold text-white mb-1">Complete Your Profile.</h2>
+                            <p className="text-xs text-slate-400 leading-relaxed mb-4">
                                 Essential security and verification steps are missing. Completing these unlocks full access to deposits, investments, and fast withdrawals.
                             </p>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                {completionItems.map((item, idx) => {
-                                    const Icon = item.icon;
-                                    return (
-                                        <Link href={item.link} key={idx} className={`flex items-center gap-3 p-3 rounded-xl border transition-all ${item.check ? 'bg-[#121212]/50 border-[#32e512]/20 opacity-60' : 'bg-[#121212] border-amber-500/30 hover:border-amber-500/60 hover:bg-amber-500/5 cursor-pointer shadow-inner'}`}>
-                                            <div className={`p-2 rounded-lg ${item.check ? 'bg-[#32e512]/10 text-[#32e512]' : 'bg-[#d4af35]/10 text-[#d4af35]'}`}>
-                                                {item.check ? <CheckCircle2 className="w-5 h-5" /> : <Icon className="w-5 h-5" />}
-                                            </div>
-                                            <span className={`text-sm font-bold tracking-wide ${item.check ? 'text-slate-500 line-through decoration-slate-600' : 'text-white'}`}>{item.title}</span>
-                                        </Link>
-                                    );
-                                })}
+                            <div className="flex flex-wrap gap-2.5">
+                                {completionItems.map((item, idx) => (
+                                    <Link
+                                        key={idx}
+                                        href={item.link}
+                                        className={`px-3.5 py-1.5 rounded-lg border text-xs font-bold transition-all ${item.check
+                                            ? 'border-emerald-500/30 bg-emerald-500/5 text-emerald-500 opacity-60'
+                                            : 'border-[#d4af35]/40 bg-transparent text-[#d4af35] hover:bg-[#d4af35]/10'
+                                        }`}
+                                    >
+                                        {item.title}
+                                    </Link>
+                                ))}
                             </div>
                         </div>
                     </div>
                 </div>
             )}
 
-            {/* Wallets & Portfolio */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }} className="bg-[#0A0A0A] border border-[#d4af35]/30 hover:border-[#d4af35]/60 transition-colors p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af35]/10 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500" />
-                    <div className="flex items-center gap-2 mb-3 text-[#d4af35]"><Wallet className="w-5 h-5 text-[#d4af35]" /> <h3 className="font-bold text-sm tracking-wide uppercase">USDT Wallet</h3></div>
-                    <div className="text-4xl font-black text-white mb-1 leading-tight drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]">${usdWallet.toLocaleString('en-US', { minimumFractionDigits: 2 })}</div>
-                    <p className="text-xs text-[#d4af35]/60 font-medium mt-1">Available Capital</p>
-                </motion.div>
+            {/* main overview grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                {/* Column 1: Wallets */}
+                <div className="lg:col-span-1 flex flex-col gap-4">
+                    {/* USDT WALLET */}
+                    <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl relative overflow-hidden group">
+                        <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-2">USDT WALLET</div>
+                        <div className="text-3xl font-black text-white mb-1">${usdWallet.toLocaleString('en-US', { minimumFractionDigits: 2 })}</div>
+                        <p className="text-xs text-slate-500 font-medium">Available Capital</p>
+                    </div>
 
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.1 }} className="bg-[#0A0A0A] border border-[#d4af35]/20 hover:border-[#d4af35]/50 transition-colors p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#d4af35]/5 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-110 transition-transform duration-500" />
-                    <div className="flex items-center gap-2 mb-3 text-white"><IndianRupee className="w-5 h-5 text-amber-500" /> <h3 className="font-bold text-sm tracking-wide uppercase text-amber-500/80">INR Wallet</h3></div>
-                    <div className="text-4xl font-black text-white mb-1 leading-tight drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]">₹{inrWallet.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
-                    <p className="text-xs text-slate-400 font-medium mt-1">Available Capital</p>
-                </motion.div>
-
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.2 }} className="bg-[#0A0A0A] border border-[#d4af35]/20 hover:border-[#d4af35]/50 transition-colors p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
-                    <div className="flex items-center gap-2 mb-3 text-[#d4af35]"><Clock className="w-5 h-5 text-[#d4af35]" /> <h3 className="font-bold text-sm tracking-wide uppercase">Active Investments</h3></div>
-                    <div className="flex flex-col gap-2 mt-4">
-                        <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
-                            <span className="text-slate-400 font-medium">USDT Schemes:</span>
-                            <span className="font-black text-white drop-shadow-[0_0_5px_rgba(212,175,53,0.3)]">${totalInvestedUSD.toLocaleString('en-US')}</span>
-                        </div>
-                        <div className="flex justify-between items-center text-sm pt-1">
-                            <span className="text-slate-400 font-medium">INR Schemes:</span>
-                            <span className="font-black text-white">₹{totalInvestedINR.toLocaleString('en-IN')}</span>
-                        </div>
-                    </div>
-                </motion.div>
-
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.3 }} className="bg-[#0A0A0A] border border-[#d4af35]/20 hover:border-[#d4af35]/50 transition-all duration-300 p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#32e512]/5 rounded-full blur-2xl flex items-center justify-center -mr-8 -mt-8 pointer-events-none group-hover:bg-[#32e512]/10 transition-colors" />
-                    <div className="flex items-center gap-2 mb-3 z-10 relative">
-                        <div className="p-1.5 bg-[#32e512]/10 rounded-lg"><ArrowUpRight className="w-4 h-4 text-[#32e512]" /></div>
-                        <h3 className="font-bold text-sm tracking-wide uppercase text-[#32e512]/90">Expected Returns</h3>
-                    </div>
-                    <div className="flex flex-col gap-2 mt-4 z-10 relative max-h-[220px] overflow-y-auto pr-1">
-                        {investments.filter(i => i.status === 'active').length === 0 ? (
-                            <div className="text-xs text-slate-500 font-medium py-2">No active investments.</div>
-                        ) : (
-                            investments.filter(i => i.status === 'active').map((inv, idx) => {
-                                const yieldVal = inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv);
-                                const displayYield = inv.currency === 'USD' ? `$${yieldVal.toLocaleString('en-US')}` : `₹${yieldVal.toLocaleString('en-IN')}`;
-                                return (
-                                    <div key={inv._id || idx} className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
-                                        <span className="text-white/60 font-bold uppercase tracking-widest text-[9px]">{SCHEME_NAMES[inv.schemeType] || inv.schemeType.replace('_', ' ').toUpperCase()}</span>
-                                        <span className="font-black text-[#32e512]">+{displayYield}</span>
-                                    </div>
-                                );
-                            })
-                        )}
-                        <div className="flex justify-between items-center text-sm pt-2 font-bold border-t border-[#32e512]/30 mt-1">
-                            <span className="text-white uppercase tracking-widest text-[10px] font-black">Total</span>
-                            <span className="font-black text-[#32e512] drop-shadow-[0_0_8px_rgba(50,229,18,0.4)] text-lg">
-                                ₹{(expectedINR + (expectedUSD * usdtToInr)).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
-                            </span>
-                        </div>
-                    </div>
-                </motion.div>
-
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.4 }} className="bg-[#0A0A0A] border border-[#d4af35]/20 hover:border-[#d4af35]/50 transition-all duration-300 p-5 rounded-2xl shadow-[0_4px_20px_rgba(212,175,53,0.05)] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#d4af35]/5 rounded-full blur-2xl flex items-center justify-center -mr-8 -mt-8 pointer-events-none group-hover:bg-[#d4af35]/10 transition-colors" />
-                    <div className="flex items-center gap-2 mb-3 text-[#d4af35]">
-                        <Users className="w-5 h-5 text-[#d4af35]" />
-                        <h3 className="font-bold text-sm tracking-wide uppercase">Referral Stats</h3>
-                    </div>
-                    <div className="flex flex-col gap-2 mt-4 z-10 relative">
-                        <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
-                            <span className="text-slate-400 font-medium">Invites:</span>
-                            <span className="font-black text-white">{referralCount}</span>
-                        </div>
-                        <div className="flex justify-between items-center text-sm border-b border-white/5 pb-2">
-                            <span className="text-slate-400 font-medium">Earned (INR):</span>
-                            <span className="font-black text-white">₹{referralCommissionEarnedInr.toLocaleString('en-IN')}</span>
-                        </div>
-                        {referralCommissionEarnedUsd > 0 && (
-                            <div className="flex justify-between items-center text-sm pt-1">
-                                <span className="text-slate-400 font-medium">Earned (USD):</span>
-                                <span className="font-black text-white">${referralCommissionEarnedUsd.toLocaleString('en-US')} USD</span>
-                            </div>
-                        )}
-                    </div>
-                </motion.div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                {/* Recent Investments */}
-                <div>
-                    <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-xl font-black text-white">Recent Investments</h2>
-                        <Link href="/dashboard/invest" className="text-sm font-bold text-white underline decoration-neon decoration-2 hover:text-white transition-colors">New Investment &rarr;</Link>
-                    </div>
-                    <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-2xl shadow-lg overflow-hidden">
-                        {investments.length === 0 ? (
-                            <div className="p-8 text-center text-slate-500 font-medium border-t border-[#d4af35]/10">No active investments yet. Start generating wealth today.</div>
-                        ) : (
-                            <div className="overflow-x-auto">
-                                <table className="w-full text-left min-w-[650px]">
-                                    <thead className="bg-[#d4af35]/5 text-[#d4af35]/80 text-xs uppercase tracking-wider border-b border-[#d4af35]/20">
-                                        <tr>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Scheme</th>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Date</th>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Amount</th>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Yield</th>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Expiry Date</th>
-                                            <th className="px-6 py-4 font-black text-[#d4af35]">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="divide-y divide-white/5">
-                                        {investments.slice(0, 5).map(inv => (
-                                            <tr key={inv._id} className="hover:bg-[#d4af35]/5 transition-colors">
-                                                <td className="px-6 py-5 whitespace-nowrap">
-                                                    <span className="bg-[#d4af35]/10 text-[#d4af35] border border-[#d4af35]/20 px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider shadow-inner">{inv.schemeType} Plan</span>
-                                                </td>
-                                                <td className="px-6 py-5 text-slate-400 font-bold text-sm whitespace-nowrap">
-                                                    {new Date(inv.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
-                                                </td>
-                                                <td className="px-6 py-5 font-black text-white text-lg drop-shadow-[0_0_5px_rgba(255,255,255,0.2)] whitespace-nowrap">
-                                                    {inv.currency === 'USD' ? '$' : '₹'}{inv.amount.toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN')}
-                                                </td>
-                                                <td className="px-6 py-5 text-[#32e512] font-extrabold drop-shadow-[0_0_8px_rgba(50,229,18,0.2)] whitespace-nowrap">
-                                                    +{inv.currency === 'USD' ? '$' : '₹'}{(inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv)).toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN', { maximumFractionDigits: 0 })}
-                                                </td>
-                                                <td className="px-6 py-5 text-slate-400 font-bold text-sm whitespace-nowrap">
-                                                    {inv.maturesAt ? new Date(inv.maturesAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—'}
-                                                </td>
-                                                <td className="px-6 py-5 whitespace-nowrap">
-                                                    {inv.status === 'pending' && (
-                                                        <span className="inline-flex items-center gap-1.5 bg-amber-500/10 text-amber-500 border border-amber-500/20 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">
-                                                            <Clock className="w-3.5 h-3.5" /> Requested
-                                                        </span>
-                                                    )}
-                                                    {inv.status === 'active' && (
-                                                        <span className="inline-flex items-center gap-1.5 bg-[#d4af35]/10 text-[#d4af35] border border-[#d4af35]/20 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">
-                                                            <ShieldCheck className="w-3.5 h-3.5" /> Active
-                                                        </span>
-                                                    )}
-                                                    {inv.status === 'completed' && (
-                                                        <span className="inline-flex items-center gap-1.5 bg-slate-500/10 text-slate-300 border border-slate-500/20 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">
-                                                            <CheckCircle2 className="w-3.5 h-3.5" /> Completed
-                                                        </span>
-                                                    )}
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        )}
+                    {/* INR WALLET */}
+                    <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl relative overflow-hidden group">
+                        <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-2">INR WALLET</div>
+                        <div className="text-3xl font-black text-white mb-1">₹{inrWallet.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</div>
+                        <p className="text-xs text-slate-500 font-medium">Available Capital</p>
                     </div>
                 </div>
 
-                {/* Right column: Transactions + Deposits */}
-                <div className="space-y-6">
-                    {/* Recent Deposits */}
-                    <div>
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-xl font-black text-white">Recent Deposits</h2>
-                            <Link href="/dashboard/deposit" className="text-sm font-bold text-[#d4af35] underline decoration-[#d4af35]/50 decoration-2 hover:text-white transition-colors">+ New Deposit</Link>
-                        </div>
-                        <div className="bg-[#0A0A0A] border border-[#d4af35]/20 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden p-3">
-                            {recentDeposits.length === 0 ? (
-                                <div className="p-6 text-center text-xs font-bold uppercase tracking-widest text-[#d4af35]/60 m-2 border border-dashed border-[#d4af35]/20 rounded-xl">No deposits yet.</div>
-                            ) : (
-                                <ul className="divide-y divide-[#d4af35]/10">
-                                    {recentDeposits.map(dep => {
-                                        const isUsdt = dep.paymentMethod === 'usdt';
-                                        const displayAmount = isUsdt
-                                            ? `₹${(dep.amount * usdtToInr).toLocaleString('en-IN', { maximumFractionDigits: 0 })} (≈$${dep.amount})`
-                                            : `₹${dep.amount.toLocaleString('en-IN')}`;
+                {/* Column 2: Active Investments (Wide Table Card) */}
+                <div className="lg:col-span-2 bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl flex flex-col">
+                    <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-4">ACTIVE INVESTMENTS</div>
+                    <div className="flex-grow overflow-x-auto">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-[#d4af35] text-[#0A0A0A] text-[10px] font-black uppercase tracking-wider">
+                                    <th className="px-4 py-2.5 rounded-l-lg">Scheme</th>
+                                    <th className="px-4 py-2.5">Amount</th>
+                                    <th className="px-4 py-2.5">Status</th>
+                                    <th className="px-4 py-2.5 rounded-r-lg">Returns</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-white/5 text-xs">
+                                {investments.filter(i => i.status === 'active').length === 0 ? (
+                                    <tr>
+                                        <td colSpan={4} className="px-4 py-8 text-center text-slate-500 font-medium">No active investments yet.</td>
+                                    </tr>
+                                ) : (
+                                    investments.filter(i => i.status === 'active').map((inv, idx) => {
+                                        const yieldVal = inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv);
+                                        const displayYield = inv.currency === 'USD' ? `$${yieldVal.toLocaleString('en-US')}` : `₹${yieldVal.toLocaleString('en-IN')}`;
                                         return (
-                                            <li key={dep._id} className="p-4 flex justify-between items-center hover:bg-[#d4af35]/5 rounded-xl transition-colors group">
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-10 h-10 rounded-full bg-[#121212] flex items-center justify-center border border-[#d4af35]/30 shadow-inner group-hover:scale-110 transition-transform">
-                                                        {isUsdt ? <Coins className="w-5 h-5 text-[#d4af35]" /> : <IndianRupee className="w-5 h-5 text-[#d4af35]" />}
-                                                    </div>
-                                                    <div>
-                                                        <p className="text-white font-black tracking-wide group-hover:text-[#d4af35] transition-colors">{displayAmount}</p>
-                                                        <p className="text-[#d4af35]/60 text-[10px] mt-0.5 font-bold uppercase tracking-wider">{new Date(dep.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })} · <span className="text-white/40">{isUsdt ? 'USDT Crypto' : 'Bank Transfer'}</span></p>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    {dep.status === 'approved' && <span className="text-[10px] font-black text-[#32e512] bg-[#32e512]/10 px-3 py-1.5 rounded-lg border border-[#32e512]/20 uppercase tracking-widest shadow-inner">Approved</span>}
-                                                    {dep.status === 'pending' && <span className="text-[10px] font-black text-amber-500 bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20 uppercase tracking-widest shadow-inner">Pending</span>}
-                                                    {dep.status === 'rejected' && <span className="text-[10px] font-black text-red-500 bg-red-500/10 px-3 py-1.5 rounded-lg border border-red-500/20 uppercase tracking-widest shadow-inner">Rejected</span>}
-                                                </div>
-                                            </li>
+                                            <tr key={inv._id || idx} className="hover:bg-[#d4af35]/5 transition-colors">
+                                                <td className="px-4 py-3 font-bold text-white uppercase tracking-wider text-[10px]">{SCHEME_NAMES[inv.schemeType] || inv.schemeType}</td>
+                                                <td className="px-4 py-3 text-slate-300 font-semibold">{inv.currency === 'USD' ? '$' : '₹'}{inv.amount.toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN')}</td>
+                                                <td className="px-4 py-3"><span className="text-emerald-500 font-bold uppercase text-[9px] tracking-widest bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Active</span></td>
+                                                <td className="px-4 py-3 text-emerald-500 font-extrabold font-mono">+{displayYield} ↑</td>
+                                            </tr>
                                         );
-                                    })}
-                                </ul>
-                            )}
+                                    })
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {/* Column 3: Expected Returns & Referral Stats */}
+                <div className="lg:col-span-1 flex flex-col gap-4">
+                    {/* EXPECTED RETURNS */}
+                    <Link href="/dashboard/statements" className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl block relative overflow-hidden group hover:border-[#d4af35]/60 transition-colors">
+                        <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-2">EXPECTED RETURNS</div>
+                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">TOTAL</div>
+                        <div className="flex justify-between items-end mt-1">
+                            <div className="text-3xl font-black text-white leading-none">
+                                ₹{(expectedINR + (expectedUSD * usdtToInr)).toLocaleString('en-IN', { maximumFractionDigits: 0 })}
+                            </div>
+                            <ArrowRight className="w-5 h-5 text-[#d4af35] transition-transform group-hover:translate-x-1" />
+                        </div>
+                    </Link>
+
+                    {/* REFERRAL STATS */}
+                    <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl">
+                        <div className="text-[#d4af35] font-bold uppercase tracking-wider text-[10px] mb-3">REFERRAL STATS</div>
+                        <div className="space-y-1.5 text-xs">
+                            <div className="flex justify-between items-center">
+                                <span className="text-slate-400 font-medium">Invites:</span>
+                                <span className="font-bold text-white">{referralCount}</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <span className="text-slate-400 font-medium">Earned (INR):</span>
+                                <span className="font-bold text-[#d4af35]">₹{referralCommissionEarnedInr.toLocaleString('en-IN')}</span>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            {/* Recent Activities Section */}
+            <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl flex flex-col">
+                <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-4">RECENT ACTIVITIES</div>
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse">
+                        <thead>
+                            <tr className="bg-[#d4af35] text-[#0A0A0A] text-[10px] font-black uppercase tracking-wider">
+                                <th className="px-4 py-2.5 rounded-l-lg">Date</th>
+                                <th className="px-4 py-2.5">Type</th>
+                                <th className="px-4 py-2.5">Amount</th>
+                                <th className="px-4 py-2.5">Status</th>
+                                <th className="px-4 py-2.5 rounded-r-lg text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-white/5 text-xs">
+                            {recentActivities.length === 0 ? (
+                                <tr>
+                                    <td colSpan={5} className="px-4 py-8 text-center text-slate-500 font-medium">No recent activities.</td>
+                                </tr>
+                            ) : (
+                                recentActivities.map((act, idx) => (
+                                    <tr key={act._id || idx} className="hover:bg-[#d4af35]/5 transition-colors">
+                                        <td className="px-4 py-4 text-slate-400 font-bold whitespace-nowrap">
+                                            {act.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                        </td>
+                                        <td className="px-4 py-4 text-white font-bold whitespace-nowrap">{act.type}</td>
+                                        <td className="px-4 py-4 text-slate-200 font-black text-sm whitespace-nowrap">
+                                            {act.currency === 'USD' || act.currency === 'USDT' ? '$' : '₹'}{act.amount.toLocaleString(act.currency === 'USD' || act.currency === 'USDT' ? 'en-US' : 'en-IN')}
+                                        </td>
+                                        <td className="px-4 py-4 whitespace-nowrap">
+                                            {act.status === 'Completed' && (
+                                                <span className="flex items-center gap-1.5 text-emerald-500 font-bold">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Completed
+                                                </span>
+                                            )}
+                                            {act.status === 'Active' && (
+                                                <span className="flex items-center gap-1.5 text-emerald-500 font-bold">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Completed
+                                                </span>
+                                            )}
+                                            {act.status === 'Processing' && (
+                                                <span className="flex items-center gap-1.5 text-amber-500 font-bold">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" /> Processing
+                                                </span>
+                                            )}
+                                        </td>
+                                        <td className="px-4 py-4 text-right whitespace-nowrap text-slate-500 space-x-2">
+                                            <button className="hover:text-white transition-colors" title="View details">
+                                                {act.status === 'Processing' ? <Clock className="w-4 h-4 inline" /> : <Edit2 className="w-4 h-4 inline" />}
+                                            </button>
+                                            <button className="hover:text-red-500 transition-colors" title="Cancel/Delete">
+                                                <Trash2 className="w-4 h-4 inline" />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

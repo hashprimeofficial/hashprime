@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 import useSWR from 'swr';
 
 const NAV_ITEMS = [
-    { name: 'Overview', href: '/dashboard', icon: LayoutDashboard },
+    { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Invest', href: '/dashboard/invest', icon: TrendingUp },
     { name: 'Deposits', href: '/dashboard/deposit', icon: Wallet },
     { name: 'Withdraw', href: '/dashboard/withdraw', icon: ArrowUpRight },
@@ -29,22 +29,20 @@ function UserAvatarBlock() {
     const user = data?.user;
     if (!user) return (
         <div className="flex items-center gap-3 px-1 mb-2 animate-pulse">
-            <div className="w-9 h-9 rounded-xl bg-slate-200 shrink-0" />
+            <div className="w-10 h-10 rounded-full bg-slate-200 shrink-0" />
             <div className="space-y-1.5 flex-1">
                 <div className="h-3.5 bg-slate-200 rounded w-3/4" />
-                <div className="h-3 bg-slate-100 rounded w-1/2" />
             </div>
         </div>
     );
 
     return (
-        <div className="flex items-center gap-3 bg-[#0A0A0A] border border-[#d4af35]/20 rounded-xl px-3 py-2.5 shadow-sm mb-2 hover:border-[#d4af35]/40 transition-colors">
-            <div className="w-9 h-9 rounded-xl bg-[#d4af35]/10 flex items-center justify-center text-[#d4af35] font-black text-sm shrink-0 shadow-inner border border-[#d4af35]/20">
-                {user.name?.charAt(0).toUpperCase()}
+        <div className="flex items-center gap-3 px-3 py-2.5 mb-2 transition-all">
+            <div className="w-10 h-10 rounded-full bg-[#d4af35]/10 flex items-center justify-center text-[#d4af35] font-black text-sm shrink-0 border border-[#d4af35]/20 shadow-inner">
+                {user.name?.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)}
             </div>
             <div className="min-w-0">
                 <div className="text-white font-bold text-sm truncate">{user.name}</div>
-                <div className="text-[#d4af35] text-xs font-medium truncate capitalize">{user.role}</div>
             </div>
         </div>
     );
