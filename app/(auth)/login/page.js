@@ -29,14 +29,14 @@ export default function LoginPage() {
 
     const ads = [
         {
+            title: "24-Hour Limited Offer",
+            desc: "Refer a partner to the Monthly Scheme and receive an instant 3% commission income!",
+            style: "border-[#d4af35]/50 bg-gradient-to-r from-[#d4af35]/10 via-[#f5e0a3]/15 to-[#d4af35]/10 shadow-[0_0_15px_rgba(212,175,53,0.15)]"
+        },
+        {
             title: "Referral Limited Offer",
             desc: "Refer someone who invests ₹10 Lakhs+ (1-yr lock) and receive a 10% referral commission!",
             style: "border-amber-500/50 bg-gradient-to-r from-amber-500/10 via-[#d4af35]/15 to-amber-500/10 shadow-[0_0_15px_rgba(212,175,53,0.1)]"
-        },
-        {
-            title: "4% Monthly Returns Plan",
-            desc: "Promote the newly added 4% Monthly Returns Plan (Minimum investment: 5 Lakhs).",
-            style: "border-emerald-500/50 bg-gradient-to-r from-emerald-500/10 via-teal-500/15 to-emerald-500/10 shadow-[0_0_15px_rgba(52,211,153,0.1)]"
         },
         {
             title: "High Return Teaser",

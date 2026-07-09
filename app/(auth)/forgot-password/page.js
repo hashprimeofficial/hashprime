@@ -6,9 +6,10 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, ArrowRight, Mail, KeyRound, EyeOff, Eye, CheckCircle2, AlertCircle, ChevronLeft } from 'lucide-react';
 
-const neonStyle = { background: 'linear-gradient(135deg, #d4af35, #22c55e)', color: '#0b1120', boxShadow: '0 8px 24px rgba(57,255,20,0.25)' };
+const focusGold = (e) => (e.target.style.boxShadow = '0 0 0 2px rgba(212,175,53,0.4)', e.target.style.borderColor = 'rgba(212,175,53,0.5)');
+const blurGold = (e) => (e.target.style.boxShadow = '', e.target.style.borderColor = '');
 
-const inputClass = "w-full bg-[#121212] border border-white/10 rounded-xl px-4 py-3.5 text-slate-900 placeholder-slate-400 focus:outline-none transition-all font-medium shadow-sm text-sm";
+const inputClass = "w-full bg-[#0A0A0A] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-slate-600 focus:outline-none transition-all font-medium text-sm";
 
 export default function ForgotPasswordPage() {
     const router = useRouter();
@@ -58,20 +59,20 @@ export default function ForgotPasswordPage() {
                 <motion.div key="request" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.3 }}>
                     {/* Header */}
                     <div className="mb-9">
-                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style={{ background: 'linear-gradient(135deg,#d4af35,#22c55e)', boxShadow: '0 8px 24px rgba(57,255,20,0.2)' }}>
-                            <Mail className="w-6 h-6" style={{ color: '#0b1120' }} />
+                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 bg-[#d4af35]/10 border border-[#d4af35]/30">
+                            <Mail className="w-6 h-6 text-[#d4af35]" />
                         </div>
-                        <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-1.5">Reset password</h1>
-                        <p className="text-slate-500 text-sm font-medium">Enter your email and we&apos;ll send a 6-digit reset code.</p>
+                        <h1 className="text-3xl font-black text-white tracking-tight mb-1.5">Reset password</h1>
+                        <p className="text-slate-400 text-sm font-medium">Enter your email and we&apos;ll send a 6-digit reset code.</p>
                     </div>
 
                     <form onSubmit={handleRequestOTP} className="space-y-5">
                         <AnimatePresence>
                             {error && (
                                 <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                                    className="flex items-start gap-3 bg-[#d4af35] border border-red-500/30 p-3.5 rounded-xl">
+                                    className="flex items-start gap-3 bg-red-500/10 border border-red-500/30 p-3.5 rounded-xl">
                                     <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-                                    <p className="text-red-300 text-sm font-bold">{error}</p>
+                                    <p className="text-red-400 text-sm font-bold">{error}</p>
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -80,21 +81,20 @@ export default function ForgotPasswordPage() {
                             <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest">Email Address</label>
                             <input type="email" value={email} onChange={e => setEmail(e.target.value)} required
                                 className={inputClass} placeholder="you@example.com"
-                                onFocus={e => e.target.style.boxShadow = '0 0 0 3px rgba(57,255,20,0.2)'}
-                                onBlur={e => e.target.style.boxShadow = ''} />
+                                onFocus={focusGold}
+                                onBlur={blurGold} />
                         </div>
 
                         <motion.button whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}
                             type="submit" disabled={loading || !email}
-                            className="w-full font-black py-3.5 rounded-xl flex justify-center items-center gap-2 transition-all shadow-lg text-sm mt-2 disabled:opacity-60"
-                            style={neonStyle}>
+                            className="w-full font-black py-3.5 rounded-xl flex justify-center items-center gap-2 transition-all text-sm mt-2 disabled:opacity-60 bg-[#d4af35] text-[#0A0A0A] hover:bg-[#f5e0a3] shadow-[0_8px_24px_rgba(212,175,53,0.2)]">
                             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <>Send Reset Code <ArrowRight className="w-4 h-4" /></>}
                         </motion.button>
                     </form>
 
                     <div className="mt-8 pt-6 border-t border-white/5 text-center">
-                        <Link href="/login" className="text-xs font-bold text-slate-300 hover:text-slate-700 transition-colors flex items-center justify-center gap-1">
-                            <ChevronLeft className="w-3.5 h-3.5" /> Back to sign in
+                        <Link href="/login" className="text-xs font-bold text-slate-400 hover:text-white transition-colors flex items-center justify-center gap-1">
+                            <ChevronLeft className="w-3.5 h-3.5 text-[#d4af35]" /> Back to sign in
                         </Link>
                     </div>
                 </motion.div>
@@ -102,14 +102,14 @@ export default function ForgotPasswordPage() {
                 <motion.div key="reset" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.3 }}>
                     {/* Header */}
                     <div className="mb-9">
-                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style={{ background: 'linear-gradient(135deg,#d4af35,#22c55e)', boxShadow: '0 8px 24px rgba(57,255,20,0.2)' }}>
-                            <KeyRound className="w-6 h-6" style={{ color: '#0b1120' }} />
+                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 bg-[#d4af35]/10 border border-[#d4af35]/30">
+                            <KeyRound className="w-6 h-6 text-[#d4af35]" />
                         </div>
-                        <h1 className="text-3xl font-black text-slate-900 tracking-tight mb-1.5">Set new password</h1>
+                        <h1 className="text-3xl font-black text-white tracking-tight mb-1.5">Set new password</h1>
                         {successMsg && (
-                            <div className="flex items-center gap-2 mt-3 text-xs font-bold p-2.5 rounded-lg bg-[#d4af35]/10 border border-[#d4af35]/20" style={{ color: '#14a32a' }}>
-                                <CheckCircle2 className="w-4 h-4" style={{ color: '#d4af35' }} />
-                                Code sent to <span className="text-slate-700">{email}</span>
+                            <div className="flex items-center gap-2 mt-3 text-xs font-bold p-2.5 rounded-lg bg-[#d4af35]/10 border border-[#d4af35]/20 text-[#32e512]">
+                                <CheckCircle2 className="w-4 h-4 text-[#32e512]" />
+                                Code sent to <span className="text-white">{email}</span>
                             </div>
                         )}
                     </div>
@@ -118,9 +118,9 @@ export default function ForgotPasswordPage() {
                         <AnimatePresence>
                             {error && (
                                 <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                                    className="flex items-start gap-3 bg-[#d4af35] border border-red-500/30 p-3.5 rounded-xl">
+                                    className="flex items-start gap-3 bg-red-500/10 border border-red-500/30 p-3.5 rounded-xl">
                                     <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-                                    <p className="text-red-300 text-sm font-bold">{error}</p>
+                                    <p className="text-red-400 text-sm font-bold">{error}</p>
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -131,9 +131,9 @@ export default function ForgotPasswordPage() {
                             <input type="text" inputMode="numeric" value={otpCode}
                                 onChange={e => setOtpCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                                 required placeholder="——————"
-                                className="w-full bg-[#121212] border border-white/10 rounded-2xl px-6 py-4 text-center text-3xl tracking-[0.5em] text-slate-900 font-black focus:outline-none shadow-inner transition-all"
-                                onFocus={e => e.target.style.boxShadow = '0 0 0 3px rgba(57,255,20,0.2)'}
-                                onBlur={e => e.target.style.boxShadow = ''} />
+                                className="w-full bg-[#0A0A0A] border border-white/10 rounded-2xl px-6 py-4 text-center text-3xl tracking-[0.5em] text-white font-black focus:outline-none shadow-inner transition-all"
+                                onFocus={focusGold}
+                                onBlur={blurGold} />
                         </div>
 
                         {/* New Password */}
@@ -142,10 +142,10 @@ export default function ForgotPasswordPage() {
                             <div className="relative">
                                 <input type={showPw ? 'text' : 'password'} name="newPassword" required autoComplete="new-password"
                                     className={`${inputClass} pr-12`} placeholder="••••••••"
-                                    onFocus={e => e.target.style.boxShadow = '0 0 0 3px rgba(57,255,20,0.2)'}
-                                    onBlur={e => e.target.style.boxShadow = ''} />
+                                    onFocus={focusGold}
+                                    onBlur={blurGold} />
                                 <button type="button" onClick={() => setShowPw(v => !v)}
-                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-200 transition-colors">
+                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-[#d4af35] transition-colors">
                                     {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                 </button>
                             </div>
@@ -153,14 +153,13 @@ export default function ForgotPasswordPage() {
 
                         <motion.button whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}
                             type="submit" disabled={loading || otpCode.length !== 6}
-                            className="w-full font-black py-3.5 rounded-xl flex justify-center items-center gap-2 transition-all shadow-lg text-sm disabled:opacity-50"
-                            style={neonStyle}>
+                            className="w-full font-black py-3.5 rounded-xl flex justify-center items-center gap-2 transition-all text-sm disabled:opacity-50 bg-[#d4af35] text-[#0A0A0A] hover:bg-[#f5e0a3] shadow-[0_8px_24px_rgba(212,175,53,0.2)]">
                             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Confirm New Password'}
                         </motion.button>
 
                         <button type="button" onClick={() => { setStep('request'); setError(''); setOtpCode(''); }}
-                            className="w-full text-xs font-bold text-slate-300 hover:text-slate-200 transition-colors flex items-center justify-center gap-1 pt-1">
-                            <ChevronLeft className="w-3.5 h-3.5" /> Use a different email
+                            className="w-full text-xs font-bold text-slate-400 hover:text-white transition-colors flex items-center justify-center gap-1 pt-1">
+                            <ChevronLeft className="w-3.5 h-3.5 text-[#d4af35]" /> Use a different email
                         </button>
                     </form>
                 </motion.div>

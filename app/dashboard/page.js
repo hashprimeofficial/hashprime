@@ -13,6 +13,13 @@ export default function DashboardOverview() {
     const { data: depositsData } = useSWR('/api/deposits', fetcher);
     const { data: rateData } = useSWR('/api/exchange-rate', fetcher);
     const [copied, setCopied] = useState(false);
+    const [isProfileDismissed, setIsProfileDismissed] = useState(false);
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setIsProfileDismissed(localStorage.getItem('dismiss_profile_complete') === 'true');
+        }
+    }, []);
 
     if (isLoading) return <div className="animate-pulse flex space-x-4"><div className="flex-1 space-y-4 py-1"><div className="h-4 bg-[#121212]/10 rounded w-3/4"></div><div className="space-y-2"><div className="h-4 bg-[#121212]/10 rounded"></div><div className="h-4 bg-[#121212]/10 rounded w-5/6"></div></div></div></div>;
     if (error || !data) return <div className="text-red-500">Failed to load dashboard</div>;
@@ -22,13 +29,6 @@ export default function DashboardOverview() {
 
     // Live exchange rate (INR per USDT), fallback to 85
     const usdtToInr = rateData?.rate || 85;
-
-    const [isProfileDismissed, setIsProfileDismissed] = useState(false);
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            setIsProfileDismissed(localStorage.getItem('dismiss_profile_complete') === 'true');
-        }
-    }, []);
 
     const isKycComplete = user.kycStatus === 'approved';
     const is2FaComplete = user.isTwoFactorEnabled;
@@ -41,8 +41,8 @@ export default function DashboardOverview() {
         { title: 'Link Bank Account', check: isBankComplete, icon: Landmark, link: '/dashboard/bank' }
     ];
 
-    const totalInvestedUSD = investments.filter(i => i.currency === 'USD').reduce((acc, inv) => acc + inv.amount, 0);
-    const totalInvestedINR = investments.filter(i => i.currency === 'INR').reduce((acc, inv) => acc + inv.amount, 0);
+    const totalInvestedUSD = investments.filter(i => i.currency === 'USD' && i.status === 'active').reduce((acc, inv) => acc + inv.amount, 0);
+    const totalInvestedINR = investments.filter(i => i.currency === 'INR' && i.status === 'active').reduce((acc, inv) => acc + inv.amount, 0);
 
     const SCHEME_RATES = {
         '3m_inr': 0.18,
@@ -73,9 +73,9 @@ export default function DashboardOverview() {
         return Math.round(inv.amount * (SCHEME_RATES[inv.schemeType] || 0));
     };
 
-    const expectedUSD = investments.filter(i => i.currency === 'USD' && (i.status === 'active' || i.status === 'completed'))
+    const expectedUSD = investments.filter(i => i.currency === 'USD' && i.status === 'active')
         .reduce((acc, inv) => acc + (inv.usdtReward || 0), 0);
-    const expectedINR = investments.filter(i => i.currency === 'INR' && (i.status === 'active' || i.status === 'completed'))
+    const expectedINR = investments.filter(i => i.currency === 'INR' && i.status === 'active')
         .reduce((acc, inv) => acc + getInrYield(inv), 0);
 
     const usdWallet = user.usdWallet || 0;
@@ -186,10 +186,10 @@ export default function DashboardOverview() {
                         <h3 className="font-bold text-sm tracking-wide uppercase text-[#32e512]/90">Expected Returns</h3>
                     </div>
                     <div className="flex flex-col gap-2 mt-4 z-10 relative max-h-[220px] overflow-y-auto pr-1">
-                        {investments.filter(i => i.status === 'active' || i.status === 'completed').length === 0 ? (
+                        {investments.filter(i => i.status === 'active').length === 0 ? (
                             <div className="text-xs text-slate-500 font-medium py-2">No active investments.</div>
                         ) : (
-                            investments.filter(i => i.status === 'active' || i.status === 'completed').map((inv, idx) => {
+                            investments.filter(i => i.status === 'active').map((inv, idx) => {
                                 const yieldVal = inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv);
                                 const displayYield = inv.currency === 'USD' ? `$${yieldVal.toLocaleString('en-US')}` : `₹${yieldVal.toLocaleString('en-IN')}`;
                                 return (

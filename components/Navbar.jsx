@@ -92,14 +92,40 @@ export default function Navbar() {
     }, { scope: containerRef });
 
     return (
-        <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 w-full pointer-events-none">
-            <header
-                ref={containerRef}
-                className={`pointer-events-auto w-full max-w-5xl transition-all duration-500 rounded-full px-6 py-1 ${scrolled
-                    ? 'bg-[#0A0A0A]/80 backdrop-blur-2xl border border-[#d4af35]/20 shadow-[0_10px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,53,0.1)]'
-                    : 'bg-[#121212]/40 backdrop-blur-md border border-white/5 shadow-2xl'
+        <>
+            <div className="fixed top-0 left-0 right-0 z-50 w-full bg-[#0A0A0A]/95 backdrop-blur-md border-b border-[#d4af35]/20 text-center py-2 px-4 shadow-[0_0_15px_rgba(212,175,53,0.15)] pointer-events-auto flex items-center justify-center gap-2">
+                <style>{`
+                    @keyframes pulseGlow {
+                        0%, 100% { opacity: 1; }
+                        50% { opacity: 0.4; }
+                    }
+                    .animate-pulse-glow {
+                        animation: pulseGlow 1.5s ease-in-out infinite;
+                    }
+                `}</style>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse-glow" />
+                <span className="text-[10px] font-black tracking-[0.2em] text-[#d4af35] uppercase">
+                    ⚡ 24-Hour Limited Offer ⚡
+                </span>
+                <span className="text-white text-[11px] font-bold leading-none hidden sm:inline">
+                    — Monthly Scheme Referrer Gets <span className="text-[#d4af35]">3% Instant Income</span>!
+                </span>
+                <span className="text-white text-[11px] font-bold leading-none sm:hidden">
+                    : Referrer gets 3%!
+                </span>
+                <Link href="/register" className="text-[9px] font-black uppercase tracking-wider text-[#d4af35] hover:text-white transition-colors border border-[#d4af35]/20 px-2 py-0.5 rounded bg-[#d4af35]/5 hover:bg-[#d4af35]/15 ml-1">
+                    Join ↗
+                </Link>
+            </div>
+
+            <div className="fixed top-14 left-0 right-0 z-50 flex justify-center px-4 w-full pointer-events-none">
+                <header
+                    ref={containerRef}
+                    className={`pointer-events-auto w-full max-w-5xl transition-all duration-500 rounded-full px-6 py-1 ${scrolled
+                        ? 'bg-[#0A0A0A]/80 backdrop-blur-2xl border border-[#d4af35]/20 shadow-[0_10px_40px_rgba(0,0,0,0.8),0_0_20px_rgba(212,175,53,0.1)]'
+                        : 'bg-[#121212]/40 backdrop-blur-md border border-white/5 shadow-2xl'
                     }`}
-            >
+                >
                 <div className="flex justify-between items-center h-14 md:h-16">
                     <div className="flex items-center">
                         <Link href="/" className="flex items-center group relative overflow-hidden">
@@ -219,5 +245,6 @@ export default function Navbar() {
                 </div>
             </div>
         </div>
+        </>
     );
 }

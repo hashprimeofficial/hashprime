@@ -30,6 +30,17 @@ export async function POST(req) {
 
         // Process each matured investment
         for (const investment of maturedInvestments) {
+            // 1. Try to transition status from active to completed atomically first
+            const transitioning = await Investment.findOneAndUpdate(
+                { _id: investment._id, status: 'active' },
+                { status: 'completed' },
+                { new: true }
+            );
+
+            if (!transitioning) {
+                continue; // Already processed by a concurrent run
+            }
+
             const principal = investment.amount;
 
             const liveRate = await getExchangeRate();
@@ -38,9 +49,6 @@ export async function POST(req) {
                 : principal + (investment.inrReward !== undefined && investment.inrReward !== null ? investment.inrReward : Math.round(investment.usdtReward * liveRate));
 
             const updateField = investment.currency === 'USD' ? 'usdWallet' : 'inrWallet';
-
-            // 1. Update investment status to completed
-            await Investment.findByIdAndUpdate(investment._id, { status: 'completed' });
 
             // 2. Credit the User's specific Balance
             await User.findByIdAndUpdate(investment.userId, {

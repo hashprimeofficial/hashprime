@@ -41,11 +41,22 @@ export async function PATCH(req, { params }) {
 
         // --- NEW LOGIC: Approving a Pending Investment ---
         if (safeUpdate.status === 'active' && currentInvestment.status === 'pending') {
+            const transitioning = await Investment.findOneAndUpdate(
+                { _id: id, status: 'pending' },
+                { status: 'active' },
+                { new: true }
+            );
+            if (!transitioning) {
+                return NextResponse.json({ error: 'Investment is already approved or not pending.' }, { status: 400 });
+            }
+
             const user = await User.findById(currentInvestment.userId._id);
             const amountNeeded = currentInvestment.amount;
 
             const activeWalletBalance = currentInvestment.currency === 'USD' ? (user.usdWallet || 0) : (user.inrWallet || 0);
             if (activeWalletBalance < amountNeeded) {
+                // Rollback status to pending
+                await Investment.findByIdAndUpdate(id, { status: 'pending' });
                 return NextResponse.json({ error: `User has insufficient balance (${activeWalletBalance}) to cover this investment.` }, { status: 400 });
             }
 
@@ -100,17 +111,20 @@ export async function PATCH(req, { params }) {
 
         const updatedInvestment = await Investment.findByIdAndUpdate(id, safeUpdate, { new: true }).populate('userId', 'name email');
 
-        // --- EXISTING LOGIC: Completing/Maturing an Active Investment ---
+        // --- EXISTING LOGIC: Completing/Maturing an Active/Pending Investment ---
         if (safeUpdate.status === 'completed' && currentInvestment.status !== 'completed') {
+            const transitioning = await Investment.findOneAndUpdate(
+                { _id: id, status: { $ne: 'completed' } },
+                { status: 'completed' },
+                { new: true }
+            );
+            if (!transitioning) {
+                return NextResponse.json({ error: 'Investment is already completed' }, { status: 400 });
+            }
+
             const principal = currentInvestment.amount;
 
             // Re-calculate the specific reward in exactly the currency they invested in
-            // If they invested in USD, they get USD back. If INR, they get INR.
-            // Wait, usdtReward in the schema stores the expected return, but maybe we should just calculate it here to be safe and clear.
-            // Actually, we can just use the scheme data, or we could just credit `principal + usdtReward` to USD if it was a USD investment.
-            // If it was an INR investment, we credit `principal + (usdtReward * liveRate)`. Wait, we should just read from `usdtReward` if USD, or calculate back down.
-            // Let's just use `getExchangeRate` if we need to convert back, but ideally we credit `principal + yield`.
-
             const totalToCredit = currentInvestment.currency === 'USD'
                 ? principal + currentInvestment.usdtReward
                 : principal + Math.round(currentInvestment.usdtReward * await getExchangeRate());
