@@ -110,16 +110,7 @@ function RegisterForm() {
                         animation: blinkHighlight 1s ease-in-out infinite;
                     }
                 `}</style>
-                {/* Current Offers Section - Highlighted after registration clicks */}
-                <div className="p-4 rounded-2xl border border-[#d4af35]/40 text-center mb-6 transition-all duration-500 animate-blink-highlight">
-                    <div className="text-[10px] font-black tracking-[0.3em] text-[#d4af35] uppercase mb-1.5 flex items-center justify-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-ping" />
-                        ⚡ 24-Hour Limited Offer ⚡
-                    </div>
-                    <p className="text-white text-xs font-bold leading-relaxed px-2">
-                        Refer a partner to the Monthly Scheme and earn an instant <span className="text-[#d4af35]">3% commission income</span>!
-                    </p>
-                </div>
+
 
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 bg-[#d4af35]/10 border border-[#d4af35]/30">
                     <Mail className="w-7 h-7 text-[#d4af35]" />
@@ -164,17 +155,7 @@ function RegisterForm() {
 
     return (
         <motion.div key="register" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.3 }}>
-            {/* Current Offers Section */}
-            <div className="p-4 rounded-2xl border border-[#d4af35]/40 text-center mb-6 bg-[#0A0A0A] shadow-[0_0_15px_rgba(212,175,53,0.15)] relative overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                <div className="text-[10px] font-black tracking-[0.3em] text-[#d4af35] uppercase mb-1.5 flex items-center justify-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-ping" />
-                    ⚡ 24-Hour Limited Offer ⚡
-                </div>
-                <p className="text-white text-xs font-bold leading-relaxed px-2">
-                    Refer a partner to the Monthly Scheme and earn an instant <span className="text-[#d4af35]">3% commission income</span>!
-                </p>
-            </div>
+
 
             <div className="mb-8">
                 <h1 className="text-3xl font-black text-white tracking-tight mb-2">Create your account</h1>
