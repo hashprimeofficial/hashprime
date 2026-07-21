@@ -21,6 +21,7 @@ const team = [
     { name: "Mrs. Hemalatha Kannan", title: "HR Manager", img: "/HEMALATHA KANNAN.png" },
     { name: "Mr. Kannan Thangavel", title: "Accounts Manager", img: "/Mr.KANNAN THANGAVEL.jpeg" },
     { name: "Mr. Murugaraj Elangovan", title: "Mayiladuthurai District Zonal Manager", img: "/MURUGARAJ ELANGOVAN.jpeg" },
+    { name: "Mrs. Priyadharshini Ragupathi", title: "Salem District Zonal Manager", img: "/PRIYADHARSHINI RAGUPATHI.png" },
 ];
 
 const businesses = [
