@@ -6,6 +6,20 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, Eye, EyeOff, ArrowRight, ShieldCheck } from 'lucide-react';
 
+const ads = [
+    {
+        title: "Referral Limited Offer",
+        desc: "Refer someone who invests ₹10 Lakhs+ (1-yr lock) and receive a 10% referral commission!",
+        style: "border-amber-500/50 bg-gradient-to-r from-amber-500/10 via-[#d4af35]/15 to-amber-500/10 shadow-[0_0_15px_rgba(212,175,53,0.1)]"
+    },
+    {
+        title: "High Return Teaser",
+        desc: "Maximum Returns 500%",
+        isTeaser: true,
+        style: "border-red-500/50 bg-gradient-to-r from-red-500/10 via-[#d4af35]/15 to-red-500/10 shadow-[0_0_15px_rgba(239,68,68,0.1)]"
+    }
+];
+
 export default function LoginPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
@@ -16,10 +30,10 @@ export default function LoginPage() {
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setActiveAd((prev) => (prev + 1) % 3);
+            setActiveAd((prev) => (prev + 1) % ads.length);
         }, 4000);
         return () => clearInterval(timer);
-    }, []);
+    }, [ads.length]);
 
     const handleBannerClick = () => {
         if (emailRef.current) {
@@ -27,19 +41,7 @@ export default function LoginPage() {
         }
     };
 
-    const ads = [
-        {
-            title: "Referral Limited Offer",
-            desc: "Refer someone who invests ₹10 Lakhs+ (1-yr lock) and receive a 10% referral commission!",
-            style: "border-amber-500/50 bg-gradient-to-r from-amber-500/10 via-[#d4af35]/15 to-amber-500/10 shadow-[0_0_15px_rgba(212,175,53,0.1)]"
-        },
-        {
-            title: "High Return Teaser",
-            desc: "Maximum Returns 500%",
-            isTeaser: true,
-            style: "border-red-500/50 bg-gradient-to-r from-red-500/10 via-[#d4af35]/15 to-red-500/10 shadow-[0_0_15px_rgba(239,68,68,0.1)]"
-        }
-    ];
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -95,27 +97,32 @@ export default function LoginPage() {
             `}</style>
 
             {/* Alternating Glittering Advertising Banner */}
-            <div 
-                onClick={handleBannerClick}
-                className={`p-4 rounded-2xl border cursor-pointer select-none transition-all duration-700 text-center animate-glitter shadow-lg mb-6 hover:scale-[1.01] ${ads[activeAd].style}`}
-            >
-                {ads[activeAd].isTeaser ? (
-                    <div className="py-2.5">
-                        <span className="text-xl font-black tracking-widest text-[#d4af35] uppercase animate-blink">
-                            {ads[activeAd].desc}
-                        </span>
+            {(() => {
+                const activeAdData = ads[activeAd] || ads[0] || {};
+                return (
+                    <div 
+                        onClick={handleBannerClick}
+                        className={`p-4 rounded-2xl border cursor-pointer select-none transition-all duration-700 text-center animate-glitter shadow-lg mb-6 hover:scale-[1.01] ${activeAdData.style || ''}`}
+                    >
+                        {activeAdData.isTeaser ? (
+                            <div className="py-2.5">
+                                <span className="text-xl font-black tracking-widest text-[#d4af35] uppercase animate-blink">
+                                    {activeAdData.desc}
+                                </span>
+                            </div>
+                        ) : (
+                            <div>
+                                <div className="text-[10px] font-black tracking-[0.25em] text-[#d4af35] uppercase mb-1.5 animate-text-blink">
+                                    🔥 {activeAdData.title} 🔥
+                                </div>
+                                <p className="text-white text-xs font-bold leading-relaxed px-2">
+                                    {activeAdData.desc}
+                                </p>
+                            </div>
+                        )}
                     </div>
-                ) : (
-                    <div>
-                        <div className="text-[10px] font-black tracking-[0.25em] text-[#d4af35] uppercase mb-1.5 animate-text-blink">
-                            🔥 {ads[activeAd].title} 🔥
-                        </div>
-                        <p className="text-white text-xs font-bold leading-relaxed px-2">
-                            {ads[activeAd].desc}
-                        </p>
-                    </div>
-                )}
-            </div>
+                );
+            })()}
 
             <div className="mb-8">
                 <h1 className="text-3xl font-black text-white tracking-tight mb-2">Welcome back</h1>

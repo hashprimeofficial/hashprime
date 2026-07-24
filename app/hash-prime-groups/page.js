@@ -33,7 +33,7 @@ const businesses = [
     { icon: Cog, title: "Generator", sub: "Generator Sales and Service", img: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=900", desc: "Heavy-duty uninterrupted power systems engineered for critical commercial operations." },
     { icon: Tent, title: "Shelter Work", sub: "Shelter Work", img: "https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?q=80&w=900", desc: "Secure, weather-resistant shelter infrastructure deployed with military precision." },
     { icon: Radio, title: "Ericsson", sub: "Ericsson Work (Only New Site)", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=900", desc: "Turnkey new-site integrations for Ericsson telecommunication cell deployments." },
-    { icon: Cable, title: "Fibre Optical", sub: "Fibre Optical", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=900", desc: "Light-speed data transmission infrastructure laid with zero-latency precision." },
+    { icon: Cable, title: "Fiberoptical", sub: "Fiberoptical", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=900", desc: "Light-speed data transmission infrastructure laid with zero-latency precision." },
     { icon: BarChart3, title: "Trading", sub: "Trading (ICT & SMC)", img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=900", desc: "Dynamic wholesale trading spanning ICT segments and critical SMC supply networks." },
 ];
 

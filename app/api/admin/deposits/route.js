@@ -38,20 +38,22 @@ export async function PUT(req) {
 
         await connectToDatabase();
 
-        const deposit = await Deposit.findById(depositId).populate('userId');
+        const updateData = { status };
+        if (adminNote) updateData.adminNote = adminNote;
+
+        const deposit = await Deposit.findOneAndUpdate(
+            { _id: depositId, status: 'pending' },
+            updateData,
+            { new: true }
+        ).populate('userId');
 
         if (!deposit) {
-            return NextResponse.json({ error: 'Deposit not found' }, { status: 404 });
+            const exists = await Deposit.findById(depositId);
+            if (!exists) {
+                return NextResponse.json({ error: 'Deposit not found' }, { status: 404 });
+            }
+            return NextResponse.json({ error: `Deposit is already ${exists.status}` }, { status: 400 });
         }
-
-        if (deposit.status !== 'pending') {
-            return NextResponse.json({ error: `Deposit is already ${deposit.status}` }, { status: 400 });
-        }
-
-        deposit.status = status;
-        if (adminNote) deposit.adminNote = adminNote;
-
-        await deposit.save();
 
         if (status === 'approved') {
             const user = deposit.userId;

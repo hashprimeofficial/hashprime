@@ -31,8 +31,9 @@ export async function GET(req) {
 
         const enrichedUsers = users.map(user => {
             const myInvs = userInvestments.filter(i => i.userId.toString() === user._id.toString());
-            const totalInvestedUSD = myInvs.filter(i => i.currency === 'USD').reduce((a, b) => a + b.amount, 0);
-            const totalInvestedINR = myInvs.filter(i => i.currency === 'INR').reduce((a, b) => a + b.amount, 0);
+            const activeInvs = myInvs.filter(i => i.status === 'active');
+            const totalInvestedUSD = activeInvs.filter(i => i.currency === 'USD').reduce((a, b) => a + b.amount, 0);
+            const totalInvestedINR = activeInvs.filter(i => i.currency === 'INR').reduce((a, b) => a + b.amount, 0);
             
             const myBank = bankAccounts.find(b => b.user.toString() === user._id.toString());
             return { 

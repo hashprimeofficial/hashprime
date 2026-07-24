@@ -103,26 +103,28 @@ export default function DashboardOverview() {
         return `₹${tx.amount.toLocaleString('en-IN')}`;
     };
 
-    const recentActivities = [
-        ...investments.map(inv => ({
-            _id: inv._id,
-            date: new Date(inv.createdAt),
-            type: 'Investment',
-            amount: inv.amount,
-            currency: inv.currency,
-            status: inv.status === 'pending' ? 'Processing' : (inv.status === 'active' ? 'Active' : 'Completed'),
-            rawType: 'investment'
-        })),
-        ...(depositsData?.deposits || []).map(dep => ({
-            _id: dep._id,
-            date: new Date(dep.createdAt),
-            type: 'Deposit',
-            amount: dep.amount,
-            currency: dep.paymentMethod === 'usdt' ? 'USDT' : 'INR',
-            status: dep.status === 'pending' ? 'Processing' : 'Completed',
-            rawType: 'deposit'
-        }))
-    ].sort((a, b) => b.date - a.date).slice(0, 5);
+    const recentActivities = (transactions || []).map(tx => {
+        let displayType = tx.type;
+        if (tx.type === 'deposit') displayType = 'Deposit';
+        else if (tx.type === 'withdrawal') displayType = 'Withdrawal';
+        else if (tx.type === 'investment') {
+            displayType = tx.amount < 0 ? 'Investment' : 'Interest Payout';
+        }
+        else if (tx.type === 'referral_bonus') displayType = 'Referral Bonus';
+        else if (tx.type === 'payout') displayType = 'Referral Payout';
+
+        return {
+            _id: tx._id,
+            date: new Date(tx.createdAt),
+            type: displayType,
+            description: tx.description,
+            amount: Math.abs(tx.amount),
+            currency: tx.currency || 'INR',
+            status: 'Completed',
+            isPositive: tx.amount > 0,
+            rawType: tx.type
+        };
+    }).slice(0, 5);
 
     return (
         <div className="space-y-8">
@@ -209,6 +211,8 @@ export default function DashboardOverview() {
                                 <tr className="bg-[#d4af35] text-[#0A0A0A] text-[10px] font-black uppercase tracking-wider">
                                     <th className="px-4 py-2.5 rounded-l-lg">Scheme</th>
                                     <th className="px-4 py-2.5">Amount</th>
+                                    <th className="px-4 py-2.5">Invested Date</th>
+                                    <th className="px-4 py-2.5">Maturity Date</th>
                                     <th className="px-4 py-2.5">Status</th>
                                     <th className="px-4 py-2.5 rounded-r-lg">Returns</th>
                                 </tr>
@@ -216,7 +220,7 @@ export default function DashboardOverview() {
                             <tbody className="divide-y divide-white/5 text-xs">
                                 {investments.filter(i => i.status === 'active').length === 0 ? (
                                     <tr>
-                                        <td colSpan={4} className="px-4 py-8 text-center text-slate-500 font-medium">No active investments yet.</td>
+                                        <td colSpan={6} className="px-4 py-8 text-center text-slate-500 font-medium">No active investments yet.</td>
                                     </tr>
                                 ) : (
                                     investments.filter(i => i.status === 'active').map((inv, idx) => {
@@ -226,6 +230,8 @@ export default function DashboardOverview() {
                                             <tr key={inv._id || idx} className="hover:bg-[#d4af35]/5 transition-colors">
                                                 <td className="px-4 py-3 font-bold text-white uppercase tracking-wider text-[10px]">{SCHEME_NAMES[inv.schemeType] || inv.schemeType}</td>
                                                 <td className="px-4 py-3 text-slate-300 font-semibold">{inv.currency === 'USD' ? '$' : '₹'}{inv.amount.toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN')}</td>
+                                                <td className="px-4 py-3 text-slate-400 font-medium text-[11px]">{new Date(inv.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
+                                                <td className="px-4 py-3 text-slate-400 font-medium text-[11px]">{new Date(inv.maturesAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
                                                 <td className="px-4 py-3"><span className="text-emerald-500 font-bold uppercase text-[9px] tracking-widest bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Active</span></td>
                                                 <td className="px-4 py-3 text-emerald-500 font-extrabold font-mono">+{displayYield} ↑</td>
                                             </tr>
@@ -268,9 +274,7 @@ export default function DashboardOverview() {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            {/* Recent Activities Section */}
+                {/* Recent Activities Section */}
             <div className="bg-[#0A0A0A] border border-[#d4af35]/30 p-5 rounded-2xl flex flex-col overflow-hidden">
                 <div className="text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-4">RECENT ACTIVITIES</div>
                 <div className="-mx-5 overflow-x-auto px-5 scrollbar-none">
@@ -278,16 +282,15 @@ export default function DashboardOverview() {
                         <thead>
                             <tr className="bg-[#d4af35] text-[#0A0A0A] text-[10px] font-black uppercase tracking-wider">
                                 <th className="px-4 py-2.5 rounded-l-lg">Date</th>
-                                <th className="px-4 py-2.5">Type</th>
+                                <th className="px-4 py-2.5">Type &amp; Description</th>
                                 <th className="px-4 py-2.5">Amount</th>
-                                <th className="px-4 py-2.5">Status</th>
-                                <th className="px-4 py-2.5 rounded-r-lg text-right">Actions</th>
+                                <th className="px-4 py-2.5 rounded-r-lg">Status</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-white/5 text-xs">
                             {recentActivities.length === 0 ? (
                                 <tr>
-                                    <td colSpan={5} className="px-4 py-8 text-center text-slate-500 font-medium">No recent activities.</td>
+                                    <td colSpan={4} className="px-4 py-8 text-center text-slate-500 font-medium">No recent activities.</td>
                                 </tr>
                             ) : (
                                 recentActivities.map((act, idx) => (
@@ -295,34 +298,17 @@ export default function DashboardOverview() {
                                         <td className="px-4 py-4 text-slate-400 font-bold whitespace-nowrap">
                                             {act.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                                         </td>
-                                        <td className="px-4 py-4 text-white font-bold whitespace-nowrap">{act.type}</td>
-                                        <td className="px-4 py-4 text-slate-200 font-black text-sm whitespace-nowrap">
-                                            {act.currency === 'USD' || act.currency === 'USDT' ? '$' : '₹'}{act.amount.toLocaleString(act.currency === 'USD' || act.currency === 'USDT' ? 'en-US' : 'en-IN')}
+                                        <td className="px-4 py-4 text-white font-bold whitespace-nowrap">
+                                            <div>{act.type}</div>
+                                            {act.description && <div className="text-[10px] text-slate-500 font-medium font-sans mt-0.5">{act.description}</div>}
+                                        </td>
+                                        <td className={`px-4 py-4 font-black text-sm whitespace-nowrap ${act.isPositive ? 'text-emerald-500' : 'text-slate-200'}`}>
+                                            {act.isPositive ? '+' : '-'} {act.currency === 'USD' || act.currency === 'USDT' ? '$' : '₹'}{act.amount.toLocaleString(act.currency === 'USD' || act.currency === 'USDT' ? 'en-US' : 'en-IN')}
                                         </td>
                                         <td className="px-4 py-4 whitespace-nowrap">
-                                            {act.status === 'Completed' && (
-                                                <span className="flex items-center gap-1.5 text-emerald-500 font-bold">
-                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Completed
-                                                </span>
-                                            )}
-                                            {act.status === 'Active' && (
-                                                <span className="flex items-center gap-1.5 text-emerald-500 font-bold">
-                                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Completed
-                                                </span>
-                                            )}
-                                            {act.status === 'Processing' && (
-                                                <span className="flex items-center gap-1.5 text-amber-500 font-bold">
-                                                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" /> Processing
-                                                </span>
-                                            )}
-                                        </td>
-                                        <td className="px-4 py-4 text-right whitespace-nowrap text-slate-500 space-x-2">
-                                            <button className="hover:text-white transition-colors" title="View details">
-                                                {act.status === 'Processing' ? <Clock className="w-4 h-4 inline" /> : <Edit2 className="w-4 h-4 inline" />}
-                                            </button>
-                                            <button className="hover:text-red-500 transition-colors" title="Cancel/Delete">
-                                                <Trash2 className="w-4 h-4 inline" />
-                                            </button>
+                                            <span className="flex items-center gap-1.5 text-emerald-500 font-bold">
+                                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" /> Completed
+                                            </span>
                                         </td>
                                     </tr>
                                 ))
@@ -330,7 +316,7 @@ export default function DashboardOverview() {
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div>            </div>
         </div>
     );
 }
