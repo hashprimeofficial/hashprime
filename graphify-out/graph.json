@@ -14,20 +14,30 @@
       "norm_label": "page.js"
     },
     {
-      "label": "neonStyle",
+      "label": "focusGold()",
       "file_type": "code",
       "source_file": "app/(auth)/forgot-password/page.js",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "forgot_password_page_neonstyle",
+      "id": "forgot_password_page_focusgold",
       "community": 48,
-      "norm_label": "neonstyle"
+      "norm_label": "focusgold()"
+    },
+    {
+      "label": "blurGold()",
+      "file_type": "code",
+      "source_file": "app/(auth)/forgot-password/page.js",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "forgot_password_page_blurgold",
+      "community": 48,
+      "norm_label": "blurgold()"
     },
     {
       "label": "ForgotPasswordPage()",
       "file_type": "code",
       "source_file": "app/(auth)/forgot-password/page.js",
-      "source_location": "L13",
+      "source_location": "L14",
       "_origin": "ast",
       "id": "forgot_password_page_forgotpasswordpage",
       "community": 48,
@@ -64,10 +74,20 @@
       "norm_label": "page.js"
     },
     {
-      "label": "LoginPage()",
+      "label": "ads",
       "file_type": "code",
       "source_file": "app/(auth)/login/page.js",
       "source_location": "L9",
+      "_origin": "ast",
+      "id": "login_page_ads",
+      "community": 71,
+      "norm_label": "ads"
+    },
+    {
+      "label": "LoginPage()",
+      "file_type": "code",
+      "source_file": "app/(auth)/login/page.js",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "login_page_loginpage",
       "community": 71,
@@ -127,7 +147,7 @@
       "label": "RegisterPage()",
       "file_type": "code",
       "source_file": "app/(auth)/register/page.js",
-      "source_location": "L251",
+      "source_location": "L235",
       "_origin": "ast",
       "id": "register_page_registerpage",
       "community": 10,
@@ -700,7 +720,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_enquiries_id_route_js_id_route",
-      "community": 67,
+      "community": 0,
       "norm_label": "route.js"
     },
     {
@@ -710,7 +730,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "app_api_admin_enquiries_id_route_js_id_route_patch",
-      "community": 67,
+      "community": 0,
       "norm_label": "patch()"
     },
     {
@@ -757,7 +777,7 @@
       "label": "DELETE()",
       "file_type": "code",
       "source_file": "app/api/admin/investments/[id]/route.js",
-      "source_location": "L142",
+      "source_location": "L156",
       "_origin": "ast",
       "id": "app_api_admin_investments_id_route_js_id_route_delete",
       "community": 23,
@@ -860,7 +880,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "approve_route",
-      "community": 2,
+      "community": 88,
       "norm_label": "route.js"
     },
     {
@@ -870,7 +890,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "approve_route_post",
-      "community": 2,
+      "community": 88,
       "norm_label": "post()"
     },
     {
@@ -900,7 +920,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_statements_id_route_js_id_route",
-      "community": 2,
+      "community": 67,
       "norm_label": "route.js"
     },
     {
@@ -910,7 +930,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "app_api_admin_statements_id_route_js_id_route_delete",
-      "community": 2,
+      "community": 67,
       "norm_label": "delete()"
     },
     {
@@ -920,7 +940,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_statements_route_js_statements_route",
-      "community": 4,
+      "community": 49,
       "norm_label": "route.js"
     },
     {
@@ -930,7 +950,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "statements_route_post",
-      "community": 4,
+      "community": 49,
       "norm_label": "post()"
     },
     {
@@ -940,7 +960,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "app_api_admin_statements_route_js_statements_route_get",
-      "community": 4,
+      "community": 49,
       "norm_label": "get()"
     },
     {
@@ -990,7 +1010,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route",
-      "community": 77,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1000,7 +1020,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route_patch",
-      "community": 77,
+      "community": 2,
       "norm_label": "patch()"
     },
     {
@@ -1010,7 +1030,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route_delete",
-      "community": 77,
+      "community": 2,
       "norm_label": "delete()"
     },
     {
@@ -1060,7 +1080,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_withdrawals_id_route_js_id_route",
-      "community": 88,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1070,7 +1090,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_api_admin_withdrawals_id_route_js_id_route_patch",
-      "community": 88,
+      "community": 2,
       "norm_label": "patch()"
     },
     {
@@ -1490,7 +1510,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "careers_route",
-      "community": 0,
+      "community": 4,
       "norm_label": "route.js"
     },
     {
@@ -1500,7 +1520,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "careers_route_post",
-      "community": 0,
+      "community": 4,
       "norm_label": "post()"
     },
     {
@@ -1510,7 +1530,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "careers_route_get",
-      "community": 0,
+      "community": 4,
       "norm_label": "get()"
     },
     {
@@ -1520,7 +1540,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_dashboard_stats_route_js_stats_route",
-      "community": 0,
+      "community": 77,
       "norm_label": "route.js"
     },
     {
@@ -1530,7 +1550,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "app_api_dashboard_stats_route_js_stats_route_get",
-      "community": 0,
+      "community": 77,
       "norm_label": "get()"
     },
     {
@@ -1650,7 +1670,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "kyc_route",
-      "community": 49,
+      "community": 3,
       "norm_label": "route.js"
     },
     {
@@ -1660,7 +1680,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "kyc_route_get",
-      "community": 49,
+      "community": 3,
       "norm_label": "get()"
     },
     {
@@ -1670,7 +1690,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "kyc_route_put",
-      "community": 49,
+      "community": 3,
       "norm_label": "put()"
     },
     {
@@ -1700,7 +1720,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "nominee_route",
-      "community": 2,
+      "community": 0,
       "norm_label": "route.js"
     },
     {
@@ -1710,7 +1730,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "nominee_route_get",
-      "community": 2,
+      "community": 0,
       "norm_label": "get()"
     },
     {
@@ -1720,7 +1740,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "nominee_route_post",
-      "community": 2,
+      "community": 0,
       "norm_label": "post()"
     },
     {
@@ -1730,7 +1750,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "nominee_route_put",
-      "community": 2,
+      "community": 0,
       "norm_label": "put()"
     },
     {
@@ -1740,7 +1760,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "profile_route",
-      "community": 31,
+      "community": 4,
       "norm_label": "route.js"
     },
     {
@@ -1750,7 +1770,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "profile_route_get",
-      "community": 31,
+      "community": 4,
       "norm_label": "get()"
     },
     {
@@ -1760,7 +1780,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "profile_route_put",
-      "community": 31,
+      "community": 4,
       "norm_label": "put()"
     },
     {
@@ -1820,7 +1840,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_statements_route_js_statements_route",
-      "community": 2,
+      "community": 84,
       "norm_label": "route.js"
     },
     {
@@ -1830,7 +1850,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "app_api_statements_route_js_statements_route_get",
-      "community": 2,
+      "community": 84,
       "norm_label": "get()"
     },
     {
@@ -1910,7 +1930,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "withdraw_route",
-      "community": 84,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1920,7 +1940,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "withdraw_route_post",
-      "community": 84,
+      "community": 2,
       "norm_label": "post()"
     },
     {
@@ -1930,7 +1950,7 @@
       "source_location": "L96",
       "_origin": "ast",
       "id": "withdraw_route_get",
-      "community": 84,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -2127,7 +2147,7 @@
       "label": "SettingsSubmenu()",
       "file_type": "code",
       "source_file": "app/dashboard/layout.js",
-      "source_location": "L53",
+      "source_location": "L51",
       "_origin": "ast",
       "id": "dashboard_layout_settingssubmenu",
       "community": 8,
@@ -2137,7 +2157,7 @@
       "label": "DashboardLayout()",
       "file_type": "code",
       "source_file": "app/dashboard/layout.js",
-      "source_location": "L80",
+      "source_location": "L78",
       "_origin": "ast",
       "id": "dashboard_layout_dashboardlayout",
       "community": 8,
@@ -3657,7 +3677,7 @@
       "label": "processMaturedInvestments()",
       "file_type": "code",
       "source_file": "lib/cron.js",
-      "source_location": "L85",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "lib_cron_processmaturedinvestments",
       "community": 5,
@@ -3667,7 +3687,7 @@
       "label": "initCron()",
       "file_type": "code",
       "source_file": "lib/cron.js",
-      "source_location": "L183",
+      "source_location": "L206",
       "_origin": "ast",
       "id": "lib_cron_initcron",
       "community": 5,
@@ -4102,9 +4122,99 @@
       "id": "postcss_config_config",
       "community": 83,
       "norm_label": "config"
+    },
+    {
+      "label": "fix_wallet_mismatch.js",
+      "file_type": "code",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "scripts_fix_wallet_mismatch",
+      "community": 31,
+      "norm_label": "fix_wallet_mismatch.js"
+    },
+    {
+      "label": "mongoose",
+      "file_type": "code",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "scripts_fix_wallet_mismatch_mongoose",
+      "community": 31,
+      "norm_label": "mongoose"
+    },
+    {
+      "label": "fs",
+      "file_type": "code",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "scripts_fix_wallet_mismatch_fs",
+      "community": 31,
+      "norm_label": "fs"
+    },
+    {
+      "label": "path",
+      "file_type": "code",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "scripts_fix_wallet_mismatch_path",
+      "community": 31,
+      "norm_label": "path"
+    },
+    {
+      "label": "UserSchema",
+      "file_type": "code",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "scripts_fix_wallet_mismatch_userschema",
+      "community": 31,
+      "norm_label": "userschema"
+    },
+    {
+      "label": "TransactionSchema",
+      "file_type": "code",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "scripts_fix_wallet_mismatch_transactionschema",
+      "community": 31,
+      "norm_label": "transactionschema"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "scripts_fix_wallet_mismatch_main",
+      "community": 31,
+      "norm_label": "main()"
     }
   ],
   "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(auth)/forgot-password/page.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "forgot_password_page",
+      "target": "forgot_password_page_blurgold",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(auth)/forgot-password/page.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "forgot_password_page",
+      "target": "forgot_password_page_focusgold",
+      "confidence_score": 1.0
+    },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -4118,22 +4228,22 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "app/(auth)/forgot-password/page.js",
-      "source_location": "L9",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "forgot_password_page",
-      "target": "forgot_password_page_neonstyle"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "app/(auth)/layout.js",
       "source_location": "L4",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "auth_layout",
       "target": "auth_layout_authlayout"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/(auth)/login/page.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "login_page",
+      "target": "login_page_ads",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8615,8 +8725,68 @@
       "confidence_score": 1.0,
       "source": "postcss_config",
       "target": "postcss_config_config"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "scripts_fix_wallet_mismatch",
+      "target": "scripts_fix_wallet_mismatch_fs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "scripts_fix_wallet_mismatch",
+      "target": "scripts_fix_wallet_mismatch_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "scripts_fix_wallet_mismatch",
+      "target": "scripts_fix_wallet_mismatch_mongoose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "scripts_fix_wallet_mismatch",
+      "target": "scripts_fix_wallet_mismatch_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "scripts_fix_wallet_mismatch",
+      "target": "scripts_fix_wallet_mismatch_transactionschema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/fix_wallet_mismatch.js",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "scripts_fix_wallet_mismatch",
+      "target": "scripts_fix_wallet_mismatch_userschema",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c2c352a44ff47f7b0678013e295dcca02a67fd9c"
+  "built_at_commit": "72ebd8159b8c18cd7e057390e1d36caa3b363f32"
 }

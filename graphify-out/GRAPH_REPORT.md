@@ -1,16 +1,16 @@
-# Graph Report - hashprime-main  (2026-07-05)
+# Graph Report - hashprime-main  (2026-07-24)
 
 ## Corpus Check
-- 136 files · ~74,462 words
+- 137 files · ~74,672 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 410 nodes · 435 edges · 96 communities (45 shown, 51 thin omitted)
-- Extraction: 68% EXTRACTED · 32% INFERRED · 0% AMBIGUOUS · INFERRED: 138 edges (avg confidence: 0.8)
+- 419 nodes · 443 edges · 96 communities (46 shown, 50 thin omitted)
+- Extraction: 69% EXTRACTED · 31% INFERRED · 0% AMBIGUOUS · INFERRED: 138 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c2c352a4`
+- Built from commit: `72ebd815`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -50,13 +50,13 @@
 - [[_COMMUNITY_Community 39|Community 39]]
 - [[_COMMUNITY_Community 41|Community 41]]
 - [[_COMMUNITY_Community 43|Community 43]]
-- [[_COMMUNITY_Community 48|Community 48]]
 - [[_COMMUNITY_Community 49|Community 49]]
 - [[_COMMUNITY_Community 51|Community 51]]
 - [[_COMMUNITY_Community 52|Community 52]]
 - [[_COMMUNITY_Community 54|Community 54]]
 - [[_COMMUNITY_Community 67|Community 67]]
 - [[_COMMUNITY_Community 68|Community 68]]
+- [[_COMMUNITY_Community 71|Community 71]]
 - [[_COMMUNITY_Community 74|Community 74]]
 - [[_COMMUNITY_Community 75|Community 75]]
 - [[_COMMUNITY_Community 76|Community 76]]
@@ -91,37 +91,37 @@
 10. `POST()` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `PATCH()` --calls--> `connectToDatabase()`  [INFERRED]
-  app/api/admin/enquiries/[id]/route.js → lib/db.js
+- `GET()` --calls--> `connectToDatabase()`  [INFERRED]
+  app/api/careers/route.js → lib/db.js
 - `GET()` --calls--> `connectToDatabase()`  [INFERRED]
   app/api/admin/deposits/route.js → lib/db.js
 - `PUT()` --calls--> `connectToDatabase()`  [INFERRED]
   app/api/admin/deposits/route.js → lib/db.js
 - `GET()` --calls--> `connectToDatabase()`  [INFERRED]
   app/api/admin/dumpusers/route.js → lib/db.js
-- `GET()` --calls--> `connectToDatabase()`  [INFERRED]
-  app/api/admin/enquiries/route.js → lib/db.js
+- `PATCH()` --calls--> `connectToDatabase()`  [INFERRED]
+  app/api/admin/enquiries/[id]/route.js → lib/db.js
 
 ## Import Cycles
 - 2-file cycle: `lib/cron.js -> lib/db.js -> lib/cron.js`
 
-## Communities (96 total, 51 thin omitted)
+## Communities (96 total, 50 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.10
-Nodes (12): GET(), POST(), GET(), POST(), GET(), GET(), GET(), connectToDatabase() (+4 more)
+Cohesion: 0.09
+Nodes (13): PATCH(), POST(), GET(), GET(), GET(), connectToDatabase(), POST(), GET() (+5 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.13
-Nodes (13): GET(), DELETE(), GET(), POST(), GET(), POST(), PUT(), verifyToken() (+5 more)
+Cohesion: 0.14
+Nodes (12): GET(), DELETE(), PATCH(), PATCH(), GET(), POST(), PUT(), verifyToken() (+4 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.16
-Nodes (10): POST(), secretKey, generateOTP(), POST(), sendEmail(), transporter, generateOTP(), POST() (+2 more)
+Cohesion: 0.13
+Nodes (12): POST(), secretKey, generateOTP(), POST(), GET(), PUT(), sendEmail(), transporter (+4 more)
 
 ### Community 4 - "Community 4"
-Cohesion: 0.18
-Nodes (7): GET(), GET(), POST(), uploadToCloudinary(), POST(), GET(), POST()
+Cohesion: 0.14
+Nodes (9): GET(), GET(), POST(), POST(), uploadToCloudinary(), GET(), PUT(), GET() (+1 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.09
@@ -151,18 +151,22 @@ Nodes (3): CoinTile(), FALLBACK_COINS, formatPrice()
 Cohesion: 0.17
 Nodes (8): DELETE(), PATCH(), GET(), INR_SCHEMES, POST(), USD_SCHEMES, calculateReferralCommission(), GET()
 
+### Community 31 - "Community 31"
+Cohesion: 0.29
+Nodes (5): fs, mongoose, path, TransactionSchema, UserSchema
+
 ## Knowledge Gaps
-- **61 isolated node(s):** `neonStyle`, `SCHEME_OPTIONS`, `NAV_ITEMS`, `PRIORITY_COLORS`, `STATUS_PILL` (+56 more)
+- **66 isolated node(s):** `ads`, `SCHEME_OPTIONS`, `NAV_ITEMS`, `PRIORITY_COLORS`, `STATUS_PILL` (+61 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **51 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **50 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `connectToDatabase()` connect `Community 0` to `Community 2`, `Community 3`, `Community 4`, `Community 5`, `Community 7`, `Community 23`, `Community 31`, `Community 43`, `Community 49`, `Community 51`, `Community 67`, `Community 77`, `Community 84`, `Community 86`, `Community 87`, `Community 88`, `Community 89`, `Community 90`, `Community 93`, `Community 94`, `Community 95`?**
-  _High betweenness centrality (0.094) - this node is a cross-community bridge._
-- **Why does `verifyToken()` connect `Community 2` to `Community 0`, `Community 3`, `Community 4`, `Community 5`, `Community 7`, `Community 23`, `Community 31`, `Community 43`, `Community 49`, `Community 51`, `Community 77`, `Community 84`, `Community 86`, `Community 87`, `Community 88`, `Community 89`, `Community 90`, `Community 93`, `Community 94`, `Community 95`?**
-  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Why does `connectToDatabase()` connect `Community 0` to `Community 2`, `Community 3`, `Community 4`, `Community 5`, `Community 7`, `Community 23`, `Community 43`, `Community 49`, `Community 51`, `Community 67`, `Community 77`, `Community 84`, `Community 86`, `Community 87`, `Community 88`, `Community 89`, `Community 90`, `Community 93`, `Community 94`, `Community 95`?**
+  _High betweenness centrality (0.090) - this node is a cross-community bridge._
+- **Why does `verifyToken()` connect `Community 2` to `Community 0`, `Community 3`, `Community 4`, `Community 5`, `Community 7`, `Community 23`, `Community 43`, `Community 49`, `Community 51`, `Community 67`, `Community 77`, `Community 84`, `Community 86`, `Community 87`, `Community 88`, `Community 89`, `Community 90`, `Community 93`, `Community 94`, `Community 95`?**
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
 - **Why does `POST()` connect `Community 5` to `Community 0`, `Community 2`?**
   _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **Are the 65 inferred relationships involving `connectToDatabase()` (e.g. with `GET()` and `PATCH()`) actually correct?**
