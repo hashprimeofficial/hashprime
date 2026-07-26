@@ -84,10 +84,9 @@ function RegisterForm() {
             });
             const result = await res.json();
             if (!res.ok) throw new Error(result.error || 'Verification failed');
-            router.push('/dashboard');
+            window.location.href = '/dashboard';
         } catch (err) {
             setError(err.message);
-        } finally {
             setLoading(false);
         }
     };

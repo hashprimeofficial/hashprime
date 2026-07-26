@@ -77,10 +77,10 @@ export default function LoginPage() {
             }
 
             const role = data.user.role;
-            router.push(role === 'admin' ? '/admin' : '/dashboard');
+            const targetUrl = role === 'admin' ? '/admin' : '/dashboard';
+            window.location.href = targetUrl;
         } catch (err) {
             setError(err?.message || 'An unexpected error occurred during login.');
-        } finally {
             setLoading(false);
         }
     };
