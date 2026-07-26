@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     Users as UsersIcon, ShieldAlert, Trash2, Edit2, Loader2, X,
-    Search, DollarSign, IndianRupee, Gift, ShieldCheck, RefreshCw, Download
+    Search, DollarSign, IndianRupee, Gift, ShieldCheck, RefreshCw, Download, FileText, Upload, ExternalLink
 } from 'lucide-react';
 import * as XLSX from 'xlsx';
 
@@ -39,6 +39,10 @@ export default function AdminUsersPage() {
     const [isTransacting, setIsTransacting] = useState(false);
     const [txMessage, setTxMessage] = useState({ type: '', text: '' });
     const [saveMsg, setSaveMsg] = useState('');
+
+    const [bondUser, setBondUser] = useState(null);
+    const [isUploadingBond, setIsUploadingBond] = useState(false);
+    const [bondMsg, setBondMsg] = useState({ type: '', text: '' });
 
     if (isLoading) return (
         <div className="flex flex-col items-center justify-center py-20 gap-4">
@@ -164,6 +168,65 @@ export default function AdminUsersPage() {
         }
     };
 
+    const handleBondUpload = async (e) => {
+        e.preventDefault();
+        const fileInput = e.target.elements.bondFile;
+        if (!fileInput || !fileInput.files || !fileInput.files[0]) {
+            setBondMsg({ type: 'error', text: 'Please select a PDF or image file.' });
+            return;
+        }
+
+        const file = fileInput.files[0];
+        setIsUploadingBond(true);
+        setBondMsg({ type: '', text: '' });
+
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+            try {
+                const base64 = reader.result;
+                const res = await fetch(`/api/admin/users/${bondUser._id}/bond`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ bondDocumentBase64: base64 })
+                });
+
+                const result = await res.json();
+                if (res.ok) {
+                    setBondMsg({ type: 'success', text: 'Bond document uploaded successfully!' });
+                    mutate();
+                    setBondUser(prev => prev ? { ...prev, bondDocumentUrl: result.bondDocumentUrl, bondDocumentUploadedAt: result.bondDocumentUploadedAt } : null);
+                } else {
+                    setBondMsg({ type: 'error', text: result.error || 'Failed to upload bond document.' });
+                }
+            } catch {
+                setBondMsg({ type: 'error', text: 'An error occurred while uploading.' });
+            } finally {
+                setIsUploadingBond(false);
+            }
+        };
+        reader.readAsDataURL(file);
+    };
+
+    const handleBondDelete = async () => {
+        if (!confirm("Are you sure you want to remove this user's bond document?")) return;
+        setIsUploadingBond(true);
+        setBondMsg({ type: '', text: '' });
+        try {
+            const res = await fetch(`/api/admin/users/${bondUser._id}/bond`, { method: 'DELETE' });
+            if (res.ok) {
+                setBondMsg({ type: 'success', text: 'Bond document removed.' });
+                mutate();
+                setBondUser(prev => prev ? { ...prev, bondDocumentUrl: '', bondDocumentUploadedAt: null } : null);
+            } else {
+                setBondMsg({ type: 'error', text: 'Failed to remove bond document.' });
+            }
+        } catch {
+            setBondMsg({ type: 'error', text: 'Error removing bond document.' });
+        } finally {
+            setIsUploadingBond(false);
+        }
+    };
+
     return (
         <div className="space-y-6">
             {/* Header */}
@@ -258,6 +321,10 @@ export default function AdminUsersPage() {
                                             <button onClick={() => setTransactionUser(user)} title="Manage Wallets"
                                                 className="px-2.5 py-1.5 bg-[#d4af35]/10 border border-[#d4af35]/20 text-[#d4af35] hover:bg-[#d4af35]/20 rounded-lg text-xs font-black transition-all">
                                                 Wallets
+                                            </button>
+                                            <button onClick={() => { setBondUser(user); setBondMsg({ type: '', text: '' }); }} title="Bond Document"
+                                                className={`px-2.5 py-1.5 rounded-lg text-xs font-black border transition-all flex items-center gap-1 ${user.bondDocumentUrl ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20' : 'bg-amber-500/10 border-amber-500/20 text-amber-400 hover:bg-amber-500/20'}`}>
+                                                <FileText className="w-3.5 h-3.5" /> Bond
                                             </button>
                                             <button onClick={() => setEditingUser(user)} title="Edit User"
                                                 className="p-1.5 bg-blue-500/10 border border-blue-500/20 text-blue-400 hover:bg-blue-500/20 rounded-lg transition-all">
@@ -433,6 +500,101 @@ export default function AdminUsersPage() {
                         </motion.div>
                     </motion.div>
                 )}
+            {/* Bond Document Modal */}
+            <AnimatePresence>
+                {bondUser && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                        className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                        <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }}
+                            className="bg-[#080808] rounded-3xl shadow-2xl w-full max-w-md overflow-hidden border border-[#d4af35]/20">
+                            <div className="flex justify-between items-center p-6 border-b border-[#d4af35]/10 bg-[#d4af35]/5">
+                                <div>
+                                    <h3 className="text-lg font-black text-white flex items-center gap-2">
+                                        <FileText className="w-5 h-5 text-[#d4af35]" /> Bond Document Management
+                                    </h3>
+                                    <p className="text-xs text-[#d4af35]/50 font-bold mt-0.5">User: <strong className="text-[#d4af35]">{bondUser.name}</strong></p>
+                                </div>
+                                <button onClick={() => setBondUser(null)} className="p-1.5 text-[#d4af35]/40 hover:text-[#d4af35] hover:bg-[#d4af35]/10 rounded-xl transition-colors">
+                                    <X className="w-5 h-5" />
+                                </button>
+                            </div>
+
+                            <div className="p-6 space-y-5">
+                                {bondMsg.text && (
+                                    <div className={`p-3.5 rounded-xl text-xs font-bold text-center ${bondMsg.type === 'success' ? 'bg-[#32e512]/10 text-[#32e512] border border-[#32e512]/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
+                                        {bondMsg.text}
+                                    </div>
+                                )}
+
+                                {/* Existing document status */}
+                                <div className="bg-[#0A0A0A] border border-[#d4af35]/15 rounded-2xl p-4 space-y-3">
+                                    <div className="text-[10px] font-black uppercase tracking-widest text-[#d4af35]/50">Current Status</div>
+                                    {bondUser.bondDocumentUrl ? (
+                                        <div className="space-y-3">
+                                            <div className="flex items-center gap-2 text-emerald-400 text-xs font-bold bg-emerald-500/10 border border-emerald-500/20 p-3 rounded-xl">
+                                                <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-400" />
+                                                <span>Official Bond Document Uploaded</span>
+                                            </div>
+                                            {bondUser.bondDocumentUploadedAt && (
+                                                <p className="text-[11px] text-white/40 font-medium">Uploaded: {new Date(bondUser.bondDocumentUploadedAt).toLocaleString()}</p>
+                                            )}
+                                            <div className="flex gap-2">
+                                                <a
+                                                    href={bondUser.bondDocumentUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex-1 py-2.5 bg-[#d4af35]/10 border border-[#d4af35]/30 text-[#d4af35] hover:bg-[#d4af35]/20 rounded-xl text-xs font-black transition-all flex items-center justify-center gap-1.5"
+                                                >
+                                                    <ExternalLink className="w-3.5 h-3.5" /> View Bond Document
+                                                </a>
+                                                <button
+                                                    type="button"
+                                                    onClick={handleBondDelete}
+                                                    disabled={isUploadingBond}
+                                                    className="px-3 py-2.5 bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 rounded-xl text-xs font-bold transition-all disabled:opacity-50"
+                                                    title="Remove document"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <div className="text-white/40 text-xs font-medium py-2">
+                                            No bond document has been uploaded for this user yet.
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Upload Form */}
+                                <form onSubmit={handleBondUpload} className="space-y-4">
+                                    <div>
+                                        <label className={labelCls}>Upload New Bond Document (PDF or Image)</label>
+                                        <input
+                                            type="file"
+                                            name="bondFile"
+                                            accept="application/pdf,image/*"
+                                            required
+                                            className="w-full text-xs text-white/50 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-black file:uppercase file:tracking-widest file:bg-[#d4af35]/10 file:text-[#d4af35] hover:file:bg-[#d4af35]/20 cursor-pointer transition-colors bg-[#0A0A0A] border border-[#d4af35]/20 rounded-xl p-2"
+                                        />
+                                    </div>
+                                    <div className="flex gap-3 pt-2">
+                                        <button type="button" onClick={() => setBondUser(null)} className="flex-1 py-3 text-white/30 font-bold hover:bg-white/5 rounded-xl transition-colors text-xs">
+                                            Close
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            disabled={isUploadingBond}
+                                            className="flex-[2] py-3 bg-[#d4af35] text-black font-black rounded-xl shadow-[0_0_15px_rgba(212,175,53,0.2)] hover:opacity-90 transition-all flex justify-center items-center gap-2 disabled:opacity-50 text-xs"
+                                        >
+                                            {isUploadingBond ? <Loader2 className="w-4 h-4 animate-spin" /> : <><Upload className="w-4 h-4" /> Upload Bond Document</>}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
             </AnimatePresence>
         </div>
     );

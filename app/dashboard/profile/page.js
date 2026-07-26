@@ -7,7 +7,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import {
     User, ShieldCheck, Landmark, Lock, CheckCircle2, AlertCircle, Clock,
     Loader2, Building2, Plus, KeyRound, Unlock, Smartphone, Copy,
-    ChevronRight, ArrowLeft, X
+    ChevronRight, ArrowLeft, X, FileText
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -16,6 +16,7 @@ const fetcher = (url) => fetch(url).then((r) => r.json());
 const SETTINGS_ITEMS = [
     { id: 'profile', label: 'Personal Information', sub: 'Name, address & location', icon: User, accent: 'bg-[#d4af35]/10 text-[#d4af35]' },
     { id: 'kyc', label: 'KYC Verification', sub: 'PAN, Aadhaar & documents', icon: ShieldCheck, accent: 'bg-[#d4af35]/10 text-[#d4af35]' },
+    { id: 'bond', label: 'Bond Document', sub: 'Official agreement bond', icon: FileText, accent: 'bg-[#d4af35]/10 text-[#d4af35]' },
     { id: 'bank', label: 'Bank Accounts', sub: 'Add & manage accounts', icon: Landmark, accent: 'bg-[#d4af35]/10 text-[#d4af35]' },
     { id: 'security', label: 'Security', sub: 'Two-factor authentication', icon: Lock, accent: 'bg-[#d4af35]/10 text-[#d4af35]' },
 ];
@@ -444,7 +445,64 @@ function MobileList({ authUser, user, onSelect }) {
     );
 }
 
-function MobileDetail({ sectionId, onBack, tabProps }) {
+function BondTab({ user }) {
+    const hasDoc = !!user?.bondDocumentUrl;
+    return (
+        <div className="space-y-5">
+            <Card>
+                <CardHeader icon={FileText} title="Official Investment Bond Document" accent="bg-[#d4af35]/10 text-[#d4af35]" />
+                <div className="p-6 md:p-8 space-y-6">
+                    {hasDoc ? (
+                        <div className="bg-[#0A0A0A] border border-[#d4af35]/30 rounded-3xl p-6 md:p-8 shadow-[0_4px_25px_rgba(212,175,53,0.1)] relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-[#d4af35]/10 to-transparent rounded-full pointer-events-none -mt-16 -mr-16" />
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative z-10">
+                                <div className="space-y-2">
+                                    <div className="inline-flex items-center gap-1.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest">
+                                        <ShieldCheck className="w-3.5 h-3.5" /> Verified & Active
+                                    </div>
+                                    <h3 className="text-xl font-black text-white tracking-tight">Investment Agreement Bond</h3>
+                                    <p className="text-xs text-white/50 font-medium">
+                                        Issued by HashPrime Administration
+                                        {user?.bondDocumentUploadedAt && (
+                                            <span className="block text-[#d4af35]/70 font-bold mt-1">
+                                                Issued on: {new Date(user.bondDocumentUploadedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
+                                            </span>
+                                        )}
+                                    </p>
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto shrink-0">
+                                    <a
+                                        href={user.bondDocumentUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center justify-center gap-2 bg-[#d4af35] hover:bg-[#f8d76d] text-[#0A0A0A] font-black uppercase tracking-widest text-xs px-6 py-3.5 rounded-xl shadow-[0_4px_15px_rgba(212,175,53,0.3)] transition-all"
+                                    >
+                                        <ChevronRight className="w-4 h-4" /> View Bond Document
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="bg-[#0A0A0A] border border-[#d4af35]/15 rounded-3xl p-8 text-center space-y-4">
+                            <div className="w-14 h-14 rounded-2xl bg-[#d4af35]/10 border border-[#d4af35]/20 flex items-center justify-center text-[#d4af35] mx-auto shadow-inner">
+                                <FileText className="w-7 h-7" />
+                            </div>
+                            <div className="max-w-md mx-auto space-y-1">
+                                <h3 className="text-lg font-black text-white">No Bond Document Issued Yet</h3>
+                                <p className="text-xs text-white/50 leading-relaxed font-medium">
+                                    Your official bond document will be uploaded by the administration team after your investment scheme is verified and approved. Once uploaded, you can view and download it anytime.
+                                </p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </Card>
+        </div>
+    );
+}
+
+function MobileDetail({ sectionId, onBack, tabProps, user }) {
     const item = SETTINGS_ITEMS.find(i => i.id === sectionId);
     return (
         <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'tween', duration: 0.22 }}
@@ -459,6 +517,7 @@ function MobileDetail({ sectionId, onBack, tabProps }) {
             <div className="p-4 pb-12">
                 {sectionId === 'profile' && <ProfileTab  {...tabProps} />}
                 {sectionId === 'kyc' && <KycTab      {...tabProps} />}
+                {sectionId === 'bond' && <BondTab user={user} />}
                 {sectionId === 'bank' && <BankTab />}
                 {sectionId === 'security' && <SecurityTab />}
             </div>
@@ -498,6 +557,7 @@ function DesktopHub({ authUser, user, tabProps }) {
                 <motion.div key={active} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}>
                     {active === 'profile' && <ProfileTab  {...tabProps} />}
                     {active === 'kyc' && <KycTab      {...tabProps} />}
+                    {active === 'bond' && <BondTab user={user} />}
                     {active === 'bank' && <BankTab />}
                     {active === 'security' && <SecurityTab />}
                 </motion.div>
@@ -580,7 +640,7 @@ export default function ProfilePage() {
                     {mobileSection && (
                         <MobileDetail key={mobileSection} sectionId={mobileSection}
                             onBack={() => { setMobileSection(null); setMessage({ type: '', text: '' }); }}
-                            tabProps={tabProps} />
+                            tabProps={tabProps} user={user} />
                     )}
                 </AnimatePresence>
             </div>

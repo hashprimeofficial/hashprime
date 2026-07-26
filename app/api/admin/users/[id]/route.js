@@ -18,7 +18,7 @@ export async function PATCH(req, { params }) {
         // ── Whitelist of fields that admin can update ─────────────────────────
         // Explicitly excluding: role, _id, createdAt, totp*, referralCode, etc.
         const ALLOWED_FIELDS = ['name', 'email', 'phone', 'password', 'kycStatus',
-            'usdWallet', 'inrWallet', 'referralWallet'];
+            'usdWallet', 'inrWallet', 'referralWallet', 'bondDocumentUrl', 'bondDocumentUploadedAt'];
         const updates = {};
         for (const key of ALLOWED_FIELDS) {
             if (body[key] !== undefined) updates[key] = body[key];

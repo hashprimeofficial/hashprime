@@ -29,11 +29,12 @@ export default function LoginPage() {
     const emailRef = useRef(null);
 
     useEffect(() => {
+        if (!ads || ads.length === 0) return;
         const timer = setInterval(() => {
             setActiveAd((prev) => (prev + 1) % ads.length);
         }, 4000);
         return () => clearInterval(timer);
-    }, [ads.length]);
+    }, []);
 
     const handleBannerClick = () => {
         if (emailRef.current) {
@@ -41,24 +42,44 @@ export default function LoginPage() {
         }
     };
 
-
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
-        const formData = new FormData(e.target);
         try {
+            const formData = new FormData(e.currentTarget || e.target);
+            const email = formData.get('email');
+            const password = formData.get('password');
+
+            if (!email || !password) {
+                throw new Error('Please fill in both email and password.');
+            }
+
             const res = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: formData.get('email'), password: formData.get('password') }),
+                body: JSON.stringify({ email, password }),
             });
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.error || 'Login failed');
-            router.push(data.user.role === 'admin' ? '/admin' : '/dashboard');
+
+            let data = {};
+            try {
+                data = await res.json();
+            } catch {
+                throw new Error('Received an invalid response from server. Please try again.');
+            }
+
+            if (!res.ok) {
+                throw new Error(data?.error || 'Login failed. Please check your credentials.');
+            }
+
+            if (!data?.user) {
+                throw new Error('Invalid authentication response from server.');
+            }
+
+            const role = data.user.role;
+            router.push(role === 'admin' ? '/admin' : '/dashboard');
         } catch (err) {
-            setError(err.message);
+            setError(err?.message || 'An unexpected error occurred during login.');
         } finally {
             setLoading(false);
         }

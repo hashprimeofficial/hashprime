@@ -179,6 +179,31 @@ export default function DashboardOverview() {
                 </div>
             )}
 
+            {/* Bond Document Banner */}
+            {user.bondDocumentUrl && (
+                <div className="bg-[#0A0A0A] border border-[#d4af35]/40 rounded-2xl p-5 shadow-lg relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-[#d4af35]/10 border border-[#d4af35]/30 flex items-center justify-center text-[#d4af35] shrink-0">
+                            <ShieldCheck className="w-5 h-5" />
+                        </div>
+                        <div>
+                            <h3 className="text-base font-black text-white">Official Bond Document Available</h3>
+                            <p className="text-xs text-slate-400 font-medium mt-0.5">Your official investment agreement bond document has been issued by administration.</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-3 w-full sm:w-auto shrink-0">
+                        <a
+                            href={user.bondDocumentUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full sm:w-auto px-5 py-2.5 bg-[#d4af35] hover:bg-[#f8d76d] text-[#0A0A0A] text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-[0_0_15px_rgba(212,175,53,0.3)] text-center"
+                        >
+                            View Bond Document →
+                        </a>
+                    </div>
+                </div>
+            )}
+
             {/* main overview grid */}
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
                 {/* Column 1: Wallets */}
@@ -226,12 +251,14 @@ export default function DashboardOverview() {
                                     investments.filter(i => i.status === 'active').map((inv, idx) => {
                                         const yieldVal = inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv);
                                         const displayYield = inv.currency === 'USD' ? `$${yieldVal.toLocaleString('en-US')}` : `₹${yieldVal.toLocaleString('en-IN')}`;
+                                        const investedDate = inv.createdAt ? new Date(inv.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+                                        const maturityDate = inv.maturesAt ? new Date(inv.maturesAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
                                         return (
                                             <tr key={inv._id || idx} className="hover:bg-[#d4af35]/5 transition-colors">
                                                 <td className="px-4 py-3 font-bold text-white uppercase tracking-wider text-[10px]">{SCHEME_NAMES[inv.schemeType] || inv.schemeType}</td>
                                                 <td className="px-4 py-3 text-slate-300 font-semibold">{inv.currency === 'USD' ? '$' : '₹'}{inv.amount.toLocaleString(inv.currency === 'USD' ? 'en-US' : 'en-IN')}</td>
-                                                <td className="px-4 py-3 text-slate-400 font-medium text-[11px]">{new Date(inv.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
-                                                <td className="px-4 py-3 text-slate-400 font-medium text-[11px]">{new Date(inv.maturesAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
+                                                <td className="px-4 py-3 text-slate-300 font-semibold text-[11px] whitespace-nowrap">{investedDate}</td>
+                                                <td className="px-4 py-3 text-slate-300 font-semibold text-[11px] whitespace-nowrap">{maturityDate}</td>
                                                 <td className="px-4 py-3"><span className="text-emerald-500 font-bold uppercase text-[9px] tracking-widest bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">Active</span></td>
                                                 <td className="px-4 py-3 text-emerald-500 font-extrabold font-mono">+{displayYield} ↑</td>
                                             </tr>

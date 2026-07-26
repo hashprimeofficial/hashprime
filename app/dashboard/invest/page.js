@@ -18,8 +18,8 @@ const INR_SCHEMES = [
 const USD_SCHEMES = [
     { id: '3m_usd', name: '3-Month Plan (USDT)', currency: 'USD', rate: '18%', desc: 'Short-term liquidity', amounts: [500, 1000, 1500, 2000] },
     { id: '6m_usd', name: '6-Month Plan (USDT)', currency: 'USD', rate: '38%', desc: 'Balanced growth', amounts: [1000, 1500, 2000] },
-    { id: '1y_usd', name: '1-Year FD (USDT)', currency: 'USD', rate: '80%', desc: 'High yield USD', min: 2000 },
-    { id: '5y_usd', name: '5-Year Vision (USDT)', currency: 'USD', rate: '500%', desc: 'Massive wealth USD', min: 5000 },
+    { id: '1y_usd', name: '1-Year FD (USDT)', currency: 'USD', rate: '80%', desc: 'High yield USD', min: 5000, amounts: [5000, 6000, 7000, 8000, 10000] },
+    { id: '5y_usd', name: '5-Year Vision (USDT)', currency: 'USD', rate: '500%', desc: 'Massive wealth USD', min: 10000 },
 ];
 
 export default function InvestPage() {

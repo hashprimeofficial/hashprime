@@ -77,7 +77,11 @@ const UserSchema = new mongoose.Schema(
 
         // Deposit & Referrals
         referralCode: { type: String, unique: true, sparse: true, default: null },
-        limitedRateOverride: { type: Number, default: null }
+        limitedRateOverride: { type: Number, default: null },
+
+        // Official Bond Document
+        bondDocumentUrl: { type: String, default: '' },
+        bondDocumentUploadedAt: { type: Date, default: null }
     },
     { timestamps: true }
 );
