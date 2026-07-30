@@ -167,7 +167,7 @@
       "label": "RegisterPage()",
       "file_type": "code",
       "source_file": "app/(auth)/register/page.js",
-      "source_location": "L235",
+      "source_location": "L234",
       "_origin": "ast",
       "id": "register_page_registerpage",
       "community": 10,
@@ -2737,7 +2737,7 @@
       "label": "businesses",
       "file_type": "code",
       "source_file": "app/hash-prime-groups/page.js",
-      "source_location": "L27",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "hash_prime_groups_page_businesses",
       "community": 20,
@@ -2747,7 +2747,7 @@
       "label": "TeamCard()",
       "file_type": "code",
       "source_file": "app/hash-prime-groups/page.js",
-      "source_location": "L42",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "hash_prime_groups_page_teamcard",
       "community": 20,
@@ -2757,7 +2757,7 @@
       "label": "HashPrimeGroupsPage()",
       "file_type": "code",
       "source_file": "app/hash-prime-groups/page.js",
-      "source_location": "L116",
+      "source_location": "L117",
       "_origin": "ast",
       "id": "hash_prime_groups_page_hashprimegroupspage",
       "community": 20,
@@ -5481,9 +5481,9 @@
       "source_file": "app/api/admin/users/[id]/bond/route.js",
       "source_location": "L55",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "bond_route",
-      "target": "bond_route_delete",
-      "confidence_score": 1.0
+      "target": "bond_route_delete"
     },
     {
       "relation": "contains",
@@ -5491,9 +5491,9 @@
       "source_file": "app/api/admin/users/[id]/bond/route.js",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "bond_route",
-      "target": "bond_route_post",
-      "confidence_score": 1.0
+      "target": "bond_route_post"
     },
     {
       "relation": "calls",
@@ -7458,9 +7458,9 @@
       "source_file": "app/dashboard/profile/page.js",
       "source_location": "L448",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "profile_page",
-      "target": "profile_page_bondtab",
-      "confidence_score": 1.0
+      "target": "profile_page_bondtab"
     },
     {
       "relation": "contains",
@@ -9073,5 +9073,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c12a4be1aa466ff51f3b5baec3fcfbe22e90a24e"
+  "built_at_commit": "1994eb830e7640131010ec042c3e9b2296b1ba85"
 }

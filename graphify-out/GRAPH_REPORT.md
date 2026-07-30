@@ -1,7 +1,7 @@
-# Graph Report - hashprime-main  (2026-07-26)
+# Graph Report - hashprime-main  (2026-07-30)
 
 ## Corpus Check
-- 140 files · ~76,649 words
+- 140 files · ~76,665 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c12a4be1`
+- Built from commit: `1994eb83`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
