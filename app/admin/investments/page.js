@@ -63,6 +63,7 @@ export default function AdminInvestmentsPage() {
     const [createMessage, setCreateMessage] = useState({ type: '', text: '' });
     const [isCreatingSubmitting, setIsCreatingSubmitting] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
+    const [isPayingMonthly, setIsPayingMonthly] = useState(false);
     const [filterStatus, setFilterStatus] = useState('all');
     const [apiMsg, setApiMsg] = useState({ type: '', text: '' });
 
@@ -102,6 +103,10 @@ export default function AdminInvestmentsPage() {
         setIsSaving(true);
         const form = new FormData(e.target);
         const updates = { status: form.get('status') };
+        const investmentDate = form.get('investmentDate');
+        const maturesAt = form.get('maturesAt');
+        if (investmentDate) updates.investmentDate = investmentDate;
+        if (maturesAt) updates.maturesAt = maturesAt;
         try {
             const res = await fetch(`/api/admin/investments/${editingInvestment._id}`, {
                 method: 'PATCH',
@@ -112,12 +117,24 @@ export default function AdminInvestmentsPage() {
             if (res.ok) {
                 setEditingInvestment(null);
                 mutate();
-                showMsg('success', updates.status === 'active' ? 'Investment approved. Funds deducted from wallet.' : 'Status updated successfully.');
+                showMsg('success', updates.status === 'active' ? 'Investment approved. Funds deducted from wallet.' : 'Investment updated successfully.');
             } else {
                 showMsg('error', result.error || result.details || 'Failed to update');
             }
         } catch { showMsg('error', 'An error occurred'); }
         finally { setIsSaving(false); }
+    };
+
+    const handlePayMonthly = async () => {
+        if (!confirm('Credit monthly payout to all active Limited INR investors? This is idempotent and safe to run.')) return;
+        setIsPayingMonthly(true);
+        try {
+            const res = await fetch('/api/admin/investments/monthly-payout', { method: 'POST' });
+            const result = await res.json();
+            if (res.ok) { mutate(); showMsg('success', result.message); }
+            else showMsg('error', result.error || 'Failed to process monthly payouts');
+        } catch { showMsg('error', 'An unexpected error occurred'); }
+        finally { setIsPayingMonthly(false); }
     };
 
     const handleQuickApprove = async (inv) => {
@@ -223,6 +240,15 @@ export default function AdminInvestmentsPage() {
                     >
                         <Download className="w-4 h-4" />
                         Export
+                    </button>
+                    <button
+                        onClick={handlePayMonthly}
+                        disabled={isPayingMonthly}
+                        className="bg-[#0A0A0A] hover:bg-[#121212] text-emerald-400 font-bold py-3 px-5 rounded-xl flex items-center justify-center gap-2 transition-colors border border-emerald-500/30 hover:border-emerald-500/60 disabled:opacity-50 text-sm"
+                        title="Credit monthly payout to all active Limited INR investors"
+                    >
+                        {isPayingMonthly ? <Loader2 className="w-4 h-4 animate-spin" /> : <span className="text-base leading-none">₹</span>}
+                        Pay Monthly
                     </button>
                     <button
                         onClick={handleProcessMatured}
@@ -389,6 +415,32 @@ export default function AdminInvestmentsPage() {
                                     <p className="text-[10px] text-[#d4af35]/50 font-bold uppercase tracking-widest mt-2">
                                         ⚠ Setting to &quot;Active&quot; will deduct funds from user&apos;s wallet. &quot;Completed&quot; will credit principal + yield.
                                     </p>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label className={lblCls}>Invested Date</label>
+                                        <input
+                                            type="date"
+                                            name="investmentDate"
+                                            defaultValue={editingInvestment.investmentDate
+                                                ? new Date(editingInvestment.investmentDate).toISOString().split('T')[0]
+                                                : new Date(editingInvestment.createdAt).toISOString().split('T')[0]
+                                            }
+                                            className={inputCls}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className={lblCls}>Maturity Date</label>
+                                        <input
+                                            type="date"
+                                            name="maturesAt"
+                                            defaultValue={editingInvestment.maturesAt
+                                                ? new Date(editingInvestment.maturesAt).toISOString().split('T')[0]
+                                                : ''
+                                            }
+                                            className={inputCls}
+                                        />
+                                    </div>
                                 </div>
                                 <div className="flex gap-3">
                                     <button type="button" onClick={() => setEditingInvestment(null)}

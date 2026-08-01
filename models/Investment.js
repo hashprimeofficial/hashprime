@@ -39,6 +39,10 @@ const InvestmentSchema = new mongoose.Schema(
             type: Date,
             required: true,
         },
+        investmentDate: {
+            type: Date,
+            required: false,
+        },
         paidMonths: {
             type: [Number],
             default: []

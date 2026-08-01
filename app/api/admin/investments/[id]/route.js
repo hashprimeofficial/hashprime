@@ -18,7 +18,7 @@ export async function PATCH(req, { params }) {
         const body = await req.json();
 
         // Allow-list only safe fields to prevent mass-assignment vulnerability
-        const ALLOWED_FIELDS = ['status', 'adminNote', 'maturesAt'];
+        const ALLOWED_FIELDS = ['status', 'adminNote', 'maturesAt', 'investmentDate'];
         const safeUpdate = {};
         for (const key of ALLOWED_FIELDS) {
             if (key in body) safeUpdate[key] = body[key];

@@ -251,7 +251,8 @@ export default function DashboardOverview() {
                                     investments.filter(i => i.status === 'active').map((inv, idx) => {
                                         const yieldVal = inv.currency === 'USD' ? (inv.usdtReward || 0) : getInrYield(inv);
                                         const displayYield = inv.currency === 'USD' ? `$${yieldVal.toLocaleString('en-US')}` : `₹${yieldVal.toLocaleString('en-IN')}`;
-                                        const investedDate = inv.createdAt ? new Date(inv.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+                                        const displayDate = inv.investmentDate || inv.createdAt;
+                                        const investedDate = displayDate ? new Date(displayDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
                                         const maturityDate = inv.maturesAt ? new Date(inv.maturesAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
                                         return (
                                             <tr key={inv._id || idx} className="hover:bg-[#d4af35]/5 transition-colors">
