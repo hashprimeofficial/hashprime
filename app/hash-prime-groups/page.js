@@ -23,6 +23,7 @@ const team = [
     { name: "Mr. Murugaraj Elangovan", title: "Mayiladuthurai District Zonal Manager", img: "/MURUGARAJ ELANGOVAN.jpeg" },
     { name: "Mrs. Priyadharshini Ragupathi", title: "Salem District Zonal Manager", img: "/PRIYADHARSHINI RAGUPATHI.png" },
     { name: "Mrs. Sudha Sasikumar", title: "Thiruvarur District Zonal Manager", img: "/SUDHA SASIKUMAR.png" },
+    { name: "Mr. S. Alljeen Jothimani, B.A., B.L.", title: "Advocate & Legal Counsel", img: "/S. ALLJEEN JOTHIMANI.jpg" },
 ];
 
 const businesses = [
