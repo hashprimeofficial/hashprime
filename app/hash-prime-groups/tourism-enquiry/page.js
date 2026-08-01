@@ -113,7 +113,7 @@ function TourismEnquiryForm() {
                         <div className="bg-[#0a0a0a] border border-[#d4af35]/20 rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(212,175,53,0.05)]">
                             <div className="aspect-[4/3] relative overflow-hidden">
                                 <img
-                                    src="/MANIKANDAPRABU R.jpg"
+                                    src="/MANIKANDAPRABU R.jpeg"
                                     alt="Manikandaprabu R — Tourism Operations Head"
                                     className="w-full h-full object-cover object-top"
                                     onError={(e) => { e.target.style.display = 'none'; }}
