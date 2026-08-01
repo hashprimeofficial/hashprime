@@ -7,7 +7,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
     Zap, Wind, HardHat, Landmark, Scale,
-    Cog, Tent, Radio, Cable, BarChart3, ArrowUpRight, ChevronRight
+    Cog, Tent, Radio, Cable, BarChart3, ArrowUpRight, ChevronRight, MapPin, Wrench
 } from 'lucide-react';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -24,6 +24,8 @@ const team = [
     { name: "Mrs. Priyadharshini Ragupathi", title: "Salem District Zonal Manager", img: "/PRIYADHARSHINI RAGUPATHI.png" },
     { name: "Mrs. Sudha Sasikumar", title: "Thiruvarur District Zonal Manager", img: "/SUDHA SASIKUMAR.png" },
     { name: "Mr. S. Alljeen Jothimani, B.A., B.L.", title: "Advocate & Legal Counsel", img: "/S. ALLJEEN JOTHIMANI.jpg" },
+    { name: "Mr. Manikandaprabu R", title: "Tourism Operations Head", img: "/MANIKANDAPRABU R.jpg" },
+    { name: "Mr. Naresh D", title: "Mechanical & Machinery Operations Head", img: "/NARESH D.jpg" },
 ];
 
 const businesses = [
@@ -37,6 +39,8 @@ const businesses = [
     { icon: Radio, title: "Ericsson", sub: "Ericsson Work (Only New Site)", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=900", desc: "Turnkey new-site integrations for Ericsson telecommunication cell deployments." },
     { icon: Cable, title: "Fiberoptical", sub: "Fiberoptical", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=900", desc: "Light-speed data transmission infrastructure laid with zero-latency precision." },
     { icon: BarChart3, title: "Trading", sub: "Trading (ICT & SMC)", img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=900", desc: "Dynamic wholesale trading spanning ICT segments and critical SMC supply networks." },
+    { icon: MapPin, title: "Tourism", sub: "Tourism & Travel Services", img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=900", desc: "Curated luxury travel experiences, tour packages, and end-to-end tourism operations across India and beyond.", href: "/hash-prime-groups/tourism-enquiry" },
+    { icon: Wrench, title: "Mechanical", sub: "Mechanical & Machinery Operations", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=900", desc: "Heavy-duty mechanical engineering and precision machinery operations for industrial-scale projects." },
 ];
 
 // ─── TeamCard — full-bleed 9:16 portrait, content overlay ────────────────────
@@ -197,7 +201,7 @@ export default function HashPrimeGroupsPage() {
                 <p className="hpg-sub text-base md:text-lg text-slate-400 leading-relaxed max-w-lg mx-auto">
                     We operate{" "}
                     <span className="text-white font-semibold relative inline-block">
-                        10+ Business Modules
+                        12+ Business Modules
                         <span className="absolute -bottom-px left-0 right-0 h-px bg-[#d4af35]/60" />
                     </span>
                     {" "}all over Tamil Nadu.
@@ -222,7 +226,7 @@ export default function HashPrimeGroupsPage() {
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af35] opacity-75" />
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af35]" />
                                 </span>
-                                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">10 Verticals</span>
+                                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">12 Verticals</span>
                             </div>
                             <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-[0.95]">
                                 Our Business<br /><span className="text-[#d4af35]">Divisions</span>
@@ -243,7 +247,7 @@ export default function HashPrimeGroupsPage() {
 
 
                                 key={idx}
-                                href={`/hash-prime-groups/enquiry?field=${encodeURIComponent(biz.sub)}`}
+                                href={biz.href || `/hash-prime-groups/enquiry?field=${encodeURIComponent(biz.sub)}`}
                                 className="hpg-biz group relative flex items-center gap-6 md:gap-10 px-4 md:px-8 py-6 md:py-7
                                     border-b border-white/[0.06] last:border-b-0
                                     hover:bg-[#0E0E0E] hover:border-b-[#d4af35]/20
