@@ -59,16 +59,7 @@ export default function LegalServicesPage() {
     "@type": ["LocalBusiness", "LegalService"],
     "name": "Hashprime Legal",
     "description": "Professional legal consultation and document drafting. Property title verification, civil litigation, corporate contracts, and criminal defense.",
-    "url": "https://hashprime.com/legal-services",
-    "telephone": "9629296179",
-    "email": "salljeenjothimani@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "D/No. 50/114, Mariyamman Koil Street, Commercial Tax Dept Office Opp., Hasthampatty",
-      "addressLocality": "Salem",
-      "postalCode": "636007",
-      "addressCountry": "IN"
-    }
+    "url": "https://hashprime.com/legal-services"
   };
 
   return (
@@ -115,24 +106,10 @@ export default function LegalServicesPage() {
               </div>
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-white mb-2">Mr. S. Alljeen Jothimani, B.A., B.L.</h3>
-                <p className="text-[#d4af35] font-medium mb-6 uppercase tracking-wider text-sm">Advocate & Legal Counsel</p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
-                    <span className="text-slate-300">D/No. 50/114, Mariyamman Koil Street, Commercial Tax Dept Office Opp., Hasthampatty, Salem - 636 007</span>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <Phone className="w-5 h-5 text-slate-400 shrink-0" />
-                      <span className="text-slate-300">96292 96179 / 81246 09750</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Mail className="w-5 h-5 text-slate-400 shrink-0" />
-                      <span className="text-slate-300">salljeenjothimani@gmail.com</span>
-                    </div>
-                  </div>
-                </div>
+                <p className="text-[#d4af35] font-medium mb-4 uppercase tracking-wider text-sm">Advocate & Legal Counsel</p>
+                <p className="text-slate-300 text-sm leading-relaxed">
+                  Leading the Hashprime Corporate Legal Counsel and Advisory panel. Providing strategic legal oversight, corporate compliance audits, and regulatory risk mitigation structures for all enterprise divisions of Hashprime.
+                </p>
               </div>
             </div>
           </div>
