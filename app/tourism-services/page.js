@@ -61,67 +61,33 @@ export default function TourismServicesPage() {
   };
 
   return (
-    <div className="bg-[#0A0A0A] min-h-screen text-white font-sans selection:bg-[#d4af35] selection:text-black">
+    <div className="bg-[#0A0A0A] min-h-screen flex flex-col justify-between text-white font-sans selection:bg-[#d4af35] selection:text-black">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/[0.06]">
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-            <span className="bg-gradient-to-r from-[#d4af35] to-[#E5C158] bg-clip-text text-transparent">Spiritual Pilgrimages &</span>
-            <br />Curated Domestic Travel
-          </h1>
-          <p className="text-xl text-slate-400 mb-10">
-            Expertly crafted journeys with over 5+ years of travel management excellence across India.
-          </p>
-        </div>
-
-        {/* Notice Alert */}
-        <div className="max-w-3xl mx-auto mb-16">
-          <div className="bg-[#1a1505] border border-[#d4af35]/50 rounded-xl p-6 flex items-start space-x-4 shadow-[0_0_15px_rgba(212,175,53,0.1)]">
-            <AlertTriangle className="text-[#d4af35] w-8 h-8 flex-shrink-0 mt-1" />
-            <div>
-              <h3 className="text-[#E5C158] font-bold text-lg mb-1">Important Notice</h3>
-              <p className="text-slate-300">
-                International tour packages are currently suspended. Hashprime Tourism is focused exclusively on domestic travel excellence and spiritual tour packages at this time.
-              </p>
+      <section className="relative pt-32 pb-24 px-6 lg:px-8 overflow-hidden border-b border-white/[0.06] bg-[#0A0A0A]">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#d4af35]/10 via-[#0A0A0A] to-[#0A0A0A] opacity-40"></div>
+        <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7 text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#d4af35] animate-pulse"></span>
+              <span className="text-xs font-medium tracking-wider text-slate-400 uppercase">Hashprime Tourism (5+ Years Exp)</span>
             </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white leading-tight">
+              <span className="bg-gradient-to-r from-[#d4af35] to-[#E5C158] bg-clip-text text-transparent">
+                Spiritual Pilgrimages
+              </span>
+              <br />& Curated Domestic Travel
+            </h1>
+            <p className="text-lg text-slate-400 mb-8 max-w-xl">
+              Curated spiritual journeys and domestic packages across South India. Led by Operations Head Mr. Manikandaprabu R, ensuring seamless execution.
+            </p>
+            
           </div>
-        </div>
-
-        {/* Featured Package */}
-        <div className="bg-[#0E0E0E] border border-[#d4af35]/30 rounded-3xl p-8 md:p-12 max-w-5xl mx-auto relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af35] opacity-5 blur-[100px] rounded-full group-hover:opacity-10 transition-opacity duration-700"></div>
-          <div className="flex flex-col md:flex-row gap-10 items-center relative z-10">
-            <div className="flex-1">
-              <div className="inline-block bg-[#d4af35]/10 border border-[#d4af35]/30 text-[#d4af35] px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-                Featured Package
-              </div>
-              <h2 className="text-3xl font-bold mb-4">Navagraha Yatra Pilgrimage Special</h2>
-              <p className="text-slate-400 leading-relaxed mb-6">
-                A complete hassle-free pilgrimage journey covering all 9 sacred Navagraha temples in Tamil Nadu. Experience spiritual fulfillment without logistical stress.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  "Comfortable AC vehicle transport",
-                  "Verified premium hotel stays",
-                  "VIP temple visit assistance",
-                  "Scheduled & tailored itineraries"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center text-slate-300">
-                    <ShieldCheck className="w-5 h-5 text-[#d4af35] mr-3" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="w-full md:w-1/3 flex flex-col items-center border border-white/[0.06] rounded-2xl p-6 bg-[#0A0A0A]">
-              <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-[#d4af35]/50 mb-4">
-                <img src="/MANIKANDAPRABU R.jpeg" alt="Mr. Manikandaprabu R" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-              </div>
-              <h3 className="font-bold text-lg text-white">Mr. Manikandaprabu R</h3>
-              <p className="text-[#d4af35] text-sm font-medium mb-4">Tourism Operations Head</p>
-              <p className="text-slate-500 text-xs text-center">Personally supervising operations to ensure your spiritual journey is seamless.</p>
+          <div className="lg:col-span-5 relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#d4af35] to-[#E5C158] rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+            <div className="relative bg-[#0E0E0E] border border-white/[0.06] rounded-3xl overflow-hidden aspect-[16/10] shadow-2xl">
+              <img src="/hashprime-tourism.jpg" alt="Spiritual Pilgrimages" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
             </div>
           </div>
         </div>

@@ -103,26 +103,35 @@ export default function TotalTelecomServices() {
   ];
 
   return (
-    <main className="bg-[#0A0A0A] min-h-screen text-slate-300 font-sans selection:bg-[#d4af35]/30">
+    <main className="bg-[#0A0A0A] min-h-screen flex flex-col justify-between text-slate-300 font-sans selection:bg-[#d4af35]/30">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 lg:px-8 overflow-hidden border-b border-white/[0.06]">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#d4af35]/10 via-[#0A0A0A] to-[#0A0A0A] opacity-50"></div>
-        <div className="max-w-7xl mx-auto relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] mb-6">
-            <span className="w-2 h-2 rounded-full bg-[#d4af35] animate-pulse"></span>
-            <span className="text-xs font-medium tracking-wider text-slate-400 uppercase">Hashprime Enterprise Solutions</span>
+      <section className="relative pt-32 pb-24 px-6 lg:px-8 overflow-hidden border-b border-white/[0.06] bg-[#0A0A0A]">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#d4af35]/10 via-[#0A0A0A] to-[#0A0A0A] opacity-40"></div>
+        <div className="max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7 text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.06] mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#d4af35] animate-pulse"></span>
+              <span className="text-xs font-medium tracking-wider text-slate-400 uppercase">Hashprime Enterprise Solutions</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white leading-tight">
+              <span className="bg-gradient-to-r from-[#d4af35] to-[#E5C158] bg-clip-text text-transparent">
+                Turnkey Telecom Infrastructure
+              </span>
+              <br />& Network Deployment Solutions
+            </h1>
+            <p className="text-lg text-slate-400 mb-8 max-w-xl">
+              End-to-end engineering, civil works, and technical deployment for robust, high-uptime telecommunications networks across India.
+            </p>
+            
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-white">
-            <span className="bg-gradient-to-r from-[#d4af35] to-[#E5C158] bg-clip-text text-transparent">
-              Turnkey Telecom Infrastructure
-            </span>
-            <br />& Network Deployment Solutions
-          </h1>
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mb-10">
-            End-to-end engineering, civil works, and technical deployment for robust, high-uptime telecommunications networks across India.
-          </p>
+          <div className="lg:col-span-5 relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#d4af35] to-[#E5C158] rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+            <div className="relative bg-[#0E0E0E] border border-white/[0.06] rounded-3xl overflow-hidden aspect-[16/10] shadow-2xl">
+              <img src="/hashprime-telecom.jpg" alt="Turnkey Telecom Infrastructure" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
+            </div>
+          </div>
         </div>
       </section>
 
