@@ -476,12 +476,17 @@ Stats hover:   Number to gold, label stays white                        [300ms]
 
 | Name | Role | Photo File |
 |---|---|---|
-| Mr. Kannan Thangavel | Director | `Mr.KANNAN THANGAVEL.jpeg` |
-| Mr. Vijayabharathi Veerasamy | Director | `Mr. VIJAYABHARATHI VEERASAMY.jpeg` |
-| Miss. Maheshwari Asokan | Director | `Miss. MAHESHWARI ASOKAN.jpeg` |
-| Hemalatha Kannan | Director | `HEMALATHA KANNAN.jpeg` |
-| Naveenkumar Mayavan | Director | `NAVEENKUMAR MAYAVAN.jpeg` |
-| Murugaraj Elangovan | Director | `MURUGARAJ ELANGOVAN.jpeg` |
+| Mr. Vijayabharathi Veerasamy | Founder & Managing Director | `Mr. VIJAYABHARATHI VEERASAMY.jpeg` |
+| Mr. Naveenkumar Mayavan | Co-Founder & CEO | `NAVEENKUMAR MAYAVAN.jpeg` |
+| Mrs. Hemalatha Kannan | HR Manager | `HEMALATHA KANNAN.png` |
+| Mr. Kannan Thangavel | Accounts Manager | `Mr.KANNAN THANGAVEL.jpeg` |
+| Mr. Murugaraj Elangovan | Mayiladuthurai District Zonal Manager | `MURUGARAJ ELANGOVAN.jpeg` |
+| Mrs. Priyadharshini Ragupathi | Salem District Zonal Manager | `PRIYADHARSHINI RAGUPATHI.png` |
+| Mrs. Sudha Sasikumar | Thiruvarur District Zonal Manager | `SUDHA SASIKUMAR.png` |
+| Mr. S. Alljeen Jothimani, B.A., B.L. | Advocate & Legal Counsel | `S. ALLJEEN JOTHIMANI.jpg` |
+| Mr. Manikandaprabu R | Tourism Operations Head | `MANIKANDAPRABU R.jpeg` |
+| Mr. Naresh D | Mechanical & Machinery Operations Head | `NARESH D.jpeg` |
+| Mr. Sathish S | AC Sales & Service Operations Head | `SATHISH S.jpg` |
 
 **Photo Card Style:**
 - Circular crop, border: 2px solid rgba(212,175,53,0.50)

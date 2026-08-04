@@ -165,12 +165,15 @@
 *   **Eyebrow:** `● EXECUTIVE LEADERSHIP`
 *   **Title:** The **Execution Force**
 *   **Our Board of Directors:**
-    *   **Mr. Kannan Thangavel** — Director of Infrastructure Operations
-    *   **Mr. Vijayabharathi Veerasamy** — Director of Strategy & Partnerships
-    *   **Miss. Maheshwari Asokan** — Director of Administration & Governance
-    *   **Hemalatha Kannan** — Director of Quality Control & Systems
-    *   **Naveenkumar Mayavan** — Director of Engineering & Utility Networks
-    *   **Murugaraj Elangovan** — Director of Capital Markets & Finance
+    *   **Mr. Kannan Thangavel** — Accounts Manager
+    *   **Mr. Vijayabharathi Veerasamy** — Founder & Managing Director
+    *   **Mrs. Hemalatha Kannan** — HR Manager
+    *   **Mr. Naveenkumar Mayavan** — Co-Founder & CEO
+    *   **Mr. Murugaraj Elangovan** — Mayiladuthurai District Zonal Manager
+    *   **Mr. S. Alljeen Jothimani, B.A., B.L.** — Advocate & Legal Counsel
+    *   **Mr. Manikandaprabu R** — Tourism Operations Head
+    *   **Mr. Naresh D** — Mechanical & Machinery Operations Head
+    *   **Mr. Sathish S** — AC Sales & Service Operations Head
 
 ---
 
