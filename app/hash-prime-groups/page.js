@@ -152,7 +152,7 @@ const businesses = [
         desc: "End-to-end overseas employment consultancy — from document processing and visa assistance to pre-departure orientation and placement support.",
         href: "/abroad-job-consultancy",
         subItems: ["Document Preparation", "Visa Assistance", "Overseas Placement", "Pre-Departure Orientation"],
-        person: { name: "Mr. Mohammed Arif", position: "Abroad Job Consultancy Head", experience: 3 },
+        person: null,
     },
 ];
 
@@ -236,30 +236,35 @@ function DivisionCard({ biz, idx }) {
                     )}
                 </div>
 
-                {/* Separator */}
-                <div className="h-px bg-white/[0.05] group-hover:bg-[#d4af35]/15 transition-colors duration-500" />
 
-                {/* Division head bio */}
-                <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-[#d4af35]/10 border border-[#d4af35]/20
-                        flex items-center justify-center shrink-0">
-                        <User className="w-3.5 h-3.5 text-[#d4af35]" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="text-[11px] font-black text-white/80 leading-snug truncate">
-                            {biz.person.name}
-                        </p>
-                        <div className="flex items-center gap-2 mt-0.5">
-                            <Briefcase className="w-3 h-3 text-[#d4af35]/50 shrink-0" />
-                            <p className="text-[10px] text-slate-600 truncate">{biz.person.position}</p>
+                {/* Separator + Division head bio — only if person data exists */}
+                {biz.person && (
+                    <>
+                        <div className="h-px bg-white/[0.05] group-hover:bg-[#d4af35]/15 transition-colors duration-500" />
+
+                        <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-[#d4af35]/10 border border-[#d4af35]/20
+                                flex items-center justify-center shrink-0">
+                                <User className="w-3.5 h-3.5 text-[#d4af35]" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <p className="text-[11px] font-black text-white/80 leading-snug truncate">
+                                    {biz.person.name}
+                                </p>
+                                <div className="flex items-center gap-2 mt-0.5">
+                                    <Briefcase className="w-3 h-3 text-[#d4af35]/50 shrink-0" />
+                                    <p className="text-[10px] text-slate-600 truncate">{biz.person.position}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-1 shrink-0">
+                                <Clock className="w-3 h-3 text-[#d4af35]/50" />
+                                <span className="text-[10px] font-black text-[#d4af35]">{biz.person.experience}+</span>
+                                <span className="text-[10px] text-slate-600">yrs</span>
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex items-center gap-1 shrink-0">
-                        <Clock className="w-3 h-3 text-[#d4af35]/50" />
-                        <span className="text-[10px] font-black text-[#d4af35]">{biz.person.experience}+</span>
-                        <span className="text-[10px] text-slate-600">yrs</span>
-                    </div>
-                </div>
+                    </>
+                )}
+
 
                 {/* CTA row */}
                 <div className="flex items-center justify-between mt-auto pt-1">
