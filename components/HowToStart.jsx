@@ -27,7 +27,7 @@ export default function HowToStart() {
         {
             num: "03",
             title: "Start Investing",
-            desc: "Choose a scheme, select your amount, and confirm your investment. Watch your wealth grow in USDT.",
+            desc: "Choose a scheme, select your amount, and confirm your investment. Watch your wealth grow securely.",
             icon: <ArrowLeftRight className="w-8 h-8 step-icon" />
         }
     ];

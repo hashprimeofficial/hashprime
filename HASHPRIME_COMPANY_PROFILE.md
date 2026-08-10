@@ -166,7 +166,7 @@
 *   **Title:** The **Execution Force**
 *   **Our Board of Directors:**
     *   **Mr. Kannan Thangavel** — Accounts Manager
-    *   **Mr. Vijayabharathi Veerasamy** — Founder & Managing Director
+    *   **Mr. Ravi Maarimuthu** — Managing Director
     *   **Mrs. Hemalatha Kannan** — HR Manager
     *   **Mr. Naveenkumar Mayavan** — Co-Founder & CEO
     *   **Mr. Murugaraj Elangovan** — Mayiladuthurai District Zonal Manager

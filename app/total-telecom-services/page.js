@@ -82,7 +82,7 @@ export default function TotalTelecomServices() {
     },
     {
       title: "Tower & Shelter Installation",
-      description: "Structural erection of self-supporting towers, monopoles, and weatherproof shelter units.",
+      description: "Structural installation of self-supporting towers, monopoles, and weatherproof shelter units.",
       icon: <HardHat className="w-8 h-8 text-[#d4af35]" />
     },
     {

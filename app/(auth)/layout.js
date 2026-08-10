@@ -26,7 +26,7 @@ export default function AuthLayout({ children }) {
                             <span style={{ color: '#d4af35' }}>intelligently.</span>
                         </h2>
                         <p className="text-slate-300 text-base font-medium mt-4 leading-relaxed max-w-xs">
-                            Earn passive USDT income through our structured investment plans.
+                            Earn passive income through our structured investment plans.
                         </p>
                     </div>
 
@@ -36,7 +36,7 @@ export default function AuthLayout({ children }) {
                             { val: '500%', label: 'Max Returns' },
                             { val: '5%', label: 'Referral Bonus' },
                             { val: '4', label: 'Investment Plans' },
-                            { val: 'INR / USDT', label: 'Reward Currency' },
+                            { val: 'INR (₹)', label: 'Reward Currency' },
                         ].map(({ val, label }) => (
                             <div key={label} className="rounded-2xl p-4" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
                                 <div className="text-2xl font-black text-white mb-0.5">{val}</div>

@@ -15,8 +15,8 @@ const schemes = [
         period: "3 Month Scheme",
         duration: "90 Days",
         benefit: "18%",
-        benefitCurrency: "INR / USDT",
-        investments: ["50K", "1L", "3L", "5L"],
+        benefitCurrency: "INR (₹)",
+        investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
     },
     {
         id: "six-month",
@@ -24,8 +24,8 @@ const schemes = [
         period: "6 Month Scheme",
         duration: "180 Days",
         benefit: "38%",
-        benefitCurrency: "INR / USDT",
-        investments: ["1L", "3L", "5L"],
+        benefitCurrency: "INR (₹)",
+        investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
     },
     {
         id: "one-year",
@@ -33,8 +33,8 @@ const schemes = [
         period: "1 Year Scheme",
         duration: "365 Days",
         benefit: "80%",
-        benefitCurrency: "INR / USDT",
-        investments: ["Min 5L"],
+        benefitCurrency: "INR (₹)",
+        investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
         featured: true
     },
     {
@@ -43,8 +43,8 @@ const schemes = [
         period: "5 Year Scheme",
         duration: "5 Years",
         benefit: "500%",
-        benefitCurrency: "INR / USDT",
-        investments: ["10L to 50L"],
+        benefitCurrency: "INR (₹)",
+        investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
     },
     {
         id: "limited-offer",
@@ -52,8 +52,8 @@ const schemes = [
         period: "6 Month Scheme",
         duration: "6 Months",
         benefit: "4%",
-        benefitCurrency: "Monthly ROI",
-        investments: ["Min 5L"],
+        benefitCurrency: "Monthly ROI (INR)",
+        investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
         featured: true,
         fullWidth: true
     }

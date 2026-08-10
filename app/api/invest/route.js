@@ -8,11 +8,11 @@ import { getExchangeRate } from '@/lib/exchangeRate';
 import speakeasy from 'speakeasy';
 
 const INR_SCHEMES = {
-    '3m_inr': { minAmounts: [50000, 100000, 300000, 500000], returnRate: 0.18, durationMonths: 3 },
-    '6m_inr': { minAmounts: [100000, 300000, 500000], returnRate: 0.38, durationMonths: 6 },
-    '1y_inr': { minAmount: 500000, maxAmount: Infinity, returnRate: 0.80, durationMonths: 12 },
-    '5y_inr': { minAmount: 1000000, maxAmount: 1500000, returnRate: 5.00, durationMonths: 60 },
-    'limited_inr': { minAmount: 500000, maxAmount: Infinity, returnRate: 0.24, durationMonths: 6 },
+    '3m_inr': { minAmounts: [50000, 100000, 200000, 300000, 400000, 500000], returnRate: 0.18, durationMonths: 3 },
+    '6m_inr': { minAmounts: [50000, 100000, 200000, 300000, 400000, 500000], returnRate: 0.38, durationMonths: 6 },
+    '1y_inr': { minAmounts: [50000, 100000, 200000, 300000, 400000, 500000], returnRate: 0.80, durationMonths: 12 },
+    '5y_inr': { minAmounts: [50000, 100000, 200000, 300000, 400000, 500000], returnRate: 5.00, durationMonths: 60 },
+    'limited_inr': { minAmounts: [50000, 100000, 200000, 300000, 400000, 500000], returnRate: 0.24, durationMonths: 6 },
 };
 const USD_SCHEMES = {
     '3m_usd': { minAmounts: [500, 1000, 1500, 2000], returnRate: 0.18, durationMonths: 3 },
@@ -80,13 +80,13 @@ export async function POST(req) {
         const scheme = activeSchemes[schemeType];
 
         // Validate amount
-        if (schemeType.startsWith('3m') || schemeType.startsWith('6m')) {
+        if (scheme.minAmounts) {
             if (!scheme.minAmounts.includes(amount)) {
                 return NextResponse.json({ error: `Invalid amount for ${schemeType} scheme. Allowed: ${scheme.minAmounts.join(', ')}` }, { status: 400 });
             }
         } else {
-            if (amount < scheme.minAmount || amount > scheme.maxAmount) {
-                return NextResponse.json({ error: `Amount restricted for ${schemeType}. Min: ${scheme.minAmount}, Max: ${scheme.maxAmount === Infinity ? 'None' : scheme.maxAmount}` }, { status: 400 });
+            if (amount < scheme.minAmount || (scheme.maxAmount && amount > scheme.maxAmount)) {
+                return NextResponse.json({ error: `Amount restricted for ${schemeType}. Min: ${scheme.minAmount}` }, { status: 400 });
             }
         }
 

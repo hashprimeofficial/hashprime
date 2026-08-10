@@ -11,7 +11,6 @@ export default function sitemap() {
         '/legal-services',
         '/generator-services',
         '/shelter-and-enclosure-works',
-        '/ericsson-specialized-telecom',
         '/fiberoptical-services',
         '/trading-services',
         '/tourism-services',

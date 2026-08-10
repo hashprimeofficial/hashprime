@@ -40,7 +40,7 @@ export default function CompanyPage() {
                         Hashprime is a multi-service engineering and infrastructure company dedicated to delivering reliable, innovative, and high-quality solutions across the telecom, electrical, construction, real estate, and technology sectors. We are committed to helping businesses and communities grow through professional expertise, technical excellence, and customer-focused service.
                     </p>
                     <p>
-                        Our core expertise includes Telecom Operations & Maintenance (Electrical), Ericsson New Site Deployment, Fiber Optic Solutions, Telecom Shelter Works, Generator Sales & Service, and ICT & SMC Trading. We also provide comprehensive Air Conditioning sales and maintenance, Private Construction, Real Estate solutions, and Legal Care support.
+                        Our core expertise includes Telecom Operations & Maintenance (Electrical), New Site Deployment, Fiber Optic Solutions, Telecom Shelter Works, Generator Sales & Service, and ICT & SMC Trading. We also provide comprehensive Air Conditioning sales and maintenance, Private Construction, Real Estate solutions, and Legal Care support.
                     </p>
                     <p>
                         At Hashprime, every project is executed with a strong focus on quality, safety, efficiency, and timely delivery. Our experienced team works closely with clients to understand their requirements and deliver cost-effective solutions that meet the highest industry standards.

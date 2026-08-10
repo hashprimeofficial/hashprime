@@ -15,7 +15,7 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 // ─── Team ──────────────────────────────────────────────────────────────────────
 const team = [
-    { name: "Mr. Vijayabharathi Veerasamy", title: "Founder & Managing Director", img: "/Mr. VIJAYABHARATHI VEERASAMY.jpeg" },
+    { name: "Mr. Ravi Maarimuthu", title: "Managing Director", img: "/Mr. RAVI MAARIMUTHU.jpeg" },
     { name: "Mr. Naveenkumar Mayavan", title: "Co-Founder & CEO", img: "/NAVEENKUMAR MAYAVAN.jpeg" },
     { name: "Mrs. Hemalatha Kannan", title: "HR Manager", img: "/HEMALATHA KANNAN.png" },
     { name: "Mr. Kannan Thangavel", title: "Accounts Manager", img: "/Mr.KANNAN THANGAVEL.jpeg" },
@@ -28,24 +28,23 @@ const team = [
     { name: "Mr. Sathish S", title: "AC Sales & Service Operations Head", img: "/SATHISH S.jpg" },
 ];
 
-// ─── 11 Business Divisions ─────────────────────────────────────────────────────
+// ─── Business Divisions ─────────────────────────────────────────────────────────
 const businesses = [
     {
         icon: Zap,
         title: "Total Telecom Service",
         sub: "Total Telecom Service",
         img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=900",
-        desc: "Ensuring 99.99% uptime for telecom architectures via turnkey civil works, tower erection, electrical O&M, and fibre deployment.",
+        desc: "Ensuring 99.99% uptime for telecom architectures via turnkey civil works, tower shelter work, electrical O&M, and fibre deployment.",
         href: "/total-telecom-services",
         subItems: [
             "New Site Deployment",
             "Tower / Shelter Work",
-            "Erection Work",
             "Electrical Work",
             "Fibre Optical Work",
             "Site Operations / Maintenance",
         ],
-        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 10 },
+        person: { name: "Mr. Ravi Maarimuthu", position: "Managing Director", experience: 15 },
     },
     {
         icon: Wind,
@@ -65,7 +64,7 @@ const businesses = [
         desc: "Structural masterpieces blending world-class aesthetics with monolithic durability, from foundations to finishing.",
         href: "/construction-and-works",
         subItems: ["Construct Buildings", "Interior & Exterior", "Painting", "Gardening"],
-        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 10 },
+        person: { name: "Mr. Ravi Maarimuthu", position: "Managing Director", experience: 15 },
     },
     {
         icon: Landmark,
@@ -75,7 +74,7 @@ const businesses = [
         desc: "Strategic property acquisitions, farmland investments, and premium multi-vertical leasing across Tamil Nadu.",
         href: "/real-estate-services",
         subItems: ["Land Buy & Sell", "Rental Land", "Farm Land"],
-        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 10 },
+        person: { name: "Mr. Ravi Maarimuthu", position: "Managing Director", experience: 15 },
     },
     {
         icon: Scale,
@@ -102,17 +101,7 @@ const businesses = [
             "Solar Equipment Shelter Work",
             "AC / HVAC Equipment Shelter Work",
         ],
-        person: { name: "Mr. Naveenkumar Mayavan", position: "Co-Founder & CEO", experience: 8 },
-    },
-    {
-        icon: Radio,
-        title: "All Type of Ericsson Service",
-        sub: "All Type of Ericsson Service",
-        img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=900",
-        desc: "Turnkey new-site integrations for Ericsson telecommunication cell deployments with precision and compliance.",
-        href: "/ericsson-specialized-telecom",
-        subItems: ["New Site Deployment", "Equipment Installation", "Network Optimization"],
-        person: { name: "Mr. Naveenkumar Mayavan", position: "Co-Founder & CEO", experience: 8 },
+        person: { name: "Mr. Ravi Maarimuthu", position: "Managing Director", experience: 15 },
     },
     {
         icon: BarChart3,
@@ -122,7 +111,7 @@ const businesses = [
         desc: "Dynamic market trading spanning physical commodities and digital crypto assets with strategic research-driven execution.",
         href: "/trading-services",
         subItems: ["Commodities", "Crypto"],
-        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 5 },
+        person: { name: "Mr. Ravi Maarimuthu", position: "Managing Director", experience: 15 },
     },
     {
         icon: MapPin,
@@ -143,16 +132,6 @@ const businesses = [
         href: "/mechanical-machinery-services",
         subItems: ["Industrial Machinery Services", "Machinery Buy & Sell", "All Type of Vehicle Services"],
         person: { name: "Mr. Naresh D", position: "Mechanical & Machinery Operations Head", experience: 6 },
-    },
-    {
-        icon: Plane,
-        title: "Abroad Job Consultancy",
-        sub: "Abroad Job Consultancy",
-        img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=900",
-        desc: "End-to-end overseas employment consultancy — from document processing and visa assistance to pre-departure orientation and placement support.",
-        href: "/abroad-job-consultancy",
-        subItems: ["Document Preparation", "Visa Assistance", "Overseas Placement", "Pre-Departure Orientation"],
-        person: null,
     },
 ];
 
@@ -335,7 +314,7 @@ export default function HashPrimeGroupsPage() {
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af35] opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af35]" />
                     </span>
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">11 Business Verticals</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">Multi Business Verticals</span>
                 </div>
 
                 <div className="relative overflow-hidden leading-none">
@@ -349,7 +328,7 @@ export default function HashPrimeGroupsPage() {
                 <p className="hpg-sub text-base md:text-lg text-slate-400 leading-relaxed max-w-lg mx-auto">
                     We operate{" "}
                     <span className="text-white font-semibold relative inline-block">
-                        11 Business Divisions
+                        Multi Business Divisions
                         <span className="absolute -bottom-px left-0 right-0 h-px bg-[#d4af35]/60" />
                     </span>
                     {" "}all over Tamil Nadu.

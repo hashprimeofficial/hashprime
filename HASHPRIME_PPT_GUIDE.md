@@ -476,7 +476,7 @@ Stats hover:   Number to gold, label stays white                        [300ms]
 
 | Name | Role | Photo File |
 |---|---|---|
-| Mr. Vijayabharathi Veerasamy | Founder & Managing Director | `Mr. VIJAYABHARATHI VEERASAMY.jpeg` |
+| Mr. Ravi Maarimuthu | Managing Director | `Mr. RAVI MAARIMUTHU.jpeg` |
 | Mr. Naveenkumar Mayavan | Co-Founder & CEO | `NAVEENKUMAR MAYAVAN.jpeg` |
 | Mrs. Hemalatha Kannan | HR Manager | `HEMALATHA KANNAN.png` |
 | Mr. Kannan Thangavel | Accounts Manager | `Mr.KANNAN THANGAVEL.jpeg` |

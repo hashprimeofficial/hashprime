@@ -174,6 +174,106 @@
       "norm_label": "registerpage()"
     },
     {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/abroad-job-consultancy/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "abroad_job_consultancy_layout",
+      "community": 88,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/abroad-job-consultancy/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "abroad_job_consultancy_layout_metadata",
+      "community": 88,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "AbroadJobConsultancyLayout()",
+      "file_type": "code",
+      "source_file": "app/abroad-job-consultancy/layout.js",
+      "source_location": "L35",
+      "_origin": "ast",
+      "id": "abroad_job_consultancy_layout_abroadjobconsultancylayout",
+      "community": 88,
+      "norm_label": "abroadjobconsultancylayout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/abroad-job-consultancy/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "abroad_job_consultancy_page",
+      "community": 113,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "AbroadJobConsultancyPage()",
+      "file_type": "code",
+      "source_file": "app/abroad-job-consultancy/page.js",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "abroad_job_consultancy_page_abroadjobconsultancypage",
+      "community": 113,
+      "norm_label": "abroadjobconsultancypage()"
+    },
+    {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/ac-sales-and-service/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "ac_sales_and_service_layout",
+      "community": 89,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/ac-sales-and-service/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "ac_sales_and_service_layout_metadata",
+      "community": 89,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/ac-sales-and-service/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "ac_sales_and_service_layout_layout",
+      "community": 89,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/ac-sales-and-service/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "ac_sales_and_service_page",
+      "community": 114,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "ACSalesAndService()",
+      "file_type": "code",
+      "source_file": "app/ac-sales-and-service/page.js",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "ac_sales_and_service_page_acsalesandservice",
+      "community": 114,
+      "norm_label": "acsalesandservice()"
+    },
+    {
       "label": "page.js",
       "file_type": "code",
       "source_file": "app/admin/deposits/page.js",
@@ -760,7 +860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "enquiries_route",
-      "community": 0,
+      "community": 84,
       "norm_label": "route.js"
     },
     {
@@ -770,7 +870,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "enquiries_route_get",
-      "community": 0,
+      "community": 84,
       "norm_label": "get()"
     },
     {
@@ -850,7 +950,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "investments_route",
-      "community": 23,
+      "community": 86,
       "norm_label": "route.js"
     },
     {
@@ -860,7 +960,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "investments_route_inr_schemes",
-      "community": 23,
+      "community": 86,
       "norm_label": "inr_schemes"
     },
     {
@@ -870,7 +970,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "investments_route_usd_schemes",
-      "community": 23,
+      "community": 86,
       "norm_label": "usd_schemes"
     },
     {
@@ -880,7 +980,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "investments_route_get",
-      "community": 23,
+      "community": 86,
       "norm_label": "get()"
     },
     {
@@ -900,7 +1000,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "migraterewards_route",
-      "community": 0,
+      "community": 120,
       "norm_label": "route.js"
     },
     {
@@ -910,7 +1010,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "migraterewards_route_get",
-      "community": 0,
+      "community": 120,
       "norm_label": "get()"
     },
     {
@@ -920,7 +1020,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "approve_route",
-      "community": 2,
+      "community": 0,
       "norm_label": "route.js"
     },
     {
@@ -930,7 +1030,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "approve_route_post",
-      "community": 2,
+      "community": 0,
       "norm_label": "post()"
     },
     {
@@ -940,7 +1040,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "referral_claims_route",
-      "community": 2,
+      "community": 122,
       "norm_label": "route.js"
     },
     {
@@ -950,7 +1050,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "referral_claims_route_get",
-      "community": 2,
+      "community": 122,
       "norm_label": "get()"
     },
     {
@@ -1080,7 +1180,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route",
-      "community": 77,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1090,7 +1190,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route_patch",
-      "community": 77,
+      "community": 2,
       "norm_label": "patch()"
     },
     {
@@ -1100,7 +1200,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "app_api_admin_users_id_route_js_id_route_delete",
-      "community": 77,
+      "community": 2,
       "norm_label": "delete()"
     },
     {
@@ -1130,7 +1230,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "users_route",
-      "community": 87,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1140,7 +1240,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "users_route_get",
-      "community": 87,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -1170,7 +1270,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "withdrawals_route",
-      "community": 86,
+      "community": 0,
       "norm_label": "route.js"
     },
     {
@@ -1180,7 +1280,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "withdrawals_route_get",
-      "community": 86,
+      "community": 0,
       "norm_label": "get()"
     },
     {
@@ -1270,7 +1370,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "verify_route",
-      "community": 0,
+      "community": 84,
       "norm_label": "route.js"
     },
     {
@@ -1280,7 +1380,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "verify_route_post",
-      "community": 0,
+      "community": 84,
       "norm_label": "post()"
     },
     {
@@ -1530,7 +1630,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "bank_accounts_route",
-      "community": 2,
+      "community": 0,
       "norm_label": "route.js"
     },
     {
@@ -1540,7 +1640,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "bank_accounts_route_get",
-      "community": 2,
+      "community": 0,
       "norm_label": "get()"
     },
     {
@@ -1550,7 +1650,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "bank_accounts_route_post",
-      "community": 2,
+      "community": 0,
       "norm_label": "post()"
     },
     {
@@ -1560,17 +1660,27 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "business_enquiry_route",
-      "community": 0,
+      "community": 94,
       "norm_label": "route.js"
+    },
+    {
+      "label": "REQUIRED_FIELDS",
+      "file_type": "code",
+      "source_file": "app/api/business-enquiry/route.js",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "business_enquiry_route_required_fields",
+      "community": 94,
+      "norm_label": "required_fields"
     },
     {
       "label": "POST()",
       "file_type": "code",
       "source_file": "app/api/business-enquiry/route.js",
-      "source_location": "L5",
+      "source_location": "L7",
       "_origin": "ast",
       "id": "business_enquiry_route_post",
-      "community": 0,
+      "community": 94,
       "norm_label": "post()"
     },
     {
@@ -1580,7 +1690,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "careers_route",
-      "community": 4,
+      "community": 0,
       "norm_label": "route.js"
     },
     {
@@ -1590,7 +1700,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "careers_route_post",
-      "community": 4,
+      "community": 0,
       "norm_label": "post()"
     },
     {
@@ -1600,7 +1710,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "careers_route_get",
-      "community": 4,
+      "community": 0,
       "norm_label": "get()"
     },
     {
@@ -1610,7 +1720,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_dashboard_stats_route_js_stats_route",
-      "community": 2,
+      "community": 115,
       "norm_label": "route.js"
     },
     {
@@ -1620,7 +1730,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "app_api_dashboard_stats_route_js_stats_route_get",
-      "community": 2,
+      "community": 115,
       "norm_label": "get()"
     },
     {
@@ -1630,7 +1740,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_deposits_route_js_deposits_route",
-      "community": 84,
+      "community": 4,
       "norm_label": "route.js"
     },
     {
@@ -1640,7 +1750,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "deposits_route_post",
-      "community": 84,
+      "community": 4,
       "norm_label": "post()"
     },
     {
@@ -1650,7 +1760,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "app_api_deposits_route_js_deposits_route_get",
-      "community": 84,
+      "community": 4,
       "norm_label": "get()"
     },
     {
@@ -1700,7 +1810,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "invest_route",
-      "community": 5,
+      "community": 102,
       "norm_label": "route.js"
     },
     {
@@ -1710,7 +1820,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "invest_route_inr_schemes",
-      "community": 5,
+      "community": 102,
       "norm_label": "inr_schemes"
     },
     {
@@ -1720,7 +1830,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "invest_route_usd_schemes",
-      "community": 5,
+      "community": 102,
       "norm_label": "usd_schemes"
     },
     {
@@ -1740,7 +1850,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "kyc_route",
-      "community": 3,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1750,7 +1860,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "kyc_route_get",
-      "community": 3,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -1760,7 +1870,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "kyc_route_put",
-      "community": 3,
+      "community": 2,
       "norm_label": "put()"
     },
     {
@@ -1910,7 +2020,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_statements_route_js_statements_route",
-      "community": 88,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1920,7 +2030,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "app_api_statements_route_js_statements_route_get",
-      "community": 88,
+      "community": 2,
       "norm_label": "get()"
     },
     {
@@ -1930,7 +2040,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_api_tickets_id_route_js_id_route",
-      "community": 89,
+      "community": 2,
       "norm_label": "route.js"
     },
     {
@@ -1940,7 +2050,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "id_route_put",
-      "community": 89,
+      "community": 2,
       "norm_label": "put()"
     },
     {
@@ -1950,7 +2060,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "tickets_route",
-      "community": 94,
+      "community": 4,
       "norm_label": "route.js"
     },
     {
@@ -1960,7 +2070,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "tickets_route_get",
-      "community": 94,
+      "community": 4,
       "norm_label": "get()"
     },
     {
@@ -1970,7 +2080,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "tickets_route_post",
-      "community": 94,
+      "community": 4,
       "norm_label": "post()"
     },
     {
@@ -2072,6 +2182,66 @@
       "id": "company_page_companypage",
       "community": 63,
       "norm_label": "companypage()"
+    },
+    {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/construction-and-works/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "construction_and_works_layout",
+      "community": 95,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/construction-and-works/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "construction_and_works_layout_metadata",
+      "community": 95,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/construction-and-works/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "construction_and_works_layout_layout",
+      "community": 95,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/construction-and-works/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "construction_and_works_page",
+      "community": 96,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "jsonLd",
+      "file_type": "code",
+      "source_file": "app/construction-and-works/page.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "construction_and_works_page_jsonld",
+      "community": 96,
+      "norm_label": "jsonld"
+    },
+    {
+      "label": "ConstructionWorksPage()",
+      "file_type": "code",
+      "source_file": "app/construction-and-works/page.js",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "construction_and_works_page_constructionworkspage",
+      "community": 96,
+      "norm_label": "constructionworkspage()"
     },
     {
       "label": "page.js",
@@ -2684,6 +2854,56 @@
       "norm_label": "withdrawpage()"
     },
     {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/ericsson-specialized-telecom/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "ericsson_specialized_telecom_layout",
+      "community": 97,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/ericsson-specialized-telecom/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "ericsson_specialized_telecom_layout_metadata",
+      "community": 97,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/ericsson-specialized-telecom/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "ericsson_specialized_telecom_layout_layout",
+      "community": 97,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/ericsson-specialized-telecom/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "ericsson_specialized_telecom_page",
+      "community": 116,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "EricssonTelecomPage()",
+      "file_type": "code",
+      "source_file": "app/ericsson-specialized-telecom/page.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "ericsson_specialized_telecom_page_ericssontelecompage",
+      "community": 116,
+      "norm_label": "ericssontelecompage()"
+    },
+    {
       "label": "page.js",
       "file_type": "code",
       "source_file": "app/features/page.js",
@@ -2702,6 +2922,106 @@
       "id": "features_page_featurespage",
       "community": 69,
       "norm_label": "featurespage()"
+    },
+    {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/fiberoptical-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "fiberoptical_services_layout",
+      "community": 98,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/fiberoptical-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "fiberoptical_services_layout_metadata",
+      "community": 98,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/fiberoptical-services/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "fiberoptical_services_layout_layout",
+      "community": 98,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/fiberoptical-services/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "fiberoptical_services_page",
+      "community": 117,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "FiberopticalServicesPage()",
+      "file_type": "code",
+      "source_file": "app/fiberoptical-services/page.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "fiberoptical_services_page_fiberopticalservicespage",
+      "community": 117,
+      "norm_label": "fiberopticalservicespage()"
+    },
+    {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/generator-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "generator_services_layout",
+      "community": 101,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/generator-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "generator_services_layout_metadata",
+      "community": 101,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/generator-services/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "generator_services_layout_layout",
+      "community": 101,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/generator-services/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "generator_services_page",
+      "community": 118,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "GeneratorServicesPage()",
+      "file_type": "code",
+      "source_file": "app/generator-services/page.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "generator_services_page_generatorservicespage",
+      "community": 118,
+      "norm_label": "generatorservicespage()"
     },
     {
       "label": "page.js",
@@ -2747,7 +3067,7 @@
       "label": "team",
       "file_type": "code",
       "source_file": "app/hash-prime-groups/page.js",
-      "source_location": "L18",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "hash_prime_groups_page_team",
       "community": 20,
@@ -2757,31 +3077,71 @@
       "label": "businesses",
       "file_type": "code",
       "source_file": "app/hash-prime-groups/page.js",
-      "source_location": "L29",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "hash_prime_groups_page_businesses",
       "community": 20,
       "norm_label": "businesses"
     },
     {
-      "label": "TeamCard()",
+      "label": "DivisionCard()",
       "file_type": "code",
       "source_file": "app/hash-prime-groups/page.js",
-      "source_location": "L44",
+      "source_location": "L139",
       "_origin": "ast",
-      "id": "hash_prime_groups_page_teamcard",
+      "id": "hash_prime_groups_page_divisioncard",
       "community": 20,
-      "norm_label": "teamcard()"
+      "norm_label": "divisioncard()"
     },
     {
       "label": "HashPrimeGroupsPage()",
       "file_type": "code",
       "source_file": "app/hash-prime-groups/page.js",
-      "source_location": "L118",
+      "source_location": "L268",
       "_origin": "ast",
       "id": "hash_prime_groups_page_hashprimegroupspage",
       "community": 20,
       "norm_label": "hashprimegroupspage()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/hash-prime-groups/tourism-enquiry/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tourism_enquiry_page",
+      "community": 87,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "TOUR_TYPES",
+      "file_type": "code",
+      "source_file": "app/hash-prime-groups/tourism-enquiry/page.js",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "tourism_enquiry_page_tour_types",
+      "community": 87,
+      "norm_label": "tour_types"
+    },
+    {
+      "label": "TourismEnquiryForm()",
+      "file_type": "code",
+      "source_file": "app/hash-prime-groups/tourism-enquiry/page.js",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "tourism_enquiry_page_tourismenquiryform",
+      "community": 87,
+      "norm_label": "tourismenquiryform()"
+    },
+    {
+      "label": "TourismEnquiryPage()",
+      "file_type": "code",
+      "source_file": "app/hash-prime-groups/tourism-enquiry/page.js",
+      "source_location": "L271",
+      "_origin": "ast",
+      "id": "tourism_enquiry_page_tourismenquirypage",
+      "community": 87,
+      "norm_label": "tourismenquirypage()"
     },
     {
       "label": "layout.js",
@@ -2834,6 +3194,56 @@
       "norm_label": "rootlayout()"
     },
     {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/legal-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "legal_services_layout",
+      "community": 103,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/legal-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "legal_services_layout_metadata",
+      "community": 103,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/legal-services/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "legal_services_layout_layout",
+      "community": 103,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/legal-services/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "legal_services_page",
+      "community": 119,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "LegalServicesPage()",
+      "file_type": "code",
+      "source_file": "app/legal-services/page.js",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "legal_services_page_legalservicespage",
+      "community": 119,
+      "norm_label": "legalservicespage()"
+    },
+    {
       "label": "page.js",
       "file_type": "code",
       "source_file": "app/markets/page.js",
@@ -2862,6 +3272,66 @@
       "id": "markets_page_marketspage",
       "community": 50,
       "norm_label": "marketspage()"
+    },
+    {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/mechanical-machinery-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "mechanical_machinery_services_layout",
+      "community": 104,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/mechanical-machinery-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "mechanical_machinery_services_layout_metadata",
+      "community": 104,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/mechanical-machinery-services/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "mechanical_machinery_services_layout_layout",
+      "community": 104,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/mechanical-machinery-services/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "mechanical_machinery_services_page",
+      "community": 105,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "jsonLd",
+      "file_type": "code",
+      "source_file": "app/mechanical-machinery-services/page.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "mechanical_machinery_services_page_jsonld",
+      "community": 105,
+      "norm_label": "jsonld"
+    },
+    {
+      "label": "MechanicalServicesPage()",
+      "file_type": "code",
+      "source_file": "app/mechanical-machinery-services/page.js",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "mechanical_machinery_services_page_mechanicalservicespage",
+      "community": 105,
+      "norm_label": "mechanicalservicespage()"
     },
     {
       "label": "page.js",
@@ -2912,6 +3382,66 @@
       "id": "privacy_page_privacypolicy",
       "community": 56,
       "norm_label": "privacypolicy()"
+    },
+    {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/real-estate-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "real_estate_services_layout",
+      "community": 106,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/real-estate-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "real_estate_services_layout_metadata",
+      "community": 106,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/real-estate-services/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "real_estate_services_layout_layout",
+      "community": 106,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/real-estate-services/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "real_estate_services_page",
+      "community": 107,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "jsonLd",
+      "file_type": "code",
+      "source_file": "app/real-estate-services/page.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "real_estate_services_page_jsonld",
+      "community": 107,
+      "norm_label": "jsonld"
+    },
+    {
+      "label": "RealEstateServicesPage()",
+      "file_type": "code",
+      "source_file": "app/real-estate-services/page.js",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "real_estate_services_page_realestateservicespage",
+      "community": 107,
+      "norm_label": "realestateservicespage()"
     },
     {
       "label": "robots.js",
@@ -3014,6 +3544,56 @@
       "norm_label": "securitypage()"
     },
     {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/shelter-and-enclosure-works/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "shelter_and_enclosure_works_layout",
+      "community": 108,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/shelter-and-enclosure-works/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "shelter_and_enclosure_works_layout_metadata",
+      "community": 108,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/shelter-and-enclosure-works/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "shelter_and_enclosure_works_layout_layout",
+      "community": 108,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/shelter-and-enclosure-works/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "shelter_and_enclosure_works_page",
+      "community": 123,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "ShelterEnclosurePage()",
+      "file_type": "code",
+      "source_file": "app/shelter-and-enclosure-works/page.js",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "shelter_and_enclosure_works_page_shelterenclosurepage",
+      "community": 123,
+      "norm_label": "shelterenclosurepage()"
+    },
+    {
       "label": "sitemap.js",
       "file_type": "code",
       "source_file": "app/sitemap.js",
@@ -3052,6 +3632,166 @@
       "id": "terms_page_termsofservice",
       "community": 91,
       "norm_label": "termsofservice()"
+    },
+    {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/total-telecom-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "total_telecom_services_layout",
+      "community": 109,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/total-telecom-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "total_telecom_services_layout_metadata",
+      "community": 109,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/total-telecom-services/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "total_telecom_services_layout_layout",
+      "community": 109,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/total-telecom-services/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "total_telecom_services_page",
+      "community": 124,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "TotalTelecomServices()",
+      "file_type": "code",
+      "source_file": "app/total-telecom-services/page.js",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "total_telecom_services_page_totaltelecomservices",
+      "community": 124,
+      "norm_label": "totaltelecomservices()"
+    },
+    {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/tourism-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tourism_services_layout",
+      "community": 110,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/tourism-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tourism_services_layout_metadata",
+      "community": 110,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/tourism-services/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "tourism_services_layout_layout",
+      "community": 110,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/tourism-services/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tourism_services_page",
+      "community": 111,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "jsonLd",
+      "file_type": "code",
+      "source_file": "app/tourism-services/page.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "tourism_services_page_jsonld",
+      "community": 111,
+      "norm_label": "jsonld"
+    },
+    {
+      "label": "TourismServicesPage()",
+      "file_type": "code",
+      "source_file": "app/tourism-services/page.js",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "tourism_services_page_tourismservicespage",
+      "community": 111,
+      "norm_label": "tourismservicespage()"
+    },
+    {
+      "label": "layout.js",
+      "file_type": "code",
+      "source_file": "app/trading-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "trading_services_layout",
+      "community": 112,
+      "norm_label": "layout.js"
+    },
+    {
+      "label": "metadata",
+      "file_type": "code",
+      "source_file": "app/trading-services/layout.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "trading_services_layout_metadata",
+      "community": 112,
+      "norm_label": "metadata"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "app/trading-services/layout.js",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "trading_services_layout_layout",
+      "community": 112,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "page.js",
+      "file_type": "code",
+      "source_file": "app/trading-services/page.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "trading_services_page",
+      "community": 125,
+      "norm_label": "page.js"
+    },
+    {
+      "label": "TradingServicesPage()",
+      "file_type": "code",
+      "source_file": "app/trading-services/page.js",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "trading_services_page_tradingservicespage",
+      "community": 125,
+      "norm_label": "tradingservicespage()"
     },
     {
       "label": "AboutHashPrime.jsx",
@@ -4120,7 +4860,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "models_user",
-      "community": 5,
+      "community": 121,
       "norm_label": "user.js"
     },
     {
@@ -4130,7 +4870,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "models_user_userschema",
-      "community": 5,
+      "community": 121,
       "norm_label": "userschema"
     },
     {
@@ -4202,6 +4942,56 @@
       "id": "postcss_config_config",
       "community": 83,
       "norm_label": "config"
+    },
+    {
+      "label": "fix_kuppusamy_payout_and_dates.js",
+      "file_type": "code",
+      "source_file": "scripts/fix_kuppusamy_payout_and_dates.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "scripts_fix_kuppusamy_payout_and_dates",
+      "community": 77,
+      "norm_label": "fix_kuppusamy_payout_and_dates.js"
+    },
+    {
+      "label": "mongoose",
+      "file_type": "code",
+      "source_file": "scripts/fix_kuppusamy_payout_and_dates.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "scripts_fix_kuppusamy_payout_and_dates_mongoose",
+      "community": 77,
+      "norm_label": "mongoose"
+    },
+    {
+      "label": "fs",
+      "file_type": "code",
+      "source_file": "scripts/fix_kuppusamy_payout_and_dates.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "scripts_fix_kuppusamy_payout_and_dates_fs",
+      "community": 77,
+      "norm_label": "fs"
+    },
+    {
+      "label": "path",
+      "file_type": "code",
+      "source_file": "scripts/fix_kuppusamy_payout_and_dates.js",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "scripts_fix_kuppusamy_payout_and_dates_path",
+      "community": 77,
+      "norm_label": "path"
+    },
+    {
+      "label": "run()",
+      "file_type": "code",
+      "source_file": "scripts/fix_kuppusamy_payout_and_dates.js",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "scripts_fix_kuppusamy_payout_and_dates_run",
+      "community": 77,
+      "norm_label": "run()"
     },
     {
       "label": "fix_wallet_mismatch.js",
@@ -4464,6 +5254,66 @@
       "confidence_score": 1.0,
       "source": "register_page",
       "target": "register_page_registerpage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/abroad-job-consultancy/layout.js",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "abroad_job_consultancy_layout",
+      "target": "abroad_job_consultancy_layout_abroadjobconsultancylayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/abroad-job-consultancy/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "abroad_job_consultancy_layout",
+      "target": "abroad_job_consultancy_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/abroad-job-consultancy/page.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "abroad_job_consultancy_page",
+      "target": "abroad_job_consultancy_page_abroadjobconsultancypage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/ac-sales-and-service/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "ac_sales_and_service_layout",
+      "target": "ac_sales_and_service_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/ac-sales-and-service/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "ac_sales_and_service_layout",
+      "target": "ac_sales_and_service_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/ac-sales-and-service/page.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "ac_sales_and_service_page",
+      "target": "ac_sales_and_service_page_acsalesandservice",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -5085,9 +5935,9 @@
       "source_file": "app/api/admin/investments/monthly-payout/route.js",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "monthly_payout_route",
-      "target": "monthly_payout_route_post",
-      "confidence_score": 1.0
+      "target": "monthly_payout_route_post"
     },
     {
       "relation": "calls",
@@ -6399,6 +7249,16 @@
       "target": "business_enquiry_route_post"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/api/business-enquiry/route.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "business_enquiry_route",
+      "target": "business_enquiry_route_required_fields",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "INFERRED",
@@ -7327,6 +8187,46 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "app/construction-and-works/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "construction_and_works_layout",
+      "target": "construction_and_works_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/construction-and-works/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "construction_and_works_layout",
+      "target": "construction_and_works_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/construction-and-works/page.js",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "construction_and_works_page",
+      "target": "construction_and_works_page_constructionworkspage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/construction-and-works/page.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "construction_and_works_page",
+      "target": "construction_and_works_page_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "app/dashboard/bank/page.js",
       "source_location": "L6",
       "weight": 1.0,
@@ -7817,12 +8717,102 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "app/ericsson-specialized-telecom/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "ericsson_specialized_telecom_layout",
+      "target": "ericsson_specialized_telecom_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/ericsson-specialized-telecom/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "ericsson_specialized_telecom_layout",
+      "target": "ericsson_specialized_telecom_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/ericsson-specialized-telecom/page.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "ericsson_specialized_telecom_page",
+      "target": "ericsson_specialized_telecom_page_ericssontelecompage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "app/features/page.js",
       "source_location": "L10",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "features_page",
       "target": "features_page_featurespage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/fiberoptical-services/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "fiberoptical_services_layout",
+      "target": "fiberoptical_services_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/fiberoptical-services/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "fiberoptical_services_layout",
+      "target": "fiberoptical_services_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/fiberoptical-services/page.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "fiberoptical_services_page",
+      "target": "fiberoptical_services_page_fiberopticalservicespage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/generator-services/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "generator_services_layout",
+      "target": "generator_services_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/generator-services/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "generator_services_layout",
+      "target": "generator_services_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/generator-services/page.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "generator_services_page",
+      "target": "generator_services_page_generatorservicespage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7858,6 +8848,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/hash-prime-groups/page.js",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "hash_prime_groups_page",
+      "target": "hash_prime_groups_page_divisioncard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/hash-prime-groups/page.js",
       "source_location": "L116",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7877,12 +8877,32 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "app/hash-prime-groups/page.js",
-      "source_location": "L42",
+      "source_file": "app/hash-prime-groups/tourism-enquiry/page.js",
+      "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "hash_prime_groups_page",
-      "target": "hash_prime_groups_page_teamcard"
+      "source": "tourism_enquiry_page",
+      "target": "tourism_enquiry_page_tour_types",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/hash-prime-groups/tourism-enquiry/page.js",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tourism_enquiry_page",
+      "target": "tourism_enquiry_page_tourismenquiryform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/hash-prime-groups/tourism-enquiry/page.js",
+      "source_location": "L271",
+      "weight": 1.0,
+      "source": "tourism_enquiry_page",
+      "target": "tourism_enquiry_page_tourismenquirypage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7927,6 +8947,36 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "app/legal-services/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "legal_services_layout",
+      "target": "legal_services_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/legal-services/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "legal_services_layout",
+      "target": "legal_services_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/legal-services/page.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "legal_services_page",
+      "target": "legal_services_page_legalservicespage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "app/markets/page.js",
       "source_location": "L12",
       "weight": 1.0,
@@ -7943,6 +8993,46 @@
       "confidence_score": 1.0,
       "source": "markets_page",
       "target": "markets_page_marketspage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/mechanical-machinery-services/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "mechanical_machinery_services_layout",
+      "target": "mechanical_machinery_services_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/mechanical-machinery-services/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "mechanical_machinery_services_layout",
+      "target": "mechanical_machinery_services_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/mechanical-machinery-services/page.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "mechanical_machinery_services_page",
+      "target": "mechanical_machinery_services_page_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/mechanical-machinery-services/page.js",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "mechanical_machinery_services_page",
+      "target": "mechanical_machinery_services_page_mechanicalservicespage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -7973,6 +9063,46 @@
       "confidence_score": 1.0,
       "source": "privacy_page",
       "target": "privacy_page_privacypolicy"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/real-estate-services/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "real_estate_services_layout",
+      "target": "real_estate_services_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/real-estate-services/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "real_estate_services_layout",
+      "target": "real_estate_services_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/real-estate-services/page.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "real_estate_services_page",
+      "target": "real_estate_services_page_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/real-estate-services/page.js",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "real_estate_services_page",
+      "target": "real_estate_services_page_realestateservicespage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -8047,6 +9177,36 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "app/shelter-and-enclosure-works/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "shelter_and_enclosure_works_layout",
+      "target": "shelter_and_enclosure_works_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/shelter-and-enclosure-works/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "shelter_and_enclosure_works_layout",
+      "target": "shelter_and_enclosure_works_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/shelter-and-enclosure-works/page.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "shelter_and_enclosure_works_page",
+      "target": "shelter_and_enclosure_works_page_shelterenclosurepage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "app/sitemap.js",
       "source_location": "L3",
       "weight": 1.0,
@@ -8063,6 +9223,106 @@
       "confidence_score": 1.0,
       "source": "terms_page",
       "target": "terms_page_termsofservice"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/total-telecom-services/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "total_telecom_services_layout",
+      "target": "total_telecom_services_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/total-telecom-services/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "total_telecom_services_layout",
+      "target": "total_telecom_services_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/total-telecom-services/page.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "total_telecom_services_page",
+      "target": "total_telecom_services_page_totaltelecomservices",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tourism-services/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tourism_services_layout",
+      "target": "tourism_services_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tourism-services/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tourism_services_layout",
+      "target": "tourism_services_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tourism-services/page.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "tourism_services_page",
+      "target": "tourism_services_page_jsonld",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/tourism-services/page.js",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "tourism_services_page",
+      "target": "tourism_services_page_tourismservicespage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/trading-services/layout.js",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "trading_services_layout",
+      "target": "trading_services_layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/trading-services/layout.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "trading_services_layout",
+      "target": "trading_services_layout_metadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/trading-services/page.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "trading_services_page",
+      "target": "trading_services_page_tradingservicespage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -9006,6 +10266,46 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "scripts/fix_kuppusamy_payout_and_dates.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "scripts_fix_kuppusamy_payout_and_dates",
+      "target": "scripts_fix_kuppusamy_payout_and_dates_fs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/fix_kuppusamy_payout_and_dates.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "scripts_fix_kuppusamy_payout_and_dates",
+      "target": "scripts_fix_kuppusamy_payout_and_dates_mongoose",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/fix_kuppusamy_payout_and_dates.js",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "scripts_fix_kuppusamy_payout_and_dates",
+      "target": "scripts_fix_kuppusamy_payout_and_dates_path",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/fix_kuppusamy_payout_and_dates.js",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "scripts_fix_kuppusamy_payout_and_dates",
+      "target": "scripts_fix_kuppusamy_payout_and_dates_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "scripts/fix_wallet_mismatch.js",
       "source_location": "L2",
       "weight": 1.0,
@@ -9125,5 +10425,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1dc6642187e60d409425b8a914840a3a88c46a62"
+  "built_at_commit": "72a6fc2559742c9dde0a3dee9134534117d38502"
 }
