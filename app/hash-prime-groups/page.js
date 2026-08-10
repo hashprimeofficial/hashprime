@@ -152,7 +152,7 @@ const businesses = [
         desc: "End-to-end overseas employment consultancy — from document processing and visa assistance to pre-departure orientation and placement support.",
         href: "/abroad-job-consultancy",
         subItems: ["Document Preparation", "Visa Assistance", "Overseas Placement", "Pre-Departure Orientation"],
-        person: { name: "To Be Assigned", position: "Abroad Job Consultancy Head", experience: 3 },
+        person: { name: "Mr. Mohammed Arif", position: "Abroad Job Consultancy Head", experience: 3 },
     },
 ];
 
