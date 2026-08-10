@@ -1,20 +1,19 @@
 "use client";
 
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
     Zap, Wind, HardHat, Landmark, Scale,
-    Tent, Radio, BarChart3, ArrowUpRight, MapPin, Wrench,
-    User, Briefcase, Clock
+    Tent, Radio, BarChart3, MapPin, Wrench,
+    Plane, ArrowUpRight, User, Briefcase, Clock
 } from 'lucide-react';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-// ─── Data ──────────────────────────────────────────────────────────────────────
-
+// ─── Team ──────────────────────────────────────────────────────────────────────
 const team = [
     { name: "Mr. Vijayabharathi Veerasamy", title: "Founder & Managing Director", img: "/Mr. VIJAYABHARATHI VEERASAMY.jpeg" },
     { name: "Mr. Naveenkumar Mayavan", title: "Co-Founder & CEO", img: "/NAVEENKUMAR MAYAVAN.jpeg" },
@@ -29,105 +28,71 @@ const team = [
     { name: "Mr. Sathish S", title: "AC Sales & Service Operations Head", img: "/SATHISH S.jpg" },
 ];
 
-// ─── Business Divisions — 10 ordered sections ─────────────────────────────────
+// ─── 11 Business Divisions ─────────────────────────────────────────────────────
 const businesses = [
     {
         icon: Zap,
         title: "Total Telecom Service",
         sub: "Total Telecom Service",
         img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=900",
-        desc: "Ensuring 99.99% uptime for global telecom architectures via elite electrical O&M engineering.",
+        desc: "Ensuring 99.99% uptime for telecom architectures via turnkey civil works, tower erection, electrical O&M, and fibre deployment.",
         href: "/total-telecom-services",
         subItems: [
             "New Site Deployment",
             "Tower / Shelter Work",
+            "Erection Work",
             "Electrical Work",
             "Fibre Optical Work",
             "Site Operations / Maintenance",
         ],
-        person: {
-            name: "Mr. Naveenkumar Mayavan",
-            position: "Co-Founder & CEO",
-            experience: 12,
-        },
+        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 10 },
     },
     {
         icon: Wind,
         title: "All Type AC - Sales and Service",
         sub: "All Type AC - Sales and Service",
         img: "https://images.unsplash.com/photo-1527689638836-411945a2b57c?q=80&w=900",
-        desc: "Premium cooling solutions — end-to-end sales, installation and maintenance.",
+        desc: "Premium cooling solutions — end-to-end buy & sell, installation and professional maintenance for all AC brands.",
         href: "/ac-sales-and-service",
-        subItems: [
-            "Buy & Sell",
-            "Service",
-        ],
-        person: {
-            name: "Mr. Sathish S",
-            position: "AC Sales & Service Operations Head",
-            experience: 8,
-        },
+        subItems: ["Buy & Sell", "Service & Maintenance"],
+        person: { name: "Mr. Sathish S", position: "AC Sales & Service Operations Head", experience: 6 },
     },
     {
         icon: HardHat,
         title: "All Type of Construction Service",
         sub: "All Type of Construction Service",
         img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=900",
-        desc: "Structural masterpieces bridging world-class aesthetics and monolithic durability.",
+        desc: "Structural masterpieces blending world-class aesthetics with monolithic durability, from foundations to finishing.",
         href: "/construction-and-works",
-        subItems: [
-            "Construct Buildings",
-            "Interior & Exterior",
-            "Painting",
-            "Gardening",
-        ],
-        person: {
-            name: "Mr. Vijayabharathi Veerasamy",
-            position: "Founder & Managing Director",
-            experience: 15,
-        },
+        subItems: ["Construct Buildings", "Interior & Exterior", "Painting", "Gardening"],
+        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 10 },
     },
     {
         icon: Landmark,
         title: "Real Estate Service",
         sub: "Real Estate Service",
         img: "https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=900",
-        desc: "Aggressive property acquisitions, investments and premium multi-vertical leasing.",
+        desc: "Strategic property acquisitions, farmland investments, and premium multi-vertical leasing across Tamil Nadu.",
         href: "/real-estate-services",
-        subItems: [
-            "Land Buy & Sell",
-            "Rental Land",
-            "Farm Land",
-        ],
-        person: {
-            name: "Mr. Vijayabharathi Veerasamy",
-            position: "Founder & Managing Director",
-            experience: 15,
-        },
+        subItems: ["Land Buy & Sell", "Rental Land", "Farm Land"],
+        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 10 },
     },
     {
         icon: Scale,
         title: "All Type of Legal Service",
         sub: "All Type of Legal Service",
         img: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=900",
-        desc: "Ironclad legal advisory and dispute resolution frameworks for corporate compliance.",
+        desc: "Expert legal advisory and dispute resolution for civil and criminal matters, handled by qualified advocates.",
         href: "/legal-services",
-        subItems: [
-            "Civil",
-            "Criminal",
-        ],
-        person: {
-            name: "Mr. S. Alljeen Jothimani, B.A., B.L.",
-            position: "Advocate & Legal Counsel",
-            experience: 20,
-        },
+        subItems: ["Civil", "Criminal"],
+        person: { name: "Mr. S. Alljeen Jothimani, B.A., B.L.", position: "Advocate & Legal Counsel", experience: 10 },
     },
     {
         icon: Tent,
         title: "All Type of Shelter Work",
         sub: "All Type of Shelter Work",
         img: "https://images.unsplash.com/photo-1502444330042-d1a1ddf9bb5b?q=80&w=900",
-        desc: "Secure, weather-resistant shelter infrastructure deployed with military precision.",
+        desc: "Secure, weather-resistant shelter infrastructure for industrial, generator, electrical and HVAC applications.",
         href: "/shelter-and-enclosure-works",
         subItems: [
             "Industrial Shelter Work",
@@ -137,101 +102,196 @@ const businesses = [
             "Solar Equipment Shelter Work",
             "AC / HVAC Equipment Shelter Work",
         ],
-        person: {
-            name: "Mr. Naveenkumar Mayavan",
-            position: "Co-Founder & CEO",
-            experience: 12,
-        },
+        person: { name: "Mr. Naveenkumar Mayavan", position: "Co-Founder & CEO", experience: 8 },
     },
     {
         icon: Radio,
         title: "All Type of Ericsson Service",
         sub: "All Type of Ericsson Service",
         img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=900",
-        desc: "Turnkey new-site integrations for Ericsson telecommunication cell deployments.",
+        desc: "Turnkey new-site integrations for Ericsson telecommunication cell deployments with precision and compliance.",
         href: "/ericsson-specialized-telecom",
-        subItems: [
-            "Ericsson New Site Deployment",
-            "Ericsson Equipment Installation",
-            "Ericsson Network Optimization",
-        ],
-        person: {
-            name: "Mr. Naveenkumar Mayavan",
-            position: "Co-Founder & CEO",
-            experience: 12,
-        },
+        subItems: ["New Site Deployment", "Equipment Installation", "Network Optimization"],
+        person: { name: "Mr. Naveenkumar Mayavan", position: "Co-Founder & CEO", experience: 8 },
     },
     {
         icon: BarChart3,
         title: "Trading Service",
         sub: "Trading Service",
         img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=900",
-        desc: "Dynamic wholesale trading spanning commodities and crypto markets.",
+        desc: "Dynamic market trading spanning physical commodities and digital crypto assets with strategic research-driven execution.",
         href: "/trading-services",
-        subItems: [
-            "Commodities",
-            "Crypto",
-        ],
-        person: {
-            name: "Mr. Vijayabharathi Veerasamy",
-            position: "Founder & Managing Director",
-            experience: 15,
-        },
+        subItems: ["Commodities", "Crypto"],
+        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 5 },
     },
     {
         icon: MapPin,
         title: "Tourism Services",
         sub: "Tourism Services",
         img: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=900",
-        desc: "Curated luxury travel experiences, tour packages, and end-to-end tourism operations across India and beyond.",
+        desc: "Curated spiritual and luxury travel experiences across India, including the Nava Graha Yatra pilgrim circuit.",
         href: "/tourism-services",
-        subItems: [
-            "Nava Graha Yatra",
-        ],
-        person: {
-            name: "Mr. Manikandaprabu R",
-            position: "Tourism Operations Head",
-            experience: 7,
-        },
+        subItems: ["Nava Graha Yatra", "Pilgrimage Tours", "Domestic Tour Packages"],
+        person: { name: "Mr. Manikandaprabu R", position: "Tourism Operations Head", experience: 7 },
     },
     {
         icon: Wrench,
         title: "All Type of Machinery Service",
         sub: "All Type of Machinery Service",
         img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=900",
-        desc: "Heavy-duty mechanical engineering and precision machinery operations for industrial-scale projects.",
+        desc: "Heavy-duty mechanical engineering, precision machinery operations, and fleet management for industrial projects.",
         href: "/mechanical-machinery-services",
-        subItems: [
-            "Industrial Machinery Services",
-            "Machinery Buy & Sell",
-            "All Type of Vehicle Services",
-        ],
-        person: {
-            name: "Mr. Naresh D",
-            position: "Mechanical & Machinery Operations Head",
-            experience: 10,
-        },
+        subItems: ["Industrial Machinery Services", "Machinery Buy & Sell", "All Type of Vehicle Services"],
+        person: { name: "Mr. Naresh D", position: "Mechanical & Machinery Operations Head", experience: 6 },
+    },
+    {
+        icon: Plane,
+        title: "Abroad Job Consultancy",
+        sub: "Abroad Job Consultancy",
+        img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=900",
+        desc: "End-to-end overseas employment consultancy — from document processing and visa assistance to pre-departure orientation and placement support.",
+        href: "/abroad-job-consultancy",
+        subItems: ["Document Preparation", "Visa Assistance", "Overseas Placement", "Pre-Departure Orientation"],
+        person: { name: "To Be Assigned", position: "Abroad Job Consultancy Head", experience: 3 },
     },
 ];
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
+// ─── Division Card ──────────────────────────────────────────────────────────────
+function DivisionCard({ biz, idx }) {
+    const Icon = biz.icon;
+    return (
+        <Link
+            href={biz.href}
+            className="hpg-biz group relative flex flex-col overflow-hidden rounded-3xl bg-[#0E0E0E]
+                border border-white/[0.06] hover:border-[#d4af35]/40
+                hover:shadow-[0_20px_60px_rgba(212,175,53,0.12)]
+                transition-all duration-700 ease-out md:hover:-translate-y-2 cursor-pointer"
+        >
+            {/* ── Image banner ── */}
+            <div className="relative h-48 overflow-hidden shrink-0">
+                <img
+                    src={biz.img}
+                    alt={biz.title}
+                    className="absolute inset-0 w-full h-full object-cover
+                        brightness-[0.55] group-hover:brightness-[0.7] group-hover:scale-[1.06]
+                        transition-all duration-[1.4s] ease-out"
+                />
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0E] via-[#0E0E0E]/40 to-transparent" />
+                {/* Gold hover tint */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#d4af35]/0 to-[#d4af35]/0
+                    group-hover:from-[#d4af35]/10 group-hover:to-transparent
+                    transition-all duration-700 pointer-events-none" />
 
+                {/* Index + Icon row */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
+                    <span className="text-[11px] font-black tracking-[0.25em] tabular-nums text-white/40
+                        group-hover:text-[#d4af35]/70 transition-colors duration-500">
+                        {String(idx + 1).padStart(2, '0')}
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-black/50 backdrop-blur-sm border border-white/10
+                        flex items-center justify-center
+                        group-hover:bg-[#d4af35] group-hover:border-[#d4af35]
+                        transition-all duration-500">
+                        <Icon className="w-5 h-5 text-[#d4af35] group-hover:text-black transition-colors duration-500" />
+                    </div>
+                </div>
+
+                {/* Gold scan line */}
+                <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#d4af35]/50 to-transparent
+                    opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            </div>
+
+            {/* ── Content body ── */}
+            <div className="flex flex-col flex-1 p-6 gap-4">
+
+                {/* Title */}
+                <h3 className="text-lg font-black text-white/90 group-hover:text-white
+                    tracking-tight leading-snug transition-colors duration-400">
+                    {biz.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-slate-500 leading-relaxed line-clamp-3 group-hover:text-slate-400
+                    transition-colors duration-400">
+                    {biz.desc}
+                </p>
+
+                {/* Sub-services pills */}
+                <div className="flex flex-wrap gap-1.5">
+                    {biz.subItems.slice(0, 4).map((item, i) => (
+                        <span key={i}
+                            className="text-[10px] font-bold px-2.5 py-1 rounded-full
+                                bg-white/[0.04] border border-white/[0.07] text-slate-500
+                                group-hover:border-[#d4af35]/20 group-hover:text-slate-400
+                                transition-all duration-400">
+                            {item}
+                        </span>
+                    ))}
+                    {biz.subItems.length > 4 && (
+                        <span className="text-[10px] font-bold px-2.5 py-1 rounded-full
+                            bg-[#d4af35]/[0.06] border border-[#d4af35]/20 text-[#d4af35]/70">
+                            +{biz.subItems.length - 4} more
+                        </span>
+                    )}
+                </div>
+
+                {/* Separator */}
+                <div className="h-px bg-white/[0.05] group-hover:bg-[#d4af35]/15 transition-colors duration-500" />
+
+                {/* Division head bio */}
+                <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#d4af35]/10 border border-[#d4af35]/20
+                        flex items-center justify-center shrink-0">
+                        <User className="w-3.5 h-3.5 text-[#d4af35]" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                        <p className="text-[11px] font-black text-white/80 leading-snug truncate">
+                            {biz.person.name}
+                        </p>
+                        <div className="flex items-center gap-2 mt-0.5">
+                            <Briefcase className="w-3 h-3 text-[#d4af35]/50 shrink-0" />
+                            <p className="text-[10px] text-slate-600 truncate">{biz.person.position}</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-1 shrink-0">
+                        <Clock className="w-3 h-3 text-[#d4af35]/50" />
+                        <span className="text-[10px] font-black text-[#d4af35]">{biz.person.experience}+</span>
+                        <span className="text-[10px] text-slate-600">yrs</span>
+                    </div>
+                </div>
+
+                {/* CTA row */}
+                <div className="flex items-center justify-between mt-auto pt-1">
+                    <span className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-700
+                        group-hover:text-[#d4af35] transition-colors duration-500">
+                        View Services
+                    </span>
+                    <div className="w-8 h-8 rounded-full border border-white/[0.08]
+                        flex items-center justify-center
+                        group-hover:bg-[#d4af35] group-hover:border-[#d4af35]
+                        transition-all duration-500">
+                        <ArrowUpRight className="w-3.5 h-3.5 text-slate-600 group-hover:text-black
+                            group-hover:rotate-45 transition-all duration-300" />
+                    </div>
+                </div>
+            </div>
+        </Link>
+    );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 export default function HashPrimeGroupsPage() {
     const pageRef = useRef(null);
-    const [activeBiz, setActiveBiz] = useState(null);
 
     useGSAP(() => {
-        // ── Hero entrance ────────────────────────────────────────────────────
-        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-        heroTl
-            .fromTo('.hpg-badge', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 0.2)
-            .fromTo('.hpg-h1-line1', { y: 80, opacity: 0, skewY: 4 }, { y: 0, opacity: 1, skewY: 0, duration: 1 }, 0.45)
-            .fromTo('.hpg-h1-line2', { y: 80, opacity: 0, skewY: 4 }, { y: 0, opacity: 1, skewY: 0, duration: 1 }, 0.6)
-            .fromTo('.hpg-sub', { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 0.85)
-            .fromTo('.hpg-ctas', { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 1.0)
-            .fromTo('.hpg-stats', { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 1.15);
+        // Hero entrance
+        gsap.timeline({ defaults: { ease: 'power3.out' } })
+            .fromTo('.hpg-h1', { y: 80, opacity: 0, skewY: 4 }, { y: 0, opacity: 1, skewY: 0, duration: 1 }, 0.3)
+            .fromTo('.hpg-sub', { y: 32, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, 0.6)
+            .fromTo('.hpg-badge', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6 }, 0.5);
 
-        // ── Reveal on scroll ──────────────────────────────────────────────────
+        // Reveal on scroll
         gsap.utils.toArray('.reveal-up').forEach((el) => {
             gsap.fromTo(el, { y: 60, opacity: 0 }, {
                 y: 0, opacity: 1, duration: 1, ease: 'power3.out',
@@ -239,43 +299,42 @@ export default function HashPrimeGroupsPage() {
             });
         });
 
-        // ── Team cards ───────────────────────────────────────────────────────
+        // Division cards stagger
+        gsap.fromTo('.hpg-biz', { y: 70, opacity: 0, scale: 0.95 }, {
+            y: 0, opacity: 1, scale: 1, duration: 0.75, stagger: 0.07, ease: 'power3.out',
+            scrollTrigger: { trigger: '.hpg-biz-grid', start: 'top 82%', once: true }
+        });
+
+        // Team cards
         gsap.fromTo('.hpg-card', { y: 80, opacity: 0 }, {
             y: 0, opacity: 1, duration: 0.9, stagger: 0.09, ease: 'back.out(1.1)',
             scrollTrigger: { trigger: '.hpg-team-grid', start: 'top 80%', once: true }
         });
-
-        // ── Business rows ────────────────────────────────────────────────────
-        gsap.fromTo('.hpg-biz', { y: 70, opacity: 0, scale: 0.96 }, {
-            y: 0, opacity: 1, scale: 1, duration: 0.75, stagger: 0.055, ease: 'power3.out',
-            scrollTrigger: { trigger: '.hpg-biz-grid', start: 'top 82%', once: true }
-        });
-
-        // ── Stat counters ────────────────────────────────────────────────────
-        gsap.fromTo('.hpg-stat-item', { y: 30, opacity: 0 }, {
-            y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out',
-            scrollTrigger: { trigger: '.hpg-stats-row', start: 'top 88%', once: true }
-        });
-
     }, { scope: pageRef });
 
     return (
         <div ref={pageRef} className="relative bg-[#050505] overflow-x-hidden">
 
-            {/* ── Global dot-grid ───────────────────────────────────────────── */}
+            {/* Global dot-grid */}
             <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.025]"
                 style={{ backgroundImage: 'radial-gradient(#d4af35 1px, transparent 1px)', backgroundSize: '36px 36px' }} />
 
-            {/* ══════════════════════════════════════════════════════════════════
-                A. HERO
-            ══════════════════════════════════════════════════════════════════ */}
+            {/* ══ HERO ══════════════════════════════════════════════════════ */}
             <section className="relative z-10 py-36 px-6 flex flex-col items-center text-center overflow-hidden">
                 <div className="absolute -left-40 top-0 w-[600px] h-[600px] bg-[#d4af35] rounded-full blur-[200px] opacity-[0.05] pointer-events-none" />
                 <div className="absolute -right-40 bottom-0 w-[500px] h-[500px] bg-[#d4af35] rounded-full blur-[180px] opacity-[0.03] pointer-events-none" />
-                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(212,175,53,0.02)_0%,transparent_50%,rgba(212,175,53,0.01)_100%)] pointer-events-none" />
+
+                <div className="hpg-badge inline-flex items-center gap-2 px-4 py-2 rounded-full
+                    bg-[#121212] border border-[#d4af35]/20 mb-8">
+                    <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af35] opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af35]" />
+                    </span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">11 Business Verticals</span>
+                </div>
 
                 <div className="relative overflow-hidden leading-none">
-                    <h1 className="hpg-h1-line2 text-[15vw] md:text-[10vw] lg:text-[8vw] font-black tracking-[-0.03em] uppercase leading-[0.9] text-shine">
+                    <h1 className="hpg-h1 text-[15vw] md:text-[10vw] lg:text-[8vw] font-black tracking-[-0.03em] uppercase leading-[0.9] text-shine">
                         Hash Prime
                     </h1>
                 </div>
@@ -285,7 +344,7 @@ export default function HashPrimeGroupsPage() {
                 <p className="hpg-sub text-base md:text-lg text-slate-400 leading-relaxed max-w-lg mx-auto">
                     We operate{" "}
                     <span className="text-white font-semibold relative inline-block">
-                        10 Business Divisions
+                        11 Business Divisions
                         <span className="absolute -bottom-px left-0 right-0 h-px bg-[#d4af35]/60" />
                     </span>
                     {" "}all over Tamil Nadu.
@@ -294,169 +353,33 @@ export default function HashPrimeGroupsPage() {
 
             <div className="absolute top-[85vh] right-[-12%] w-[700px] h-[700px] bg-[#d4af35] opacity-[0.03] rounded-full blur-[150px] pointer-events-none z-0" />
 
-            {/* ══════════════════════════════════════════════════════════════════
-                B. THE 10 DIVISIONS — Expandable rows with sub-items & person bio
-            ══════════════════════════════════════════════════════════════════ */}
-            <section id="divisions" className="relative z-10 py-4 px-6 md:px-16">
+            {/* ══ DIVISIONS GRID ══════════════════════════════════════════ */}
+            <section id="divisions" className="relative z-10 py-4 pb-24 px-6 md:px-16">
 
                 {/* Section header */}
-                <div className="reveal-up max-w-[90rem] mx-auto mb-16">
+                <div className="reveal-up max-w-[90rem] mx-auto mb-14">
                     <div className="flex flex-col md:flex-row md:items-end gap-8 justify-between">
                         <div>
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-[#d4af35]/20 mb-6">
-                                <span className="relative flex h-2 w-2">
-                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af35] opacity-75" />
-                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af35]" />
-                                </span>
-                                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">10 Verticals</span>
-                            </div>
                             <h2 className="text-5xl md:text-7xl font-black text-white tracking-tight leading-[0.95]">
                                 Our Business<br /><span className="text-[#d4af35]">Divisions</span>
                             </h2>
                         </div>
                         <p className="text-slate-500 text-base max-w-sm leading-relaxed md:text-right">
-                            Click any row to expand services and meet the division head.
+                            Click any division to view detailed services and submit an enquiry.
                         </p>
                     </div>
                 </div>
 
-                {/* Expandable list */}
-                <div className="hpg-biz-grid max-w-[90rem] mx-auto">
-                    {businesses.map((biz, idx) => {
-                        const Icon = biz.icon;
-                        const isOpen = activeBiz === idx;
-                        return (
-                            <div key={idx} className="hpg-biz border-b border-white/[0.06] last:border-b-0">
-
-                                {/* ── Row header — toggles expand ── */}
-                                <button
-                                    onClick={() => setActiveBiz(isOpen ? null : idx)}
-                                    className="group relative w-full flex items-center gap-6 md:gap-10 px-4 md:px-8 py-6 md:py-7
-                                        hover:bg-[#0E0E0E] transition-all duration-500 ease-out cursor-pointer overflow-hidden text-left"
-                                >
-                                    {/* Gold sweep */}
-                                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-[#d4af35]/[0.04] via-[#d4af35]/[0.02] to-transparent
-                                        group-hover:translate-x-0 transition-transform duration-700 ease-out pointer-events-none" />
-
-                                    {/* Index */}
-                                    <span className="shrink-0 text-[11px] md:text-xs font-black tabular-nums tracking-[0.18em]
-                                        text-white/20 group-hover:text-[#d4af35]/50 transition-colors duration-[400ms] w-6 text-right select-none">
-                                        {String(idx + 1).padStart(2, '0')}
-                                    </span>
-
-                                    {/* Icon */}
-                                    <div className={`shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-xl border
-                                        flex items-center justify-center transition-all duration-500 ease-out
-                                        ${isOpen
-                                            ? 'bg-[#d4af35] border-[#d4af35]'
-                                            : 'bg-[#121212] border-white/[0.06] group-hover:bg-[#d4af35] group-hover:border-[#d4af35]'
-                                        }`}>
-                                        <Icon className={`w-5 h-5 transition-colors duration-500
-                                            ${isOpen ? 'text-black' : 'text-[#d4af35] group-hover:text-black'}`} />
-                                    </div>
-
-                                    {/* Title */}
-                                    <p className={`flex-1 text-base md:text-xl lg:text-2xl font-black tracking-tight transition-colors duration-[400ms] leading-snug
-                                        ${isOpen ? 'text-white' : 'text-white/80 group-hover:text-white'}`}>
-                                        {biz.title}
-                                    </p>
-
-                                    {/* Desktop divider line */}
-                                    <div className="hidden md:block h-px flex-1 max-w-[160px] bg-white/[0.04]
-                                        group-hover:bg-[#d4af35]/30 transition-colors duration-500" />
-
-                                    {/* Expand indicator */}
-                                    <div className={`shrink-0 w-9 h-9 md:w-10 md:h-10 rounded-full border
-                                        flex items-center justify-center transition-all duration-500 ease-out
-                                        ${isOpen
-                                            ? 'bg-[#d4af35] border-[#d4af35]'
-                                            : 'border-white/[0.08] group-hover:bg-[#d4af35] group-hover:border-[#d4af35]'
-                                        }`}>
-                                        <ArrowUpRight className={`w-4 h-4 transition-all duration-300
-                                            ${isOpen ? 'text-black rotate-90' : 'text-slate-600 group-hover:text-black group-hover:rotate-45'}`} />
-                                    </div>
-                                </button>
-
-                                {/* ── Expandable detail panel ── */}
-                                <div className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
-                                    ${isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                                    <div className="px-4 md:px-8 pb-8 pt-2 flex flex-col lg:flex-row gap-8">
-
-                                        {/* Sub-items */}
-                                        <div className="flex-1">
-                                            <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#d4af35]/60 mb-4">
-                                                Services Offered
-                                            </p>
-                                            <ul className="space-y-2.5">
-                                                {biz.subItems.map((item, i) => (
-                                                    <li key={i} className="flex items-center gap-3 text-sm md:text-base text-slate-300">
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35]/60 shrink-0" />
-                                                        {item}
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        {/* Vertical separator — desktop */}
-                                        <div className="hidden lg:block w-px bg-white/[0.06] self-stretch" />
-
-                                        {/* Person-in-charge bio card */}
-                                        <div className="lg:w-64 shrink-0 flex flex-col gap-3">
-                                            <p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#d4af35]/60">
-                                                Division Head
-                                            </p>
-                                            <div className="rounded-2xl bg-[#0d0d0d] border border-white/[0.06] p-5 space-y-3
-                                                [box-shadow:inset_0_0_30px_rgba(212,175,53,0.04)]">
-                                                {/* Name */}
-                                                <div className="flex items-start gap-3">
-                                                    <div className="w-8 h-8 rounded-lg bg-[#d4af35]/10 border border-[#d4af35]/20 flex items-center justify-center shrink-0 mt-0.5">
-                                                        <User className="w-4 h-4 text-[#d4af35]" />
-                                                    </div>
-                                                    <p className="text-[12px] font-black text-white leading-snug pt-1">
-                                                        {biz.person.name}
-                                                    </p>
-                                                </div>
-
-                                                <div className="h-px bg-white/[0.05]" />
-
-                                                {/* Position */}
-                                                <div className="flex items-center gap-3">
-                                                    <Briefcase className="w-3.5 h-3.5 text-[#d4af35]/60 shrink-0" />
-                                                    <p className="text-[11px] text-slate-400 leading-snug">
-                                                        {biz.person.position}
-                                                    </p>
-                                                </div>
-
-                                                {/* Experience */}
-                                                <div className="flex items-center gap-3">
-                                                    <Clock className="w-3.5 h-3.5 text-[#d4af35]/60 shrink-0" />
-                                                    <p className="text-[11px] text-slate-400">
-                                                        <span className="text-[#d4af35] font-black">{biz.person.experience}+</span> Years of Experience
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            {/* Enquiry CTA */}
-                                            <Link
-                                                href={biz.href || `/hash-prime-groups/enquiry?field=${encodeURIComponent(biz.sub)}`}
-                                                className="inline-flex w-full items-center justify-center gap-2 px-4 py-2.5
-                                                    rounded-xl bg-[#d4af35] text-black text-[11px] font-black uppercase tracking-[0.2em]
-                                                    hover:bg-[#e8c547] transition-colors duration-300"
-                                            >
-                                                Enquire Now <ArrowUpRight className="w-3.5 h-3.5" />
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-                    })}
+                {/* Card grid */}
+                <div className="hpg-biz-grid max-w-[90rem] mx-auto
+                    grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                    {businesses.map((biz, idx) => (
+                        <DivisionCard key={idx} biz={biz} idx={idx} />
+                    ))}
                 </div>
             </section>
 
-            {/* ══════════════════════════════════════════════════════════════════
-                C. EXECUTIVE DIRECTORS — 3D flip cards
-            ══════════════════════════════════════════════════════════════════ */}
+            {/* ══ EXECUTIVE DIRECTORS — 3D flip cards ═══════════════════ */}
             <section className="relative z-10 py-24 px-6 md:px-16">
                 <div className="reveal-up max-w-[90rem] mx-auto">
 
@@ -549,9 +472,7 @@ export default function HashPrimeGroupsPage() {
                 </div>
             </section>
 
-            {/* ══════════════════════════════════════════════════════════════════
-                D. MONOLITHIC CONTACT FOOTER
-            ══════════════════════════════════════════════════════════════════ */}
+            {/* ══ CONTACT FOOTER ════════════════════════════════════════ */}
             <section className="relative z-10 py-12 md:py-16 px-6 flex flex-col items-center text-center">
                 <div className="reveal-up mb-6 max-w-2xl mx-auto">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-[#d4af35]/20 mb-2">
