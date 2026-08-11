@@ -476,8 +476,9 @@ Stats hover:   Number to gold, label stays white                        [300ms]
 
 | Name | Role | Photo File |
 |---|---|---|
-| Mr. Ravi Maarimuthu | Managing Director | `Mr. RAVI MAARIMUTHU.jpeg` |
+| Mr. Vijayabharathi Veerasamy | Founder & Managing Director | `Mr. VIJAYABHARATHI VEERASAMY.jpeg` |
 | Mr. Naveenkumar Mayavan | Co-Founder & CEO | `NAVEENKUMAR MAYAVAN.jpeg` |
+| Mr. Ravi Maarimuthu | Construction Operations Head | `Mr. RAVI MAARIMUTHU.jpeg` |
 | Mrs. Hemalatha Kannan | HR Manager | `HEMALATHA KANNAN.png` |
 | Mr. Kannan Thangavel | Accounts Manager | `Mr.KANNAN THANGAVEL.jpeg` |
 | Mr. Murugaraj Elangovan | Mayiladuthurai District Zonal Manager | `MURUGARAJ ELANGOVAN.jpeg` |

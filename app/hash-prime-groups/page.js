@@ -15,8 +15,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 // ─── Team ──────────────────────────────────────────────────────────────────────
 const team = [
-    { name: "Mr. Ravi Maarimuthu", title: "Managing Director", img: "/Mr. RAVI MAARIMUTHU.jpeg" },
+    { name: "Mr. Vijayabharathi Veerasamy", title: "Founder & Managing Director", img: "/Mr. VIJAYABHARATHI VEERASAMY.jpeg" },
     { name: "Mr. Naveenkumar Mayavan", title: "Co-Founder & CEO", img: "/NAVEENKUMAR MAYAVAN.jpeg" },
+    { name: "Mr. Ravi Maarimuthu", title: "Construction Operations Head", img: "/Mr. RAVI MAARIMUTHU.jpeg" },
     { name: "Mrs. Hemalatha Kannan", title: "HR Manager", img: "/HEMALATHA KANNAN.png" },
     { name: "Mr. Kannan Thangavel", title: "Accounts Manager", img: "/Mr.KANNAN THANGAVEL.jpeg" },
     { name: "Mr. Murugaraj Elangovan", title: "Mayiladuthurai District Zonal Manager", img: "/MURUGARAJ ELANGOVAN.jpeg" },
@@ -44,7 +45,7 @@ const businesses = [
             "Fibre Optical Work",
             "Site Operations / Maintenance",
         ],
-        person: { name: "Mr. Ravi Maarimuthu", position: "Managing Director", experience: 15 },
+        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 10 },
     },
     {
         icon: Wind,
@@ -64,7 +65,7 @@ const businesses = [
         desc: "Structural masterpieces blending world-class aesthetics with monolithic durability, from foundations to finishing.",
         href: "/construction-and-works",
         subItems: ["Construct Buildings", "Interior & Exterior", "Painting", "Gardening"],
-        person: { name: "Mr. Ravi Maarimuthu", position: "Managing Director", experience: 15 },
+        person: { name: "Mr. Ravi Maarimuthu", position: "Construction Operations Head", experience: 15 },
     },
     {
         icon: Landmark,
@@ -74,7 +75,7 @@ const businesses = [
         desc: "Strategic property acquisitions, farmland investments, and premium multi-vertical leasing across Tamil Nadu.",
         href: "/real-estate-services",
         subItems: ["Land Buy & Sell", "Rental Land", "Farm Land"],
-        person: { name: "Mr. Ravi Maarimuthu", position: "Managing Director", experience: 15 },
+        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 10 },
     },
     {
         icon: Scale,
@@ -101,7 +102,7 @@ const businesses = [
             "Solar Equipment Shelter Work",
             "AC / HVAC Equipment Shelter Work",
         ],
-        person: { name: "Mr. Ravi Maarimuthu", position: "Managing Director", experience: 15 },
+        person: { name: "Mr. Ravi Maarimuthu", position: "Construction & Shelter Head", experience: 15 },
     },
     {
         icon: BarChart3,
@@ -111,7 +112,7 @@ const businesses = [
         desc: "Dynamic market trading spanning physical commodities and digital crypto assets with strategic research-driven execution.",
         href: "/trading-services",
         subItems: ["Commodities", "Crypto"],
-        person: { name: "Mr. Ravi Maarimuthu", position: "Managing Director", experience: 15 },
+        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 5 },
     },
     {
         icon: MapPin,

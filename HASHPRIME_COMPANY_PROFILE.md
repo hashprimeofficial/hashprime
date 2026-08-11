@@ -165,8 +165,8 @@
 *   **Eyebrow:** `● EXECUTIVE LEADERSHIP`
 *   **Title:** The **Execution Force**
 *   **Our Board of Directors:**
-    *   **Mr. Kannan Thangavel** — Accounts Manager
-    *   **Mr. Ravi Maarimuthu** — Managing Director
+    *   **Mr. Vijayabharathi Veerasamy** — Founder & Managing Director
+    *   **Mr. Ravi Maarimuthu** — Construction Operations Head
     *   **Mrs. Hemalatha Kannan** — HR Manager
     *   **Mr. Naveenkumar Mayavan** — Co-Founder & CEO
     *   **Mr. Murugaraj Elangovan** — Mayiladuthurai District Zonal Manager
