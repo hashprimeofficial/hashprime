@@ -3077,7 +3077,7 @@
       "label": "businesses",
       "file_type": "code",
       "source_file": "app/hash-prime-groups/page.js",
-      "source_location": "L33",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "hash_prime_groups_page_businesses",
       "community": 20,
@@ -3087,7 +3087,7 @@
       "label": "DivisionCard()",
       "file_type": "code",
       "source_file": "app/hash-prime-groups/page.js",
-      "source_location": "L140",
+      "source_location": "L141",
       "_origin": "ast",
       "id": "hash_prime_groups_page_divisioncard",
       "community": 20,
@@ -3097,7 +3097,7 @@
       "label": "HashPrimeGroupsPage()",
       "file_type": "code",
       "source_file": "app/hash-prime-groups/page.js",
-      "source_location": "L269",
+      "source_location": "L270",
       "_origin": "ast",
       "id": "hash_prime_groups_page_hashprimegroupspage",
       "community": 20,
@@ -10425,5 +10425,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "71ee03d6c6fa4bb1be264997be36f1f87c1b26e7"
+  "built_at_commit": "79808c2854106d21dc32cb1132358caab859df58"
 }

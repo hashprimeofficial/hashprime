@@ -17,12 +17,13 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 const team = [
     { name: "Mr. Vijayabharathi Veerasamy", title: "Founder & Managing Director", img: "/Mr. VIJAYABHARATHI VEERASAMY.jpeg" },
     { name: "Mr. Naveenkumar Mayavan", title: "Co-Founder & CEO", img: "/NAVEENKUMAR MAYAVAN.jpeg" },
-    { name: "Mr. Ravi Maarimuthu", title: "Construction Operations Head", img: "/Mr. RAVI MAARIMUTHU.jpeg" },
     { name: "Mrs. Hemalatha Kannan", title: "HR Manager", img: "/HEMALATHA KANNAN.png" },
     { name: "Mr. Kannan Thangavel", title: "Accounts Manager", img: "/Mr.KANNAN THANGAVEL.jpeg" },
     { name: "Mr. Murugaraj Elangovan", title: "Mayiladuthurai District Zonal Manager", img: "/MURUGARAJ ELANGOVAN.jpeg" },
     { name: "Mrs. Priyadharshini Ragupathi", title: "Salem District Zonal Manager", img: "/PRIYADHARSHINI RAGUPATHI.png" },
     { name: "Mrs. Sudha Sasikumar", title: "Thiruvarur District Zonal Manager", img: "/SUDHA SASIKUMAR.png" },
+    { name: "Mr. Ravi Maarimuthu", title: "Construction Operations Head", img: "/Mr. RAVI MAARIMUTHU.jpeg" },
+
     { name: "Mr. S. Alljeen Jothimani, B.A., B.L.", title: "Advocate & Legal Counsel", img: "/S. ALLJEEN JOTHIMANI.jpg" },
     { name: "Mr. Manikandaprabu R", title: "Tourism Operations Head", img: "/MANIKANDAPRABU R.jpeg" },
     { name: "Mr. Naresh D", title: "Mechanical & Machinery Operations Head", img: "/NARESH D.jpeg" },
@@ -102,7 +103,7 @@ const businesses = [
             "Solar Equipment Shelter Work",
             "AC / HVAC Equipment Shelter Work",
         ],
-        person: { name: "Mr. Ravi Maarimuthu", position: "Construction & Shelter Head", experience: 15 },
+        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 10 },
     },
     {
         icon: BarChart3,
