@@ -32,7 +32,7 @@ const schemes = [
         title: "Pro Capitalist",
         period: "1 Year Scheme",
         duration: "365 Days",
-        benefit: "80%",
+        benefit: "100%",
         benefitCurrency: "INR (₹)",
         investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
         featured: true
@@ -42,7 +42,7 @@ const schemes = [
         title: "Legacy Wealth",
         period: "5 Year Scheme",
         duration: "5 Years",
-        benefit: "500%",
+        benefit: "530%",
         benefitCurrency: "INR (₹)",
         investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
     },
