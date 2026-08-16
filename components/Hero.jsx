@@ -148,7 +148,7 @@ export default function Hero() {
                             </div>
                             <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Live Yield</span>
                         </div>
-                        <div className="text-2xl font-black text-white">+500%</div>
+                        <div className="text-2xl font-black text-white">+530%</div>
                         <div className="text-[10px] text-[#d4af35] font-bold mt-1">Highest returns</div>
                     </div>
 

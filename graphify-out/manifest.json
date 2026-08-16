@@ -435,8 +435,8 @@
     "semantic_hash": "8238f41d2bec3d38526f9b97f80e3d55"
   },
   "components/DetailedSchemes.jsx": {
-    "mtime": 1786379518.794474,
-    "ast_hash": "f8a731fa1b70b80bb0811b0d707a942b",
+    "mtime": 1786497783.6134648,
+    "ast_hash": "fe00112e9d23603248e890b6a113446a",
     "semantic_hash": ""
   },
   "components/Footer.jsx": {
@@ -455,9 +455,9 @@
     "semantic_hash": "e26748942ae752ecd1ce487ed79784ef"
   },
   "components/Hero.jsx": {
-    "mtime": 1782192517.3884244,
-    "ast_hash": "9faa2663af46b3cfd67f491e4e6afc3e",
-    "semantic_hash": "9faa2663af46b3cfd67f491e4e6afc3e"
+    "mtime": 1786889798.4098032,
+    "ast_hash": "e2dbd841f2fdcd39441608ef2be061fd",
+    "semantic_hash": ""
   },
   "components/HowToStart.jsx": {
     "mtime": 1786379563.1460183,
