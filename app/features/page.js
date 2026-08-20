@@ -22,14 +22,14 @@ export default function FeaturesPage() {
     }, { scope: containerRef });
 
     return (
-        <div ref={containerRef} className="min-h-screen bg-[#121212]/5 text-slate-100 pt-32 flex flex-col items-center">
+        <div ref={containerRef} className="min-h-screen bg-[#0A0A0A] text-slate-100 pt-32 flex flex-col items-center">
             <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#d4af35]/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2 -translate-x-1/4"></div>
-            <div className="w-full relative z-10 px-6 max-w-7xl mx-auto mb-20 text-center">
-                <h1 className="reveal-text text-6xl md:text-8xl font-black mb-8 tracking-tighter text-white leading-none mt-12">
-                    <span className="text-[#d4af35]">Built In.</span>
+            <div className="w-full relative z-10 px-6 max-w-7xl mx-auto mb-12 text-center">
+                <h1 className="reveal-text text-5xl md:text-7xl font-black mb-6 tracking-tight text-white leading-none mt-8">
+                    Built For <span className="text-[#d4af35]">Engineering Precision</span>
                 </h1>
-                <p className="reveal-text text-xl md:text-2xl text-slate-500 font-medium max-w-2xl mx-auto leading-relaxed">
-                    Designed from the ground up to give you the ultimate investment advantage.
+                <p className="reveal-text text-lg md:text-xl text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
+                    Delivering carrier-grade infrastructure, strict QA standards, and milestone-governed turnkey execution.
                 </p>
             </div>
 

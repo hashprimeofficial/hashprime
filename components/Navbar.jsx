@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
-import { Menu, X, LayoutDashboard } from 'lucide-react';
+import { Menu, X, LayoutDashboard, PhoneCall } from 'lucide-react';
 import useSWR from 'swr';
 
 gsap.registerPlugin(useGSAP);
@@ -18,15 +18,9 @@ export default function Navbar() {
     const containerRef = useRef(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [mounted, setMounted] = useState(false);
     const pathname = usePathname();
 
-    useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setMounted(true);
-    }, []);
-
-    // Lightweight auth check for showing Dashboard button
+    // Lightweight auth check for showing Dashboard button if logged in
     const { data: authData } = useSWR('/api/auth/me', fetcher, {
         shouldRetryOnError: false,
         revalidateOnFocus: false,
@@ -34,9 +28,10 @@ export default function Navbar() {
     const isLoggedIn = !!authData?.user;
 
     const navLinks = [
-        { href: '/features', label: 'Features' },
-        { href: '/schemes', label: 'Schemes' },
-        { href: '/hash-prime-groups', label: 'Our Business' },
+        { href: '/hash-prime-groups', label: 'Divisions' },
+        { href: '/company-facts', label: 'Company Facts' },
+        { href: '/compliance', label: 'Compliance' },
+        { href: '/#contact', label: 'Contact' },
     ];
 
     useEffect(() => {
@@ -127,11 +122,9 @@ export default function Navbar() {
                                     }`} />
                             </Link>
                         ))}
-
-
                     </nav>
 
-                    <div className="flex items-center space-x-6">
+                    <div className="flex items-center space-x-4">
                         {isLoggedIn ? (
                             <div ref={ctaRef} className="hidden md:inline-block p-2 -m-2">
                                 <Link
@@ -144,20 +137,16 @@ export default function Navbar() {
                                 </Link>
                             </div>
                         ) : (
-                            <>
-                                <Link href="/login" className="hidden md:block text-xs uppercase tracking-widest font-bold text-slate-400 hover:text-white transition-colors">
-                                    Login
+                            <div ref={ctaRef} className="hidden md:inline-block p-2 -m-2">
+                                <Link
+                                    href="/#contact"
+                                    className="relative flex items-center gap-2 bg-[#d4af35] text-[#0A0A0A] px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-black overflow-hidden group hover:shadow-[0_0_20px_rgba(212,175,53,0.4)] transition-all duration-500"
+                                >
+                                    <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                                    <PhoneCall className="w-3.5 h-3.5 relative z-10 text-[#0A0A0A]" />
+                                    <span className="relative z-10">Get In Touch</span>
                                 </Link>
-                                <div ref={ctaRef} className="hidden md:inline-block p-2 -m-2">
-                                    <Link
-                                        href="/register"
-                                        className="relative flex items-center gap-2 bg-[#d4af35] text-[#0A0A0A] px-6 py-2.5 rounded-full text-xs uppercase tracking-widest font-black overflow-hidden group hover:shadow-[0_0_20px_rgba(212,175,53,0.4)] transition-all duration-500"
-                                    >
-                                        <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                                        <span className="relative z-10">Get Started</span>
-                                    </Link>
-                                </div>
-                            </>
+                            </div>
                         )}
 
                         <button
@@ -180,42 +169,41 @@ export default function Navbar() {
                         <Image
                             src="/textonly.png"
                             alt="Hashprime Logo"
-                            width={120}
-                            height={32}
+                            width={140}
+                            height={40}
                             className="object-contain brightness-0 invert opacity-90"
                         />
                     </Link>
-                    <button className="p-2 text-slate-400 hover:text-[#d4af35] transition-colors bg-[#121212]/50 rounded-full border border-white/5" onClick={() => setIsMobileMenuOpen(false)}>
-                        <X className="w-6 h-6" />
+                    <button
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white"
+                    >
+                        <X size={20} />
                     </button>
                 </div>
 
-                <div className="flex-grow flex flex-col px-8 py-16 space-y-10 overflow-y-auto relative z-10">
-                    {navLinks.map(({ href, label }, i) => (
+                <div className="flex-1 flex flex-col justify-center px-8 space-y-6 relative z-10">
+                    {navLinks.map(({ href, label }) => (
                         <Link
                             key={href}
                             href={href}
-                            className={`offcanvas-link text-4xl font-black transition-colors duration-300 ${pathname === href ? 'text-[#d4af35]' : 'text-slate-300 hover:text-white'}`}
                             onClick={() => setIsMobileMenuOpen(false)}
+                            className="offcanvas-link text-2xl font-black uppercase tracking-tight text-white hover:text-[#d4af35] transition-colors"
                         >
-                            <span className="text-sm font-bold text-[#d4af35]/50 mr-4">0{i + 1}</span>
                             {label}
                         </Link>
                     ))}
-
+                    <Link
+                        href="/#contact"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="offcanvas-link text-2xl font-black uppercase tracking-tight text-[#d4af35]"
+                    >
+                        Contact Us →
+                    </Link>
                 </div>
 
-                <div className="p-8 mt-auto border-t border-white/5 flex flex-col space-y-4 bg-[#121212]/50 relative z-10">
-                    {isLoggedIn ? (
-                        <Link href="/dashboard" className="w-full text-center py-4 rounded-xl text-sm uppercase tracking-widest font-black text-[#0A0A0A] bg-[#d4af35] shadow-[0_0_30px_rgba(212,175,53,0.2)]" onClick={() => setIsMobileMenuOpen(false)}>
-                            Dashboard
-                        </Link>
-                    ) : (
-                        <>
-                            <Link href="/login" className="w-full text-center py-4 rounded-xl text-sm uppercase tracking-widest font-bold text-white bg-[#121212] border border-white/10 hover:border-[#d4af35]/50 transition-colors mb-2" onClick={() => setIsMobileMenuOpen(false)}>Client Login</Link>
-                            <Link href="/register" className="w-full text-center py-4 rounded-xl text-sm uppercase tracking-widest font-black text-[#0A0A0A] bg-[#d4af35] shadow-[0_0_30px_rgba(212,175,53,0.2)]" onClick={() => setIsMobileMenuOpen(false)}>Get Started</Link>
-                        </>
-                    )}
+                <div className="p-8 border-t border-white/5 relative z-10 flex flex-col space-y-4">
+                    <p className="text-xs text-slate-500">© {new Date().getFullYear()} Hashprime Groups. Engineering &amp; Infrastructure Solutions.</p>
                 </div>
             </div>
         </div>

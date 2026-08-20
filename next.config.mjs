@@ -4,13 +4,23 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cryptologos.cc',
-      },
-      {
-        protocol: 'https',
-        hostname: 'lcw.nyc3.cdn.digitaloceanspaces.com',
+        hostname: 'images.unsplash.com',
       },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/schemes',
+        destination: '/hash-prime-groups',
+        permanent: true,
+      },
+      {
+        source: '/markets',
+        destination: '/company-facts',
+        permanent: true,
+      },
+    ];
   },
   async headers() {
     return [

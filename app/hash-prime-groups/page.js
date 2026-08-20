@@ -107,13 +107,13 @@ const businesses = [
     },
     {
         icon: BarChart3,
-        title: "Trading Service",
-        sub: "Trading Service",
+        title: "Industrial Trading & Logistics",
+        sub: "Industrial Supplies & Commodities",
         img: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=900",
-        desc: "Dynamic market trading spanning physical commodities and digital crypto assets with strategic research-driven execution.",
+        desc: "Strategic supply chain procurement and bulk distribution of industrial commodities, electrical hardware, SMC components, and enterprise materials.",
         href: "/trading-services",
-        subItems: ["Commodities", "Crypto"],
-        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 5 },
+        subItems: ["Industrial Commodities", "Electrical Hardware", "SMC Procurement", "Supply Chain Logistics"],
+        person: { name: "Mr. Vijayabharathi Veerasamy", position: "Founder & Managing Director", experience: 10 },
     },
     {
         icon: MapPin,

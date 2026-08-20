@@ -20,23 +20,23 @@ export default function AuthLayout({ children }) {
                     </div>
 
                     <div className="space-y-1 mb-10">
-                        <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#d4af35' }}>Investment Platform</div>
+                        <div className="text-xs font-bold uppercase tracking-widest mb-4" style={{ color: '#d4af35' }}>Enterprise Operations Portal</div>
                         <h2 className="text-4xl xl:text-5xl font-black text-white leading-tight">
-                            Grow your wealth<br />
-                            <span style={{ color: '#d4af35' }}>intelligently.</span>
+                            Engineering &amp;<br />
+                            <span style={{ color: '#d4af35' }}>Project Management</span>
                         </h2>
                         <p className="text-slate-300 text-base font-medium mt-4 leading-relaxed max-w-xs">
-                            Earn passive income through our structured investment plans.
+                            Dedicated access for verified corporate partners, field supervisors, and clients.
                         </p>
                     </div>
 
                     {/* Stats */}
                     <div className="grid grid-cols-2 gap-4 mt-10">
                         {[
-                            { val: '500%', label: 'Max Returns' },
-                            { val: '5%', label: 'Referral Bonus' },
-                            { val: '4', label: 'Investment Plans' },
-                            { val: 'INR (₹)', label: 'Reward Currency' },
+                            { val: '99.99%', label: 'Telecom SLA' },
+                            { val: '500+', label: 'Delivered Sites' },
+                            { val: '24/7', label: 'Field Support' },
+                            { val: 'Tamil Nadu', label: 'Headquarters' },
                         ].map(({ val, label }) => (
                             <div key={label} className="rounded-2xl p-4" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}>
                                 <div className="text-2xl font-black text-white mb-0.5">{val}</div>
@@ -48,7 +48,7 @@ export default function AuthLayout({ children }) {
 
                 {/* Footer text */}
                 <div className="relative z-10">
-                    <p className="text-slate-200 text-xs font-medium">© 2025 HashPrime. All rights reserved.</p>
+                    <p className="text-slate-400 text-xs font-medium">© {new Date().getFullYear()} Hashprime Groups. All rights reserved.</p>
                 </div>
             </div>
 

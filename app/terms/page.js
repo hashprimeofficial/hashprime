@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowLeft, ScrollText, ShieldAlert, Landmark, FileText, Scale } from 'lucide-react';
+import { ArrowLeft, ScrollText, ShieldCheck, FileCheck, Scale, AlertCircle } from 'lucide-react';
 
 export default function TermsOfService() {
     return (
@@ -22,16 +22,16 @@ export default function TermsOfService() {
                         <ScrollText className="w-6 h-6 text-[#d4af35]" />
                     </div>
                     <h1 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">Terms of Service</h1>
-                    <p className="text-[#d4af35]/60 font-semibold text-sm">Last Updated: July 04, 2026</p>
+                    <p className="text-[#d4af35]/60 font-semibold text-sm">Last Updated: August 2026</p>
                 </div>
 
-                {/* Agreement Warning */}
+                {/* Agreement Banner */}
                 <div className="p-6 bg-[#121212]/80 backdrop-blur-md border border-[#d4af35]/30 rounded-3xl mb-12 flex items-start gap-4">
-                    <ShieldAlert className="w-6 h-6 text-[#d4af35] shrink-0 mt-0.5" />
+                    <ShieldCheck className="w-6 h-6 text-[#d4af35] shrink-0 mt-0.5" />
                     <div>
-                        <h4 className="font-black text-white text-base mb-1">Please Read Carefully</h4>
+                        <h4 className="font-black text-white text-base mb-1">Commercial Contracting Terms</h4>
                         <p className="text-xs text-slate-400 font-medium leading-relaxed">
-                            These Terms of Service govern your access to and use of the HashPrime platform. By registering an account, submitting KYC documentation, or funding an investment scheme, you enter into a legally binding agreement and agree to abide by all the rules and disclosures outlined below.
+                            These Terms of Service govern your access to Hashprime websites, client portals, and commercial engineering service engagements. By requesting engineering quotations, entering into service agreements, or accessing our platforms, you agree to comply with these terms.
                         </p>
                     </div>
                 </div>
@@ -40,93 +40,87 @@ export default function TermsOfService() {
                 <div className="space-y-12">
                     <section className="space-y-4">
                         <h2 className="text-xl font-black text-white flex items-center gap-3">
-                            <span className="text-[#d4af35] font-mono text-sm">01.</span> Account Registration & Referral Policy
+                            <span className="text-[#d4af35] font-mono text-sm">01.</span> Nature of Services & Operating Scope
                         </h2>
                         <div className="text-sm text-slate-400 leading-relaxed space-y-3 font-medium">
                             <p>
-                                To access the HashPrime platform, registration is strictly restricted. You must provide a valid referral code or referral email address from an active member of the platform during sign-up. Registration without a valid referral code is not permitted.
+                                Hashprime operates as an integrated multi-service engineering and infrastructure contractor. Our services include Turnkey Telecom Civil & Electrical Operations & Maintenance (O&M), Optical Fiber Splicing & Laying, Commercial & Residential HVAC Sales and Servicing, Turnkey Civil Construction, Heavy Machinery Maintenance, Generator Services, and Industrial Procurement Logistics.
                             </p>
                             <p>
-                                You agree to provide accurate, current, and complete information. Any duplicate profiles or misrepresentations during sign-up will result in immediate suspension of account privileges and frozen wallet balances.
+                                Hashprime does not provide financial services, investment schemes, portfolio management, or deposit products. All commercial transactions represent bona fide commercial contracts, service level agreements (SLAs), or hardware procurement orders.
                             </p>
                         </div>
                     </section>
 
                     <section className="space-y-4">
                         <h2 className="text-xl font-black text-white flex items-center gap-3">
-                            <span className="text-[#d4af35] font-mono text-sm">02.</span> Identity Verification (KYC) & Nominee Details
+                            <span className="text-[#d4af35] font-mono text-sm">02.</span> Project Quotations, SLAs & Milestones
                         </h2>
                         <div className="text-sm text-slate-400 leading-relaxed space-y-3 font-medium">
                             <p>
-                                HashPrime operates in compliance with international anti-money laundering (AML) and counter-terrorist financing (CTF) protocols. Users must undergo identity verification (KYC), including the submission of government-issued identification cards.
+                                All engineering works are executed under mutually agreed work orders detailing project scopes, milestone deliverables, technical specifications, and delivery timelines.
                             </p>
                             <p>
-                                <strong>Nominee Directives:</strong> To protect investor assets, you must link exactly one (1) nominee to your profile. This nomination requires a signed consent form and identity verification (Aadhaar Card). Once nominee details are saved, they become locked (view-only) and cannot be updated without official manual admin verification.
+                                Payment terms, mobilization advances, and milestone release schedules are governed exclusively by the individual bilateral contract executed between the client and Hashprime.
                             </p>
                         </div>
                     </section>
 
                     <section className="space-y-4">
                         <h2 className="text-xl font-black text-white flex items-center gap-3">
-                            <span className="text-[#d4af35] font-mono text-sm">03.</span> Investment Schemes & Fixed Returns
+                            <span className="text-[#d4af35] font-mono text-sm">03.</span> Site Safety, Quality Assurance & Compliance
                         </h2>
                         <div className="text-sm text-slate-400 leading-relaxed space-y-3 font-medium">
                             <p>
-                                HashPrime offers structured investment schemes tailored to both Indian Rupees (INR) and digital wallet deposits (USDT). These schemes carry predefined duration lockups (e.g., 3-month, 6-month, 1-year, or 5-year plans) and specified return percentages.
+                                Field operations comply strictly with the National Building Code of India, the Indian Electricity Rules, and telecom industry standard operating procedures.
                             </p>
                             <p>
-                                Upon scheme maturity, the initial investment principal along with accumulated interest yields are automatically calculated and credited directly to your platform wallet (INR or USDT, depending on the currency used). Early termination of active schemes is strictly subject to penalty fees and administrative lock periods.
+                                Clients and site owners agree to provide safe physical access, necessary statutory permissions, and environmental clearances required for field teams to execute contracted works safely.
                             </p>
                         </div>
                     </section>
 
                     <section className="space-y-4">
                         <h2 className="text-xl font-black text-white flex items-center gap-3">
-                            <span className="text-[#d4af35] font-mono text-sm">04.</span> Wallet Operations & Bank Withdrawals
+                            <span className="text-[#d4af35] font-mono text-sm">04.</span> Client Portal & Confidentiality
                         </h2>
                         <div className="text-sm text-slate-400 leading-relaxed space-y-3 font-medium">
                             <p>
-                                Platform balances can be settled via linked bank accounts (for INR settlements) or BEP20 digital wallets (for USDT settlements).
+                                Access to Hashprime enterprise portals is restricted to authorized partners, corporate clients, and internal personnel. Users must maintain the confidentiality of their credentials.
                             </p>
                             <p>
-                                <strong>Bank Cappings:</strong> To reduce operational risks, each user account is capped at a maximum of five (5) linked bank accounts in their profile settings. All withdrawal claims are subject to offline manual review by HashPrime administrators to ensure compliance and prevent fraudulent transfers.
+                                All engineering blueprints, technical drawings, proprietary methodologies, and corporate pricing shared during engagement are protected under strict non-disclosure obligations.
                             </p>
                         </div>
                     </section>
 
                     <section className="space-y-4">
                         <h2 className="text-xl font-black text-white flex items-center gap-3">
-                            <span className="text-[#d4af35] font-mono text-sm">05.</span> Referral Program & Commission Payments
+                            <span className="text-[#d4af35] font-mono text-sm">05.</span> Limitation of Liability & Warranties
                         </h2>
                         <div className="text-sm text-slate-400 leading-relaxed space-y-3 font-medium">
                             <p>
-                                Members can earn referral bonuses when new users register using their referral link. The platform rewards the referrer with a 5% commission on the principal amount invested by their referrals.
+                                Hashprime warrants that all services will be performed with professional diligence in accordance with industry best practices. Equipment warranties (HVAC units, generators, optical hardware) are backed by the respective original equipment manufacturers (OEMs).
                             </p>
                             <p>
-                                <strong>Payout Claim Workflow:</strong> Referral commissions accumulate in the Referral Wallet. To request a payout, the member must manually submit a claim selecting a registered bank account. Claims are processed under a "Request" → "Pending" → "Approved" lifecycle. Payments are settled offline and marked completed by administrators upon verification.
+                                Hashprime shall not be liable for indirect, incidental, or consequential damages resulting from force majeure events, grid power failures, natural disasters, or unauthorized modifications made by third parties.
                             </p>
                         </div>
                     </section>
 
                     <section className="space-y-4">
                         <h2 className="text-xl font-black text-white flex items-center gap-3">
-                            <span className="text-[#d4af35] font-mono text-sm">06.</span> Disclaimers & Risk Disclosures
+                            <span className="text-[#d4af35] font-mono text-sm">06.</span> Governing Law & Dispute Resolution
                         </h2>
                         <div className="text-sm text-slate-400 leading-relaxed space-y-3 font-medium">
                             <p>
-                                <strong>No Financial Advice:</strong> The contents of this platform do not constitute investment, financial, or tax advice. HashPrime manages asset portfolios across multiple industries, stocks, and global equities. Past performance is no guarantee of future returns.
+                                These Terms and all service contracts are governed by and construed in accordance with the laws of India. Any disputes arising out of or in connection with these terms shall be subject to the exclusive jurisdiction of the competent courts in Tamil Nadu, India.
                             </p>
                             <p>
-                                <strong>Market Exposure:</strong> Structured plans are exposed to general financial market conditions. By investing, you acknowledge the risk of loss of principal and accept that returns may vary based on overall macroeconomic indicators.
+                                For grievances or contract clarifications, refer to our <Link href="/grievance-redressal" className="text-[#d4af35] underline">Grievance Redressal Mechanism</Link> or email <a href="mailto:support@hashprime.in" className="text-[#d4af35] underline">support@hashprime.in</a>.
                             </p>
                         </div>
                     </section>
-                </div>
-
-                {/* Footer divider */}
-                <div className="mt-20 pt-8 border-t border-white/5 flex justify-between items-center text-xs text-slate-500 font-bold uppercase tracking-wider">
-                    <span>© {new Date().getFullYear()} HashPrime.</span>
-                    <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
                 </div>
             </div>
         </div>

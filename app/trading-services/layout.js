@@ -1,9 +1,9 @@
 export const metadata = {
-  title: 'Commodities & Digital Asset Market Trading Solutions | Hashprime'.trim(),
-  description: 'Strategic market research and trade execution across physical commodities and digital assets/crypto by Hashprime Trading Services.'.trim(),
+  title: 'Industrial Supplies, Electrical Hardware & Commodity Logistics | Hashprime'.trim(),
+  description: 'Strategic supply chain procurement, bulk industrial commodities, SMC enclosures, and electrical hardware distribution by Hashprime Groups.'.trim(),
   openGraph: {
-    title: 'Commodities & Digital Asset Market Trading Solutions | Hashprime'.trim(),
-    description: 'Strategic market research and trade execution across physical commodities and digital assets/crypto by Hashprime Trading Services.'.trim(),
+    title: 'Industrial Supplies, Electrical Hardware & Commodity Logistics | Hashprime'.trim(),
+    description: 'Strategic supply chain procurement, bulk industrial commodities, and electrical distribution by Hashprime Groups.'.trim(),
     type: 'website',
     siteName: 'Hashprime',
   },

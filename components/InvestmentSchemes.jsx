@@ -41,7 +41,7 @@ const verticals = [
     }
 ];
 
-export default function InvestmentSchemes() {
+export default function EngineeringVerticals() {
     const sectionRef = useRef(null);
 
     useGSAP(() => {
@@ -79,7 +79,7 @@ export default function InvestmentSchemes() {
 
                     <h2 className="is-header-animate text-4xl md:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6">
                         INTEGRATED ENGINEERING<br />
-                        <span className="text-[#d4af35]">SOLUTIONS & INFRASTRUCTURE</span>
+                        <span className="text-[#d4af35]">SOLUTIONS &amp; INFRASTRUCTURE</span>
                     </h2>
                     <p className="is-header-animate text-slate-400 text-base md:text-lg max-w-2xl">
                         Explore our multi-sector capabilities across telecommunications, power utilities, civil development, and industrial logistics.

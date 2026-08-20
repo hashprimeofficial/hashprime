@@ -268,7 +268,7 @@ export default function CareersPage() {
 
             {/* Footer strip */}
             <div className="border-t border-white/5 py-8 text-center">
-                <p className="text-white/20 text-sm">© {new Date().getFullYear()} HashPrime Asset Management. All rights reserved.</p>
+                <p className="text-white/20 text-sm">© {new Date().getFullYear()} Hashprime Groups. All rights reserved.</p>
             </div>
         </div>
     );
