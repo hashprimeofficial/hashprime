@@ -3,10 +3,10 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ArrowUpRight, Play, TrendingUp, ShieldCheck, ArrowRightLeft } from "lucide-react";
+import { ArrowUpRight, Zap, ShieldCheck, HardHat } from "lucide-react";
 import Link from "next/link";
 
-function GoldenCryptoGlobe() {
+function GoldenEngineeringOrb() {
     return (
         <div className="w-full h-full relative flex items-center justify-center">
             <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_50px_rgba(212,175,53,0.35)]">
@@ -26,7 +26,7 @@ function GoldenCryptoGlobe() {
                 {/* Background Glow */}
                 <circle cx="100" cy="100" r="80" fill="url(#centralGlow)" />
 
-                {/* Nested Orbiting Rings */}
+                {/* Nested Orbiting Infrastructure Rings */}
                 <g className="animate-spin" style={{ transformOrigin: '100px 100px', animationDuration: '20s' }}>
                     <circle cx="100" cy="100" r="70" fill="none" stroke="url(#goldGrad)" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.3" />
                     <circle cx="100" cy="30" r="4" fill="#d4af35" className="animate-pulse" />
@@ -47,7 +47,7 @@ function GoldenCryptoGlobe() {
                 <circle cx="100" cy="100" r="28" fill="#0A0A0A" stroke="url(#goldGrad)" strokeWidth="1.5" />
                 <circle cx="100" cy="100" r="22" fill="url(#centralGlow)" />
                 
-                {/* Golden Blockchain Grid inside the core */}
+                {/* Structural Geometry inside the core */}
                 <path d="M 88 100 L 112 100 M 100 88 L 100 112 M 91 91 L 109 109 M 91 109 L 109 91" stroke="#d4af35" strokeWidth="0.75" opacity="0.8" />
                 <circle cx="100" cy="100" r="4" fill="#ffffff" className="animate-ping" style={{ animationDuration: '2s' }} />
                 <circle cx="100" cy="100" r="2" fill="#d4af35" />
@@ -89,7 +89,7 @@ export default function Hero() {
                 {/* Dotted Grid Pattern */}
                 <div className="absolute inset-0 bg-[radial-gradient(#d4af35_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.03]"></div>
 
-                {/* Optical Glows (No CSS linear gradients) */}
+                {/* Optical Glows */}
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#d4af35] rounded-full blur-[150px] opacity-[0.04]"></div>
                 <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-[#d4af35] rounded-full blur-[120px] opacity-[0.03]"></div>
 
@@ -102,41 +102,45 @@ export default function Hero() {
                 {/* Left side content */}
                 <div className="lg:col-span-7 flex flex-col items-start z-20">
                     <div className="mb-6">
+                        <div className="hero-glass-badge inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4af35]/20 bg-[#d4af35]/5 mb-6">
+                            <span className="w-2 h-2 rounded-full bg-[#d4af35] animate-pulse"></span>
+                            <span className="text-xs font-bold text-[#d4af35] uppercase tracking-widest">Established 2019 · Engineering & Infrastructure</span>
+                        </div>
                         <h1 className="hero-title-line font-black text-4xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight text-white drop-shadow-sm mb-4">
-                            Intelligent <span className="text-[#d4af35]">Asset Management</span><br />
-                            <span className="text-white/80 text-3xl md:text-4xl lg:text-5xl mt-2 block">for the Modern Investor</span>
+                            Engineering <span className="text-[#d4af35]">Excellence</span><br />
+                            <span className="text-white/90 text-3xl md:text-4xl lg:text-5xl mt-2 block">& Infrastructure Solutions</span>
                         </h1>
                     </div>
 
                     <p className="hero-desc text-slate-300 text-base md:text-lg font-medium max-w-xl mb-10 leading-relaxed">
-                        Grow your wealth with diversified strategies in global equities, funds, commodities, and fixed-return investment portfolios.
+                        Delivering turnkey engineering, civil infrastructure, optical fiber splicing, HVAC maintenance, and high-uptime telecom solutions across India.
                     </p>
 
                     <div className="hero-actions flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto">
-                        <Link href="/register"
+                        <Link href="/hash-prime-groups"
                             className="group relative flex items-center justify-center gap-3 w-full sm:w-auto bg-[#d4af35] text-[#0A0A0A] px-10 py-5 rounded-full font-black text-sm uppercase tracking-wider overflow-hidden transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,53,0.3)]">
                             <span className="relative z-10 flex items-center gap-2">
-                                Start Investing <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                Explore Divisions <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                             </span>
                             <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
                         </Link>
 
-                        <Link href="/schemes" className="group flex items-center justify-center gap-3 w-full sm:w-auto text-white px-8 py-5 rounded-full font-bold text-sm bg-[#121212] border border-white/5 hover:border-[#d4af35]/50 transition-all hover:bg-[#d4af35]/5">
+                        <Link href="/company-facts" className="group flex items-center justify-center gap-3 w-full sm:w-auto text-white px-8 py-5 rounded-full font-bold text-sm bg-[#121212] border border-white/10 hover:border-[#d4af35]/50 transition-all hover:bg-[#d4af35]/5">
                             <div className="w-8 h-8 rounded-full bg-[#d4af35]/10 flex items-center justify-center group-hover:bg-[#d4af35] transition-colors">
-                                <Play size={14} className="text-[#d4af35] group-hover:text-[#0A0A0A] ml-1 transition-colors" />
+                                <HardHat size={14} className="text-[#d4af35] group-hover:text-[#0A0A0A] transition-colors" />
                             </div>
-                            View Plans
+                            Company Facts
                         </Link>
                     </div>
                 </div>
 
                 {/* Right side immersive visuals */}
                 <div className="lg:col-span-5 relative w-full aspect-square md:aspect-[4/5] z-10">
-                    {/* Dark Golden Central Globe/Lottie */}
+                    {/* Dark Golden Central Globe */}
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="absolute w-[300px] h-[300px] bg-[#d4af35] rounded-full blur-[100px] opacity-[0.08] animate-pulse"></div>
                         <div className="w-[120%] h-[120%] relative z-10">
-                            <GoldenCryptoGlobe />
+                            <GoldenEngineeringOrb />
                         </div>
                     </div>
 
@@ -144,12 +148,12 @@ export default function Hero() {
                     <div className="hero-floating-card hero-float-1 absolute top-[15%] right-[-5%] sm:right-[-10%] md:right-0 bg-[#121212]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-[0_20px_40px_rgba(0,0,0,0.5)] w-48 z-20">
                         <div className="flex items-center gap-3 mb-2">
                             <div className="w-8 h-8 rounded-full bg-[#d4af35]/10 flex items-center justify-center border border-[#d4af35]/20">
-                                <TrendingUp size={14} className="text-[#d4af35]" />
+                                <Zap size={14} className="text-[#d4af35]" />
                             </div>
-                            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Live Yield</span>
+                            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Operational SLA</span>
                         </div>
-                        <div className="text-2xl font-black text-white">+530%</div>
-                        <div className="text-[10px] text-[#d4af35] font-bold mt-1">Highest returns</div>
+                        <div className="text-2xl font-black text-white">99.99%</div>
+                        <div className="text-[10px] text-[#d4af35] font-bold mt-1">Telecom & Grid Uptime</div>
                     </div>
 
                     <div className="hero-floating-card hero-float-2 absolute bottom-[20%] left-[-5%] sm:left-[-10%] md:left-[-20%] bg-[#121212]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-[0_20px_40px_rgba(0,0,0,0.5)] w-52 z-20">
@@ -157,10 +161,10 @@ export default function Hero() {
                             <div className="w-8 h-8 rounded-full bg-[#d4af35]/10 flex items-center justify-center border border-[#d4af35]/20">
                                 <ShieldCheck size={14} className="text-[#d4af35]" />
                             </div>
-                            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Trusted Investments</span>
+                            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Execution Record</span>
                         </div>
-                        <div className="text-lg font-black text-white">100%</div>
-                        <div className="text-[10px] text-[#d4af35] font-bold mt-1">Secured & Verified</div>
+                        <div className="text-lg font-black text-white">500+ Projects</div>
+                        <div className="text-[10px] text-[#d4af35] font-bold mt-1">Delivered Nationwide</div>
                     </div>
 
                     {/* Frame elements */}

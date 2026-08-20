@@ -5,19 +5,19 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import {
-    ShieldCheck, Zap, BarChart3, Globe, Lock, Cpu, ChevronRight
+    Zap, Wind, HardHat, Globe, Wrench, Radio
 } from 'lucide-react';
 import LightPillar from './LightPillar';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const services = [
-    { num: '01', Icon: ShieldCheck, title: 'Secure Custody', tag: 'Security', desc: 'Institutional-grade cold storage and multi-sig security for your digital assets. Your peace of mind is our priority.' },
-    { num: '02', Icon: Zap, title: 'Instant Swaps', tag: 'Trading', desc: 'Deep liquidity and lightning-fast execution for over 200+ trading pairs with minimal slippage.' },
-    { num: '03', Icon: BarChart3, title: 'Advanced Analytics', tag: 'Research', desc: 'AI-driven market insights and real-time data to power your investment decisions. Stay ahead of the curve.' },
-    { num: '04', Icon: Globe, title: 'Cross-Border Payments', tag: 'Payments', desc: 'Global settlement infrastructure for seamless international transactions at the speed of light.' },
-    { num: '05', Icon: Lock, title: 'Private Wealth', tag: 'Premium', desc: 'Dedicated account management and bespoke strategies for high-net-worth investors and family offices.' },
-    { num: '06', Icon: Cpu, title: 'API Integration', tag: 'Developer', desc: 'Robust, low-latency APIs for programmatic trading and custom integrations for institutions.' },
+    { num: '01', Icon: Radio, title: 'Telecom Infrastructure', tag: 'Telecom', desc: 'Turnkey civil works, tower shelters, electrical O&M, and carrier-grade 99.99% uptime operations.' },
+    { num: '02', Icon: Zap, title: 'Optical Fiber Splicing', tag: 'Fiber', desc: 'Microscope-aligned low-loss fusion splicing, blowing, ducting, and comprehensive OTDR diagnostics.' },
+    { num: '03', Icon: Wind, title: 'Commercial HVAC Solutions', tag: 'Cooling', desc: 'End-to-end sales, installation, preventive jet servicing, and AMC contracts for all major AC brands.' },
+    { num: '04', Icon: HardHat, title: 'Civil Construction', tag: 'Infrastructure', desc: 'Commercial developments, utility pipelines, foundation laying, and smart city infrastructure works.' },
+    { num: '05', Icon: Wrench, title: 'Heavy Machinery & Generators', tag: 'Mechanical', desc: 'DG set sales, scheduled overhauls, electrical grid connectivity, and industrial machinery maintenance.' },
+    { num: '06', Icon: Globe, title: 'Enterprise Trading & Supply', tag: 'Logistics', desc: 'Bulk procurement, industrial electrical components, SMC materials, and structured supply chain delivery.' },
 ];
 
 export default function OurServices() {
@@ -54,111 +54,44 @@ export default function OurServices() {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="relative bg-[#d4af35] py-8 md:py-12 overflow-hidden text-white">
+        <section ref={sectionRef} className="relative bg-[#0A0A0A] py-16 md:py-24 overflow-hidden text-white border-t border-white/5">
 
-            {/* High Impact Background Elements */}
-            <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
-                <LightPillar
-                    topColor="#d4af35"
-                    bottomColor="#0B1120"
-                    intensity={0.6}
-                    pillarWidth={4.0}
-                    glowAmount={0.01}
-                />
-            </div>
-
-            {/* Grid Pattern */}
-            <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none"
-                style={{ backgroundImage: 'radial-gradient(#d4af35 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-
-            {/* Glowing Orbs */}
-            <div className="os-pill-bg absolute top-[10%] -left-20 w-[600px] h-[600px] bg-[#d4af35] opacity-[0.07] rounded-full blur-[150px] pointer-events-none" />
-            <div className="os-pill-bg absolute bottom-[10%] -right-20 w-[500px] h-[500px] bg-emerald-500 opacity-[0.05] rounded-full blur-[150px] pointer-events-none" />
-
-            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-
-                {/* ── Header ───────────────────────── */}
-                <div className="os-header-content flex flex-col items-center text-center mb-24">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="h-[1px] w-12 bg-[#d4af35]" />
-                        <span className="text-[12px] font-black uppercase tracking-[0.4em] text-[#d4af35]/80">The Ecosystem</span>
-                        <div className="h-[1px] w-12 bg-[#d4af35]" />
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+                <div className="os-header-content text-center max-w-3xl mx-auto mb-16">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4af35]/20 bg-[#d4af35]/5 mb-6">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse"></span>
+                        <span className="text-xs uppercase tracking-[0.2em] font-medium text-[#d4af35]">Capabilities</span>
                     </div>
-                    <h2 className="text-5xl sm:text-6xl md:text-8xl font-black leading-[0.85] tracking-tighter mb-8">
-                        PREMIUM<br />
-                        <span className="text-[#d4af35]">SERVICES</span>
+                    <h2 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-none mb-6">
+                        Core Engineering <br />
+                        <span className="text-[#d4af35]">Capabilities & Verticals</span>
                     </h2>
-                    <p className="text-slate-300 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
-                        Redefining the boundaries of digital finance with institutional-grade infrastructure and elegant simplicity.
+                    <p className="text-slate-400 text-base md:text-lg">
+                        Delivering technical excellence, rigorous safety compliance, and dependable execution across every project vertical.
                     </p>
                 </div>
 
-                {/* ── Services Rows ─────── */}
-                <div className="os-rows space-y-4">
-                    {services.map(({ num, Icon, title, tag, desc }) => (
-                        <div
-                            key={num}
-                            className="os-row group relative flex flex-col md:flex-row md:items-center gap-6 p-8 md:p-10 
-                                       bg-[#121212]/[0.02] border border-white/[0.05] backdrop-blur-md rounded-[2rem]
-                                       hover:bg-[#121212]/[0.05] hover:border-[#d4af35]/30 hover:shadow-[0_0_40px_rgba(57,255,20,0.05)]
-                                       transition-all duration-500 cursor-pointer overflow-hidden"
-                        >
-                            {/* Animated Background Gradient */}
-                            <div className="absolute inset-0 bg-[#d4af35]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                            {/* Icon bubble */}
-                            <div className="relative z-10 flex-shrink-0 w-20 h-20 rounded-2xl bg-[#121212]/[0.03] border border-white/[0.08] flex items-center justify-center
-                                            group-hover:scale-110 group-hover:bg-[#d4af35] group-hover:border-[#d4af35] group-hover:shadow-[0_0_30px_#d4af3566] transition-all duration-500">
-                                <Icon size={32} strokeWidth={1.5} className="text-[#d4af35] group-hover:text-white transition-colors duration-500" />
-                            </div>
-
-                            {/* Content */}
-                            <div className="relative z-10 flex-1 min-w-0">
-                                <div className="flex items-center gap-4 mb-2">
-                                    <span className="text-[12px] font-black text-[#d4af35]/40 tracking-widest">{num}</span>
-                                    <h3 className="text-2xl md:text-3xl font-black tracking-tight group-hover:text-white transition-colors duration-300">
-                                        {title}
-                                    </h3>
-                                    <span className="hidden sm:inline-block text-[10px] font-black uppercase tracking-[0.2em] text-[#d4af35]/60 bg-[#d4af35]/5 border border-[#d4af35]/20 px-3 py-1 rounded-full">
-                                        {tag}
-                                    </span>
+                <div className="os-rows grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {services.map((item) => {
+                        const Icon = item.Icon;
+                        return (
+                            <div key={item.num} className="os-row group bg-[#121212] border border-white/10 hover:border-[#d4af35]/40 rounded-3xl p-8 transition-all duration-300 flex flex-col justify-between">
+                                <div>
+                                    <div className="flex items-center justify-between mb-6">
+                                        <div className="w-12 h-12 rounded-2xl bg-[#1a1a1a] border border-white/10 flex items-center justify-center group-hover:bg-[#d4af35] transition-colors duration-300">
+                                            <Icon className="w-6 h-6 text-[#d4af35] group-hover:text-[#0A0A0A] transition-colors duration-300" />
+                                        </div>
+                                        <span className="text-xs font-mono font-bold text-slate-500 uppercase">{item.tag}</span>
+                                    </div>
+                                    <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                                    <p className="text-slate-400 text-sm leading-relaxed mb-6">{item.desc}</p>
                                 </div>
-                                <p className="text-slate-300 text-lg leading-relaxed max-w-2xl group-hover:text-slate-300 transition-colors duration-300">
-                                    {desc}
-                                </p>
+                                <div className="text-xs font-mono font-bold text-[#d4af35]">{item.num} / VERTICAL</div>
                             </div>
-
-                            {/* Action */}
-                            <div className="relative z-10 flex items-center gap-4">
-                                <span className="hidden md:block text-[10px] font-bold uppercase tracking-widest text-[#d4af35] opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-500">
-                                    Explore More
-                                </span>
-                                <div className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white
-                                                group-hover:border-[#d4af35] group-hover:bg-[#d4af35] group-hover:text-white 
-                                                transition-all duration-500">
-                                    <ChevronRight size={24} className="group-hover:translate-x-0.5 transition-transform duration-500" />
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
-
-                {/* ── Bottom CTA ────────────────────── */}
-                <div className="relative z-10 mt-24 text-center">
-                    <div className="inline-block p-[1px] rounded-full bg-[#d4af35]/10">
-                        <div className="bg-[#121212] rounded-full border border-white/5 px-12 py-10 flex flex-col items-center">
-                            <h4 className="text-3xl font-black mb-4">Ready to elevate your portfolio?</h4>
-                            <p className="text-slate-300 mb-8 max-w-md mx-auto">Join thousands of investors already leveraging our premium infrastructure.</p>
-                            <a href="/register"
-                                className="group relative inline-flex items-center gap-4 bg-[#d4af35] text-white px-10 py-5 rounded-full font-black text-lg hover:scale-105 hover:shadow-[0_0_50px_#d4af3544] transition-all duration-500">
-                                Launch Your Account
-                                <span className="group-hover:translate-x-1 transition-transform duration-500 inline-block">→</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div >
-        </section >
+            </div>
+        </section>
     );
 }

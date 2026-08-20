@@ -1,38 +1,43 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TrendingUp, ArrowRight, ShieldCheck, Clock, Layers, Globe2 } from "lucide-react";
+import { Zap, Wind, HardHat, Globe2, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const schemes = [
+const verticals = [
     {
-        id: "short-term",
-        title: "Short-Term Income",
-        desc: "Focused short-term plan offering time-bound returns with lower risk strategies.",
-        icon: Clock
+        id: "telecom",
+        title: "Telecom & Fiber Infrastructure",
+        desc: "Turnkey site deployment, optical fiber blowing & fusion splicing, tower foundation, and 24/7 electrical O&M.",
+        icon: Zap,
+        href: "/total-telecom-services"
     },
     {
-        id: "balanced",
-        title: "Balanced Growth",
-        desc: "Moderate plan aimed at consistent, balanced returns through diversified portfolios.",
-        icon: Layers
+        id: "hvac",
+        title: "Commercial & Residential HVAC",
+        desc: "End-to-end sales, multi-brand installation, preventive jet servicing, and industrial cooling maintenance.",
+        icon: Wind,
+        href: "/ac-sales-and-service"
     },
     {
-        id: "long-term",
-        title: "Long-Term Wealth",
-        desc: "Growth-oriented plan designed for multi-year horizons emphasizing disciplined compounding.",
-        icon: TrendingUp,
+        id: "construction",
+        title: "Civil Construction & Real Estate",
+        desc: "Institutional engineering, structural builds, turnkey project contracting, and localized property advisory.",
+        icon: HardHat,
+        href: "/construction-and-works",
         featured: true
     },
     {
-        id: "global",
-        title: "Global Exposure",
-        desc: "Diversified plan providing access to international markets and global currencies.",
-        icon: Globe2
+        id: "machinery-trading",
+        title: "Heavy Machinery & Enterprise Trading",
+        desc: "Industrial machinery servicing, heavy vehicle maintenance, and global commodity sourcing logistics.",
+        icon: Globe2,
+        href: "/mechanical-machinery-services"
     }
 ];
 
@@ -57,7 +62,7 @@ export default function InvestmentSchemes() {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="relative bg-transparent py-32 md:py-48 overflow-hidden border-t border-white/[0.02]" id="investment-schemes">
+        <section ref={sectionRef} className="relative bg-transparent py-24 md:py-32 overflow-hidden border-t border-white/[0.02]" id="infrastructure-pillars">
 
             {/* Background Orbs */}
             <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-[#d4af35]/10 rounded-full blur-[150px] pointer-events-none" />
@@ -66,57 +71,40 @@ export default function InvestmentSchemes() {
             <div className="relative z-10 max-w-7xl mx-auto px-6">
 
                 {/* Header */}
-                <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-24">
-                    <div className="is-header-animate inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-white/10 shadow-sm mb-8">
-                        <TrendingUp className="w-4 h-4 text-[#d4af35]" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">Structured Yield</span>
+                <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-20">
+                    <div className="is-header-animate inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-white/10 shadow-sm mb-6">
+                        <HardHat className="w-4 h-4 text-[#d4af35]" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">Core Divisions</span>
                     </div>
 
-                    <h2 className="is-header-animate text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.9] mb-8">
-                        SMART INVESTMENT<br />
-                        <span className="text-[#d4af35]">PLANS FOR YOUR WEALTH</span>
+                    <h2 className="is-header-animate text-4xl md:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6">
+                        INTEGRATED ENGINEERING<br />
+                        <span className="text-[#d4af35]">SOLUTIONS & INFRASTRUCTURE</span>
                     </h2>
-
+                    <p className="is-header-animate text-slate-400 text-base md:text-lg max-w-2xl">
+                        Explore our multi-sector capabilities across telecommunications, power utilities, civil development, and industrial logistics.
+                    </p>
                 </div>
 
                 {/* Grid */}
-                <div className="is-grid-premium grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
-                    {schemes.map((scheme) => {
-                        const Icon = scheme.icon;
+                <div className="is-grid-premium grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    {verticals.map((item) => {
+                        const Icon = item.icon;
                         return (
-                            <div key={scheme.id} className={`is-card-premium group relative bg-[#121212] border rounded-[3rem] p-10 md:p-14 
-                                                        hover:border-[#d4af35]/40 hover:shadow-[0_30px_60px_rgba(0,0,0,0.05)] transition-all duration-500 flex flex-col h-full overflow-hidden
-                                                        ${scheme.featured ? 'border-[#d4af35]/40 shadow-lg' : 'border-white/10/60'}`}>
-
-                                {/* Glassmorphic Accent */}
-                                <div className="absolute top-0 right-0 w-48 h-48 bg-[#d4af35]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-[#d4af35]/20 transition-all duration-700" />
-
-                                <div className="relative z-10 flex-grow flex flex-col">
-                                    {/* Header Row */}
-                                    <div className="flex justify-between items-start mb-8">
-                                        <div className="w-16 h-16 rounded-2xl bg-[#121212] border border-white/5 flex items-center justify-center shadow-sm group-hover:bg-[#d4af35] group-hover:border-[#d4af35] transition-all duration-500">
-                                            <Icon className="w-8 h-8 text-white group-hover:text-[#0A0A0A] transition-colors duration-500" strokeWidth={1.5} />
-                                        </div>
-                                        <div className="w-12 h-12 rounded-full bg-[#121212]/5 flex items-center justify-center group-hover:bg-[#d4af35] transition-all duration-500">
-                                            <ArrowRight className="w-5 h-5 text-slate-300 group-hover:text-[#0A0A0A] -rotate-45 group-hover:rotate-0 transition-all duration-500" />
-                                        </div>
+                            <div key={item.id} className={`is-card-premium group relative bg-[#121212] border rounded-3xl p-8 md:p-10 flex flex-col justify-between transition-all duration-300 ${item.featured ? 'border-[#d4af35]/40 shadow-lg' : 'border-white/10 hover:border-[#d4af35]/30'}`}>
+                                <div>
+                                    <div className="w-14 h-14 rounded-2xl bg-[#1a1a1a] border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[#d4af35] group-hover:border-[#d4af35] transition-colors duration-300">
+                                        <Icon className="w-7 h-7 text-[#d4af35] group-hover:text-[#0A0A0A] transition-colors duration-300" />
                                     </div>
-
-                                    <h3 className="text-3xl font-black text-white tracking-tight mb-4 group-hover:text-[#d4af35] transition-colors">{scheme.title}</h3>
-
-                                    <p className="text-slate-400 font-normal leading-relaxed text-lg group-hover:text-slate-300 transition-colors">
-                                        {scheme.desc}
-                                    </p>
-
+                                    <h3 className="text-2xl font-bold text-white mb-3">{item.title}</h3>
+                                    <p className="text-slate-400 text-sm leading-relaxed mb-8">{item.desc}</p>
                                 </div>
+                                <Link href={item.href} className="inline-flex items-center gap-2 text-sm font-bold text-[#d4af35] hover:text-white transition-colors">
+                                    Explore Division Details <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </Link>
                             </div>
-                        )
+                        );
                     })}
-                </div>
-
-                {/* Note */}
-                <div className="mt-16 text-center text-slate-500 text-sm max-w-3xl mx-auto is-header-animate italic border-t border-white/5 pt-8">
-                    Note: Plan terms, durations, and fixed returns are subject to conditions. Investors should read plan documentation carefully before investing.
                 </div>
             </div>
         </section>

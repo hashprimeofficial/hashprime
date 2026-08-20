@@ -61,8 +61,8 @@ export default function Footer() {
                 <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 md:py-16">
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
                         <div className="foo-anim max-w-xl text-center lg:text-left">
-                            <h3 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">Stay Ahead of the Markets</h3>
-                            <p className="text-slate-400 text-lg">Join 10,000+ investors receiving our premium weekly market analysis and exclusive scheme updates.</p>
+                            <h3 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">Engineering & Infrastructure Updates</h3>
+                            <p className="text-slate-400 text-lg">Receive technical project case studies, turnkey infrastructure insights, and corporate notices.</p>
                         </div>
 
                         <div className="foo-anim w-full lg:w-auto relative group">
@@ -71,7 +71,7 @@ export default function Footer() {
                                 {subscribed ? (
                                     <div className="flex items-center gap-3 text-[#d4af35] font-bold text-sm py-4 px-6 w-full">
                                         <CheckCircle2 className="w-5 h-5" />
-                                        You&apos;re on the premium list!
+                                        You&apos;re subscribed to corporate updates!
                                     </div>
                                 ) : (
                                     <>
@@ -81,7 +81,7 @@ export default function Footer() {
                                             value={email}
                                             onChange={(e) => setEmail(e.target.value)}
                                             className="block w-full px-4 py-4 bg-transparent border-none focus:outline-none focus:ring-0 text-white font-medium placeholder-slate-600"
-                                            placeholder="Enter your email address..."
+                                            placeholder="Enter your corporate email..."
                                             required
                                         />
                                         <button type="submit" className="bg-[#d4af35] text-[#0A0A0A] font-black py-4 px-8 rounded-xl hover:bg-[#f5e0a3]/90 transition-all duration-300 shadow-[0_0_20px_rgba(212,175,53,0.2)] whitespace-nowrap">
@@ -111,7 +111,7 @@ export default function Footer() {
                             />
                         </Link>
                         <p className="text-slate-400 text-base leading-relaxed mb-10 max-w-sm">
-                            Intelligent asset management for the modern investor. Built for speed, uncompromised security, and the ultimate user experience. Join the next generation of finance.
+                            Hashprime is a multi-service engineering and infrastructure company delivering reliable, high-uptime turnkey civil, telecom, electrical, HVAC, and machinery solutions across India.
                         </p>
 
                         <div className="space-y-4 text-slate-400 text-sm">
@@ -136,11 +136,17 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Links Columns */}
-                    <div className="foo-anim lg:col-span-2 lg:col-start-6">
-                        <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Platform</h3>
+                    {/* Divisions Column */}
+                    <div className="foo-anim lg:col-span-3 lg:col-start-5">
+                        <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Engineering Divisions</h3>
                         <ul className="space-y-4">
-                            {[['Features', '/features'], ['Schemes', '/schemes'], ['Security', '/security']].map(([label, href]) => (
+                            {[
+                                ['Total Telecom Services', '/total-telecom-services'],
+                                ['Optical Fiber Splicing', '/fiberoptical-services'],
+                                ['AC Sales & Servicing', '/ac-sales-and-service'],
+                                ['Civil Construction', '/construction-and-works'],
+                                ['Machinery Services', '/mechanical-machinery-services'],
+                            ].map(([label, href]) => (
                                 <li key={label}>
                                     <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
                                         <ChevronRight className="w-3 h-3 text-[#d4af35] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all mr-2" />
@@ -151,29 +157,42 @@ export default function Footer() {
                         </ul>
                     </div>
 
+                    {/* Corporate & Trust Column */}
+                    <div className="foo-anim lg:col-span-3">
+                        <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Company & Trust</h3>
+                        <ul className="space-y-4">
+                            {[
+                                ['Company Facts', '/company-facts'],
+                                ['Leadership & Profile', '/hash-prime-groups'],
+                                ['Regulatory Compliance', '/compliance'],
+                                ['Grievance Redressal', '/grievance-redressal'],
+                                ['Security & Safety', '/security'],
+                                ['Careers', '/careers'],
+                            ].map(([label, href]) => (
+                                <li key={label}>
+                                    <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
+                                        <ChevronRight className="w-3 h-3 text-[#d4af35] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all mr-2" />
+                                        <span className="group-hover:translate-x-1 transition-transform">{label}</span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Contact & Support */}
                     <div className="foo-anim lg:col-span-2">
-                        <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Account</h3>
+                        <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Support</h3>
                         <ul className="space-y-4">
-                            {[['Client Login', '/login'], ['Get Started', '/register'], ['My Portfolio', '/dashboard'], ['Security Settings', '/dashboard/security']].map(([label, href]) => (
+                            {[
+                                ['Contact Us', '/#contact'],
+                                ['Privacy Policy', '/privacy'],
+                                ['Terms of Service', '/terms'],
+                                ['Client Portal', '/login'],
+                            ].map(([label, href]) => (
                                 <li key={label}>
                                     <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
                                         <ChevronRight className="w-3 h-3 text-[#d4af35] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all mr-2" />
                                         <span className="group-hover:translate-x-1 transition-transform">{label}</span>
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    <div className="foo-anim lg:col-span-2 lg:col-start-10">
-                        <h3 className="text-white font-black mb-8 text-sm uppercase tracking-[0.2em]">Company</h3>
-                        <ul className="space-y-4">
-
-                            {[['Hash Prime Groups', '/hash-prime-groups'], ['About Us', '/company'], ['Careers', '/careers']].map(([item, href]) => (
-                                <li key={item}>
-                                    <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">
-                                        <ChevronRight className="w-3 h-3 text-[#d4af35] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all mr-2" />
-                                        <span className="group-hover:translate-x-1 transition-transform">{item}</span>
                                     </Link>
                                 </li>
                             ))}
@@ -185,12 +204,13 @@ export default function Footer() {
                 {/* Bottom Bar */}
                 <div className="foo-anim pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-slate-500 text-sm font-medium">
-                        &copy; {new Date().getFullYear()} HashPrime Asset Management. All rights reserved.
+                        &copy; {new Date().getFullYear()} Hashprime Groups. All rights reserved.
                     </p>
 
                     <div className="flex items-center space-x-8">
                         <Link href="/privacy" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Privacy Policy</Link>
                         <Link href="/terms" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Terms of Service</Link>
+                        <Link href="/company-facts" className="text-slate-500 hover:text-white text-sm font-medium transition-colors">Entity Facts</Link>
                         <div className="hidden md:block w-[1px] h-4 bg-white/10"></div>
                         <BackToTop />
                     </div>

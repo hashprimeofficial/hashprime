@@ -15,6 +15,8 @@ export default function sitemap() {
         '/trading-services',
         '/tourism-services',
         '/mechanical-machinery-services',
+        '/abroad-job-consultancy',
+        '/ericsson-specialized-telecom',
     ];
 
     return [
@@ -26,28 +28,10 @@ export default function sitemap() {
             priority: 1.0,
         },
         {
-            url: `${BASE_URL}/features`,
+            url: `${BASE_URL}/company-facts`,
             lastModified: now,
             changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: `${BASE_URL}/markets`,
-            lastModified: now,
-            changeFrequency: 'daily',
-            priority: 0.8,
-        },
-        {
-            url: `${BASE_URL}/schemes`,
-            lastModified: now,
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: `${BASE_URL}/company`,
-            lastModified: now,
-            changeFrequency: 'monthly',
-            priority: 0.7,
+            priority: 0.95,
         },
         {
             url: `${BASE_URL}/hash-prime-groups`,
@@ -55,8 +39,32 @@ export default function sitemap() {
             changeFrequency: 'monthly',
             priority: 0.9,
         },
+        {
+            url: `${BASE_URL}/company`,
+            lastModified: now,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: `${BASE_URL}/compliance`,
+            lastModified: now,
+            changeFrequency: 'monthly',
+            priority: 0.85,
+        },
+        {
+            url: `${BASE_URL}/grievance-redressal`,
+            lastModified: now,
+            changeFrequency: 'monthly',
+            priority: 0.85,
+        },
+        {
+            url: `${BASE_URL}/features`,
+            lastModified: now,
+            changeFrequency: 'monthly',
+            priority: 0.7,
+        },
 
-        // ── 10 Dedicated Business Landing Pages ───────────────────
+        // ── Dedicated Business Landing Pages ───────────────────
         ...businessPages.map((slug) => ({
             url: `${BASE_URL}${slug}`,
             lastModified: now,
@@ -64,25 +72,7 @@ export default function sitemap() {
             priority: 0.9,
         })),
 
-        // ── Authentication ─────────────────────────────────────────
-        {
-            url: `${BASE_URL}/login`,
-            lastModified: now,
-            changeFrequency: 'yearly',
-            priority: 0.9,
-        },
-        {
-            url: `${BASE_URL}/register`,
-            lastModified: now,
-            changeFrequency: 'yearly',
-            priority: 0.9,
-        },
-        {
-            url: `${BASE_URL}/forgot-password`,
-            lastModified: now,
-            changeFrequency: 'yearly',
-            priority: 0.4,
-        },
+        // ── Institutional Trust, Security & Legal ──────────────────
         {
             url: `${BASE_URL}/careers`,
             lastModified: now,
@@ -92,20 +82,20 @@ export default function sitemap() {
         {
             url: `${BASE_URL}/security`,
             lastModified: now,
-            changeFrequency: 'yearly',
-            priority: 0.5,
+            changeFrequency: 'monthly',
+            priority: 0.7,
         },
         {
             url: `${BASE_URL}/privacy`,
             lastModified: now,
             changeFrequency: 'yearly',
-            priority: 0.3,
+            priority: 0.5,
         },
         {
             url: `${BASE_URL}/terms`,
             lastModified: now,
             changeFrequency: 'yearly',
-            priority: 0.3,
+            priority: 0.5,
         },
     ];
 }
