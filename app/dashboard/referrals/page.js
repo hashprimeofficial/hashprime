@@ -43,7 +43,7 @@ export default function ReferralsPage() {
     if (isLoading) return <ReferralsSkeleton />;
     if (error || !data) return <div className="text-red-500">Failed to load referral data</div>;
 
-    const { referredUsers = [], referralTxs = [], totalEarned = 0 } = data;
+    const { referredUsers = [], referralTxs = [], directBonusTxs = [], monthlyBonusTxs = [], totalEarned = 0, totalDirectEarned = 0, totalMonthlyEarned = 0 } = data;
     const bankAccounts = bankData?.bankAccounts || [];
     const claims = claimsData?.claims || [];
 
@@ -135,7 +135,53 @@ export default function ReferralsPage() {
         <div className="max-w-4xl mx-auto space-y-8 relative pb-20">
             <div className="relative z-10">
                 <h1 className="text-3xl font-black text-white mb-2 tracking-tight drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">Referral Program</h1>
-                <p className="text-[#d4af35]/70 font-medium">Invite investors and earn an instant bonus on every investment they make.</p>
+                <p className="text-[#d4af35]/70 font-medium">Invite investors and earn on every investment they make — upfront and every month.</p>
+            </div>
+
+            {/* Two-Tier Earnings Breakdown */}
+            <div className="relative z-10 bg-[#0A0A0A] border border-[#d4af35]/20 rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+                <div className="p-5 border-b border-[#d4af35]/10 bg-[#d4af35]/5 flex items-center gap-3">
+                    <Gift className="w-5 h-5 text-[#d4af35]" />
+                    <h3 className="text-base font-black text-white tracking-tight uppercase tracking-widest">Your Two-Tier Commission Structure</h3>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#d4af35]/10">
+                    {/* L1 */}
+                    <div className="p-6">
+                        <div className="flex items-center gap-2 mb-3">
+                            <span className="w-6 h-6 rounded-full bg-[#d4af35] text-[#0A0A0A] text-[10px] font-black flex items-center justify-center">L1</span>
+                            <span className="text-white font-black text-sm">Upfront 5% Referral Bonus</span>
+                        </div>
+                        <p className="text-slate-400 text-xs font-medium mb-4 leading-relaxed">Credited <span className="text-[#d4af35] font-bold">once, instantly</span> when your referral&apos;s investment is approved. 5% of their initial investment amount.</p>
+                        <div className="flex items-end justify-between">
+                            <div>
+                                <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Total Earned (L1)</p>
+                                <p className="text-2xl font-black text-[#d4af35]">₹{totalDirectEarned.toLocaleString('en-IN')}</p>
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-widest bg-[#d4af35]/10 border border-[#d4af35]/30 text-[#d4af35] px-3 py-1.5 rounded-lg">{directBonusTxs.length} payouts</span>
+                        </div>
+                    </div>
+                    {/* L2 */}
+                    <div className="p-6">
+                        <div className="flex items-center gap-2 mb-3">
+                            <span className="w-6 h-6 rounded-full bg-emerald-500 text-[#0A0A0A] text-[10px] font-black flex items-center justify-center">L2</span>
+                            <span className="text-white font-black text-sm">Monthly 5% Residual Bonus</span>
+                        </div>
+                        <p className="text-slate-400 text-xs font-medium mb-4 leading-relaxed">Credited <span className="text-emerald-400 font-bold">every month</span> when your referral receives their monthly ROI payout. 5% of their monthly return — ongoing.</p>
+                        <div className="flex items-end justify-between">
+                            <div>
+                                <p className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-1">Total Earned (L2)</p>
+                                <p className="text-2xl font-black text-emerald-400">₹{totalMonthlyEarned.toLocaleString('en-IN')}</p>
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-widest bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-3 py-1.5 rounded-lg">{monthlyBonusTxs.length} payouts</span>
+                        </div>
+                    </div>
+                </div>
+                {/* Worked example */}
+                <div className="p-4 bg-white/[0.02] border-t border-[#d4af35]/10">
+                    <p className="text-[10px] font-bold text-slate-500 text-center">
+                        <span className="text-[#d4af35]">Example:</span> Referral invests ₹1,00,000 at 6%/month → you earn <span className="text-[#d4af35]">₹5,000 upfront (L1)</span> + <span className="text-emerald-400">₹300/month (L2)</span> for 6 months = ₹6,800 total
+                    </p>
+                </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
@@ -320,9 +366,19 @@ export default function ReferralsPage() {
                             <thead className="bg-[#080808] border-b border-[#d4af35]/10">
                                 <tr>
                                     <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Name &amp; Email</th>
-                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Invested Amount</th>
-                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Commission Rate</th>
-                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Commission Earned</th>
+                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">Invested</th>
+                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-[#d4af35]/60">
+                                        <span className="flex items-center gap-1">
+                                            <span className="w-4 h-4 rounded-full bg-[#d4af35] text-[#0A0A0A] text-[8px] font-black flex items-center justify-center">L1</span>
+                                            Direct Bonus
+                                        </span>
+                                    </th>
+                                    <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-emerald-400/80">
+                                        <span className="flex items-center gap-1">
+                                            <span className="w-4 h-4 rounded-full bg-emerald-500 text-[#0A0A0A] text-[8px] font-black flex items-center justify-center">L2</span>
+                                            Monthly Earned
+                                        </span>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-[#d4af35]/5">
@@ -331,9 +387,13 @@ export default function ReferralsPage() {
                                     
                                     const totalInr = isKuppusamy ? 500000 : (u.totalInvestedInr || 0);
                                     const totalUsd = isKuppusamy ? 0 : (u.totalInvestedUsd || 0);
-                                    const commPct = isKuppusamy ? 5 : (u.commissionPct || 5);
                                     const commInr = isKuppusamy ? 25000 : (u.commissionAmountInr || 0);
                                     const commUsd = isKuppusamy ? 0 : (u.commissionAmountUsd || 0);
+
+                                    // Compute cumulative L2 monthly commission for this referral from txs
+                                    const l2ForUser = monthlyBonusTxs
+                                        .filter(t => t.description?.includes(u.name))
+                                        .reduce((sum, t) => sum + t.amount, 0);
 
                                     const showInr = totalInr > 0 || (totalInr === 0 && totalUsd === 0);
                                     const showUsd = totalUsd > 0;
@@ -343,19 +403,20 @@ export default function ReferralsPage() {
                                             <td className="px-6 py-4">
                                                 <div className="font-bold text-white text-sm">{u.name}</div>
                                                 <div className="text-xs font-semibold text-slate-400 mt-0.5">{u.email}</div>
+                                                <div className="text-[9px] font-black text-[#d4af35]/40 mt-1 uppercase tracking-widest">5% rate</div>
                                             </td>
                                             <td className="px-6 py-4 font-mono font-bold text-white text-sm">
                                                 {showInr && <div>₹{totalInr.toLocaleString('en-IN')}</div>}
                                                 {showUsd && <div>${totalUsd.toLocaleString('en-US')} USD</div>}
                                             </td>
-                                            <td className="px-6 py-4">
-                                                <span className="px-2.5 py-1 bg-[#d4af35]/10 border border-[#d4af35]/25 text-[#d4af35] text-[10px] font-black rounded-lg">
-                                                    {commPct}%
-                                                </span>
+                                            <td className="px-6 py-4 font-mono font-black text-[#d4af35] text-sm">
+                                                {showInr && <div>₹{commInr.toLocaleString('en-IN')}</div>}
+                                                {showUsd && <div>${commUsd.toLocaleString('en-US')}</div>}
+                                                <div className="text-[9px] font-bold text-slate-500 mt-0.5">one-time</div>
                                             </td>
                                             <td className="px-6 py-4 font-mono font-black text-emerald-400 text-sm">
-                                                {showInr && <div>₹{commInr.toLocaleString('en-IN')}</div>}
-                                                {showUsd && <div>${commUsd.toLocaleString('en-US')} USD</div>}
+                                                <div>₹{l2ForUser.toLocaleString('en-IN')}</div>
+                                                <div className="text-[9px] font-bold text-slate-500 mt-0.5">cumulative</div>
                                             </td>
                                         </tr>
                                     );

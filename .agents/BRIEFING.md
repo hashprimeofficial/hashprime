@@ -1,36 +1,30 @@
-# BRIEFING — 2026-07-05T03:05:05Z
+# BRIEFING — 2026-08-22T02:52:39Z
 
 ## Mission
-Update Hashprime website About Us page, SEO metadata, and geo-targeting for engineering/infrastructure.
+Implement two-tier referral commission system (L1 upfront 5% direct commission, L2 recurring 5% monthly residual ROI commission) and referral dashboard UI in Hashprime.
 
 ## 🔒 My Identity
 - Archetype: sentinel
 - Working directory: /Users/mohammedarif/hashprime-main/.agents
-- Orchestrator: a527341b-436a-406c-8e6c-381bef9a25a8
-- Victory Auditor: 3b71a155-13e4-4348-bf52-3b1db86018e5
+- Orchestrator: 87d160c5-9717-4017-9e68-979b92b8459d
+- Victory Auditor: to be spawned on victory claim
 
 ## 🔒 Key Constraints
 - No technical decisions — relay only
 - Victory Audit is MANDATORY before reporting completion
 
 ## User Context
-- **Last user request**: Update About Us page content, remove crypto references from SEO metadata/keywords, and implement India-focused national-level GEO SEO optimization.
+- **Last user request**: Implement two-tier referral commission system (L1 upfront 5% direct commission, L2 recurring 5% monthly residual commission) with idempotency, tests, and referral dashboard UI updates.
 - **Pending clarifications**: none
-- **Delivered results**:
-  - Updated "About Us" content verbatim on `/company` and home page.
-  - Replaced all cryptocurrency keywords/meta tags with engineering, telecom, real estate, and tech terms.
-  - Integrated India-focused national-level geotargeting (geo.region, geo.position, ICBM, .in domains, en_IN locale, and Indian Organization schema).
-  - Verified static compilation successfully via `npm run build`.
+- **Delivered results**: none
 
 ## Project Status
-- **Phase**: complete
+- **Phase**: in progress
 
 ## Victory Audit Status
-- **Triggered**: yes
-- **Verdict**: VICTORY CONFIRMED
+- **Triggered**: no
+- **Verdict**: pending
 - **Retry count**: 0
 
 ## Artifact Index
 - /Users/mohammedarif/hashprime-main/.agents/ORIGINAL_REQUEST.md — Verbatim user request
-- /Users/mohammedarif/hashprime-main/ORIGINAL_REQUEST.md — Verbatim user request at root
-- /Users/mohammedarif/hashprime-main/.agents/victory_auditor/handoff.md — Victory Audit Report

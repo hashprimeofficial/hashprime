@@ -69,13 +69,23 @@ export async function GET(req) {
             type: 'referral_bonus'
         }).sort({ createdAt: -1 });
 
+        // Split into L1 (direct) and L2 (monthly) streams by description
+        const directBonusTxs = referralTxs.filter(t => t.description?.startsWith('Direct Referral Bonus'));
+        const monthlyBonusTxs = referralTxs.filter(t => t.description?.startsWith('Monthly Referral Commission'));
+
         const totalEarned = referralTxs.reduce((acc, t) => acc + t.amount, 0);
+        const totalDirectEarned = directBonusTxs.reduce((acc, t) => acc + t.amount, 0);
+        const totalMonthlyEarned = monthlyBonusTxs.reduce((acc, t) => acc + t.amount, 0);
 
         return NextResponse.json({
             referralCode: user.referralCode,
             referredUsers: enrichedReferredUsers,
             referralTxs,
-            totalEarned
+            directBonusTxs,
+            monthlyBonusTxs,
+            totalEarned,
+            totalDirectEarned,
+            totalMonthlyEarned,
         }, { status: 200 });
 
     } catch (error) {

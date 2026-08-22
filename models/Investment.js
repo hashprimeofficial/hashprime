@@ -46,9 +46,19 @@ const InvestmentSchema = new mongoose.Schema(
         paidMonths: {
             type: [Number],
             default: []
+        },
+        // Guards L1 direct referral commission from being paid twice
+        directReferralPaid: {
+            type: Boolean,
+            default: false
         }
     },
     { timestamps: true }
 );
 
-export default mongoose.models.Investment || mongoose.model('Investment', InvestmentSchema);
+if (mongoose.models.Investment) {
+    delete mongoose.models.Investment;
+}
+
+const Investment = mongoose.model('Investment', InvestmentSchema);
+export default Investment;

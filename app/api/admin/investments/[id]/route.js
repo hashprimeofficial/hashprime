@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import mongoose from 'mongoose';
 import connectToDatabase from '@/lib/db';
 import Investment from '@/models/Investment';
 import { verifyToken } from '@/lib/auth';
@@ -41,9 +42,12 @@ export async function PATCH(req, { params }) {
 
         // --- NEW LOGIC: Approving a Pending Investment ---
         if (safeUpdate.status === 'active' && currentInvestment.status === 'pending') {
+            // Capture L1 guard BEFORE the update sets directReferralPaid = true
+            const alreadyPaidL1 = !!currentInvestment.directReferralPaid;
+
             const transitioning = await Investment.findOneAndUpdate(
                 { _id: id, status: 'pending' },
-                { status: 'active' },
+                { status: 'active', directReferralPaid: true },
                 { new: true }
             );
             if (!transitioning) {
@@ -55,8 +59,7 @@ export async function PATCH(req, { params }) {
 
             const activeWalletBalance = currentInvestment.currency === 'USD' ? (user.usdWallet || 0) : (user.inrWallet || 0);
             if (activeWalletBalance < amountNeeded) {
-                // Rollback status to pending
-                await Investment.findByIdAndUpdate(id, { status: 'pending' });
+                await Investment.findByIdAndUpdate(id, { status: 'pending', directReferralPaid: false });
                 return NextResponse.json({ error: `User has insufficient balance (${activeWalletBalance}) to cover this investment.` }, { status: 400 });
             }
 
@@ -77,13 +80,14 @@ export async function PATCH(req, { params }) {
                 description: `Invested in ${currentInvestment.schemeType} scheme (Admin Approved)`,
             });
 
-            // 5% Referral Bonus Logic for Referrer
-            if (user.referredBy) {
+            // L1: 5% Direct Referral Bonus — guarded by pre-captured alreadyPaidL1
+            if (user.referredBy && !alreadyPaidL1) {
                 let referrer = await User.findOne({ email: user.referredBy });
-                if (!referrer) {
-                    referrer = await User.findOne({ referralCode: user.referredBy });
+                if (!referrer) referrer = await User.findOne({ referralCode: user.referredBy });
+                if (!referrer && mongoose.Types.ObjectId.isValid(user.referredBy)) {
+                    referrer = await User.findById(user.referredBy);
                 }
-                if (referrer) {
+                if (referrer && referrer._id.toString() !== user._id.toString()) {
                     const referrerRate = referrer.limitedRateOverride !== undefined && referrer.limitedRateOverride !== null
                         ? referrer.limitedRateOverride
                         : 0.05;
@@ -91,20 +95,21 @@ export async function PATCH(req, { params }) {
                         ? Math.round(amountNeeded * referrerRate)
                         : calculateReferralCommission(amountNeeded);
 
-                    const currency = currentInvestment.currency || 'INR';
-                    const updateField = currency === 'USD' ? 'referralWallet' : 'referralWalletInr';
+                    const commCurrency = currentInvestment.currency || 'INR';
+                    const updateField = commCurrency === 'USD' ? 'referralWallet' : 'referralWalletInr';
 
-                    await User.findByIdAndUpdate(referrer._id, {
-                        $inc: { [updateField]: commissionAmount }
-                    });
-
-                    await Transaction.create({
-                        userId: referrer._id,
-                        type: 'referral_bonus',
-                        amount: commissionAmount,
-                        currency: currency,
-                        description: `${referrerRate * 100}% Referral bonus from ${user.name}'s investment approval`
-                    });
+                    if (commissionAmount > 0) {
+                        await User.findByIdAndUpdate(referrer._id, {
+                            $inc: { [updateField]: commissionAmount }
+                        });
+                        await Transaction.create({
+                            userId: referrer._id,
+                            type: 'referral_bonus',
+                            amount: commissionAmount,
+                            currency: commCurrency,
+                            description: `Direct Referral Bonus — ${user.name}`
+                        });
+                    }
                 }
             }
         }

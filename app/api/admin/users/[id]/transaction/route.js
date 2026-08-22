@@ -17,7 +17,7 @@ export async function POST(req, { params }) {
         const { account, action, amount, description } = await req.json();
 
         // Validation — accept both new multi-wallet keys and legacy keys
-        const ALLOWED_ACCOUNTS = ['usdWallet', 'inrWallet', 'referralWallet'];
+        const ALLOWED_ACCOUNTS = ['usdWallet', 'inrWallet', 'referralWallet', 'referralWalletInr'];
         if (!ALLOWED_ACCOUNTS.includes(account)) {
             return NextResponse.json({ error: 'Invalid account type' }, { status: 400 });
         }
@@ -53,7 +53,7 @@ export async function POST(req, { params }) {
         });
 
         // 2. Create Transaction Record
-        const currency = (account === 'usdtBalance' || account === 'usdWallet' || account === 'referralWallet') ? 'USDT' : 'INR';
+        const currency = (account === 'usdWallet' || account === 'referralWallet') ? 'USD' : (account === 'usdtBalance' ? 'USDT' : 'INR');
         const type = action === 'add' ? 'deposit' : 'withdrawal';
         const adminDescription = description?.trim()
             ? `Admin Manual ${action === 'add' ? 'Deposit' : 'Withdrawal'}: ${description}`

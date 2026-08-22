@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import mongoose from 'mongoose';
 import connectToDatabase from '@/lib/db';
 import Investment from '@/models/Investment';
 import User from '@/models/User';
@@ -100,7 +101,8 @@ export async function POST(req) {
             usdtReward,
             inrReward,
             maturesAt,
-            status: 'active' // Directly active when created by admin
+            status: 'active', // Directly active when created by admin
+            directReferralPaid: true
         });
 
         // 2. Transaction for the investment deduction
@@ -118,8 +120,10 @@ export async function POST(req) {
             if (!referrer) {
                 referrer = await User.findOne({ referralCode: user.referredBy });
             }
-            if (referrer) {
-                // 5% of investment amount as bonus (or referrer override), awarded in USDT
+            if (!referrer && mongoose.Types.ObjectId.isValid(user.referredBy)) {
+                referrer = await User.findById(user.referredBy);
+            }
+            if (referrer && referrer._id.toString() !== user._id.toString()) {
                 const referrerRate = referrer.limitedRateOverride !== undefined && referrer.limitedRateOverride !== null
                     ? referrer.limitedRateOverride
                     : 0.05;
@@ -130,17 +134,19 @@ export async function POST(req) {
                 const invCurrency = currency === 'USD' ? 'USD' : 'INR';
                 const updateField = invCurrency === 'USD' ? 'referralWallet' : 'referralWalletInr';
 
-                await User.findByIdAndUpdate(referrer._id, {
-                    $inc: { [updateField]: commissionAmount }
-                });
+                if (commissionAmount > 0) {
+                    await User.findByIdAndUpdate(referrer._id, {
+                        $inc: { [updateField]: commissionAmount }
+                    });
 
-                await Transaction.create({
-                    userId: referrer._id,
-                    type: 'referral_bonus',
-                    amount: commissionAmount,
-                    currency: invCurrency,
-                    description: `${referrerRate * 100}% Referral bonus from ${user.name}'s investment`
-                });
+                    await Transaction.create({
+                        userId: referrer._id,
+                        type: 'referral_bonus',
+                        amount: commissionAmount,
+                        currency: invCurrency,
+                        description: `Direct Referral Bonus — ${user.name}`
+                    });
+                }
             }
         }
 

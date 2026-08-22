@@ -9,7 +9,7 @@ const TransactionSchema = new mongoose.Schema(
         },
         type: {
             type: String,
-            enum: ['investment', 'referral_bonus', 'withdrawal', 'deposit'],
+            enum: ['investment', 'referral_bonus', 'withdrawal', 'deposit', 'payout'],
             required: true,
         },
         amount: {
@@ -18,7 +18,7 @@ const TransactionSchema = new mongoose.Schema(
         },
         currency: {
             type: String,
-            enum: ['INR', 'USDT'],
+            enum: ['INR', 'USD', 'USDT'],
             required: true,
         },
         description: {
