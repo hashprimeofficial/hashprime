@@ -25,10 +25,11 @@ const team = [
     { name: "Mr. Ravi Maarimuthu", title: "Construction Operations Head", img: "/Mr. RAVI MAARIMUTHU.jpeg" },
 
     { name: "Mr. S. Alljeen Jothimani, B.A., B.L.", title: "Advocate & Legal Counsel", img: "/S. ALLJEEN JOTHIMANI.jpg" },
-    { name: "Mr. T Mohammed Arif", title: "Technology & Digital Solutions Head", img: "/T_MOHAMMED_ARIF.jpg" },
     { name: "Mr. Manikandaprabu R", title: "Tourism Operations Head", img: "/MANIKANDAPRABU R.jpeg" },
     { name: "Mr. Naresh D", title: "Mechanical & Machinery Operations Head", img: "/NARESH D.jpeg" },
     { name: "Mr. Sathish S", title: "AC Sales & Service Operations Head", img: "/SATHISH S.jpg" },
+    { name: "Mr. T Mohammed Arif", title: "Digital Systems & Automation Specialist", img: "/T_MOHAMMED_ARIF.jpg" },
+
 ];
 
 // ─── Business Divisions ─────────────────────────────────────────────────────────
@@ -150,7 +151,7 @@ const businesses = [
             "UI/UX & Digital Systems",
             "Hosting & Technical Support",
         ],
-        person: { name: "Mr. T Mohammed Arif", position: "Technology & Digital Solutions Head", experience: 2 },
+        person: { name: "Mr. T Mohammed Arif", position: "Digital Systems & Automation Specialist", experience: 2 },
     },
 ];
 
@@ -315,8 +316,50 @@ export default function HashPrimeGroupsPage() {
         });
     }, { scope: pageRef });
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Hashprime Groups",
+        "alternateName": "Hash Prime",
+        "url": "https://hashprime.in/hash-prime-groups",
+        "logo": "https://hashprime.in/logo.png",
+        "description": "Hashprime operates multi-business divisions across Tamil Nadu including Telecom Infrastructure, Software Digital & AI Solutions, HVAC, Civil Construction, Machinery, and Industrial Logistics.",
+        "employee": [
+            {
+                "@type": "Person",
+                "name": "Mr. Vijayabharathi Veerasamy",
+                "jobTitle": "Founder & Managing Director",
+                "worksFor": { "@type": "Organization", "name": "Hashprime Groups" }
+            },
+            {
+                "@type": "Person",
+                "name": "Mr. Naveenkumar Mayavan",
+                "jobTitle": "Co-Founder & CEO",
+                "worksFor": { "@type": "Organization", "name": "Hashprime Groups" }
+            },
+            {
+                "@type": "Person",
+                "name": "Mr. T Mohammed Arif",
+                "jobTitle": "Digital Systems & Automation Specialist",
+                "worksFor": { "@type": "Organization", "name": "Hashprime Groups" },
+                "knowsAbout": [
+                    "Digital Systems",
+                    "Intelligent Automation",
+                    "Software Engineering",
+                    "Web Applications",
+                    "AI Solutions",
+                    "SEO & GEO Optimization"
+                ]
+            }
+        ]
+    };
+
     return (
         <div ref={pageRef} className="relative bg-[#050505] overflow-x-hidden">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
 
             {/* Global dot-grid */}
             <div className="fixed inset-0 pointer-events-none z-0 opacity-[0.025]"

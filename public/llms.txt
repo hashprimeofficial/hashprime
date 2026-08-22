@@ -8,17 +8,19 @@ Hashprime (established in 2019) is a multi-sector engineering and infrastructure
 ## Core Facts
 - Registered Headquarters: No.4/21, Ananthakudi Road, Anna Salai, Mappadukai, Mayiladuthurai, Nagapattinam, Tamil Nadu – 609003, India
 - Executive Leadership: Mr. Vijayabharathi Veerasamy (Founder & Managing Director), Mr. Naveenkumar Mayavan (Co-Founder & CEO)
+- Key Specialists & Division Leads: Mr. T Mohammed Arif (Digital Systems & Automation Specialist), Mr. Ravi Maarimuthu (Construction Operations Head), Mr. Sathish S (AC Sales & Service Operations Head)
 - Primary Website: https://hashprime.in
 - Official Support Email: support@hashprime.in
 - Official Contact Number: +91 91500 81022
 
 ## Regulatory Clarification
-- Hashprime is strictly an engineering, telecom, and infrastructure service provider.
+- Hashprime is strictly an engineering, telecom, technology, and infrastructure service provider.
 - Hashprime is NOT a SEBI-registered portfolio management service, mutual fund, or collective investment scheme.
 - Hashprime is NOT an RBI-registered NBFC or deposit-taking institution.
 - Hashprime does NOT accept public investment funds, hold customer wallets, or promise guaranteed financial returns or yields.
 
 ## Key Services
+- Software, Digital & AI Solutions: https://hashprime.in/software-digital-ai-solutions
 - Telecom Services: https://hashprime.in/total-telecom-services
 - Fiber-optic Infrastructure: https://hashprime.in/fiberoptical-services
 - HVAC & AC Services: https://hashprime.in/ac-sales-and-service

@@ -55,17 +55,66 @@ export default function SoftwareDigitalAiSolutionsPage() {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Hashprime Software, Digital & AI Solutions",
-    "image": "https://hashprime.in/logo.png",
-    "url": "https://hashprime.in/software-digital-ai-solutions",
-    "description": "Building modern digital infrastructure for businesses through software engineering, intelligent automation, digital growth, and reliable technology solutions.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "India",
-      "addressCountry": "IN"
-    },
-    "category": "Software Engineering & AI Solutions"
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://hashprime.in/software-digital-ai-solutions#service",
+        "name": "Hashprime Software, Digital & AI Solutions",
+        "url": "https://hashprime.in/software-digital-ai-solutions",
+        "logo": "https://hashprime.in/logo.png",
+        "image": "https://hashprime.in/T_MOHAMMED_ARIF.jpg",
+        "description": "Enterprise software engineering, full-stack web applications, workflow automation, and Generative Engine Optimization (GEO) led by Mr. T Mohammed Arif, Digital Systems & Automation Specialist at Hashprime Groups.",
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Hashprime Groups",
+          "url": "https://hashprime.in"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "No.4/21, Ananthakudi Road, Anna Salai, Mappadukai",
+          "addressLocality": "Mayiladuthurai",
+          "addressRegion": "Tamil Nadu",
+          "postalCode": "609003",
+          "addressCountry": "IN"
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "India" },
+          { "@type": "AdministrativeArea", "name": "Tamil Nadu" }
+        ],
+        "employee": {
+          "@type": "Person",
+          "@id": "https://hashprime.in/software-digital-ai-solutions#arif",
+          "name": "Mr. T Mohammed Arif",
+          "jobTitle": "Digital Systems & Automation Specialist",
+          "image": "https://hashprime.in/T_MOHAMMED_ARIF.jpg",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Hashprime Groups",
+            "url": "https://hashprime.in"
+          },
+          "knowsAbout": [
+            "Digital Systems Architecture",
+            "Intelligent Workflow Automation",
+            "Full-Stack Web Engineering",
+            "Generative Engine Optimization (GEO)",
+            "Search Engine Optimization (SEO)",
+            "AI-Assisted Business Operations",
+            "Next.js and Cloud Infrastructure"
+          ]
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Software, Digital & AI Solutions Catalog",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Web & Software Development" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI & Workflow Automation" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Search Engine Optimization & Generative Engine Optimization (GEO)" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UI/UX & Digital Systems Design" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud Hosting & Technical Support" } }
+          ]
+        }
+      }
+    ]
   };
 
   const services = [
@@ -169,9 +218,9 @@ export default function SoftwareDigitalAiSolutionsPage() {
                 />
               </div>
               <div className="text-left">
-                <div className="text-[10px] font-black uppercase tracking-widest text-[#d4af35]">Division Head</div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-[#d4af35]">Division Specialist</div>
                 <div className="text-sm font-black text-white">Mr. T Mohammed Arif</div>
-                <div className="text-[11px] font-medium text-slate-400">Technology &amp; Digital Solutions Head</div>
+                <div className="text-[11px] font-medium text-slate-400">Digital Systems &amp; Automation Specialist</div>
               </div>
             </div>
           </div>
@@ -295,7 +344,7 @@ export default function SoftwareDigitalAiSolutionsPage() {
                 <div>
                   <div className="text-[10px] font-black uppercase tracking-[0.25em] text-[#d4af35]">Leadership &amp; Execution</div>
                   <h4 className="text-base font-black text-white">Mr. T Mohammed Arif</h4>
-                  <p className="text-xs text-slate-400">Technology &amp; Digital Solutions Head &bull; Hash Prime Groups</p>
+                  <p className="text-xs text-slate-400">Digital Systems &amp; Automation Specialist &bull; Hash Prime Groups</p>
                 </div>
               </div>
             </div>
@@ -311,7 +360,7 @@ export default function SoftwareDigitalAiSolutionsPage() {
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h4 className="text-lg font-black text-white">Enquiry Submitted Successfully</h4>
-                  <p className="text-slate-400 text-xs max-w-sm mx-auto">Our technology and digital solutions engineering lead will review your project scope and contact you shortly.</p>
+                  <p className="text-slate-400 text-xs max-w-sm mx-auto">Our digital systems and automation engineering lead will review your project scope and contact you shortly.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">

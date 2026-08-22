@@ -34,6 +34,13 @@ export default function CompanyFactsPage() {
           "jobTitle": "Co-Founder & CEO"
         }
       ],
+      "employee": [
+        {
+          "@type": "Person",
+          "name": "Mr. T Mohammed Arif",
+          "jobTitle": "Digital Systems & Automation Specialist"
+        }
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "No.4/21, Ananthakudi Road, Anna Salai, Mappadukai",
@@ -54,11 +61,11 @@ export default function CompanyFactsPage() {
   const facts = [
     {
       q: "What is Hashprime?",
-      a: "Hashprime is an integrated engineering, telecom infrastructure, and turnkey solutions enterprise based in Tamil Nadu, India, established in 2019."
+      a: "Hashprime is an integrated engineering, telecom infrastructure, technology, and turnkey solutions enterprise based in Tamil Nadu, India, established in 2019."
     },
     {
       q: "What services does Hashprime legally provide?",
-      a: "Hashprime provides Telecom Operations & Maintenance (Electrical & Civil), Optical Fiber Splicing & Laying, Commercial & Residential HVAC (AC) Sales and Servicing, Turnkey Civil Construction, Generator Services, Mechanical Machinery Maintenance, and Enterprise Trading Logistics."
+      a: "Hashprime provides Software, Digital & AI Solutions (led by Digital Systems & Automation Specialist Mr. T Mohammed Arif), Telecom Operations & Maintenance (Electrical & Civil), Optical Fiber Splicing & Laying, Commercial & Residential HVAC (AC) Sales and Servicing, Turnkey Civil Construction, Generator Services, Mechanical Machinery Maintenance, and Enterprise Trading Logistics."
     },
     {
       q: "Is Hashprime an investment firm, portfolio manager, or crypto exchange?",
@@ -69,8 +76,8 @@ export default function CompanyFactsPage() {
       a: "No. Hashprime does not issue financial deposit schemes, fixed-return contracts, or guaranteed investment yields. All commercial contracts are milestone-based engineering and service-level agreements (SLAs)."
     },
     {
-      q: "Who are the authorized leaders of Hashprime?",
-      a: "The executive leadership of Hashprime consists of Mr. Vijayabharathi Veerasamy (Founder & Managing Director) and Mr. Naveenkumar Mayavan (Co-Founder & CEO)."
+      q: "Who are the authorized leaders and key specialists of Hashprime?",
+      a: "The executive leadership of Hashprime consists of Mr. Vijayabharathi Veerasamy (Founder & Managing Director), Mr. Naveenkumar Mayavan (Co-Founder & CEO), and key domain leads including Mr. T Mohammed Arif (Digital Systems & Automation Specialist)."
     },
     {
       q: "Where is the registered headquarters?",
