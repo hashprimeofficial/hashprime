@@ -11,11 +11,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: '/schemes',
-        destination: '/hash-prime-groups',
-        permanent: true,
-      },
-      {
         source: '/markets',
         destination: '/company-facts',
         permanent: true,

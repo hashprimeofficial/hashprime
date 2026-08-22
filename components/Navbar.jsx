@@ -28,6 +28,7 @@ export default function Navbar() {
     const isLoggedIn = !!authData?.user;
 
     const navLinks = [
+        { href: '/schemes', label: 'Schemes' },
         { href: '/hash-prime-groups', label: 'Divisions' },
         { href: '/company-facts', label: 'Company Facts' },
         { href: '/compliance', label: 'Compliance' },

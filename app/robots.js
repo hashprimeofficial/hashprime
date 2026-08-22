@@ -1,5 +1,5 @@
 export default function robots() {
-    const disallowedRoutes = ['/admin', '/dashboard', '/api', '/register', '/login', '/forgot-password', '/schemes', '/markets'];
+    const disallowedRoutes = ['/admin', '/dashboard', '/api', '/register', '/login', '/forgot-password', '/markets'];
 
     return {
         rules: [

@@ -4,53 +4,64 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ShieldCheck, ArrowRight, Wrench, Zap, CheckCircle2 } from "lucide-react";
-import Link from "next/link";
+import { TrendingUp, ArrowRight, ShieldCheck } from "lucide-react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-const serviceModels = [
+const schemes = [
     {
-        id: "quarterly-om",
-        title: "Preventive O&M SLA",
-        period: "Quarterly Review",
+        id: "three-month",
+        title: "Balanced Growth",
+        period: "3 Month Scheme",
         duration: "90 Days",
-        metric: "99.9% Uptime",
-        metricLabel: "Service Level Agreement",
-        features: ["Scheduled Generator Servicing", "AC Filter & Coil Jet Cleaning", "Optical Fiber Loss Audits", "24/7 Priority Emergency Support"],
+        benefit: "20%",
+        benefitCurrency: "INR (₹)",
+        investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
     },
     {
-        id: "biannual-infrastructure",
-        title: "Commercial Infrastructure SLA",
-        period: "Biannual Care",
+        id: "six-month",
+        title: "Elite Performance",
+        period: "6 Month Scheme",
         duration: "180 Days",
-        metric: "Turnkey Maintenance",
-        metricLabel: "Complete Facility Care",
-        features: ["Comprehensive HVAC Overhauls", "Substation & Transformer Checks", "Telecom Tower Structural Audits", "Detailed Compliance Reports"],
+        benefit: "38%",
+        benefitCurrency: "INR (₹)",
+        investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
     },
     {
-        id: "annual-turnkey",
-        title: "Enterprise Turnkey Contract",
-        period: "Annual Contract",
+        id: "one-year",
+        title: "Pro Capitalist",
+        period: "1 Year Scheme",
         duration: "365 Days",
-        metric: "Dedicated Squads",
-        metricLabel: "Dedicated Project Managers",
-        features: ["End-to-End Civil & Electrical Works", "Rapid 2-Hour SLA Response", "Material Quality Assurance", "Dedicated District Lead Oversight"],
+        benefit: "100%",
+        benefitCurrency: "INR (₹)",
+        investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
         featured: true
     },
     {
-        id: "multiyear-partnership",
-        title: "Multi-Year Enterprise Partner",
-        period: "Strategic Long-Term",
-        duration: "3 - 5 Years",
-        metric: "Institutional Scope",
-        metricLabel: "Large-Scale Deployments",
-        features: ["Smart City & Fiber Backbone Rollout", "Multi-Site Tower & Grid Management", "Custom Infrastructure Engineering", "Executive Nodal Account Manager"],
+        id: "five-year",
+        title: "Legacy Wealth",
+        period: "5 Year Scheme",
+        duration: "5 Years",
+        benefit: "530%",
+        benefitCurrency: "INR (₹)",
+        investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
     },
+    {
+        id: "limited-offer",
+        title: "Limited Offer",
+        period: "6 Month Scheme",
+        duration: "6 Months",
+        benefit: "6%",
+        benefitCurrency: "Monthly ROI (INR)",
+        investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
+        featured: true,
+        fullWidth: true
+    }
 ];
 
 export default function DetailedSchemes() {
     const sectionRef = useRef(null);
+    const [hoveredTier, setHoveredTier] = useState(null);
 
     useGSAP(() => {
         gsap.fromTo(".is-header-animate",
@@ -70,7 +81,7 @@ export default function DetailedSchemes() {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} className="relative bg-transparent py-24 md:py-32 overflow-hidden border-t border-white/[0.02]" id="service-models">
+        <section ref={sectionRef} className="relative bg-transparent py-24 md:py-32 overflow-hidden border-t border-white/[0.02]" id="detailed-schemes">
 
             {/* Background Orbs */}
             <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-[#d4af35]/10 rounded-full blur-[150px] pointer-events-none" />
@@ -79,47 +90,77 @@ export default function DetailedSchemes() {
             <div className="relative z-10 max-w-7xl mx-auto px-6">
 
                 {/* Header */}
-                <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-20">
-                    <div className="is-header-animate inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-white/10 shadow-sm mb-6">
-                        <Wrench className="w-4 h-4 text-[#d4af35]" />
-                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">Execution Models</span>
+                <div className="flex flex-col items-center text-center max-w-4xl mx-auto mb-24">
+                    <div className="is-header-animate inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212] border border-white/10 shadow-sm mb-8">
+                        <TrendingUp className="w-4 h-4 text-[#d4af35]" />
+                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">Structured Yield</span>
                     </div>
 
-                    <h2 className="is-header-animate text-4xl md:text-6xl font-black text-white tracking-tight leading-[1.1] mb-6">
-                        Enterprise Service & <br />
-                        <span className="text-[#d4af35]">Operations & Maintenance Models</span>
+                    <h2 className="is-header-animate text-5xl md:text-8xl font-black text-white tracking-tighter leading-[0.9] mb-8">
+                        PREMIUM<br />
+                        <span className="text-[#d4af35]">SCHEMES</span>
                     </h2>
-                    <p className="is-header-animate text-slate-400 text-base md:text-lg max-w-2xl">
-                        Structured, SLA-governed contracting models designed for telecom operators, corporate facilities, and infrastructure developers.
+
+                    <p className="is-header-animate text-xl text-slate-500 font-medium max-w-2xl leading-relaxed">
+                        Fixed-term alpha strategies designed for high-conviction capital allocation. Institutional yields, democratized.
                     </p>
                 </div>
 
                 {/* Grid */}
-                <div className="is-grid-premium grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    {serviceModels.map((item) => (
-                        <div key={item.id} className={`is-card-premium group relative bg-[#121212] border rounded-3xl p-8 md:p-10 flex flex-col justify-between transition-all duration-300 ${item.featured ? 'border-[#d4af35]/50 shadow-[0_0_40px_rgba(212,175,53,0.1)]' : 'border-white/10 hover:border-[#d4af35]/30'}`}>
-                            <div>
-                                <div className="flex items-center justify-between mb-6">
-                                    <span className="text-xs font-bold text-[#d4af35] uppercase tracking-wider bg-[#d4af35]/10 px-3 py-1 rounded-full">{item.period}</span>
-                                    <span className="text-xs text-slate-400 font-medium">{item.duration}</span>
+                <div className="is-grid-premium grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+                    {schemes.map((scheme) => (
+                        <div key={scheme.id} className={`is-card-premium group relative bg-[#121212] border rounded-[3rem] p-10 md:p-14 
+                                                        hover:border-[#d4af35]/40 hover:shadow-[0_30px_60px_rgba(0,0,0,0.05)] transition-all duration-500 flex flex-col h-full overflow-hidden
+                                                        ${scheme.featured ? 'border-[#d4af35]/40 shadow-lg' : 'border-white/10/60'}
+                                                        ${scheme.fullWidth ? 'md:col-span-2' : ''}`}>
+
+                            {/* Glassmorphic Accent */}
+                            <div className="absolute top-0 right-0 w-48 h-48 bg-[#d4af35]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-[#d4af35]/20 transition-all duration-700" />
+
+                            <div className="relative z-10 flex-grow flex flex-col">
+                                {/* Header Row */}
+                                <div className="flex justify-between items-start mb-14">
+                                    <div className="flex flex-col gap-2">
+                                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#121212]/5 border border-white/5">
+                                            <ShieldCheck className="w-3.5 h-3.5 text-[#d4af35]" />
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-[#d4af35]/70">{scheme.duration} Lock</span>
+                                        </div>
+                                        <h3 className="text-4xl font-black text-white tracking-tight">{scheme.title}</h3>
+                                        <span className="text-sm font-bold text-slate-300 uppercase tracking-widest">{scheme.period}</span>
+                                    </div>
+                                    <div className="w-14 h-14 rounded-full bg-[#121212]/5 flex items-center justify-center group-hover:bg-[#d4af35] transition-all duration-500">
+                                        <ArrowRight className="w-6 h-6 text-slate-300 group-hover:text-white -rotate-45 group-hover:rotate-0 transition-all duration-500" />
+                                    </div>
                                 </div>
-                                <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
-                                <div className="my-6 p-4 rounded-2xl bg-[#0A0A0A] border border-white/5">
-                                    <div className="text-2xl font-black text-white">{item.metric}</div>
-                                    <div className="text-xs text-slate-400 mt-1">{item.metricLabel}</div>
+
+                                {/* Yield Section */}
+                                <div className="mb-14 border-l-4 border-[#d4af35] pl-8">
+                                    <div className="flex items-baseline gap-2">
+                                        <span className="text-8xl font-black text-white leading-none tracking-tighter">{scheme.benefit}</span>
+                                        <span className="text-2xl font-black text-slate-300 mb-2">ROI</span>
+                                    </div>
+                                    <p className="text-slate-300 font-bold uppercase tracking-widest mt-2">Target Returns / {scheme.benefitCurrency}</p>
                                 </div>
-                                <ul className="space-y-3 mb-8">
-                                    {item.features.map((feat, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-sm text-slate-300">
-                                            <CheckCircle2 className="w-4 h-4 text-[#d4af35] shrink-0" />
-                                            <span>{feat}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+
+                                {/* Tiers */}
+                                <div className="mt-auto">
+                                    <h4 className="text-[11px] font-black text-slate-300 uppercase tracking-[0.3em] mb-6">Investment Thresholds</h4>
+                                    <div className="flex flex-wrap gap-4">
+                                        {scheme.investments.map((inv, idx) => {
+                                            const uid = `${scheme.id}-${idx}`;
+                                            return (
+                                                <div
+                                                    key={idx}
+                                                    onMouseEnter={() => setHoveredTier(uid)}
+                                                    onMouseLeave={() => setHoveredTier(null)}
+                                                    className={`py-4 px-8 rounded-2xl border font-black text-xl transition-all duration-500 cursor-default
+                                                    ${hoveredTier === uid ? 'border-[#d4af35] bg-[#d4af35] text-[#0A0A0A] shadow-[0_8px_20px_rgba(212,175,53,0.3)] -translate-y-1' : 'border-white/10 bg-[#121212] text-slate-300'}`}
+                                                >{inv}</div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
                             </div>
-                            <Link href="/hash-prime-groups" className="inline-flex items-center justify-center gap-2 w-full bg-[#1e1e1e] hover:bg-[#d4af35] text-white hover:text-[#0A0A0A] font-bold py-3 px-6 rounded-xl transition-colors duration-300 text-sm">
-                                View Business Division <ArrowRight className="w-4 h-4" />
-                            </Link>
                         </div>
                     ))}
                 </div>

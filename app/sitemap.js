@@ -58,6 +58,12 @@ export default function sitemap() {
             priority: 0.85,
         },
         {
+            url: `${BASE_URL}/schemes`,
+            lastModified: now,
+            changeFrequency: 'monthly',
+            priority: 0.85,
+        },
+        {
             url: `${BASE_URL}/features`,
             lastModified: now,
             changeFrequency: 'monthly',
