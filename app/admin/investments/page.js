@@ -10,12 +10,12 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const SCHEME_OPTIONS = [
     { value: '3m_inr', label: '3 Months INR (18%)' },
-    { value: '6m_inr', label: '6 Months INR (38%)' },
+    { value: '6m_inr', label: '6 Months INR (40%)' },
     { value: '1y_inr', label: '1 Year INR (80%)' },
     { value: '5y_inr', label: '5 Years INR (500%)' },
     { value: 'limited_inr', label: 'Limited Offer INR (Monthly 4%)' },
     { value: '3m_usd', label: '3 Months USD (18%)' },
-    { value: '6m_usd', label: '6 Months USD (38%)' },
+    { value: '6m_usd', label: '6 Months USD (40%)' },
     { value: '1y_usd', label: '1 Year USD (80%)' },
     { value: '5y_usd', label: '5 Years USD (500%)' },
 ];
@@ -40,12 +40,12 @@ export default function AdminInvestmentsPage() {
 
     const SCHEME_RATES = {
         '3m_inr': 0.18,
-        '6m_inr': 0.38,
+        '6m_inr': 0.40,
         '1y_inr': 0.80,
         '5y_inr': 5.00,
         'limited_inr': 0.24,
         '3m_usd': 0.18,
-        '6m_usd': 0.38,
+        '6m_usd': 0.40,
         '1y_usd': 0.80,
         '5y_usd': 5.00,
     };

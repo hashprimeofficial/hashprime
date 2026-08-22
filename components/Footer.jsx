@@ -146,6 +146,7 @@ export default function Footer() {
                                 ['AC Sales & Servicing', '/ac-sales-and-service'],
                                 ['Civil Construction', '/construction-and-works'],
                                 ['Machinery Services', '/mechanical-machinery-services'],
+                                ['Software & AI Solutions', '/software-digital-ai-solutions'],
                             ].map(([label, href]) => (
                                 <li key={label}>
                                     <Link href={href} className="group flex items-center text-slate-400 hover:text-white text-sm font-medium transition-colors">

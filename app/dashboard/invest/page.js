@@ -10,14 +10,14 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const INR_SCHEMES = [
     { id: '3m_inr', name: '3-Month Plan (INR)', currency: 'INR', rate: '18%', desc: 'Short-term liquidity', amounts: [50000, 100000, 200000, 300000, 400000, 500000] },
-    { id: '6m_inr', name: '6-Month Plan (INR)', currency: 'INR', rate: '38%', desc: 'Balanced growth', amounts: [50000, 100000, 200000, 300000, 400000, 500000] },
+    { id: '6m_inr', name: '6-Month Plan (INR)', currency: 'INR', rate: '40%', desc: 'Balanced growth', amounts: [50000, 100000, 200000, 300000, 400000, 500000] },
     { id: '1y_inr', name: '1-Year FD (INR)', currency: 'INR', rate: '80%', desc: 'High yield', amounts: [50000, 100000, 200000, 300000, 400000, 500000] },
     { id: '5y_inr', name: '5-Year Vision (INR)', currency: 'INR', rate: '500%', desc: 'Wealth generation', amounts: [50000, 100000, 200000, 300000, 400000, 500000] },
     { id: 'limited_inr', name: 'Limited Offer (INR)', currency: 'INR', rate: '24%', desc: 'Monthly 4% Returns', amounts: [50000, 100000, 200000, 300000, 400000, 500000] },
 ];
 const USD_SCHEMES = [
     { id: '3m_usd', name: '3-Month Plan (USDT)', currency: 'USD', rate: '18%', desc: 'Short-term liquidity', amounts: [500, 1000, 1500, 2000] },
-    { id: '6m_usd', name: '6-Month Plan (USDT)', currency: 'USD', rate: '38%', desc: 'Balanced growth', amounts: [1000, 1500, 2000] },
+    { id: '6m_usd', name: '6-Month Plan (USDT)', currency: 'USD', rate: '40%', desc: 'Balanced growth', amounts: [1000, 1500, 2000] },
     { id: '1y_usd', name: '1-Year FD (USDT)', currency: 'USD', rate: '80%', desc: 'High yield USD', min: 5000, amounts: [5000, 6000, 7000, 8000, 10000] },
     { id: '5y_usd', name: '5-Year Vision (USDT)', currency: 'USD', rate: '500%', desc: 'Massive wealth USD', min: 10000 },
 ];

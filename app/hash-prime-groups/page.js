@@ -8,7 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
     Zap, Wind, HardHat, Landmark, Scale,
     Tent, Radio, BarChart3, MapPin, Wrench,
-    Plane, ArrowUpRight, User, Briefcase, Clock
+    Plane, ArrowUpRight, User, Briefcase, Clock, Cpu
 } from 'lucide-react';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -25,6 +25,7 @@ const team = [
     { name: "Mr. Ravi Maarimuthu", title: "Construction Operations Head", img: "/Mr. RAVI MAARIMUTHU.jpeg" },
 
     { name: "Mr. S. Alljeen Jothimani, B.A., B.L.", title: "Advocate & Legal Counsel", img: "/S. ALLJEEN JOTHIMANI.jpg" },
+    { name: "Mr. T Mohammed Arif", title: "Technology & Digital Solutions Head", img: "/T_MOHAMMED_ARIF.jpg" },
     { name: "Mr. Manikandaprabu R", title: "Tourism Operations Head", img: "/MANIKANDAPRABU R.jpeg" },
     { name: "Mr. Naresh D", title: "Mechanical & Machinery Operations Head", img: "/NARESH D.jpeg" },
     { name: "Mr. Sathish S", title: "AC Sales & Service Operations Head", img: "/SATHISH S.jpg" },
@@ -134,6 +135,22 @@ const businesses = [
         href: "/mechanical-machinery-services",
         subItems: ["Industrial Machinery Services", "Machinery Buy & Sell", "All Type of Vehicle Services"],
         person: { name: "Mr. Naresh D", position: "Mechanical & Machinery Operations Head", experience: 6 },
+    },
+    {
+        icon: Cpu,
+        title: "Software, Digital & AI Solutions",
+        sub: "Software, Digital & AI Solutions",
+        img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=900",
+        desc: "End-to-end technology solutions combining modern web development, intelligent automation, digital infrastructure, and search visibility to help businesses operate, scale, and grow digitally.",
+        href: "/software-digital-ai-solutions",
+        subItems: [
+            "Web & Software Development",
+            "AI & Workflow Automation",
+            "SEO / GEO & Digital Growth",
+            "UI/UX & Digital Systems",
+            "Hosting & Technical Support",
+        ],
+        person: { name: "Mr. T Mohammed Arif", position: "Technology & Digital Solutions Head", experience: 2 },
     },
 ];
 

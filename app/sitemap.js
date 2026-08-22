@@ -17,6 +17,7 @@ export default function sitemap() {
         '/mechanical-machinery-services',
         '/abroad-job-consultancy',
         '/ericsson-specialized-telecom',
+        '/software-digital-ai-solutions',
     ];
 
     return [

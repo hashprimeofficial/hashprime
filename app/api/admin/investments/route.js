@@ -10,14 +10,14 @@ import { calculateReferralCommission } from '@/lib/referralUtils';
 
 const INR_SCHEMES = {
     '3m_inr': { returnRate: 0.18, durationMonths: 3 },
-    '6m_inr': { returnRate: 0.38, durationMonths: 6 },
+    '6m_inr': { returnRate: 0.40, durationMonths: 6 },
     '1y_inr': { returnRate: 0.80, durationMonths: 12 },
     '5y_inr': { returnRate: 5.00, durationMonths: 60 },
     'limited_inr': { returnRate: 0.24, durationMonths: 6 },
 };
 const USD_SCHEMES = {
     '3m_usd': { returnRate: 0.18, durationMonths: 3 },
-    '6m_usd': { returnRate: 0.38, durationMonths: 6 },
+    '6m_usd': { returnRate: 0.40, durationMonths: 6 },
     '1y_usd': { returnRate: 0.80, durationMonths: 12 },
     '5y_usd': { returnRate: 5.00, durationMonths: 60 },
 };

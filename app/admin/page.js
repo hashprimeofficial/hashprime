@@ -28,8 +28,8 @@ export default function AdminOverview() {
     } = data || {};
 
     const SCHEME_RATES = {
-        '3m_inr': 0.18, '6m_inr': 0.38, '1y_inr': 0.80, '5y_inr': 5.00, 'limited_inr': 0.24,
-        '3m_usd': 0.18, '6m_usd': 0.38, '1y_usd': 0.80, '5y_usd': 5.00,
+        '3m_inr': 0.18, '6m_inr': 0.40, '1y_inr': 0.80, '5y_inr': 5.00, 'limited_inr': 0.24,
+        '3m_usd': 0.18, '6m_usd': 0.40, '1y_usd': 0.80, '5y_usd': 5.00,
     };
     const getInrYield = (inv) => {
         if (inv.inrReward !== undefined && inv.inrReward !== null) return inv.inrReward;

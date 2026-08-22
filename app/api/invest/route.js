@@ -9,14 +9,14 @@ import speakeasy from 'speakeasy';
 
 const INR_SCHEMES = {
     '3m_inr': { minAmounts: [50000, 100000, 200000, 300000, 400000, 500000], returnRate: 0.18, durationMonths: 3 },
-    '6m_inr': { minAmounts: [50000, 100000, 200000, 300000, 400000, 500000], returnRate: 0.38, durationMonths: 6 },
+    '6m_inr': { minAmounts: [50000, 100000, 200000, 300000, 400000, 500000], returnRate: 0.40, durationMonths: 6 },
     '1y_inr': { minAmounts: [50000, 100000, 200000, 300000, 400000, 500000], returnRate: 0.80, durationMonths: 12 },
     '5y_inr': { minAmounts: [50000, 100000, 200000, 300000, 400000, 500000], returnRate: 5.00, durationMonths: 60 },
     'limited_inr': { minAmounts: [50000, 100000, 200000, 300000, 400000, 500000], returnRate: 0.24, durationMonths: 6 },
 };
 const USD_SCHEMES = {
     '3m_usd': { minAmounts: [500, 1000, 1500, 2000], returnRate: 0.18, durationMonths: 3 },
-    '6m_usd': { minAmounts: [1000, 1500, 2000], returnRate: 0.38, durationMonths: 6 },
+    '6m_usd': { minAmounts: [1000, 1500, 2000], returnRate: 0.40, durationMonths: 6 },
     '1y_usd': { minAmount: 5000, maxAmount: Infinity, returnRate: 0.80, durationMonths: 12 },
     '5y_usd': { minAmount: 10000, maxAmount: Infinity, returnRate: 5.00, durationMonths: 60 },
 };

@@ -23,7 +23,7 @@ const schemes = [
         title: "Elite Performance",
         period: "6 Month Scheme",
         duration: "180 Days",
-        benefit: "38%",
+        benefit: "40%",
         benefitCurrency: "INR (₹)",
         investments: ["50K", "1L", "2L", "3L", "4L", "5L"],
     },
