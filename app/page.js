@@ -18,42 +18,20 @@ export default function Home() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Hashprime',
-    legalName: 'Hashprime Groups',
     url: 'https://hashprime.in',
     logo: 'https://hashprime.in/logo.png',
-    description: 'Hashprime is a multi-service engineering and infrastructure company delivering turnkey solutions across telecom, electrical, civil construction, HVAC, real estate, and technology sectors.',
-    foundingDate: '2019',
-    founders: [
-      {
-        '@type': 'Person',
-        name: 'Mr. Vijayabharathi Veerasamy',
-        jobTitle: 'Founder & Managing Director',
-      },
-      {
-        '@type': 'Person',
-        name: 'Mr. Naveenkumar Mayavan',
-        jobTitle: 'Co-Founder & CEO',
-      },
-    ],
+    description: 'Hashprime is a multi-service engineering and infrastructure company dedicated to delivering reliable, innovative, and high-quality solutions.',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'No.4/21, Ananthakudi Road, Anna Salai, Mappadukai',
-      addressLocality: 'Mayiladuthurai',
-      addressRegion: 'Tamil Nadu',
-      postalCode: '609003',
-      addressCountry: 'IN',
+      addressCountry: {
+        '@type': 'Country',
+        name: 'India',
+      },
     },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+91-91500-81022',
-      contactType: 'customer service',
-      email: 'support@hashprime.in',
-      areaServed: 'IN',
+    areaServed: {
+      '@type': 'Country',
+      name: 'India',
     },
-    sameAs: [
-      'https://www.instagram.com/hashprimegroups',
-      'https://linkedin.com/company/hashprimeindia',
-    ],
   };
 
   return (

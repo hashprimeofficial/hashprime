@@ -4,40 +4,84 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Briefcase, ShieldCheck, CheckCircle2, HeadphonesIcon, ArrowUpRight, Wrench } from "lucide-react";
+import { Briefcase, ShieldCheck, PieChart, HeadphonesIcon, ArrowUpRight } from "lucide-react";
+
+function PremiumTechNetwork() {
+    return (
+        <div className="w-full h-full relative flex items-center justify-center">
+            <svg viewBox="0 0 200 200" className="w-full h-full drop-shadow-[0_0_40px_rgba(212,175,53,0.25)]">
+                <defs>
+                    <linearGradient id="netGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#d4af35" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="#a37f1c" stopOpacity="0.2" />
+                    </linearGradient>
+                </defs>
+
+                {/* Connection lines */}
+                <g opacity="0.3" stroke="url(#netGold)" strokeWidth="0.75">
+                    <line x1="100" y1="40" x2="60" y2="90" />
+                    <line x1="100" y1="40" x2="140" y2="90" />
+                    <line x1="60" y1="90" x2="100" y2="140" />
+                    <line x1="140" y1="90" x2="100" y2="140" />
+                    <line x1="60" y1="90" x2="140" y2="90" />
+                    <line x1="100" y1="40" x2="100" y2="140" />
+                    <line x1="100" y1="40" x2="100" y2="90" />
+                    <line x1="100" y1="140" x2="100" y2="90" />
+                </g>
+
+                {/* Outer Ring */}
+                <circle cx="100" cy="90" r="65" fill="none" stroke="#d4af35" strokeWidth="0.5" strokeDasharray="5 5" opacity="0.2" className="animate-spin" style={{ transformOrigin: '100px 90px', animationDuration: '40s' }} />
+
+                {/* Nodes */}
+                <circle cx="100" cy="40" r="5" fill="#d4af35" className="animate-pulse" />
+                <circle cx="100" cy="40" r="10" fill="none" stroke="#d4af35" strokeWidth="0.5" opacity="0.4" className="animate-ping" style={{ animationDuration: '3s' }} />
+
+                <circle cx="60" cy="90" r="5" fill="#ffffff" />
+                <circle cx="140" cy="90" r="5" fill="#ffffff" />
+                
+                <circle cx="100" cy="140" r="5" fill="#d4af35" className="animate-pulse" />
+                <circle cx="100" cy="140" r="10" fill="none" stroke="#d4af35" strokeWidth="0.5" opacity="0.4" className="animate-ping" style={{ animationDuration: '4s' }} />
+
+                {/* Core animated node */}
+                <circle cx="100" cy="90" r="8" fill="#0A0A0A" stroke="#d4af35" strokeWidth="1.5" />
+                <circle cx="100" cy="90" r="3" fill="#ffffff" className="animate-ping" style={{ animationDuration: '1.5s' }} />
+            </svg>
+        </div>
+    );
+}
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const features = [
     {
-        id: "multi-sector-engineering",
+        id: "diversified-business-portfolio",
         num: "01",
-        title: "Multi-Sector Engineering Capacity",
-        description: "Seamlessly bridging telecom networks, power grids, civil construction, and commercial HVAC under one unified delivery engine.",
-        icon: Wrench,
+        title: "Diversified Business Portfolio",
+        description: "Seamlessly manage stocks, commodities, and global equities in one unified interface. Hashprime simplifies complex investing.",
+        icon: Briefcase,
         color: "bg-[#d4af35]/5"
     },
     {
-        id: "robust-safety-qa",
+        id: "robust-security-measures",
         num: "02",
-        title: "Stringent Safety & QA Protocols",
-        description: "Strict adherence to Indian Electricity Rules, National Building Code standards, and calibrated OTDR fiber diagnostic audits.",
+        title: "Robust Security Measures",
+        description: "Institutional-grade encryption and multi-layer authentication. Your assets are safeguarded by world-class security protocols.",
         icon: ShieldCheck,
         color: "bg-[#d4af35]/5"
     },
     {
-        id: "sla-transparency",
+        id: "competitive-investment-options",
         num: "03",
-        title: "Milestone-Based SLA Governance",
-        description: "Transparent commercial contracting, rigorous project management milestones, and verifiable completion certificates.",
-        icon: CheckCircle2,
+        title: "Competitive Investment Options",
+        description: "Access premium investment schemes with transparent fee structures. Maximize your growth potential with curated plans.",
+        icon: PieChart,
         color: "bg-[#d4af35]/5"
     },
     {
-        id: "district-field-support",
+        id: "faster-customer-support",
         num: "04",
-        title: "24/7 District Field Support",
-        description: "Dedicated zonal operations managers and rapid-deployment squads stationed across South India for emergency maintenance.",
+        title: "Fastest Customer Support",
+        description: "Dedicated 24/7 expert support. Whether technical or account-related, we ensure your journey is always smooth.",
         icon: HeadphonesIcon,
         color: "bg-[#d4af35]/5"
     }
@@ -47,6 +91,7 @@ export default function SalientFeatures() {
     const sectionRef = useRef(null);
 
     useGSAP(() => {
+        // Subtle floating background elements
         gsap.to(".sf-orb", {
             y: "random(-20, 20)",
             x: "random(-20, 20)",
@@ -73,50 +118,106 @@ export default function SalientFeatures() {
         );
     }, { scope: sectionRef });
 
+    const handleMouseMove = (e) => {
+        const cards = sectionRef.current.querySelectorAll(".glow-card-premium");
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty("--mouse-x", `${x}px`);
+            card.style.setProperty("--mouse-y", `${y}px`);
+        });
+    };
+
     return (
         <section
             ref={sectionRef}
-            className="relative bg-[#121212] py-16 md:py-24 overflow-hidden"
+            onMouseMove={handleMouseMove}
+            className="relative bg-[#121212] py-8 md:py-12 overflow-hidden"
             id="features"
         >
+            {/* Background Decorative Elements */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="sf-orb absolute top-20 left-[10%] w-[400px] h-[400px] bg-[#d4af35]/5 rounded-full blur-[120px]" />
                 <div className="sf-orb absolute bottom-20 right-[5%] w-[500px] h-[500px] bg-[#d4af35]/10 rounded-full blur-[150px]" />
+                <div className="absolute inset-0 opacity-[0.03]"
+                    style={{ backgroundImage: 'radial-gradient(#0B1120 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <div className="text-center max-w-3xl mx-auto mb-20">
-                    <div className="sf-header-animate inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4af35]/20 bg-[#d4af35]/5 mb-6">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#d4af35] animate-pulse"></span>
-                        <span className="text-xs uppercase tracking-[0.2em] font-medium text-[#d4af35]">Core Advantages</span>
+            <div className="relative z-10 max-w-7xl mx-auto px-6">
+
+                {/* Header Section */}
+                <div className="flex flex-col lg:flex-row items-center justify-between gap-16 mb-24 md:mb-32">
+                    <div className="flex flex-col items-start text-left lg:max-w-2xl">
+                        <div className="sf-header-animate inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#121212]/5 border border-[#d4af35]/20 shadow-sm mb-8">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af35] opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af35]"></span>
+                            </span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#d4af35]">The Ultimate Advantage</span>
+                        </div>
+
+                        <h2 className="sf-header-animate text-5xl md:text-7xl font-black text-white tracking-tight leading-[1] mb-8">
+                            Engineered for<br />
+                            <span className="text-[#d4af35]">Excellence</span>
+                        </h2>
+
+                        <p className="sf-header-animate text-lg md:text-xl text-slate-400 font-normal max-w-xl leading-relaxed">
+                            Industry-leading infrastructure designed for precision, security, and institutional-grade performance.
+                        </p>
                     </div>
-                    <h2 className="sf-header-animate text-4xl md:text-6xl font-black text-white tracking-tight leading-none mb-6">
-                        Engineering Excellence <br />
-                        <span className="text-[#d4af35]">Delivered Nationwide</span>
-                    </h2>
-                    <p className="sf-header-animate text-slate-400 text-base md:text-lg">
-                        Why national telecom carriers, commercial developers, and institutional enterprises partner with Hashprime.
-                    </p>
+
+                    <div className="sf-header-animate flex-shrink-0 w-full max-w-[320px] lg:max-w-none lg:w-[450px] aspect-square relative mx-auto lg:mx-0">
+                        <div className="absolute inset-0 bg-[#d4af35]/5 rounded-full blur-[80px] animate-pulse" />
+                        <PremiumTechNetwork />
+                    </div>
                 </div>
 
-                <div className="sf-grid-premium grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                    {features.map((feat) => {
-                        const Icon = feat.icon;
+                {/* Grid Section */}
+                <div className="sf-grid-premium grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {features.map((feature) => {
+                        const Icon = feature.icon;
                         return (
                             <div
-                                key={feat.id}
-                                className="sf-card-premium group relative bg-[#0A0A0A] border border-white/10 hover:border-[#d4af35]/40 rounded-3xl p-8 transition-all duration-300 flex flex-col justify-between"
+                                key={feature.id}
+                                className="sf-card-premium glow-card-premium group relative bg-[#121212]/60 backdrop-blur-xl border border-white/10/60 rounded-[2.5rem] p-10 hover:border-[#d4af35]/40 transition-all duration-500 flex flex-col h-full shadow-[0_8px_30px_rgb(0,0,0,0.02)] hover:shadow-[0_20px_50px_rgba(212,175,53,0.1)] overflow-hidden cursor-pointer"
                             >
-                                <div>
-                                    <div className="flex items-center justify-between mb-6">
-                                        <div className="w-12 h-12 rounded-2xl bg-[#141414] border border-white/10 flex items-center justify-center group-hover:bg-[#d4af35] transition-colors duration-300">
-                                            <Icon className="w-6 h-6 text-[#d4af35] group-hover:text-[#0A0A0A] transition-colors duration-300" />
-                                        </div>
-                                        <span className="text-xs font-mono font-bold text-[#d4af35]">{feat.num}</span>
+                                {/* Background Accent Gradient */}
+                                <div className={`absolute inset-0  ${feature.color} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+
+                                {/* Cursor Glow */}
+                                <div className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition duration-500 group-hover:opacity-100"
+                                    style={{ background: 'radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(212,175,53,0.1), transparent 40%)' }} />
+
+                                {/* Icon Wrapper */}
+                                <div className="mb-10 relative z-10 transition-transform duration-500 group-hover:-translate-y-2">
+                                    <div className="w-20 h-20 rounded-3xl bg-[#121212] border border-white/5 flex items-center justify-center shadow-sm group-hover:bg-[#d4af35] group-hover:border-[#d4af35] group-hover:shadow-[0_0_30px_rgba(212,175,53,0.4)] transition-all duration-500">
+                                        <Icon className="w-10 h-10 text-white group-hover:text-[#0A0A0A] transition-colors duration-500" strokeWidth={1.5} />
                                     </div>
-                                    <h3 className="text-2xl font-bold text-white mb-3">{feat.title}</h3>
-                                    <p className="text-slate-400 text-sm leading-relaxed mb-6">{feat.description}</p>
                                 </div>
+
+                                {/* Content */}
+                                <div className="mt-auto relative z-10">
+                                    <div className="flex items-center justify-between mb-6">
+                                        <span className="text-4xl font-black text-slate-100 group-hover:text-white/5 transition-colors duration-500">
+                                            {feature.num}
+                                        </span>
+                                        <div className="opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 bg-[#d4af35] p-2 rounded-full">
+                                            <ArrowUpRight size={18} className="text-[#0A0A0A]" />
+                                        </div>
+                                    </div>
+
+                                    <h3 className="text-2xl font-black text-white mb-4 tracking-tight">
+                                        {feature.title}
+                                    </h3>
+
+                                    <p className="text-slate-400 font-normal leading-relaxed group-hover:text-slate-300 transition-colors duration-500">
+                                        {feature.description}
+                                    </p>
+                                </div>
+
+                                {/* Bottom Accent Line */}
+                                <div className="absolute bottom-0 left-10 right-10 h-1 bg-[#d4af35] rounded-t-full opacity-0 group-hover:opacity-100 transform translate-y-full group-hover:translate-y-0 transition-all duration-500"></div>
                             </div>
                         );
                     })}
