@@ -21,6 +21,7 @@ const team = [
     { name: "Mr. Kannan Thangavel", title: "Accounts Manager", img: "/Mr.KANNAN THANGAVEL.jpeg" },
     { name: "Mr. Murugaraj Elangovan", title: "Mayiladuthurai District Zonal Manager", img: "/MURUGARAJ ELANGOVAN.jpeg" },
     { name: "Mrs. Priyadharshini Ragupathi", title: "Salem District Zonal Manager", img: "/PRIYADHARSHINI RAGUPATHI.png" },
+    { name: "Mr. T Mohammed Arif", title: "Digital Systems & Automation Specialist", img: "/T_MOHAMMED_ARIF.jpg" },
     { name: "Mrs. Sudha Sasikumar", title: "Thiruvarur District Zonal Manager", img: "/SUDHA SASIKUMAR.png" },
     { name: "Mr. Ravi Maarimuthu", title: "Construction Operations Head", img: "/Mr. RAVI MAARIMUTHU.jpeg" },
 
@@ -28,7 +29,6 @@ const team = [
     { name: "Mr. Manikandaprabu R", title: "Tourism Operations Head", img: "/MANIKANDAPRABU R.jpeg" },
     { name: "Mr. Naresh D", title: "Mechanical & Machinery Operations Head", img: "/NARESH D.jpeg" },
     { name: "Mr. Sathish S", title: "AC Sales & Service Operations Head", img: "/SATHISH S.jpg" },
-    { name: "Mr. T Mohammed Arif", title: "Digital Systems & Automation Specialist", img: "/T_MOHAMMED_ARIF.jpg" },
 
 ];
 
