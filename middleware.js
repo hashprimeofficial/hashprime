@@ -1,57 +1,53 @@
 import { NextResponse } from 'next/server';
-import { jwtVerify } from 'jose';
 
-const secretKey = process.env.JWT_SECRET;
-if (!secretKey && process.env.NODE_ENV === 'production') {
-    console.error('CRITICAL: JWT_SECRET environment variable is missing. Security risk!');
-}
-const key = new TextEncoder().encode(secretKey || 'thisismysupersecretkeyforhashprimeapp');
+const MAINTENANCE_MESSAGE = "Our website is currently undergoing scheduled updates and enhancements. We’ll be back online on 21 October 2026. Thank you for your patience and understanding.";
 
-export async function middleware(req) {
-    const token = req.cookies.get('auth_token')?.value;
+export function middleware(req) {
     const { pathname } = req.nextUrl;
 
-    const isProtectedRoute = pathname.startsWith('/dashboard') || pathname.startsWith('/admin');
-    const isAdminRoute = pathname.startsWith('/admin');
-    const isAuthRoute = pathname.startsWith('/login') || pathname.startsWith('/register');
-
-    if (isProtectedRoute) {
-        if (!token) {
-            return NextResponse.redirect(new URL('/login', req.url));
-        }
-
-        try {
-            const { payload } = await jwtVerify(token, key);
-
-            if (isAdminRoute && payload.role !== 'admin') {
-                return NextResponse.redirect(new URL('/dashboard', req.url));
+    // Block all API routes with 503 Service Unavailable
+    if (pathname.startsWith('/api')) {
+        return NextResponse.json(
+            {
+                status: 503,
+                error: 'Service Unavailable',
+                message: MAINTENANCE_MESSAGE,
+                backOnlineDate: '2026-10-21T00:00:00+05:30',
+            },
+            {
+                status: 503,
+                headers: {
+                    'Retry-After': 'Wed, 21 Oct 2026 00:00:00 GMT',
+                    'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+                    'Content-Type': 'application/json',
+                },
             }
-        } catch (error) {
-            // Token is invalid or expired
-            const response = NextResponse.redirect(new URL('/login', req.url));
-            response.cookies.delete('auth_token');
-            return response;
-        }
+        );
     }
 
-    if (isAuthRoute) {
-        if (token) {
-            try {
-                const { payload } = await jwtVerify(token, key);
-                if (payload.role === 'admin') {
-                    return NextResponse.redirect(new URL('/admin', req.url));
-                } else {
-                    return NextResponse.redirect(new URL('/dashboard', req.url));
-                }
-            } catch (error) {
-                // Token invalid, let them proceed to auth routes
-            }
-        }
+    // If requesting any page other than root '/', redirect strictly to '/'
+    if (pathname !== '/') {
+        const url = req.nextUrl.clone();
+        url.pathname = '/';
+        url.search = '';
+        return NextResponse.redirect(url, 307);
     }
 
-    return NextResponse.next();
+    // For root '/', pass through to render the maintenance countdown page
+    const response = NextResponse.next();
+    response.headers.set('Cache-Control', 'no-store, max-age=0, must-revalidate');
+    return response;
 }
 
 export const config = {
-    matcher: ['/dashboard/:path*', '/admin/:path*', '/login', '/register'],
+    matcher: [
+        /*
+         * Match all request paths except for:
+         * - _next/static (static JS/CSS)
+         * - _next/image (image optimization files)
+         * - favicon.ico (favicon file)
+         * - static images and assets (png, jpg, svg, webp, fonts)
+         */
+        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff|woff2|ttf|css|js)$).*)',
+    ],
 };
