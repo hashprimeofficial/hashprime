@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Clock, ShieldCheck, Cpu, Sparkles } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
 const TARGET_DATE = new Date('2026-10-21T00:00:00+05:30').getTime();
 
@@ -81,24 +81,13 @@ export default function MaintenancePage() {
 
             {/* Main Content Hero */}
             <main className="relative z-10 w-full max-w-4xl flex flex-col items-center text-center my-auto py-8">
-                {/* Status Indicator Pill */}
-                <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#d4af35]/10 border border-[#d4af35]/30 mb-8 backdrop-blur-md">
-                    <span className="relative flex h-2.5 w-2.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af35] opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#d4af35]" />
-                    </span>
-                    <span className="text-xs uppercase tracking-widest font-semibold text-[#f5e0a3]">
-                        Scheduled System Maintenance
-                    </span>
-                </div>
-
                 {/* Primary Headline */}
-                <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 max-w-3xl leading-tight">
+                <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-8 max-w-3xl leading-tight">
                     Under Scheduled Updates & Enhancements
                 </h1>
 
                 {/* Exact Requested Message in a Premium Box */}
-                <div className="relative w-full max-w-2xl px-6 py-6 md:px-8 md:py-7 rounded-2xl bg-white/[0.02] border border-[#d4af35]/25 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.6),0_0_30px_rgba(212,175,53,0.06)] mb-10">
+                <div className="relative w-full max-w-2xl px-6 py-6 md:px-8 md:py-7 rounded-2xl bg-white/[0.02] border border-[#d4af35]/25 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.6),0_0_30px_rgba(212,175,53,0.06)] mb-12">
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#0A0A0A] border border-[#d4af35]/40 text-[11px] font-semibold uppercase tracking-widest text-[#d4af35] flex items-center gap-1.5">
                         <Sparkles className="w-3 h-3 text-[#d4af35]" />
                         Official Notice
@@ -110,11 +99,6 @@ export default function MaintenancePage() {
 
                 {/* Automatic Countdown Timer */}
                 <div className="w-full max-w-3xl flex flex-col items-center">
-                    <div className="flex items-center gap-2 mb-4 text-xs uppercase tracking-widest text-neutral-400 font-medium">
-                        <Clock className="w-3.5 h-3.5 text-[#d4af35]" />
-                        <span>Automatic Live Countdown to 21 October 2026</span>
-                    </div>
-
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 md:gap-6 w-full max-w-2xl">
                         {/* Days */}
                         <div className="flex flex-col items-center justify-center p-4 sm:p-6 rounded-2xl bg-[#0e0e0e]/80 border border-[#d4af35]/20 backdrop-blur-xl shadow-lg relative overflow-hidden group">
@@ -178,29 +162,6 @@ export default function MaintenancePage() {
                             Scheduled updates are in their final stage. Reconnecting shortly...
                         </p>
                     )}
-                </div>
-
-                {/* Reassurance Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl mt-12 text-left">
-                    <div className="flex items-start gap-3.5 p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                        <Cpu className="w-5 h-5 text-[#d4af35] shrink-0 mt-0.5" />
-                        <div>
-                            <h4 className="text-sm font-semibold text-white">Infrastructure & Platform Overhaul</h4>
-                            <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
-                                We are implementing major speed, scalability, and security upgrades across all core systems.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="flex items-start gap-3.5 p-4 rounded-xl bg-white/[0.02] border border-white/5">
-                        <ShieldCheck className="w-5 h-5 text-[#d4af35] shrink-0 mt-0.5" />
-                        <div>
-                            <h4 className="text-sm font-semibold text-white">Data Security & Integrity</h4>
-                            <p className="text-xs text-neutral-400 mt-1 leading-relaxed">
-                                All user profiles, investment records, and transaction histories remain safely encrypted and untouched.
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </main>
 
